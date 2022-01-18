@@ -1,0 +1,22 @@
+Unidad				String	250
+Procedencia			String	50
+Seccion				String	100
+Serie				String	100
+Subserie			String	100
+Subsubserie			String	100
+Subsubsubserie		String	100
+Codigo				String	100
+ValorPrimario		String	4
+VigenciaDocumental	String	20
+Expediente			String	25
+FechaApertura		String	10
+FechaCierre			String	10
+Asunto				String	250
+CajaAnterior		String	25
+UbicacionAnterior	String	25
+CajaNueva			String	10
+FechaDeCorte		String	10
+PlazoTramite		String	25
+PlazoConcentracion	String	25
+CajaProv			String	50
+

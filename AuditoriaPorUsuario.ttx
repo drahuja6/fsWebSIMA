@@ -1,0 +1,4 @@
+idUsuarioReal	String	10
+Nombre			String	250
+ExpCreados		String	10
+ExpEditados		String	10
