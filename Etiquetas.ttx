@@ -1,0 +1,6 @@
+Fondo			String	250
+Seccion			String	100
+Serie			String	100
+Subserie		String	100
+Codigo			String	100
+Nombre			String	50

@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("D:\PdfSIMA\Senado\DGAHML\00001\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("D:\PdfSIMA\Senado\")>  _
         Public ReadOnly Property DirImagenes() As String
             Get
                 Return CType(Me("DirImagenes"),String)

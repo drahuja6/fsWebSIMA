@@ -1455,7 +1455,7 @@ Public Class BuscarExpediente
         Dim da As New OleDbDataAdapter
         Dim ds As New DataSet
 
-        Dim Reporte As New GuiaDeExpedientesFOVISSSTE
+        Dim Reporte As New GuiaDeExpedientes
         Dim MisParametros As New BuscarExpediente.SQLParameters
         Dim MiCondicion As String
 
@@ -1506,6 +1506,9 @@ Public Class BuscarExpediente
         param = cmd.Parameters.Add("CampoAdicional3", OleDbType.VarChar)
         param.Value = MisParametros.CampoAdicional3
 
+        param = cmd.Parameters.Add("Orden", OleDbType.VarChar)
+        param.Value = "1"
+
         param = cmd.Parameters.Add("FechaInicial", OleDbType.Date)
         param.Value = MisParametros.FechaInicial
 
@@ -1522,12 +1525,13 @@ Public Class BuscarExpediente
         Reporte.SetParameterValue(1, "")
 
         Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = Session("SubdirectorioTemporal") & Session("LoginActivo") & guid1.ToString & ".pdf"
+        Dim MyFileName As String = Session("SubdirectorioTemporal").ToString & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
         'Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
         'ficheros con reportes pdf del usuario activo (El File.Exists no funciona)
-        Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-        Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
+
+        'Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
+        'Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
         'Write the file directly to the HTTP output stream.
@@ -1544,7 +1548,7 @@ Public Class BuscarExpediente
         Dim da As New OleDbDataAdapter
         Dim ds As New DataSet
 
-        Dim Reporte As New ListaDeExpedientesFOVISSSTE
+        Dim Reporte As New ListaDeExpedientes
         Dim MisParametros As New BuscarExpediente.SQLParameters
         Dim MiCondicion As String
 
@@ -1595,6 +1599,9 @@ Public Class BuscarExpediente
         param = cmd.Parameters.Add("CampoAdicional3", OleDbType.VarChar)
         param.Value = MisParametros.CampoAdicional3
 
+        param = cmd.Parameters.Add("Orden", OleDbType.VarChar)
+        param.Value = "1"
+
         param = cmd.Parameters.Add("FechaInicial", OleDbType.Date)
         param.Value = MisParametros.FechaInicial
 
@@ -1611,12 +1618,12 @@ Public Class BuscarExpediente
         'Reporte.SetParameterValue(1, "700 FOVISSSTE")
 
         Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = Session("SubdirectorioTemporal") & Session("LoginActivo") & guid1.ToString & ".pdf"
+        Dim MyFileName As String = Session("SubdirectorioTemporal").ToString & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
         'Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
         'ficheros con reportes pdf del usuario activo (El File.Exists no funciona)
-        Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-        Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
+        'Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
+        'Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
         'Write the file directly to the HTTP output stream.
@@ -1856,14 +1863,14 @@ Public Class BuscarExpediente
 
     End Sub
 
-    Private Sub btnEtiquetas_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEtiquetas.Click
+    Private Sub BtnEtiquetas_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnEtiquetas.Click
         Dim cn As New OleDbConnection
         Dim cmd As New OleDbCommand
         Dim param As OleDbParameter
         Dim da As New OleDbDataAdapter
         Dim ds As New DataSet
 
-        Dim Reporte As New NuevasEtiquetasFOVISSSTE
+        Dim Reporte As New Etiquetas
         Dim MisParametros As New BuscarExpediente.SQLParameters
         Dim MiCondicion As String
 
@@ -1875,7 +1882,7 @@ Public Class BuscarExpediente
         cmd.CommandType = CommandType.StoredProcedure
         cmd.Connection = cn
         cmd.Parameters.Clear()
-        cmd.CommandText = "EtiquetasFOVISSSTE_NEW2"
+        cmd.CommandText = "Etiquetas"
         cmd.CommandTimeout = 0
 
         param = cmd.Parameters.Add("SQLCondicion", OleDbType.VarChar)
@@ -1919,7 +1926,7 @@ Public Class BuscarExpediente
             Case " e.Codigo " 'Codigo del expediente
                 param.Value = " Codigo "
             Case " e.Nombre " 'Numero del expediente
-                param.Value = " Numero "
+                param.Value = " Nombre "
             Case " e.CampoAdicional2 " 'REF 
                 param.Value = " Ref "
             Case " e.CampoAdicional1 " 'RFC
@@ -1937,7 +1944,7 @@ Public Class BuscarExpediente
             Case " ua.NombreCorto " 'Unidad Administrativa
                 param.Value = " Unidad "
             Case Else
-                param.Value = " Numero "
+                param.Value = " Nombre "
         End Select
 
         param = cmd.Parameters.Add("FechaInicial", OleDbType.Date)
@@ -1952,94 +1959,14 @@ Public Class BuscarExpediente
 
         Reporte.SetDataSource(ds.Tables(0))
 
-        'Reporte.SetParameterValue(0, "ISSSTE")
-        'Reporte.SetParameterValue(1, "700 FOVISSSTE")
-
         Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = Session("SubdirectorioTemporal") & Session("LoginActivo") & guid1.ToString & ".pdf"
+        Dim MyFileName As String = Session("SubdirectorioTemporal").ToString & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
-        'Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
-        'ficheros con reportes pdf del usuario activo (El File.Exists no funciona)
-        Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-        Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
-        'Write the file directly to the HTTP output stream.
         Response.ContentType = "Application/pdf"
         Response.WriteFile(MyFileName)
         Response.End()
-
-        'Dim Reporte As New EtiquetasFOVISSSTE
-        'Dim MisParametros As New FSWeb2.BuscarExpediente.SQLParameters
-        'Dim MiCondicion As String
-
-        'GITPreparaParametros(MiCondicion, MisParametros)
-
-        'cn.ConnectionString = Session("UsuarioVirtualConnString")
-        'cn.Open()
-
-        'cmd.CommandType = CommandType.StoredProcedure
-        'cmd.Connection = cn
-        'cmd.Parameters.Clear()
-        'cmd.CommandText = "CargaFormatoCaratulaFOVISSSTESQL"
-        'cmd.CommandTimeout = 0
-
-        'param = cmd.Parameters.Add("SQLCondicion", OleDbType.VarChar)
-        'param.Value = MiCondicion
-
-        'param = cmd.Parameters.Add("Codigo", OleDbType.VarChar)
-        'param.Value = MisParametros.Codigo
-
-        'param = cmd.Parameters.Add("Expediente", OleDbType.VarChar)
-        'param.Value = MisParametros.Expediente
-
-        'param = cmd.Parameters.Add("ExpedienteFinal", OleDbType.VarChar)
-        'param.Value = MisParametros.ExpedienteFinal
-
-        'param = cmd.Parameters.Add("Tipo", OleDbType.VarChar)
-        'param.Value = MisParametros.Tipo
-
-        'param = cmd.Parameters.Add("RFC", OleDbType.VarChar)
-        'param.Value = MisParametros.RFC
-
-        'param = cmd.Parameters.Add("Asunto", OleDbType.VarChar)
-        'param.Value = MisParametros.Asunto
-
-        'param = cmd.Parameters.Add("Caja", OleDbType.VarChar)
-        'param.Value = MisParametros.Cajas
-
-        'param = cmd.Parameters.Add("RelacionAnterior", OleDbType.VarChar)
-        'param.Value = MisParametros.RelacionAnterior
-
-        'param = cmd.Parameters.Add("FechaInicial", OleDbType.Date)
-        'param.Value = MisParametros.FechaInicial
-
-        'param = cmd.Parameters.Add("FechaFinal", OleDbType.Date)
-        'param.Value = MisParametros.FechaFinal
-
-        'da.SelectCommand = cmd
-        'da.Fill(ds)
-        'da.Dispose()
-
-        'Reporte.SetDataSource(ds.Tables(0))
-
-        ''Reporte.SetParameterValue(0, "ISSSTE")
-        'Reporte.SetParameterValue(0, "700. FOVISSSTE")
-
-
-        'Dim guid1 As Guid = Guid.NewGuid
-        'Dim MyFileName As String = Session("SubdirectorioTemporal") & Session("LoginActivo") & guid1.ToString & ".pdf"
-
-        ''Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
-        ''ficheros con reportes pdf del usuario activo (El File.Exists no funciona)
-        'Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-        'Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
-        'Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-
-        ''Write the file directly to the HTTP output stream.
-        'Response.ContentType = "Application/pdf"
-        'Response.WriteFile(MyFileName)
-        'Response.End()
 
     End Sub
 
@@ -2198,7 +2125,7 @@ Public Class BuscarExpediente
         Dim da As New OleDbDataAdapter
         Dim ds As New DataSet
 
-        Dim Reporte As New ListaDeExpedientesFOVISSSTE
+        Dim Reporte As New ListaDeExpedientes
         Dim MisParametros As New BuscarExpediente.SQLParameters
         Dim MiCondicion As String
 

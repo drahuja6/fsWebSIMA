@@ -11,6 +11,7 @@ Public Class DisplayExpediente
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
 
     End Sub
+
     Protected WithEvents Label1 As System.Web.UI.WebControls.Label
     Protected WithEvents txtCodigo As System.Web.UI.WebControls.TextBox
     Protected WithEvents Label2 As System.Web.UI.WebControls.Label
@@ -2819,8 +2820,8 @@ Public Class DisplayExpediente
 
         'Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
         'ficheros con reportes pdf del usuario activo (El File.Exists no funciona)
-        Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-        Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
+        'Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
+        'Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
         'Write the file directly to the HTTP output stream.
@@ -2910,12 +2911,12 @@ Public Class DisplayExpediente
         Reporte.SetParameterValue(1, "")
 
         Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = Session("SubdirectorioTemporal") & Session("LoginActivo") & guid1.ToString & ".pdf"
+        Dim MyFileName As String = Session("SubdirectorioTemporal").ToString & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
         'Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
         'ficheros con reportes pdf del usuario activo (El File.Exists no funciona)
-        Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-        Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
+        'Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
+        'Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
         'Write the file directly to the HTTP output stream.
@@ -2956,7 +2957,7 @@ Public Class DisplayExpediente
         'Reporte.SetParameterValue(1, "700. FOVISSSTE")
 
         Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = Session("SubdirectorioTemporal") & Session("LoginActivo") & guid1.ToString & ".pdf"
+        Dim MyFileName As String = Session("SubdirectorioTemporal").ToString & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
         'Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
         'ficheros con reportes pdf del usuario activo (El File.Exists no funciona)

@@ -13,7 +13,7 @@
                 <asp:Panel ID="Panel2" runat="server">
 		            <asp:Image ID="logoFullServiceImg" runat="server" src="LogoFSM.png" Height="75px" Width="75px" AlternateText="Full Service de México, S.A. de C.V." />
 					<asp:Image ID="logoCliente" runat="server" src="LogoSenado-LXV.png" Height="75px" Width="75px" AlternateText="Full Service de México, S.A. de C.V. - Cliente" />
-					<asp:Label ID="versionLabel" runat="server" Text="V.1.0.3.2022" Font-Size="XX-Small"/>
+					<asp:Label ID="versionLabel" runat="server" Text="V.1.0.2.2018" Font-Size="XX-Small"/>
                 </asp:Panel>
 			</asp:Panel>
 		</div>

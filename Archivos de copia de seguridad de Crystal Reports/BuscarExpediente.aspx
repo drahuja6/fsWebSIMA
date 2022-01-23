@@ -57,7 +57,7 @@
 				runat="server" Height="23px" Width="120px" Text="Carátulas (Barras)" Enabled="False" Visible="False"></asp:button>
 			<asp:button id="btnImprimeListadoDeExpedientes" style="Z-INDEX: 135; LEFT: 304px; POSITION: absolute; TOP: 480px"
 				runat="server" Height="23px" Width="72px" Text="Imp. Lista" Enabled="False"></asp:button>
-			<asp:button id="btnImprimeGuiaDeExpedientes" style="Z-INDEX: 134; LEFT: 224px; POSITION: absolute; TOP: 480px; right: 635px;"
+			<asp:button id="btnImprimeGuiaDeExpedientes" style="Z-INDEX: 134; LEFT: 224px; POSITION: absolute; TOP: 480px"
 				runat="server" Height="23px" Width="72px" Text="Imp. Guía" Enabled="False"></asp:button>
 			<asp:textbox id="txtRelAnt" style="Z-INDEX: 133; LEFT: 64px; POSITION: absolute; TOP: 344px"
 				runat="server" Height="20px" Width="48px" BorderStyle="Ridge"></asp:textbox>

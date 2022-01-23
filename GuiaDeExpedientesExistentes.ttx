@@ -1,0 +1,8 @@
+Unidad	String	50	
+Numero	String	25	
+Serie	String	25	
+Asunto	Long		
+CampoAdicional1	String	50	
+CampoAdicional2	String	50	
+Creacion	String	20	
+Caja	String	25	

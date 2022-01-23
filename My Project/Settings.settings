@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="DirImagenes" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">D:\PdfSIMA\Senado\DGAHML\00001\</Value>
+      <Value Profile="(Default)">D:\PdfSIMA\Senado\</Value>
     </Setting>
     <Setting Name="DirTemporal" Type="System.String" Scope="Application">
       <Value Profile="(Default)">D:\prov\</Value>
