@@ -1,5 +1,5 @@
 Public Class ExpVencidos
-    Inherits System.Web.UI.Page
+    Inherits Page
 
 #Region " Código generado por el Diseñador de Web Forms "
 
@@ -7,15 +7,15 @@ Public Class ExpVencidos
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
 
     End Sub
-    Protected WithEvents Label1 As System.Web.UI.WebControls.Label
-    Protected WithEvents NoHayDatos As System.Web.UI.WebControls.Label
-    Protected WithEvents DataGrid1 As System.Web.UI.WebControls.DataGrid
-    Protected WithEvents Panel1 As System.Web.UI.WebControls.Panel
-    Protected WithEvents Label2 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label3 As System.Web.UI.WebControls.Label
-    Protected WithEvents Datagrid2 As System.Web.UI.WebControls.DataGrid
-    Protected WithEvents Panel2 As System.Web.UI.WebControls.Panel
-    Protected WithEvents Label4 As System.Web.UI.WebControls.Label
+    Protected WithEvents Label1 As Label
+    Protected WithEvents NoHayDatos As Label
+    Protected WithEvents DataGrid1 As DataGrid
+    Protected WithEvents Panel1 As Panel
+    Protected WithEvents Label2 As Label
+    Protected WithEvents Label3 As Label
+    Protected WithEvents Datagrid2 As DataGrid
+    Protected WithEvents Panel2 As Panel
+    Protected WithEvents Label4 As Label
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.

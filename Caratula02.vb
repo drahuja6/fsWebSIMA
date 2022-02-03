@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class LomoFOVISSSTE
+Public Class Caratula02
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class LomoFOVISSSTE
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "LomoFOVISSSTE.rpt"
+            Return "Caratula02.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class LomoFOVISSSTE
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "fsWebS_SEN.LomoFOVISSSTE.rpt"
+            Return "fsWebS_SEN.Caratula02.rpt"
         End Get
         Set
             'Do nothing
@@ -91,10 +91,26 @@ Public Class LomoFOVISSSTE
             Return Me.ReportDefinition.Sections(4)
         End Get
     End Property
+    
+    <Browsable(false),  _
+     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
+    Public ReadOnly Property Parameter_Fondo() As CrystalDecisions.[Shared].IParameterField
+        Get
+            Return Me.DataDefinition.ParameterFields(0)
+        End Get
+    End Property
+    
+    <Browsable(false),  _
+     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
+    Public ReadOnly Property Parameter_Logo() As CrystalDecisions.[Shared].IParameterField
+        Get
+            Return Me.DataDefinition.ParameterFields(1)
+        End Get
+    End Property
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class CachedLomoFOVISSSTE
+Public Class CachedCaratula02
     Inherits Component
     Implements ICachedReport
     
@@ -136,7 +152,7 @@ Public Class CachedLomoFOVISSSTE
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As LomoFOVISSSTE = New LomoFOVISSSTE()
+        Dim rpt As Caratula02 = New Caratula02()
         rpt.Site = Me.Site
         Return rpt
     End Function

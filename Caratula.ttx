@@ -1,8 +1,8 @@
 Unidad			String	250
+Seccion			String	100
 Serie			String	100
 Subserie		String	100
 Subsubserie		String	100
-Subsubsubserie	String	100
 Codigo			String	100
 Numero			String	250
 Creacion		String	10

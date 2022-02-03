@@ -1,7 +1,7 @@
 Imports System.Data.OleDb
 
 Public Class EscogeCuadro
-    Inherits System.Web.UI.Page
+    Inherits Page
 
 #Region " Código generado por el Diseñador de Web Forms "
 
@@ -9,12 +9,12 @@ Public Class EscogeCuadro
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
 
     End Sub
-    Protected WithEvents NoHayDatos As System.Web.UI.WebControls.Label
-    Protected WithEvents Panel1 As System.Web.UI.WebControls.Panel
-    Protected WithEvents Label1 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label2 As System.Web.UI.WebControls.Label
-    Protected WithEvents txbFiltro As System.Web.UI.WebControls.TextBox
-    Protected WithEvents btnAplicar As System.Web.UI.WebControls.Button
+    Protected WithEvents NoHayDatos As Label
+    Protected WithEvents Panel1 As Panel
+    Protected WithEvents Label1 As Label
+    Protected WithEvents Label2 As Label
+    Protected WithEvents txbFiltro As TextBox
+    Protected WithEvents btnAplicar As Button
     Protected WithEvents PrettyDataGrid1 As skmDataGrid.PrettyDataGrid
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
@@ -99,7 +99,7 @@ Public Class EscogeCuadro
 
     End Sub
 
-    Private Sub PrettyDataGrid1_ItemCommand(ByVal source As Object, ByVal e As System.Web.UI.WebControls.DataGridCommandEventArgs) Handles PrettyDataGrid1.ItemCommand
+    Private Sub PrettyDataGrid1_ItemCommand(ByVal source As Object, ByVal e As DataGridCommandEventArgs) Handles PrettyDataGrid1.ItemCommand
 
         Session("TextoCuadroClasificacionEscogido") = PrettyDataGrid1.Items(e.Item.ItemIndex).Cells(0).Text()
         Response.Redirect("./DisplayExpediente.aspx")

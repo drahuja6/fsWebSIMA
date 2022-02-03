@@ -2,7 +2,7 @@ Imports System.Data.OleDb
 
 Public Class CuadroClasificacionStatus
 
-    Inherits System.Web.UI.Page
+    Inherits Page
 
 #Region " Código generado por el Diseñador de Web Forms "
 
@@ -10,41 +10,41 @@ Public Class CuadroClasificacionStatus
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
 
     End Sub
-    Protected WithEvents Label2 As System.Web.UI.WebControls.Label
-    Protected WithEvents lbxJerarquia As System.Web.UI.WebControls.ListBox
-    Protected WithEvents Label3 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label1 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label4 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtCodigo As System.Web.UI.WebControls.TextBox
-    Protected WithEvents txtDescripcion As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label5 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label6 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label7 As System.Web.UI.WebControls.Label
-    Protected WithEvents ddlstTramite As System.Web.UI.WebControls.DropDownList
-    Protected WithEvents ddlstConcentracion As System.Web.UI.WebControls.DropDownList
-    Protected WithEvents lbxValorDocumental As System.Web.UI.WebControls.ListBox
-    Protected WithEvents Label37 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label8 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label9 As System.Web.UI.WebControls.Label
-    Protected WithEvents lbxFundamentosLegalesClasificacion As System.Web.UI.WebControls.ListBox
-    Protected WithEvents Label10 As System.Web.UI.WebControls.Label
-    Protected WithEvents ddlstStatus As System.Web.UI.WebControls.DropDownList
-    Protected WithEvents Label11 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label12 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label13 As System.Web.UI.WebControls.Label
-    Protected WithEvents lbxFundamentosLegalesDestinoFinal As System.Web.UI.WebControls.ListBox
-    Protected WithEvents ddlstDestinoFinal As System.Web.UI.WebControls.DropDownList
-    Protected WithEvents Label14 As System.Web.UI.WebControls.Label
-    Protected WithEvents lbxUnidadesAdministrativas As System.Web.UI.WebControls.ListBox
-    Protected WithEvents btnAgregar As System.Web.UI.WebControls.Button
-    Protected WithEvents btnEditar As System.Web.UI.WebControls.Button
-    Protected WithEvents btnBorrar As System.Web.UI.WebControls.Button
-    Protected WithEvents btnSalvar As System.Web.UI.WebControls.Button
-    Protected WithEvents btnCancelar As System.Web.UI.WebControls.Button
-    Protected WithEvents lblValidaCodigo As System.Web.UI.WebControls.Label
-    Protected WithEvents lblValidaDescripcion As System.Web.UI.WebControls.Label
-    Protected WithEvents lblCuadroClasificacionStatus As System.Web.UI.WebControls.Label
-    Protected WithEvents Label15 As System.Web.UI.WebControls.Label
+    Protected WithEvents Label2 As Label
+    Protected WithEvents lbxJerarquia As ListBox
+    Protected WithEvents Label3 As Label
+    Protected WithEvents Label1 As Label
+    Protected WithEvents Label4 As Label
+    Protected WithEvents txtCodigo As TextBox
+    Protected WithEvents txtDescripcion As TextBox
+    Protected WithEvents Label5 As Label
+    Protected WithEvents Label6 As Label
+    Protected WithEvents Label7 As Label
+    Protected WithEvents ddlstTramite As DropDownList
+    Protected WithEvents ddlstConcentracion As DropDownList
+    Protected WithEvents lbxValorDocumental As ListBox
+    Protected WithEvents Label37 As Label
+    Protected WithEvents Label8 As Label
+    Protected WithEvents Label9 As Label
+    Protected WithEvents lbxFundamentosLegalesClasificacion As ListBox
+    Protected WithEvents Label10 As Label
+    Protected WithEvents ddlstStatus As DropDownList
+    Protected WithEvents Label11 As Label
+    Protected WithEvents Label12 As Label
+    Protected WithEvents Label13 As Label
+    Protected WithEvents lbxFundamentosLegalesDestinoFinal As ListBox
+    Protected WithEvents ddlstDestinoFinal As DropDownList
+    Protected WithEvents Label14 As Label
+    Protected WithEvents lbxUnidadesAdministrativas As ListBox
+    Protected WithEvents btnAgregar As Button
+    Protected WithEvents btnEditar As Button
+    Protected WithEvents btnBorrar As Button
+    Protected WithEvents btnSalvar As Button
+    Protected WithEvents btnCancelar As Button
+    Protected WithEvents lblValidaCodigo As Label
+    Protected WithEvents lblValidaDescripcion As Label
+    Protected WithEvents lblCuadroClasificacionStatus As Label
+    Protected WithEvents Label15 As Label
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -276,7 +276,7 @@ Public Class CuadroClasificacionStatus
     'Rutina para cargar datos a un DropDownList.
     Public Shared Sub FillDropDownList( _
                         ByVal ConnString As String, _
-                        ByVal MyDropDownList As System.Web.UI.WebControls.DropDownList, _
+                        ByVal MyDropDownList As DropDownList, _
                         ByVal StoredProcedure As String, _
                         ByVal FieldItemData As String, _
                         ByVal FieldToShow As String, _
@@ -310,7 +310,7 @@ Public Class CuadroClasificacionStatus
                 MyIndice = 0
                 While dr.Read()
 
-                    Dim MyDropDownListItem As New System.Web.UI.WebControls.ListItem
+                    Dim MyDropDownListItem As New ListItem
 
                     MyDropDownListItem.Text = CStr(dr(FieldToShow))
                     MyDropDownListItem.Value = CInt(dr(FieldItemData))
@@ -345,7 +345,7 @@ Public Class CuadroClasificacionStatus
     'Incluye la posibilidad de pasar un parámetro al SP.
     Public Shared Sub FillDropDownList( _
                         ByVal ConnString As String, _
-                        ByVal MyDropDownList As System.Web.UI.WebControls.DropDownList, _
+                        ByVal MyDropDownList As DropDownList, _
                         ByVal StoredProcedure As String, _
                         ByVal SPParameter As Integer, _
                         ByVal FieldItemData As String, _
@@ -385,7 +385,7 @@ Public Class CuadroClasificacionStatus
                 MyIndice = 0
                 While dr.Read()
 
-                    Dim MyDropDownListItem As New System.Web.UI.WebControls.ListItem
+                    Dim MyDropDownListItem As New ListItem
 
                     MyDropDownListItem.Text = CStr(dr(FieldToShow))
                     MyDropDownListItem.Value = CInt(dr(FieldItemData))
@@ -457,7 +457,7 @@ Public Class CuadroClasificacionStatus
             If dr.HasRows Then
                 While dr.Read()
 
-                    Dim MyListItem As New System.Web.UI.WebControls.ListItem
+                    Dim MyListItem As New ListItem
 
                     MyListItem.Text = CStr(dr(FieldToShow))
                     MyListItem.Value = CInt(dr(FieldItemData))

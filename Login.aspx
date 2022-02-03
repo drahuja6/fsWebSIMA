@@ -7,9 +7,14 @@
 		<meta content="Visual Basic .NET 7.1" name="CODE_LANGUAGE">
 		<meta content="JavaScript" name="vs_defaultClientScript">
 		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+	    <style type="text/css">
+            #Form1 {
+                width: 699px;
+            }
+        </style>
 	</HEAD>
 	<body bgColor="#ffffff">
-		<form id="Form1" method="post" runat="server">
+		<form id="Form1" method="post" runat="server" visible="True">
 			<asp:label id="Label1" style="Z-INDEX: 100; LEFT: 16px; POSITION: absolute; TOP: 8px" runat="server"
 				Width="58px" Text="Usuario:" Font-Bold="True"></asp:label>
 			<asp:textbox id="txtUsuario" style="Z-INDEX: 101; LEFT: 104px; POSITION: absolute; TOP: 8px"
@@ -22,6 +27,7 @@
 				tabIndex="2" runat="server" Width="160px" TextMode="Password"></asp:textbox>
 			<asp:requiredfieldvalidator id="RequiredFieldValidator1" style="Z-INDEX: 106; LEFT: 272px; POSITION: absolute; TOP: 8px"
 				runat="server" ErrorMessage="**" ControlToValidate="txtUsuario"></asp:requiredfieldvalidator>
+			<asp:Label ID="lblAccesoNegado" runat="server" Font-Size="Small" ForeColor="Red" Text="El acceso ha sido negado. Verifique usuario y contraseña." Visible="False" style="Z-INDEX: 108; LEFT: 16px; POSITION: absolute; TOP: 110px"/>
 		</form>
 	</body>
 </HTML>

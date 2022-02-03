@@ -1,5 +1,5 @@
 Public Class Logo
-    Inherits System.Web.UI.Page
+    Inherits Page
 
 #Region " Código generado por el Diseñador de Web Forms "
 
@@ -20,8 +20,9 @@ Public Class Logo
 
 #End Region
 
-    Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Introducir aquí el código de usuario para inicializar la página
+
     End Sub
 
 End Class

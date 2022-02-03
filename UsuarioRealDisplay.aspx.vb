@@ -1,7 +1,7 @@
 Imports System.Data.OleDb
 
 Public Class UsuarioRealDisplay
-    Inherits System.Web.UI.Page
+    Inherits Page
 
 #Region " Código generado por el Diseñador de Web Forms "
 
@@ -9,29 +9,29 @@ Public Class UsuarioRealDisplay
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
 
     End Sub
-    Protected WithEvents Label1 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtNombre As System.Web.UI.WebControls.TextBox
-    Protected WithEvents txtLogin As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label2 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label3 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtContrasena As System.Web.UI.WebControls.TextBox
-    Protected WithEvents txtVerificacionContrasena As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label4 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label5 As System.Web.UI.WebControls.Label
-    Protected WithEvents ddlstUsuarioVirtualAsociado As System.Web.UI.WebControls.DropDownList
-    Protected WithEvents Label6 As System.Web.UI.WebControls.Label
-    Protected WithEvents btnAgregar As System.Web.UI.WebControls.Button
-    Protected WithEvents btnEditar As System.Web.UI.WebControls.Button
-    Protected WithEvents btnBorrar As System.Web.UI.WebControls.Button
-    Protected WithEvents btnSalvar As System.Web.UI.WebControls.Button
-    Protected WithEvents btnCancelar As System.Web.UI.WebControls.Button
-    Protected WithEvents lblUsuarioRealStatus As System.Web.UI.WebControls.Label
-    Protected WithEvents lbxUnidadesAdministrativas As System.Web.UI.WebControls.ListBox
-    Protected WithEvents lblValidaPassword1 As System.Web.UI.WebControls.Label
-    Protected WithEvents lblValidaPassword2 As System.Web.UI.WebControls.Label
-    Protected WithEvents lblValidaLogin As System.Web.UI.WebControls.Label
-    Protected WithEvents lblValidaNombre As System.Web.UI.WebControls.Label
-    Protected WithEvents btnRegresar As System.Web.UI.WebControls.Button
+    Protected WithEvents Label1 As Label
+    Protected WithEvents txtNombre As TextBox
+    Protected WithEvents txtLogin As TextBox
+    Protected WithEvents Label2 As Label
+    Protected WithEvents Label3 As Label
+    Protected WithEvents txtContrasena As TextBox
+    Protected WithEvents txtVerificacionContrasena As TextBox
+    Protected WithEvents Label4 As Label
+    Protected WithEvents Label5 As Label
+    Protected WithEvents ddlstUsuarioVirtualAsociado As DropDownList
+    Protected WithEvents Label6 As Label
+    Protected WithEvents btnAgregar As Button
+    Protected WithEvents btnEditar As Button
+    Protected WithEvents btnBorrar As Button
+    Protected WithEvents btnSalvar As Button
+    Protected WithEvents btnCancelar As Button
+    Protected WithEvents lblUsuarioRealStatus As Label
+    Protected WithEvents lbxUnidadesAdministrativas As ListBox
+    Protected WithEvents lblValidaPassword1 As Label
+    Protected WithEvents lblValidaPassword2 As Label
+    Protected WithEvents lblValidaLogin As Label
+    Protected WithEvents lblValidaNombre As Label
+    Protected WithEvents btnRegresar As Button
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -178,7 +178,7 @@ Public Class UsuarioRealDisplay
     'Rutina para cargar datos a un DropDownList.
     Public Shared Sub FillDropDownList( _
                         ByVal ConnString As String, _
-                        ByVal MyDropDownList As System.Web.UI.WebControls.DropDownList, _
+                        ByVal MyDropDownList As DropDownList, _
                         ByVal StoredProcedure As String, _
                         ByVal FieldItemData As String, _
                         ByVal FieldToShow As String, _
@@ -212,7 +212,7 @@ Public Class UsuarioRealDisplay
                 MyIndice = 0
                 While dr.Read()
 
-                    Dim MyDropDownListItem As New System.Web.UI.WebControls.ListItem
+                    Dim MyDropDownListItem As New ListItem
 
                     MyDropDownListItem.Text = CStr(dr(FieldToShow))
                     MyDropDownListItem.Value = CInt(dr(FieldItemData))
@@ -247,7 +247,7 @@ Public Class UsuarioRealDisplay
     'Incluye la posibilidad de pasar un parámetro al SP.
     Public Shared Sub FillDropDownList( _
                         ByVal ConnString As String, _
-                        ByVal MyDropDownList As System.Web.UI.WebControls.DropDownList, _
+                        ByVal MyDropDownList As DropDownList, _
                         ByVal StoredProcedure As String, _
                         ByVal SPParameter As Integer, _
                         ByVal FieldItemData As String, _
@@ -287,7 +287,7 @@ Public Class UsuarioRealDisplay
                 MyIndice = 0
                 While dr.Read()
 
-                    Dim MyDropDownListItem As New System.Web.UI.WebControls.ListItem
+                    Dim MyDropDownListItem As New ListItem
 
                     MyDropDownListItem.Text = CStr(dr(FieldToShow))
                     MyDropDownListItem.Value = CInt(dr(FieldItemData))
@@ -359,7 +359,7 @@ Public Class UsuarioRealDisplay
             If dr.HasRows Then
                 While dr.Read()
 
-                    Dim MyListItem As New System.Web.UI.WebControls.ListItem
+                    Dim MyListItem As New ListItem
 
                     MyListItem.Text = CStr(dr(FieldToShow))
                     MyListItem.Value = CInt(dr(FieldItemData))

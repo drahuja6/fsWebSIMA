@@ -2,7 +2,7 @@ Imports System.Data.OleDb
 Imports System.Text.RegularExpressions
 
 Public Class ConcABaja
-    Inherits System.Web.UI.Page
+    Inherits Page
 
 #Region " Código generado por el Diseñador de Web Forms "
 
@@ -10,30 +10,30 @@ Public Class ConcABaja
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
 
     End Sub
-    Protected WithEvents lblFechaDeCorteVigente As System.Web.UI.WebControls.Label
-    Protected WithEvents ddlUnidAdm As System.Web.UI.WebControls.DropDownList
-    Protected WithEvents Label2 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtFechaDeCorte As System.Web.UI.WebControls.TextBox
-    Protected WithEvents lblValidaFechaDeCorteVigente As System.Web.UI.WebControls.Label
-    Protected WithEvents btnBuscaVencidos As System.Web.UI.WebControls.Button
-    Protected WithEvents btnImpListado As System.Web.UI.WebControls.Button
-    Protected WithEvents btnRevisaExp As System.Web.UI.WebControls.Button
-    Protected WithEvents lbExpVencEnConc As System.Web.UI.WebControls.ListBox
-    Protected WithEvents Label1 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtNuevoBatchID As System.Web.UI.WebControls.TextBox
-    Protected WithEvents txtFechCorteVig As System.Web.UI.WebControls.TextBox
-    Protected WithEvents lblValidaNuevoBatch As System.Web.UI.WebControls.Label
-    Protected WithEvents txtNuevoBatchDesc As System.Web.UI.WebControls.TextBox
-    Protected WithEvents btnNuevoBatch As System.Web.UI.WebControls.Button
-    Protected WithEvents lbExpConCaja As System.Web.UI.WebControls.ListBox
-    Protected WithEvents Label3 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label4 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtNuevoBatchID2 As System.Web.UI.WebControls.TextBox
-    Protected WithEvents btnImprimeEnvio As System.Web.UI.WebControls.Button
-    Protected WithEvents btnQuitar As System.Web.UI.WebControls.Button
-    Protected WithEvents txtCajaProv As System.Web.UI.WebControls.TextBox
-    Protected WithEvents lblValidaCajaProv As System.Web.UI.WebControls.Label
-    Protected WithEvents btnAsignaCaja As System.Web.UI.WebControls.Button
+    Protected WithEvents lblFechaDeCorteVigente As Label
+    Protected WithEvents ddlUnidAdm As DropDownList
+    Protected WithEvents Label2 As Label
+    Protected WithEvents txtFechaDeCorte As TextBox
+    Protected WithEvents lblValidaFechaDeCorteVigente As Label
+    Protected WithEvents btnBuscaVencidos As Button
+    Protected WithEvents btnImpListado As Button
+    Protected WithEvents btnRevisaExp As Button
+    Protected WithEvents lbExpVencEnConc As ListBox
+    Protected WithEvents Label1 As Label
+    Protected WithEvents txtNuevoBatchID As TextBox
+    Protected WithEvents txtFechCorteVig As TextBox
+    Protected WithEvents lblValidaNuevoBatch As Label
+    Protected WithEvents txtNuevoBatchDesc As TextBox
+    Protected WithEvents btnNuevoBatch As Button
+    Protected WithEvents lbExpConCaja As ListBox
+    Protected WithEvents Label3 As Label
+    Protected WithEvents Label4 As Label
+    Protected WithEvents txtNuevoBatchID2 As TextBox
+    Protected WithEvents btnImprimeEnvio As Button
+    Protected WithEvents btnQuitar As Button
+    Protected WithEvents txtCajaProv As TextBox
+    Protected WithEvents lblValidaCajaProv As Label
+    Protected WithEvents btnAsignaCaja As Button
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -59,13 +59,13 @@ Public Class ConcABaja
     End Sub
 
     'Incluye la posibilidad de pasar un parámetro al SP.
-    Public Sub FillDropDownList( _
-                        ByVal ConnString As String, _
-                        ByVal MyDropDownList As System.Web.UI.WebControls.DropDownList, _
-                        ByVal StoredProcedure As String, _
-                        ByVal Parameter1 As Integer, _
-                        ByVal FieldItemData As String, _
-                        ByVal FieldToShow As String, _
+    Public Sub FillDropDownList(
+                        ByVal ConnString As String,
+                        ByVal MyDropDownList As DropDownList,
+                        ByVal StoredProcedure As String,
+                        ByVal Parameter1 As Integer,
+                        ByVal FieldItemData As String,
+                        ByVal FieldToShow As String,
                         ByVal ShowItemData As Integer)
 
         'Rutina para llenar un DropDownList
@@ -101,7 +101,7 @@ Public Class ConcABaja
                 MyIndice = 0
                 While dr.Read()
 
-                    Dim MyDropDownListItem As New System.Web.UI.WebControls.ListItem
+                    Dim MyDropDownListItem As New ListItem
 
                     MyDropDownListItem.Text = CStr(dr(FieldToShow))
                     MyDropDownListItem.Value = CInt(dr(FieldItemData))

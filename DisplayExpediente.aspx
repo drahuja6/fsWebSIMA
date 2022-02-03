@@ -60,7 +60,8 @@
 			<asp:textbox id="txtFechaPaseBajaHistorico" style="Z-INDEX: 121; LEFT: 256px; POSITION: absolute; TOP: 152px"
 				tabIndex="9" runat="server" Visible="False" Text="" Width="80px" Height="20px" Enabled="False"></asp:textbox>&nbsp;
 			<asp:dropdownlist id="lbxUnidadAdmin" style="Z-INDEX: 122; LEFT: 168px; POSITION: absolute; TOP: 176px"
-				tabIndex="10" runat="server" Width="184px" Enabled="False" Font-Size="XX-Small"></asp:dropdownlist><asp:label id="Label12" style="Z-INDEX: 123; LEFT: 8px; POSITION: absolute; TOP: 176px" runat="server"
+				tabIndex="10" runat="server" Width="184px" Enabled="False" Font-Size="XX-Small"></asp:dropdownlist>
+			<asp:label id="Label12" style="Z-INDEX: 123; LEFT: 8px; POSITION: absolute; TOP: 176px" runat="server"
 				Text="Unidad Administrativa" Width="152px" Font-Bold="True"></asp:label>
 			<asp:label id="Label13" style="Z-INDEX: 124; LEFT: 360px; POSITION: absolute; TOP: 176px" runat="server"
 				Text="Calidad Documental" Width="152px" Font-Bold="True"></asp:label>
@@ -70,7 +71,7 @@
 				tabIndex="44" runat="server" Text="Localización" BackColor="PaleTurquoise"></asp:button>
 			<asp:button id="btnClasificacion" style="Z-INDEX: 127; LEFT: 120px; POSITION: absolute; TOP: 200px"
 				tabIndex="45" runat="server" Text="Clasificación" BackColor="#FFE0C0"></asp:button>
-			<asp:button id="btnAtributos" style="Z-INDEX: 128; LEFT: 232px; POSITION: absolute; TOP: 200px"
+			<asp:button id="btnAtributos" style="Z-INDEX: 128; LEFT: 232px; POSITION: absolute; TOP: 200px; right: 646px;"
 				tabIndex="46" runat="server" Text="Atributos" BackColor="#C0FFC0"></asp:button>&nbsp;
 			<asp:panel id="PLocalizacion" style="Z-INDEX: 129; LEFT: 8px; POSITION: absolute; TOP: 224px"
 				runat="server" Width="632px" Height="216px" BorderStyle="None">

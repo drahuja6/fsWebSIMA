@@ -1,7 +1,7 @@
 Imports System.Data.OleDb
 
 Public Class RecepEnConc
-    Inherits System.Web.UI.Page
+    Inherits Page
 
 #Region " Código generado por el Diseñador de Web Forms "
 
@@ -9,24 +9,24 @@ Public Class RecepEnConc
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
 
     End Sub
-    Protected WithEvents lblFechaDeCorteVigente As System.Web.UI.WebControls.Label
-    Protected WithEvents Label1 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtCajaConc As System.Web.UI.WebControls.TextBox
-    Protected WithEvents btnQuitar As System.Web.UI.WebControls.Button
-    Protected WithEvents btnRevisaExp As System.Web.UI.WebControls.Button
-    Protected WithEvents ddlBatches As System.Web.UI.WebControls.DropDownList
-    Protected WithEvents btnBuscaLote As System.Web.UI.WebControls.Button
-    Protected WithEvents lbExpDelLote As System.Web.UI.WebControls.ListBox
-    Protected WithEvents lbExpConCajaConc As System.Web.UI.WebControls.ListBox
-    Protected WithEvents btnAsignaCajaConc As System.Web.UI.WebControls.Button
-    Protected WithEvents lblValidaCajaConc As System.Web.UI.WebControls.Label
-    Protected WithEvents btnImprimeResguardo As System.Web.UI.WebControls.Button
-    Protected WithEvents lblValidaLoteAtendido As System.Web.UI.WebControls.Label
-    Protected WithEvents ddlUnidAdm As System.Web.UI.WebControls.DropDownList
-    Protected WithEvents Label2 As System.Web.UI.WebControls.Label
-    Protected WithEvents btnBuscaLotes As System.Web.UI.WebControls.Button
-    Protected WithEvents btnFinalizarLote As System.Web.UI.WebControls.Button
-    Protected WithEvents lblValidaLoteAtendidoEImpreso As System.Web.UI.WebControls.Label
+    Protected WithEvents lblFechaDeCorteVigente As Label
+    Protected WithEvents Label1 As Label
+    Protected WithEvents txtCajaConc As TextBox
+    Protected WithEvents btnQuitar As Button
+    Protected WithEvents btnRevisaExp As Button
+    Protected WithEvents ddlBatches As DropDownList
+    Protected WithEvents btnBuscaLote As Button
+    Protected WithEvents lbExpDelLote As ListBox
+    Protected WithEvents lbExpConCajaConc As ListBox
+    Protected WithEvents btnAsignaCajaConc As Button
+    Protected WithEvents lblValidaCajaConc As Label
+    Protected WithEvents btnImprimeResguardo As Button
+    Protected WithEvents lblValidaLoteAtendido As Label
+    Protected WithEvents ddlUnidAdm As DropDownList
+    Protected WithEvents Label2 As Label
+    Protected WithEvents btnBuscaLotes As Button
+    Protected WithEvents btnFinalizarLote As Button
+    Protected WithEvents lblValidaLoteAtendidoEImpreso As Label
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -57,7 +57,7 @@ Public Class RecepEnConc
     'Incluye la posibilidad de pasar un parámetro al SP.
     Public Sub FillDropDownList( _
                         ByVal ConnString As String, _
-                        ByVal MyDropDownList As System.Web.UI.WebControls.DropDownList, _
+                        ByVal MyDropDownList As DropDownList, _
                         ByVal StoredProcedure As String, _
                         ByVal Parameter1 As Integer, _
                         ByVal FieldItemData As String, _
@@ -97,7 +97,7 @@ Public Class RecepEnConc
                 MyIndice = 0
                 While dr.Read()
 
-                    Dim MyDropDownListItem As New System.Web.UI.WebControls.ListItem
+                    Dim MyDropDownListItem As New ListItem
 
                     MyDropDownListItem.Text = CStr(dr(FieldToShow))
                     MyDropDownListItem.Value = CInt(dr(FieldItemData))
@@ -131,7 +131,7 @@ Public Class RecepEnConc
     'Incluye la posibilidad de pasar un parámetro al SP.
     Public Sub FillDropDownList0( _
                         ByVal ConnString As String, _
-                        ByVal MyDropDownList As System.Web.UI.WebControls.DropDownList, _
+                        ByVal MyDropDownList As DropDownList, _
                         ByVal StoredProcedure As String, _
                         ByVal FieldItemData As String, _
                         ByVal FieldToShow As String, _
@@ -170,7 +170,7 @@ Public Class RecepEnConc
                 MyIndice = 0
                 While dr.Read()
 
-                    Dim MyDropDownListItem As New System.Web.UI.WebControls.ListItem
+                    Dim MyDropDownListItem As New ListItem
 
                     MyDropDownListItem.Text = CStr(dr(FieldToShow))
                     MyDropDownListItem.Value = CInt(dr(FieldItemData))
@@ -563,7 +563,7 @@ Public Class RecepEnConc
     'Incluye la posibilidad de pasar dos parámetros al SP.
     Public Sub FillDropDownList2( _
                         ByVal ConnString As String, _
-                        ByVal MyDropDownList As System.Web.UI.WebControls.DropDownList, _
+                        ByVal MyDropDownList As DropDownList, _
                         ByVal StoredProcedure As String, _
                         ByVal Parameter1 As Integer, _
                         ByVal Parameter2 As Integer, _
@@ -608,7 +608,7 @@ Public Class RecepEnConc
                 MyIndice = 0
                 While dr.Read()
 
-                    Dim MyDropDownListItem As New System.Web.UI.WebControls.ListItem
+                    Dim MyDropDownListItem As New ListItem
 
                     MyDropDownListItem.Text = CStr(dr(FieldToShow))
                     MyDropDownListItem.Value = CInt(dr(FieldItemData))

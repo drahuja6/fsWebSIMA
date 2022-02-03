@@ -6,7 +6,10 @@
       <Value Profile="(Default)">D:\PdfSIMA\Senado\</Value>
     </Setting>
     <Setting Name="DirTemporal" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">D:\prov\</Value>
+      <Value Profile="(Default)">C:\prov\</Value>
+    </Setting>
+    <Setting Name="LogoCliente" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Users\Files\source\repos\Visual Studio 2019\fsWebS_SEN\LogoSenado-LXV.png</Value>
     </Setting>
   </Settings>
 </SettingsFile>

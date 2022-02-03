@@ -1,7 +1,9 @@
+Imports System.Collections.Generic
 Imports System.Data.OleDb
+Imports System.Text
 
 Public Class BuscarExpediente
-    Inherits System.Web.UI.Page
+    Inherits Page
 
 #Region " Código generado por el Diseñador de Web Forms "
 
@@ -9,65 +11,65 @@ Public Class BuscarExpediente
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
 
     End Sub
-    Protected WithEvents lbUnidAdmin As System.Web.UI.WebControls.ListBox
-    Protected WithEvents lblCodigo As System.Web.UI.WebControls.Label
-    Protected WithEvents txtCodigo As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label2 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label4 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtFApertInic As System.Web.UI.WebControls.TextBox
-    Protected WithEvents txtFApertFinal As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label3 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label5 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label6 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label7 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtExpInic As System.Web.UI.WebControls.TextBox
-    Protected WithEvents txtExpFinal As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label8 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtCaractExclu As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label9 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtTipo As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label10 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtRFC As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label11 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtNombre As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label12 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtCaja As System.Web.UI.WebControls.TextBox
-    Protected WithEvents cbBusqExacta As System.Web.UI.WebControls.CheckBox
-    Protected WithEvents Button1 As System.Web.UI.WebControls.Button
-    Protected WithEvents RegularExpressionValidator1 As System.Web.UI.WebControls.RegularExpressionValidator
-    Protected WithEvents RegularExpressionValidator2 As System.Web.UI.WebControls.RegularExpressionValidator
-    Protected WithEvents Panel1 As System.Web.UI.WebControls.Panel
-    Protected WithEvents DataGrid1 As System.Web.UI.WebControls.DataGrid
-    Protected WithEvents NoHayDatos As System.Web.UI.WebControls.Label
-    Protected WithEvents Button2 As System.Web.UI.WebControls.Button
-    Protected WithEvents Label1 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtRelAnt As System.Web.UI.WebControls.TextBox
-    Protected WithEvents btnImprimeGuiaDeExpedientes As System.Web.UI.WebControls.Button
-    Protected WithEvents btnImprimeListadoDeExpedientes As System.Web.UI.WebControls.Button
-    Protected WithEvents btnImprimeCaratulas As System.Web.UI.WebControls.Button
-    Protected WithEvents btnCaratulasNoCredito As System.Web.UI.WebControls.Button
-    Protected WithEvents btnEtiquetas As System.Web.UI.WebControls.Button
-    Protected WithEvents btnLomos As System.Web.UI.WebControls.Button
-    Protected WithEvents btnVencidosTramite As System.Web.UI.WebControls.Button
-    Protected WithEvents btnExpedientesActivos As System.Web.UI.WebControls.Button
-    Protected WithEvents btnEnTraspasoAConcentracion As System.Web.UI.WebControls.Button
-    Protected WithEvents btnVigentesConcentracion As System.Web.UI.WebControls.Button
-    Protected WithEvents btnVencidosConcentracion As System.Web.UI.WebControls.Button
-    Protected WithEvents btnEnArchivoHistorico As System.Web.UI.WebControls.Button
-    Protected WithEvents btnExpedientesDadosDeBaja As System.Web.UI.WebControls.Button
-    Protected WithEvents RadioButtonPDF As System.Web.UI.WebControls.RadioButton
-    Protected WithEvents RadioButtonXLS As System.Web.UI.WebControls.RadioButton
-    Protected WithEvents Label13 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label14 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtLimite As System.Web.UI.WebControls.TextBox
-    Protected WithEvents txtReal As System.Web.UI.WebControls.TextBox
-    Protected WithEvents lblLimiteExcedido As System.Web.UI.WebControls.Label
-    Protected WithEvents Label15 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtUbicTr As System.Web.UI.WebControls.TextBox
-    Protected WithEvents txtAnaqTr As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label16 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtObsTr As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label17 As System.Web.UI.WebControls.Label
+    Protected WithEvents lbUnidAdmin As ListBox
+    Protected WithEvents lblCodigo As Label
+    Protected WithEvents txtCodigo As TextBox
+    Protected WithEvents Label2 As Label
+    Protected WithEvents Label4 As Label
+    Protected WithEvents txtFApertInic As TextBox
+    Protected WithEvents txtFApertFinal As TextBox
+    Protected WithEvents Label3 As Label
+    Protected WithEvents Label5 As Label
+    Protected WithEvents Label6 As Label
+    Protected WithEvents Label7 As Label
+    Protected WithEvents txtExpInic As TextBox
+    Protected WithEvents txtExpFinal As TextBox
+    Protected WithEvents Label8 As Label
+    Protected WithEvents txtCaractExclu As TextBox
+    Protected WithEvents Label9 As Label
+    Protected WithEvents txtTipo As TextBox
+    Protected WithEvents Label10 As Label
+    Protected WithEvents txtRFC As TextBox
+    Protected WithEvents Label11 As Label
+    Protected WithEvents txtNombre As TextBox
+    Protected WithEvents Label12 As Label
+    Protected WithEvents txtCaja As TextBox
+    Protected WithEvents cbBusqExacta As CheckBox
+    Protected WithEvents Button1 As Button
+    Protected WithEvents RegularExpressionValidator1 As RegularExpressionValidator
+    Protected WithEvents RegularExpressionValidator2 As RegularExpressionValidator
+    Protected WithEvents Panel1 As Panel
+    Protected WithEvents DataGrid1 As DataGrid
+    Protected WithEvents NoHayDatos As Label
+    Protected WithEvents Button2 As Button
+    Protected WithEvents Label1 As Label
+    Protected WithEvents txtRelAnt As TextBox
+    Protected WithEvents btnImprimeGuiaDeExpedientes As Button
+    Protected WithEvents btnImprimeListadoDeExpedientes As Button
+    Protected WithEvents btnImprimeCaratulas As Button
+    Protected WithEvents btnCaratulasNoCredito As Button
+    Protected WithEvents btnEtiquetas As Button
+    Protected WithEvents btnLomos As Button
+    Protected WithEvents btnVencidosTramite As Button
+    Protected WithEvents btnExpedientesActivos As Button
+    Protected WithEvents btnEnTraspasoAConcentracion As Button
+    Protected WithEvents btnVigentesConcentracion As Button
+    Protected WithEvents btnVencidosConcentracion As Button
+    Protected WithEvents btnEnArchivoHistorico As Button
+    Protected WithEvents btnExpedientesDadosDeBaja As Button
+    Protected WithEvents RadioButtonPDF As RadioButton
+    Protected WithEvents RadioButtonXLS As RadioButton
+    Protected WithEvents Label13 As Label
+    Protected WithEvents Label14 As Label
+    Protected WithEvents txtLimite As TextBox
+    Protected WithEvents txtReal As TextBox
+    Protected WithEvents lblLimiteExcedido As Label
+    Protected WithEvents Label15 As Label
+    Protected WithEvents txtUbicTr As TextBox
+    Protected WithEvents txtAnaqTr As TextBox
+    Protected WithEvents Label16 As Label
+    Protected WithEvents txtObsTr As TextBox
+    Protected WithEvents Label17 As Label
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -109,7 +111,7 @@ Public Class BuscarExpediente
         Session("UsuarioRealStatus") = 0
 
         If Not Page.IsPostBack Then
-            FillListBox(lbUnidAdmin, Session("UsuarioVirtualConnString"), "UnidadesAdministrativasDeUnUsuarioReal", Session("IDUsuarioReal"), "NombreCorto", "idUnidadAdministrativa")
+            CargaListBox(lbUnidAdmin, Session("UsuarioVirtualConnString"), "UnidadesAdministrativasDeUnUsuarioReal", Session("IDUsuarioReal"), "NombreCorto", "idUnidadAdministrativa")
             lbUnidAdmin.SelectedIndex = 0
             txtLimite.Text = CStr(Session("LimiteDeRecordsEnBusqueda"))
         Else
@@ -118,63 +120,6 @@ Public Class BuscarExpediente
                 Session("LimiteDeRecordsEnBusqueda") = CInt(txtLimite.Text)
             End If
         End If
-
-    End Sub
-
-    'Rutina para cargar un listbox.
-    Public Sub FillListBox( _
-                                ByVal MyListBox As ListBox, _
-                                ByVal ConnString As String, _
-                                ByVal StoredProcedure As String, _
-                                ByVal idParameter As Integer, _
-                                ByVal MyDataTextField As String, _
-                                ByVal MyDataValueField As String)
-
-        'Rutina para llenar un combobox
-
-        Dim cn As New Data.OleDb.OleDbConnection
-        Dim cmd As New Data.OleDb.OleDbCommand
-        Dim param As Data.OleDb.OleDbParameter
-        Dim dr As Data.OleDb.OleDbDataReader
-
-        Try
-            'MyListBox.Items.Clear()
-
-            'Abro la conexión
-            cn.ConnectionString = ConnString
-
-            cn.Open()
-
-            'Asigno el Stored Procedure
-            cmd.CommandText = StoredProcedure
-            cmd.Connection = cn
-            cmd.CommandType = Data.CommandType.StoredProcedure
-
-            param = cmd.Parameters.Add("idParameter", Data.OleDb.OleDbType.Integer)
-            param.Value = idParameter
-
-            'Ejecuto el sp y obtengo el DataSet
-            dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection)
-
-            'Lleno los campos que ligan el DataReader con el ListBox
-            MyListBox.DataSource = dr
-            MyListBox.DataTextField = MyDataTextField
-            MyListBox.DataValueField = MyDataValueField
-
-            'Hago efectivo el enlace
-            MyListBox.DataBind()
-
-            'Cierro el DataReader y la colección de parámetros
-            '(la conexión se cerró automáticamente luego de que se llenó
-            'el dr, gracias al parámetro CommandBehavior.CloseConnection)
-            dr.Close()
-            cmd.Parameters.Clear()
-
-        Catch ex As Exception
-
-            'MsgBox(ex.Message.ToString)
-
-        End Try
 
     End Sub
 
@@ -190,7 +135,6 @@ Public Class BuscarExpediente
 
             btnImprimeGuiaDeExpedientes.Enabled = False
             btnImprimeListadoDeExpedientes.Enabled = False
-            btnImprimeCaratulas.Enabled = False
             btnCaratulasNoCredito.Enabled = False
             btnEtiquetas.Enabled = False
             btnLomos.Enabled = False
@@ -204,11 +148,6 @@ Public Class BuscarExpediente
             btnExpedientesDadosDeBaja.Enabled = False
             RadioButtonPDF.Enabled = False
             RadioButtonXLS.Enabled = False
-
-            'If Trim(txtLimite.Text) = "" Or Not IsNumeric(txtLimite.Text) Then
-            '    txtLimite.Text = "50"
-            '    Session("LimiteDeRecordsEnBusqueda") = CInt(txtLimite.Text)
-            'End If
 
             If CInt(txtReal.Text) > CInt(txtLimite.Text) Then
                 lblLimiteExcedido.Visible = True
@@ -249,34 +188,32 @@ Public Class BuscarExpediente
         For Each item In lbUnidAdmin.Items
             If item.Selected Then
                 If MiLista <> "" Then
-                    MiLista = MiLista & "," & CStr(item.Value)
+                    MiLista = MiLista & "," & item.Value
                 Else
-                    MiLista = CStr(item.Value)
+                    MiLista = item.Value
                 End If
             End If
         Next
 
         If MiLista <> "" Then
-            MiCondicionAux = ""
             MiCondicionAux = " e.idUnidadAdministrativa IN (" & MiLista & ") "
             If MiCondicionAux <> "" Then
                 If MiCondicion <> "" Then
-                    MiCondicion = MiCondicion & " AND "
+                    MiCondicion &= " AND "
                 End If
-                MiCondicion = MiCondicion & MiCondicionAux
+                MiCondicion &= MiCondicionAux
             End If
             'Else
             '    Throw New ApplicationException("Debe escoger al menos una unidad administrativa")
         End If
 
         'Codigo
-        MiCondicionAux = ""
         MiCondicionAux = CStr(IIf(Trim(txtCodigo.Text) <> "", "dbo.fnNombreDeJerarquia(e.idClasificacion) " & MiOperador & " @Codigo ", ""))
         If MiCondicionAux <> "" Then
             If MiCondicion <> "" Then
-                MiCondicion = MiCondicion & " AND "
+                MiCondicion &= " AND "
             End If
-            MiCondicion = MiCondicion & MiCondicionAux
+            MiCondicion &= MiCondicionAux
         End If
 
         'Nombre (de expediente)
@@ -286,18 +223,17 @@ Public Class BuscarExpediente
             HayRangoDeExpedientes = True
             MiCondicionAux = " e.Nombre >=  @Expediente AND e.Nombre <= @ExpedienteFinal "
             If MiCondicion <> "" Then
-                MiCondicion = MiCondicion & " AND "
+                MiCondicion &= " AND "
             End If
-            MiCondicion = MiCondicion & MiCondicionAux
+            MiCondicion &= MiCondicionAux
         ElseIf Trim(txtExpInic.Text) <> "" And Trim(txtExpFinal.Text) = "" Then
             'Condición normal para LIKE, usando txtExpediente
-            MiCondicionAux = ""
             MiCondicionAux = CStr(IIf(Trim(txtExpInic.Text) <> "", " e.Nombre " & MiOperador & " @Expediente ", ""))
             If MiCondicionAux <> "" Then
                 If MiCondicion <> "" Then
-                    MiCondicion = MiCondicion & " AND "
+                    MiCondicion &= " AND "
                 End If
-                MiCondicion = MiCondicion & MiCondicionAux
+                MiCondicion &= MiCondicionAux
             End If
         ElseIf Trim(txtExpInic.Text) = "" And Trim(txtExpFinal.Text) <> "" Then
             'Condición normal para LIKE, usando txtExpedienteFinal
@@ -305,9 +241,9 @@ Public Class BuscarExpediente
             MiCondicionAux = CStr(IIf(Trim(txtExpFinal.Text) <> "", " e.Nombre " & MiOperador & " @ExpedienteFinal ", ""))
             If MiCondicionAux <> "" Then
                 If MiCondicion <> "" Then
-                    MiCondicion = MiCondicion & " AND "
+                    MiCondicion &= " AND "
                 End If
-                MiCondicion = MiCondicion & MiCondicionAux
+                MiCondicion &= MiCondicionAux
             End If
         Else
             'No hay rango de expedientes
@@ -317,89 +253,81 @@ Public Class BuscarExpediente
         MiCondicionAux = CondicionDeCaracteresExcluidos(txtCaractExclu.Text)
         If MiCondicionAux <> "" Then
             If MiCondicion <> "" Then
-                MiCondicion = MiCondicion & " AND "
+                MiCondicion &= " AND "
             End If
-            MiCondicion = MiCondicion & MiCondicionAux
+            MiCondicion &= MiCondicionAux
         End If
 
         'Ref
-        MiCondicionAux = ""
         MiCondicionAux = CStr(IIf(Trim(txtTipo.Text) <> "", " e.CampoAdicional2 " & MiOperador & " @Tipo ", ""))
         If MiCondicionAux <> "" Then
             If MiCondicion <> "" Then
-                MiCondicion = MiCondicion & " AND "
+                MiCondicion &= " AND "
             End If
-            MiCondicion = MiCondicion & MiCondicionAux
+            MiCondicion &= MiCondicionAux
         End If
 
         'RFC
-        MiCondicionAux = ""
         MiCondicionAux = CStr(IIf(Trim(txtRFC.Text) <> "", " e.CampoAdicional1 " & MiOperador & " @RFC ", ""))
         If MiCondicionAux <> "" Then
             If MiCondicion <> "" Then
-                MiCondicion = MiCondicion & " AND "
+                MiCondicion &= " AND "
             End If
-            MiCondicion = MiCondicion & MiCondicionAux
+            MiCondicion &= MiCondicionAux
         End If
 
         'Asunto
-        MiCondicionAux = ""
         MiCondicionAux = CStr(IIf(Trim(txtNombre.Text) <> "", " e.Asunto " & MiOperador & " @Asunto ", ""))
         If MiCondicionAux <> "" Then
             If MiCondicion <> "" Then
-                MiCondicion = MiCondicion & " AND "
+                MiCondicion &= " AND "
             End If
-            MiCondicion = MiCondicion & MiCondicionAux
+            MiCondicion &= MiCondicionAux
         End If
 
         'CajaC
-        MiCondicionAux = ""
         MiCondicionAux = CStr(IIf(Trim(txtCaja.Text) <> "", " e.Caja " & MiOperador & " @Caja ", ""))
         If MiCondicionAux <> "" Then
             If MiCondicion <> "" Then
-                MiCondicion = MiCondicion & " AND "
+                MiCondicion &= " AND "
             End If
-            MiCondicion = MiCondicion & MiCondicionAux
+            MiCondicion &= MiCondicionAux
         End If
 
         'CajaTr
-        MiCondicionAux = ""
         MiCondicionAux = CStr(IIf(Trim(txtRelAnt.Text) <> "", " e.RelacionAnterior " & MiOperador & " @RelacionAnterior ", ""))
         If MiCondicionAux <> "" Then
             If MiCondicion <> "" Then
-                MiCondicion = MiCondicion & " AND "
+                MiCondicion &= " AND "
             End If
-            MiCondicion = MiCondicion & MiCondicionAux
+            MiCondicion &= MiCondicionAux
         End If
 
         'AnaqTr
-        MiCondicionAux = ""
         MiCondicionAux = CStr(IIf(Trim(txtAnaqTr.Text) <> "", " e.CajaAnterior " & MiOperador & " @CajaAnterior ", ""))
         If MiCondicionAux <> "" Then
             If MiCondicion <> "" Then
-                MiCondicion = MiCondicion & " AND "
+                MiCondicion &= " AND "
             End If
-            MiCondicion = MiCondicion & MiCondicionAux
+            MiCondicion &= MiCondicionAux
         End If
 
         'UbicTr
-        MiCondicionAux = ""
         MiCondicionAux = CStr(IIf(Trim(txtUbicTr.Text) <> "", " e.ItemAnterior " & MiOperador & " @ItemAnterior ", ""))
         If MiCondicionAux <> "" Then
             If MiCondicion <> "" Then
-                MiCondicion = MiCondicion & " AND "
+                MiCondicion &= " AND "
             End If
-            MiCondicion = MiCondicion & MiCondicionAux
+            MiCondicion &= MiCondicionAux
         End If
 
         'ObsTr
-        MiCondicionAux = ""
         MiCondicionAux = CStr(IIf(Trim(txtObsTr.Text) <> "", " e.CampoAdicional3 " & MiOperador & " @CampoAdicional3 ", ""))
         If MiCondicionAux <> "" Then
             If MiCondicion <> "" Then
-                MiCondicion = MiCondicion & " AND "
+                MiCondicion &= " AND "
             End If
-            MiCondicion = MiCondicion & MiCondicionAux
+            MiCondicion &= MiCondicionAux
         End If
 
         If Trim(txtFApertInic.Text) <> "" And Trim(txtFApertFinal.Text) <> "" Then
@@ -408,9 +336,9 @@ Public Class BuscarExpediente
             MiCondicionAux = " FechaApertura BETWEEN @FechaInicial AND @FechaFinal "
             If MiCondicionAux <> "" Then
                 If MiCondicion <> "" Then
-                    MiCondicion = MiCondicion & " AND "
+                    MiCondicion &= " AND "
                 End If
-                MiCondicion = MiCondicion & MiCondicionAux
+                MiCondicion &= MiCondicionAux
             End If
         ElseIf Trim(txtFApertInic.Text) <> "" And Trim(txtFApertFinal.Text) = "" Then
             'A partir de una fecha hacia adelante
@@ -418,9 +346,9 @@ Public Class BuscarExpediente
             MiCondicionAux = " FechaApertura >= @FechaInicial "
             If MiCondicionAux <> "" Then
                 If MiCondicion <> "" Then
-                    MiCondicion = MiCondicion & " AND "
+                    MiCondicion &= " AND "
                 End If
-                MiCondicion = MiCondicion & MiCondicionAux
+                MiCondicion &= MiCondicionAux
             End If
         ElseIf Trim(txtFApertInic.Text) = "" And Trim(txtFApertFinal.Text) <> "" Then
             'A partir de una fecha hacia atrás
@@ -428,43 +356,39 @@ Public Class BuscarExpediente
             MiCondicionAux = " FechaApertura <= @FechaFinal "
             If MiCondicionAux <> "" Then
                 If MiCondicion <> "" Then
-                    MiCondicion = MiCondicion & " AND "
+                    MiCondicion &= " AND "
                 End If
-                MiCondicion = MiCondicion & MiCondicionAux
+                MiCondicion &= MiCondicionAux
             End If
         Else
             'No hay rango de fechas
         End If
 
         'SQLString
-        SQLString = _
-            "SELECT dbo.fnNombreDeJerarquia(e.idClasificacion) as Codigo, " & _
-            "e.idExpediente, " & _
-            "e.Nombre as Expediente, " & _
-            "e.CampoAdicional2  as Tipo, " & _
-            "e.CampoAdicional1  as RFC, " & _
-            "e.Asunto, " & _
-            "e.RelacionAnterior as CajaT, " & _
-            "e.Caja, " & _
-            "CONVERT(varchar(10),e.FechaApertura,103) as [F.Apertura], " & _
-            "[F.Cierre] = CASE WHEN (FechaCierreChecked = 1) THEN CONVERT(CHAR(10), e.FechaCierre, 103) ELSE '' END, " & _
-            "ua.NombreCorto " & _
-            "FROM Expedientes e " & _
-            "JOIN UnidadesAdministrativas ua ON e.idUnidadAdministrativa = ua.idUnidadAdministrativa " & _
+        SQLString =
+            "SELECT dbo.fnNombreDeJerarquia(e.idClasificacion) as Codigo, " &
+            "e.idExpediente, " &
+            "e.Nombre as Expediente, " &
+            "e.CampoAdicional2  as Tipo, " &
+            "e.CampoAdicional1  as RFC, " &
+            "e.Asunto, " &
+            "e.RelacionAnterior as CajaT, " &
+            "e.Caja, " &
+            "CONVERT(varchar(10),e.FechaApertura,103) as [F.Apertura], " &
+            "[F.Cierre] = CASE WHEN (FechaCierreChecked = 1) THEN CONVERT(CHAR(10), e.FechaCierre, 103) ELSE '' END, " &
+            "ua.NombreCorto " &
+            "FROM Expedientes e " &
+            "INNER JOIN UnidadesAdministrativas ua ON e.idUnidadAdministrativa = ua.idUnidadAdministrativa " &
             CStr(IIf(MiCondicion <> "", " WHERE " & MiCondicion, ""))
 
         'Cierre = CASE WHEN (FechaCierreChecked = 1) THEN CONVERT(CHAR(10), e.FechaCierre, 103) ELSE '' END,
         '"CONVERT(varchar(10),e.FechaCierre,103) as [F.Cierre], " & _
 
 
-        'Si llego aquí y no hay siquiera un WHERE, lo pongo ahora y con una condición imposible,
-        'para que no devuelva nada
-        SQLString = SQLString & CStr(IIf(InStr(UCase(SQLString), "WHERE") > 0, "", " WHERE idExpediente < -1000"))
+        'Si llego aquí y no hay siquiera un WHERE, lo pongo ahora y con una condición imposible, para que no devuelva nada
+        SQLString &= CStr(IIf(InStr(UCase(SQLString), "WHERE") > 0, "", " WHERE idExpediente < -1000"))
 
-        SQLString = SQLString & " ORDER BY " & Session("OrdenDeGridDeExpedientes")
-        'SQLString = SQLString & " ORDER BY e.Nombre "
-
-        'MySQLString = "SELECT * FROM Expedientes"
+        SQLString &= " ORDER BY " & Session("OrdenDeGridDeExpedientes").ToString
 
         param = cmd.Parameters.Add("SQLString", Data.OleDb.OleDbType.VarChar, 4000)
         param.Value = SQLString
@@ -557,8 +481,7 @@ Public Class BuscarExpediente
             param.Value = IIf(Trim(txtObsTr.Text) <> "", "%" & Trim(txtObsTr.Text) & "%", "%")
         End If
 
-        'Le tengo que pasar los dos parámetros de fecha, aunque no los use. 
-        'Si no los uso, no aparecen en la cadena SQL generada.
+        'Le tengo que pasar los dos parámetros de fecha, aunque no los use. Si no los uso, no aparecen en la cadena SQL generada.
 
         'Fecha de Apertura inicial
         param = cmd.Parameters.Add("FechaAperturaInicial", Data.OleDb.OleDbType.DBDate)
@@ -579,13 +502,11 @@ Public Class BuscarExpediente
         'Creo el objeto DataAdapter
         Dim daExpedientes As New Data.OleDb.OleDbDataAdapter(cmd)
 
-        'Añado al objeto DataSet una nueva tabla,
-        'llenándola con datos según instrucciones del DataAdapter
+        'Añado al objeto DataSet una nueva tabla, llenándola con datos según instrucciones del DataAdapter
         daExpedientes.Fill(dsExpedientes, "Expedientes")
-        dsExpedientes.Tables("Expedientes").Rows.Clear()
-        daExpedientes.Fill(dsExpedientes, "Expedientes")
+        dsExpedientes.Tables(0).TableName = "Expedientes"
 
-        If dsExpedientes.Tables(0).Rows.Count = 0 Then
+        If dsExpedientes.Tables("Expedientes").Rows.Count = 0 Then
             DataGrid1.Visible = False
             NoHayDatos.Visible = True
 
@@ -607,26 +528,25 @@ Public Class BuscarExpediente
             RadioButtonXLS.Enabled = False
 
         Else
+            Dim dr As DataRow
+            'Preparo variable global para recibir Ids de expedientes localizados
+            ListaIdExpedientes.Clear()
+            For Each dr In dsExpedientes.Tables("Expedientes").Rows
+                ListaIdExpedientes.Add(dr("IdExpediente"))
+            Next
+
             DataGrid1.Visible = True
             NoHayDatos.Visible = False
 
             'Señalo cuál va a ser el DataSet de este grid
             DataGrid1.DataSource = dsExpedientes
 
-            'Señalo cual va a ser el campo llave.
-            'Si en esta propiedad coloco el nombre de una DataTable, el grid se llena
-            'con TODO su contenido sin mayor problema. Si en esta propiedad coloco el nombre
-            'de una relación, el grid se llena SOLAMENTE con los datos que cumplen con la
-            'relación. Hay que poner el nombre completo: "TABLA.RELACION"
             DataGrid1.DataMember = "Expedientes"
             DataGrid1.DataKeyField = "idExpediente"
-            'GridView1.DataKeyNames(0) = "idExpediente"
             DataGrid1.DataBind()
-
 
             btnImprimeGuiaDeExpedientes.Enabled = True
             btnImprimeListadoDeExpedientes.Enabled = True
-            btnImprimeCaratulas.Enabled = True
             btnCaratulasNoCredito.Enabled = True
             btnEtiquetas.Enabled = True
             btnLomos.Enabled = True
@@ -871,8 +791,8 @@ Public Class BuscarExpediente
 
 
             'SQLString
-            SQLString = _
-                "SET @Contador = (SELECT COUNT(*) FROM Expedientes e " & _
+            SQLString =
+                "SET @Contador = (SELECT COUNT(*) FROM Expedientes e " &
                 CStr(IIf(MiCondicion <> "", " WHERE " & MiCondicion, ""))
 
             'If GITdtpFechaAperturaInicial.GIT_Checked And GITdtpFechaAperturaFinal.GIT_Checked Then
@@ -1032,7 +952,6 @@ Public Class BuscarExpediente
         Return ProcessedRecords
 
     End Function
-
 
     Public Sub GITPreparaParametros(ByRef Condicion As String, ByRef Parametros As SQLParameters)
         Dim MiOperador As String = ""
@@ -1342,25 +1261,6 @@ Public Class BuscarExpediente
 
     End Sub
 
-    Public Shared Function FechaLatinaAGringa(ByVal FechaLatina As String) As String
-        Return FechaLatina
-
-        'Dim MyDia As String
-        'Dim MyMes As String
-        'Dim MyAnno As String
-
-        'Dim PosSlash1 As Integer
-        'Dim PosSlash2 As Integer
-
-        'PosSlash1 = InStr(FechaLatina, "/")
-        'PosSlash2 = InStr(PosSlash1 + 1, FechaLatina, "/")
-        'MyMes = Mid(FechaLatina, PosSlash1 + 1, PosSlash2 - PosSlash1 - 1)
-        'MyDia = Mid(FechaLatina, 1, PosSlash1 - 1)
-        'MyAnno = Mid(FechaLatina, PosSlash2 + 1)
-        'FechaLatinaAGringa = CDate(MyMes & "/" & MyDia & "/" & MyAnno)
-
-    End Function
-
     Function CondicionDeCaracteresExcluidos(ByVal CaracteresAExcluir As String) As String
         Try
             Dim MiCondicion As String = ""
@@ -1384,7 +1284,7 @@ Public Class BuscarExpediente
 
     End Function
 
-    Private Sub DataGrid1_SortCommand(ByVal source As System.Object, ByVal e As System.Web.UI.WebControls.DataGridSortCommandEventArgs) Handles DataGrid1.SortCommand
+    Private Sub DataGrid1_SortCommand(ByVal source As System.Object, ByVal e As DataGridSortCommandEventArgs) Handles DataGrid1.SortCommand
 
         Select Case e.SortExpression
             Case "Codigo"
@@ -1415,8 +1315,7 @@ Public Class BuscarExpediente
 
     End Sub
 
-    Private Sub DataGrid1_ItemCommand(ByVal source As System.Object, ByVal e As System.Web.UI.WebControls.DataGridCommandEventArgs) Handles DataGrid1.ItemCommand
-
+    Private Sub DataGrid1_ItemCommand(source As Object, e As DataGridCommandEventArgs) Handles DataGrid1.ItemCommand
         If e.Item.ItemIndex >= 0 Then
             Session("IDExpedienteActivo") = DataGrid1.DataKeys.Item(e.Item.ItemIndex)
             Session("ExpedienteStatus") = 0
@@ -1428,18 +1327,7 @@ Public Class BuscarExpediente
 
     End Sub
 
-    Private Sub LinkButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-        'Session("IDExpedienteActivo") = -1
-        'Session("ExpedienteStatus") = 0
-        'Session("MovimientoStatus") = 0
-        'Session("CuadroClasificacionStatus") = 0
-        'Session("UsuarioRealStatus") = 0
-        'Response.Redirect("./DisplayExpediente.aspx")
-
-    End Sub
-
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Session("IDExpedienteActivo") = -1
         Session("ExpedienteStatus") = 0
         Session("MovimientoStatus") = 0
@@ -1448,7 +1336,7 @@ Public Class BuscarExpediente
         Response.Redirect("./DisplayExpediente.aspx")
     End Sub
 
-    Private Sub btnImprimeGuiaDeExpedientes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimeGuiaDeExpedientes.Click
+    Private Sub BtnImprimeGuiaDeExpedientes_Click(sender As Object, ByVal e As EventArgs) Handles btnImprimeGuiaDeExpedientes.Click
         Dim cn As New OleDbConnection
         Dim cmd As New OleDbCommand
         Dim param As OleDbParameter
@@ -1456,10 +1344,6 @@ Public Class BuscarExpediente
         Dim ds As New DataSet
 
         Dim Reporte As New GuiaDeExpedientes
-        Dim MisParametros As New BuscarExpediente.SQLParameters
-        Dim MiCondicion As String
-
-        GITPreparaParametros(MiCondicion, MisParametros)
 
         cn.ConnectionString = Session("UsuarioVirtualConnString")
         cn.Open()
@@ -1467,53 +1351,17 @@ Public Class BuscarExpediente
         cmd.CommandType = CommandType.StoredProcedure
         cmd.Connection = cn
         cmd.Parameters.Clear()
-        cmd.CommandText = "CargaGuiaDeExpedientesExistentesSQL"
+        cmd.CommandText = "GuiaDeExpedientesExistentes"
         cmd.CommandTimeout = 0
 
-        param = cmd.Parameters.Add("SQLCondicion", OleDbType.VarChar)
-        param.Value = MiCondicion
+        Dim expedientes As New StringBuilder()
+        For Each item As Integer In ListaIdExpedientes
+            expedientes.Append(item)
+            expedientes.Append(",")
+        Next
 
-        param = cmd.Parameters.Add("Codigo", OleDbType.VarChar)
-        param.Value = MisParametros.Codigo
-
-        param = cmd.Parameters.Add("Expediente", OleDbType.VarChar)
-        param.Value = MisParametros.Expediente
-
-        param = cmd.Parameters.Add("ExpedienteFinal", OleDbType.VarChar)
-        param.Value = MisParametros.ExpedienteFinal
-
-        param = cmd.Parameters.Add("Tipo", OleDbType.VarChar)
-        param.Value = MisParametros.Tipo
-
-        param = cmd.Parameters.Add("RFC", OleDbType.VarChar)
-        param.Value = MisParametros.RFC
-
-        param = cmd.Parameters.Add("Asunto", OleDbType.VarChar)
-        param.Value = MisParametros.Asunto
-
-        param = cmd.Parameters.Add("Caja", OleDbType.VarChar)
-        param.Value = MisParametros.Cajas
-
-        param = cmd.Parameters.Add("RelacionAnterior", OleDbType.VarChar)
-        param.Value = MisParametros.RelacionAnterior
-
-        param = cmd.Parameters.Add("CajaAnterior", OleDbType.VarChar)
-        param.Value = MisParametros.CajaAnterior
-
-        param = cmd.Parameters.Add("ItemAnterior", OleDbType.VarChar)
-        param.Value = MisParametros.ItemAnterior
-
-        param = cmd.Parameters.Add("CampoAdicional3", OleDbType.VarChar)
-        param.Value = MisParametros.CampoAdicional3
-
-        param = cmd.Parameters.Add("Orden", OleDbType.VarChar)
-        param.Value = "1"
-
-        param = cmd.Parameters.Add("FechaInicial", OleDbType.Date)
-        param.Value = MisParametros.FechaInicial
-
-        param = cmd.Parameters.Add("FechaFinal", OleDbType.Date)
-        param.Value = MisParametros.FechaFinal
+        param = cmd.Parameters.Add("IDList", OleDbType.VarChar)
+        param.Value = expedientes.ToString
 
         da.SelectCommand = cmd
         da.Fill(ds)
@@ -1523,25 +1371,26 @@ Public Class BuscarExpediente
 
         Reporte.SetParameterValue(0, "Listado guía de expedientes existentes por Unidad Administrativa")
         Reporte.SetParameterValue(1, "")
+        Reporte.SetParameterValue(2, LogoCliente)
 
         Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = Session("SubdirectorioTemporal").ToString & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
+        Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
-        'Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
-        'ficheros con reportes pdf del usuario activo (El File.Exists no funciona)
-
-        'Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-        'Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
-        'Write the file directly to the HTTP output stream.
         Response.ContentType = "Application/pdf"
         Response.WriteFile(MyFileName)
+        Response.Flush()
+
+        If IO.File.Exists(MyFileName) Then
+            IO.File.Delete(MyFileName)
+        End If
+
         Response.End()
 
     End Sub
 
-    Private Sub btnImprimeListadoDeExpedientes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimeListadoDeExpedientes.Click
+    Private Sub BtnImprimeListadoDeExpedientes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimeListadoDeExpedientes.Click
         Dim cn As New OleDbConnection
         Dim cmd As New OleDbCommand
         Dim param As OleDbParameter
@@ -1615,250 +1464,74 @@ Public Class BuscarExpediente
         Reporte.SetDataSource(ds.Tables(0))
 
         Reporte.SetParameterValue(0, "Listado de expedientes por Unidad Administrativa conforme a criterio de búsqueda")
-        'Reporte.SetParameterValue(1, "700 FOVISSSTE")
+        Reporte.SetParameterValue(1, LogoCliente)
+
+        Dim guid1 As Guid = Guid.NewGuid
+        Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
+
+        Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
+
+        Response.ContentType = "Application/pdf"
+        Response.WriteFile(MyFileName)
+        Response.Flush()
+
+        If IO.File.Exists(MyFileName) Then
+            IO.File.Delete(MyFileName)
+        End If
+
+        Response.End()
+
+    End Sub
+
+    Private Sub BtnCaratulasNoCredito_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCaratulasNoCredito.Click
+        Dim cn As New OleDbConnection
+        Dim cmd As New OleDbCommand
+        Dim param As OleDbParameter
+        Dim da As New OleDbDataAdapter
+        Dim ds As New DataSet
+
+        Dim Reporte As New Caratula02
+
+        cn.ConnectionString = Session("UsuarioVirtualConnString").ToString
+        cn.Open()
+
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.Connection = cn
+        cmd.Parameters.Clear()
+        cmd.CommandText = "CargaFormatoCaratula"
+        cmd.CommandTimeout = 0
+
+        Dim expedientes As New StringBuilder()
+        For Each item As Integer In ListaIdExpedientes
+            expedientes.Append(item)
+            expedientes.Append(",")
+        Next
+
+        param = cmd.Parameters.Add("IDList", OleDbType.VarChar)
+        param.Value = expedientes.ToString
+
+        da.SelectCommand = cmd
+        da.Fill(ds)
+        da.Dispose()
+
+        Reporte.SetDataSource(ds.Tables(0))
+
+        Reporte.SetParameterValue(0, "SENADO DE LA REPúBLICA")
+        Reporte.SetParameterValue("Logo", LogoCliente)
 
         Dim guid1 As Guid = Guid.NewGuid
         Dim MyFileName As String = Session("SubdirectorioTemporal").ToString & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
-        'Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
-        'ficheros con reportes pdf del usuario activo (El File.Exists no funciona)
-        'Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-        'Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
-        'Write the file directly to the HTTP output stream.
         Response.ContentType = "Application/pdf"
         Response.WriteFile(MyFileName)
-        Response.End()
+        Response.Flush()
 
-    End Sub
+        If IO.File.Exists(MyFileName) Then
+            IO.File.Delete(MyFileName)
+        End If
 
-    Private Sub btnImprimeCaratulas_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimeCaratulas.Click
-        Dim cn As New OleDbConnection
-        Dim cmd As New OleDbCommand
-        Dim param As OleDbParameter
-        Dim da As New OleDbDataAdapter
-        Dim ds As New DataSet
-
-        Dim Reporte As New CaratulaFOVISSSTECredito
-        Dim MisParametros As New BuscarExpediente.SQLParameters
-        Dim MiCondicion As String
-
-        GITPreparaParametros(MiCondicion, MisParametros)
-
-        cn.ConnectionString = Session("UsuarioVirtualConnString")
-        cn.Open()
-
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.Connection = cn
-        cmd.Parameters.Clear()
-        cmd.CommandText = "CargaFormatoCaratulaFOVISSSTESQL2"
-        cmd.CommandTimeout = 0
-
-        param = cmd.Parameters.Add("SQLCondicion", OleDbType.VarChar)
-        param.Value = MiCondicion
-
-        param = cmd.Parameters.Add("Codigo", OleDbType.VarChar)
-        param.Value = MisParametros.Codigo
-
-        param = cmd.Parameters.Add("Expediente", OleDbType.VarChar)
-        param.Value = MisParametros.Expediente
-
-        param = cmd.Parameters.Add("ExpedienteFinal", OleDbType.VarChar)
-        param.Value = MisParametros.ExpedienteFinal
-
-        param = cmd.Parameters.Add("Tipo", OleDbType.VarChar)
-        param.Value = MisParametros.Tipo
-
-        param = cmd.Parameters.Add("RFC", OleDbType.VarChar)
-        param.Value = MisParametros.RFC
-
-        param = cmd.Parameters.Add("Asunto", OleDbType.VarChar)
-        param.Value = MisParametros.Asunto
-
-        param = cmd.Parameters.Add("Caja", OleDbType.VarChar)
-        param.Value = MisParametros.Cajas
-
-        param = cmd.Parameters.Add("RelacionAnterior", OleDbType.VarChar)
-        param.Value = MisParametros.RelacionAnterior
-
-        param = cmd.Parameters.Add("CajaAnterior", OleDbType.VarChar)
-        param.Value = MisParametros.CajaAnterior
-
-        param = cmd.Parameters.Add("ItemAnterior", OleDbType.VarChar)
-        param.Value = MisParametros.ItemAnterior
-
-        param = cmd.Parameters.Add("CampoAdicional3", OleDbType.VarChar)
-        param.Value = MisParametros.CampoAdicional3
-
-        param = cmd.Parameters.Add("Orden", OleDbType.VarChar)
-        Select Case Session("OrdenDeGridDeExpedientes").ToString
-            Case " e.Codigo " 'Codigo del expediente
-                param.Value = " Codigo "
-            Case " e.Nombre " 'Numero del expediente
-                param.Value = " Numero "
-            Case " e.CampoAdicional2 " 'REF 
-                param.Value = " Ref "
-            Case " e.CampoAdicional1 " 'RFC
-                param.Value = " RFC "
-            Case " e.Asunto " 'Nombre del expediente
-                param.Value = " Asunto "
-            Case " e.RelacionAnterior "
-                param.Value = " CajaAnterior "
-            Case " e.Caja "
-                param.Value = " Caja "
-            Case " e.FechaApertura "
-                param.Value = " e.FechaApertura "
-            Case " e.FechaCierre " 'FechaCierre
-                param.Value = " e.FechaCierre "
-            Case " ua.NombreCorto " 'Unidad Administrativa
-                param.Value = " Unidad "
-            Case Else
-                param.Value = " Numero "
-        End Select
-
-        param = cmd.Parameters.Add("FechaInicial", OleDbType.Date)
-        param.Value = MisParametros.FechaInicial
-
-        param = cmd.Parameters.Add("FechaFinal", OleDbType.Date)
-        param.Value = MisParametros.FechaFinal
-
-        da.SelectCommand = cmd
-        da.Fill(ds)
-        da.Dispose()
-
-        Reporte.SetDataSource(ds.Tables(0))
-
-        Reporte.SetParameterValue(0, "SENADO")
-        Reporte.SetParameterValue(1, "")
-
-        Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = Session("SubdirectorioTemporal") & Session("LoginActivo") & guid1.ToString & ".pdf"
-
-        'Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
-        'ficheros con reportes pdf del usuario activo (El File.Exists no funciona)
-        Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-        Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
-        Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-
-        'Write the file directly to the HTTP output stream.
-        Response.ContentType = "Application/pdf"
-        Response.WriteFile(MyFileName)
-        Response.End()
-
-    End Sub
-
-    Private Sub btnCaratulasNoCredito_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCaratulasNoCredito.Click
-        Dim cn As New OleDbConnection
-        Dim cmd As New OleDbCommand
-        Dim param As OleDbParameter
-        Dim da As New OleDbDataAdapter
-        Dim ds As New DataSet
-
-        Dim Reporte As New CaratulaCONACYT3 'CaratulaFOVISSSTE2
-        Dim MisParametros As New BuscarExpediente.SQLParameters
-        Dim MiCondicion As String
-
-        GITPreparaParametros(MiCondicion, MisParametros)
-
-        cn.ConnectionString = Session("UsuarioVirtualConnString")
-        cn.Open()
-
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.Connection = cn
-        cmd.Parameters.Clear()
-        cmd.CommandText = "CargaFormatoCaratulaFOVISSSTESQL2"
-        cmd.CommandTimeout = 0
-
-        param = cmd.Parameters.Add("SQLCondicion", OleDbType.VarChar)
-        param.Value = MiCondicion
-
-        param = cmd.Parameters.Add("Codigo", OleDbType.VarChar)
-        param.Value = MisParametros.Codigo
-
-        param = cmd.Parameters.Add("Expediente", OleDbType.VarChar)
-        param.Value = MisParametros.Expediente
-
-        param = cmd.Parameters.Add("ExpedienteFinal", OleDbType.VarChar)
-        param.Value = MisParametros.ExpedienteFinal
-
-        param = cmd.Parameters.Add("Tipo", OleDbType.VarChar)
-        param.Value = MisParametros.Tipo
-
-        param = cmd.Parameters.Add("RFC", OleDbType.VarChar)
-        param.Value = MisParametros.RFC
-
-        param = cmd.Parameters.Add("Asunto", OleDbType.VarChar)
-        param.Value = MisParametros.Asunto
-
-        param = cmd.Parameters.Add("Caja", OleDbType.VarChar)
-        param.Value = MisParametros.Cajas
-
-        param = cmd.Parameters.Add("RelacionAnterior", OleDbType.VarChar)
-        param.Value = MisParametros.RelacionAnterior
-
-        param = cmd.Parameters.Add("CajaAnterior", OleDbType.VarChar)
-        param.Value = MisParametros.CajaAnterior
-
-        param = cmd.Parameters.Add("ItemAnterior", OleDbType.VarChar)
-        param.Value = MisParametros.ItemAnterior
-
-        param = cmd.Parameters.Add("CampoAdicional3", OleDbType.VarChar)
-        param.Value = MisParametros.CampoAdicional3
-
-        param = cmd.Parameters.Add("Orden", OleDbType.VarChar)
-        Select Case Session("OrdenDeGridDeExpedientes").ToString
-            Case " e.Codigo " 'Codigo del expediente
-                param.Value = " Codigo "
-            Case " e.Nombre " 'Numero del expediente
-                param.Value = " Numero "
-            Case " e.CampoAdicional2 " 'REF 
-                param.Value = " Ref "
-            Case " e.CampoAdicional1 " 'RFC
-                param.Value = " RFC "
-            Case " e.Asunto " 'Nombre del expediente
-                param.Value = " Asunto "
-            Case " e.RelacionAnterior "
-                param.Value = " CajaAnterior "
-            Case " e.Caja "
-                param.Value = " Caja "
-            Case " e.FechaApertura "
-                param.Value = " e.FechaApertura "
-            Case " e.FechaCierre " 'FechaCierre
-                param.Value = " e.FechaCierre "
-            Case " ua.NombreCorto " 'Unidad Administrativa
-                param.Value = " Unidad "
-            Case Else
-                param.Value = " Numero "
-        End Select
-
-        param = cmd.Parameters.Add("FechaInicial", OleDbType.Date)
-        param.Value = MisParametros.FechaInicial
-
-        param = cmd.Parameters.Add("FechaFinal", OleDbType.Date)
-        param.Value = MisParametros.FechaFinal
-
-        da.SelectCommand = cmd
-        da.Fill(ds)
-        da.Dispose()
-
-        Reporte.SetDataSource(ds.Tables(0))
-
-        Reporte.SetParameterValue(0, "SENADO")
-        Reporte.SetParameterValue(1, "")
-
-        Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = Session("SubdirectorioTemporal") & Session("LoginActivo") & guid1.ToString & ".pdf"
-
-        'Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
-        'ficheros con reportes pdf del usuario activo (El File.Exists no funciona)
-        Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-        Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
-        Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-
-        'Write the file directly to the HTTP output stream.
-        Response.ContentType = "Application/pdf"
-        Response.WriteFile(MyFileName)
         Response.End()
 
     End Sub
@@ -1958,9 +1631,10 @@ Public Class BuscarExpediente
         da.Dispose()
 
         Reporte.SetDataSource(ds.Tables(0))
+        Reporte.SetParameterValue(0, LogoCliente)
 
         Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = Session("SubdirectorioTemporal").ToString & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
+        Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
@@ -1970,7 +1644,7 @@ Public Class BuscarExpediente
 
     End Sub
 
-    Private Sub btnLomos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLomos.Click
+    Private Sub BtnLomos_Click(sender As Object, e As EventArgs) Handles btnLomos.Click
 
         Dim cn As New OleDbConnection
         Dim cmd As New OleDbCommand
@@ -1978,91 +1652,24 @@ Public Class BuscarExpediente
         Dim da As New OleDbDataAdapter
         Dim ds As New DataSet
 
-        'Dim Reporte As New LomoFOVISSSTE
-        Dim Reporte As New LomoFOVISSSTE_NEW
+        Dim Reporte As New Lomo
 
-        Dim MisParametros As New BuscarExpediente.SQLParameters
-        Dim MiCondicion As String
-
-        GITPreparaParametros(MiCondicion, MisParametros)
-
-        cn.ConnectionString = Session("UsuarioVirtualConnString")
+        cn.ConnectionString = Session("UsuarioVirtualConnString").ToString
         cn.Open()
 
         cmd.CommandType = CommandType.StoredProcedure
         cmd.Connection = cn
         cmd.Parameters.Clear()
-        cmd.CommandText = "CargaFormatoCaratulaFOVISSSTESQL2"
-        cmd.CommandTimeout = 0
+        cmd.CommandText = "CargaFormatoCaratula"
 
-        param = cmd.Parameters.Add("SQLCondicion", OleDbType.VarChar)
-        param.Value = MiCondicion
+        Dim expedientes As New StringBuilder()
+        For Each item As Integer In ListaIdExpedientes
+            expedientes.Append(item)
+            expedientes.Append(",")
+        Next
 
-        param = cmd.Parameters.Add("Codigo", OleDbType.VarChar)
-        param.Value = MisParametros.Codigo
-
-        param = cmd.Parameters.Add("Expediente", OleDbType.VarChar)
-        param.Value = MisParametros.Expediente
-
-        param = cmd.Parameters.Add("ExpedienteFinal", OleDbType.VarChar)
-        param.Value = MisParametros.ExpedienteFinal
-
-        param = cmd.Parameters.Add("Tipo", OleDbType.VarChar)
-        param.Value = MisParametros.Tipo
-
-        param = cmd.Parameters.Add("RFC", OleDbType.VarChar)
-        param.Value = MisParametros.RFC
-
-        param = cmd.Parameters.Add("Asunto", OleDbType.VarChar)
-        param.Value = MisParametros.Asunto
-
-        param = cmd.Parameters.Add("Caja", OleDbType.VarChar)
-        param.Value = MisParametros.Cajas
-
-        param = cmd.Parameters.Add("RelacionAnterior", OleDbType.VarChar)
-        param.Value = MisParametros.RelacionAnterior
-
-        param = cmd.Parameters.Add("CajaAnterior", OleDbType.VarChar)
-        param.Value = MisParametros.CajaAnterior
-
-        param = cmd.Parameters.Add("ItemAnterior", OleDbType.VarChar)
-        param.Value = MisParametros.ItemAnterior
-
-        param = cmd.Parameters.Add("CampoAdicional3", OleDbType.VarChar)
-        param.Value = MisParametros.CampoAdicional3
-
-        param = cmd.Parameters.Add("Orden", OleDbType.VarChar)
-        Select Case Session("OrdenDeGridDeExpedientes").ToString()
-
-            Case " e.Codigo " 'Codigo del expediente
-                param.Value = " Codigo "
-            Case " e.Nombre " 'Numero del expediente
-                param.Value = " Numero "
-            Case " e.CampoAdicional2 " 'REF 
-                param.Value = " Ref "
-            Case " e.CampoAdicional1 " 'RFC
-                param.Value = " RFC "
-            Case " e.Asunto " 'Nombre del expediente
-                param.Value = " Asunto "
-            Case " e.RelacionAnterior "
-                param.Value = " CajaAnterior "
-            Case " e.Caja "
-                param.Value = " Caja "
-            Case " e.FechaApertura "
-                param.Value = " e.FechaApertura "
-            Case " e.FechaCierre " 'FechaCierre
-                param.Value = " e.FechaCierre "
-            Case " ua.NombreCorto " 'Unidad Administrativa
-                param.Value = " Unidad "
-            Case Else
-                param.Value = " Numero "
-        End Select
-
-        param = cmd.Parameters.Add("FechaInicial", OleDbType.Date)
-        param.Value = MisParametros.FechaInicial
-
-        param = cmd.Parameters.Add("FechaFinal", OleDbType.Date)
-        param.Value = MisParametros.FechaFinal
+        param = cmd.Parameters.Add("IDList", OleDbType.VarChar)
+        param.Value = expedientes.ToString
 
         da.SelectCommand = cmd
         da.Fill(ds)
@@ -2070,21 +1677,21 @@ Public Class BuscarExpediente
 
         Reporte.SetDataSource(ds.Tables(0))
 
-        'Reporte.SetParameterValue(0, "ISSSTE")
-        'Reporte.SetParameterValue(1, "700 FOVISSSTE")
+        Reporte.SetParameterValue("Logo", LogoCliente)
 
         Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = Session("SubdirectorioTemporal") & Session("LoginActivo") & guid1.ToString & ".pdf"
+        Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
-        'Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
-        'ficheros con reportes pdf del usuario activo (El File.Exists no funciona)
-        Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-        Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
-        'Write the file directly to the HTTP output stream.
         Response.ContentType = "Application/pdf"
         Response.WriteFile(MyFileName)
+        Response.Flush()
+
+        If IO.File.Exists(MyFileName) Then
+            IO.File.Delete(MyFileName)
+        End If
+
         Response.End()
 
     End Sub
@@ -2185,7 +1792,7 @@ Public Class BuscarExpediente
         param.Value = MisParametros.FechaFinal
 
         param = cmd.Parameters.Add("IDExpediente", OleDbType.Integer)
-        Select Case CType(sender, System.Web.UI.WebControls.Button).ID
+        Select Case CType(sender, Button).ID
             Case "btnExpedientesActivos"
                 param.Value = 1
                 Reporte.SetParameterValue(0, "Listado de expedientes en Archivo de Trámite vigentes por Unidad Administrativa")

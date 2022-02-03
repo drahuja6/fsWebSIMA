@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class CaratulaFOVISSSTE2
+Public Class Caratula
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class CaratulaFOVISSSTE2
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "CaratulaFOVISSSTE2.rpt"
+            Return "Caratula.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class CaratulaFOVISSSTE2
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "fsWebS_SEN.CaratulaFOVISSSTE2.rpt"
+            Return "fsWebS_SEN.Caratula.rpt"
         End Get
         Set
             'Do nothing
@@ -107,10 +107,18 @@ Public Class CaratulaFOVISSSTE2
             Return Me.DataDefinition.ParameterFields(1)
         End Get
     End Property
+    
+    <Browsable(false),  _
+     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
+    Public ReadOnly Property Parameter_Logo() As CrystalDecisions.[Shared].IParameterField
+        Get
+            Return Me.DataDefinition.ParameterFields(2)
+        End Get
+    End Property
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class CachedCaratulaFOVISSSTE2
+Public Class CachedCaratula
     Inherits Component
     Implements ICachedReport
     
@@ -152,7 +160,7 @@ Public Class CachedCaratulaFOVISSSTE2
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As CaratulaFOVISSSTE2 = New CaratulaFOVISSSTE2()
+        Dim rpt As Caratula = New Caratula()
         rpt.Site = Me.Site
         Return rpt
     End Function

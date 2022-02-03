@@ -1,7 +1,7 @@
 Imports System.Data.OleDb
 
 Public Class TrabajoRealizado
-    Inherits System.Web.UI.Page
+    Inherits Page
 
 #Region " Código generado por el Diseñador de Web Forms "
 
@@ -9,24 +9,24 @@ Public Class TrabajoRealizado
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
 
     End Sub
-    Protected WithEvents Label1 As System.Web.UI.WebControls.Label
-    Protected WithEvents DataGrid1 As System.Web.UI.WebControls.DataGrid
-    Protected WithEvents Panel1 As System.Web.UI.WebControls.Panel
-    Protected WithEvents txtFApertInic As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label2 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label3 As System.Web.UI.WebControls.Label
-    Protected WithEvents Button1 As System.Web.UI.WebControls.Button
-    Protected WithEvents txtFApertFinal As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label4 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label5 As System.Web.UI.WebControls.Label
-    Protected WithEvents Datagrid2 As System.Web.UI.WebControls.DataGrid
-    Protected WithEvents Panel2 As System.Web.UI.WebControls.Panel
-    Protected WithEvents RegularExpressionValidator2 As System.Web.UI.WebControls.RegularExpressionValidator
-    Protected WithEvents Regularexpressionvalidator1 As System.Web.UI.WebControls.RegularExpressionValidator
-    Protected WithEvents NoHayDatos As System.Web.UI.WebControls.Label
-    Protected WithEvents NoHayDatos2 As System.Web.UI.WebControls.Label
-    Protected WithEvents btnImpPorUA As System.Web.UI.WebControls.Button
-    Protected WithEvents btnImpPorUsuario As System.Web.UI.WebControls.Button
+    Protected WithEvents Label1 As Label
+    Protected WithEvents DataGrid1 As DataGrid
+    Protected WithEvents Panel1 As Panel
+    Protected WithEvents txtFApertInic As TextBox
+    Protected WithEvents Label2 As Label
+    Protected WithEvents Label3 As Label
+    Protected WithEvents Button1 As Button
+    Protected WithEvents txtFApertFinal As TextBox
+    Protected WithEvents Label4 As Label
+    Protected WithEvents Label5 As Label
+    Protected WithEvents Datagrid2 As DataGrid
+    Protected WithEvents Panel2 As Panel
+    Protected WithEvents RegularExpressionValidator2 As RegularExpressionValidator
+    Protected WithEvents Regularexpressionvalidator1 As RegularExpressionValidator
+    Protected WithEvents NoHayDatos As Label
+    Protected WithEvents NoHayDatos2 As Label
+    Protected WithEvents btnImpPorUA As Button
+    Protected WithEvents btnImpPorUsuario As Button
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.

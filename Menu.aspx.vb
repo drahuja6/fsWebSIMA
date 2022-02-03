@@ -1,5 +1,5 @@
 Public Class Menu
-    Inherits System.Web.UI.Page
+    Inherits Page
 
 #Region " Código generado por el Diseñador de Web Forms "
 
@@ -7,20 +7,20 @@ Public Class Menu
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
 
     End Sub
-    Protected WithEvents Label1 As System.Web.UI.WebControls.Label
-    Protected WithEvents HyperLink1 As System.Web.UI.WebControls.HyperLink
-    Protected WithEvents Label2 As System.Web.UI.WebControls.Label
-    Protected WithEvents HyperLink3 As System.Web.UI.WebControls.HyperLink
-    Protected WithEvents Label3 As System.Web.UI.WebControls.Label
-    Protected WithEvents HyperLink2 As System.Web.UI.WebControls.HyperLink
-    Protected WithEvents HyperLink5 As System.Web.UI.WebControls.HyperLink
-    Protected WithEvents Label4 As System.Web.UI.WebControls.Label
-    Protected WithEvents HyperLink4 As System.Web.UI.WebControls.HyperLink
-    Protected WithEvents HyperLink6 As System.Web.UI.WebControls.HyperLink
-    Protected WithEvents HyperLink7 As System.Web.UI.WebControls.HyperLink
-    Protected WithEvents HyperLink8 As System.Web.UI.WebControls.HyperLink
-    Protected WithEvents HLVET As System.Web.UI.WebControls.HyperLink
-    Protected WithEvents HLVEC As System.Web.UI.WebControls.HyperLink
+    Protected WithEvents Label1 As Label
+    Protected WithEvents HyperLink1 As HyperLink
+    Protected WithEvents Label2 As Label
+    Protected WithEvents HyperLink3 As HyperLink
+    Protected WithEvents Label3 As Label
+    Protected WithEvents HyperLink2 As HyperLink
+    Protected WithEvents HyperLink5 As HyperLink
+    Protected WithEvents Label4 As Label
+    Protected WithEvents HyperLink4 As HyperLink
+    Protected WithEvents HyperLink6 As HyperLink
+    Protected WithEvents HyperLink7 As HyperLink
+    Protected WithEvents HyperLink8 As HyperLink
+    Protected WithEvents HLVET As HyperLink
+    Protected WithEvents HLVEC As HyperLink
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -34,7 +34,7 @@ Public Class Menu
 
 #End Region
 
-    Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Introducir aquí el código de usuario para inicializar la página
         LlenaEVT(Today())
         LlenaEVC(Today())

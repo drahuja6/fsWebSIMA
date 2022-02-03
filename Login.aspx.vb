@@ -1,5 +1,5 @@
 Public Class Login
-    Inherits System.Web.UI.Page
+    Inherits Page
 
 #Region " Código generado por el Diseñador de Web Forms "
 
@@ -7,12 +7,13 @@ Public Class Login
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
 
     End Sub
-    Protected WithEvents Label1 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtUsuario As System.Web.UI.WebControls.TextBox
-    Protected WithEvents btnEntrar As System.Web.UI.WebControls.Button
-    Protected WithEvents Label2 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtPassword As System.Web.UI.WebControls.TextBox
-    Protected WithEvents RequiredFieldValidator1 As System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents Label1 As Label
+    Protected WithEvents txtUsuario As TextBox
+    Protected WithEvents btnEntrar As Button
+    Protected WithEvents Label2 As Label
+    Protected WithEvents txtPassword As TextBox
+    Protected WithEvents RequiredFieldValidator1 As RequiredFieldValidator
+    Protected WithEvents lblAccesoNegado As Label
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -150,10 +151,10 @@ Public Class Login
         Session("AdminConnString") = "Provider=SQLOLEDB;Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=SIMA_Senado;UID=USOC;Pwd=f5*HIDDENUSER;Persist Security Info=True;Connect Timeout=15;"
 
         Session("OrdenDeGridDeExpedientes") = " e.Nombre "
-        'Session("SubdirectorioDeImagenes") = "D:\PdfSIMA\Senado\DGAHML\00001\" '"\\207.248.171.73\img\" '"c:\imagenes\"  '"\\10.1.201.60\img\"  '"c:\prov\"
+        'Estas dos variables de sesión se dejan por compatibilidad en lugar de la variable global definida en Globales.vb
         Session("SubdirectorioDeImagenes") = My.Settings.DirImagenes
-        'Session("SubdirectorioTemporal") = "c:\inetpub\temp\prov\"
         Session("SubdirectorioTemporal") = My.Settings.DirTemporal
+
         Session("LimiteDeRecordsEnBusqueda") = 50
 
         If Not Page.IsPostBack Then
@@ -165,7 +166,6 @@ Public Class Login
             Session("idCuadroClasificacionActivo") = -1
             Session("TextoCuadroClasificacionEscogido") = ""
             Session("idUsuarioRealEnEdicionActivo") = -1
-
 
             Session("idPlazoDeConservacionTramiteActivo") = -1
             Session("idPlazoDeConservacionConcentracionActivo") = -1
@@ -200,10 +200,10 @@ Public Class Login
                 Session("IDUsuarioReal") = IDUsuarioReal
                 Session("NombreUsuarioReal") = NombreUsuarioReal
             End If
-
+            lblAccesoNegado.Visible = False
             Response.Redirect("./FrameSet2.htm")
         Else
-            Beep()
+            lblAccesoNegado.Visible = True
         End If
 
     End Sub

@@ -1,7 +1,7 @@
 Imports System.Data.OleDb
 
 Public Class CuadroClasificacion
-    Inherits System.Web.UI.Page
+    Inherits Page
 
 #Region " Código generado por el Diseñador de Web Forms "
 
@@ -9,13 +9,13 @@ Public Class CuadroClasificacion
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
 
     End Sub
-    Protected WithEvents Label1 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label2 As System.Web.UI.WebControls.Label
-    Protected WithEvents txbFiltro As System.Web.UI.WebControls.TextBox
-    Protected WithEvents btnAplicar As System.Web.UI.WebControls.Button
-    Protected WithEvents Panel1 As System.Web.UI.WebControls.Panel
-    Protected WithEvents DataGrid1 As System.Web.UI.WebControls.DataGrid
-    Protected WithEvents NoHayDatos As System.Web.UI.WebControls.Label
+    Protected WithEvents Label1 As Label
+    Protected WithEvents Label2 As Label
+    Protected WithEvents txbFiltro As TextBox
+    Protected WithEvents btnAplicar As Button
+    Protected WithEvents Panel1 As Panel
+    Protected WithEvents DataGrid1 As DataGrid
+    Protected WithEvents NoHayDatos As Label
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -98,7 +98,7 @@ Public Class CuadroClasificacion
 
     End Sub
 
-    Private Sub DataGrid1_ItemCommand(ByVal source As System.Object, ByVal e As System.Web.UI.WebControls.DataGridCommandEventArgs) Handles DataGrid1.ItemCommand
+    Private Sub DataGrid1_ItemCommand(ByVal source As System.Object, ByVal e As DataGridCommandEventArgs) Handles DataGrid1.ItemCommand
 
         If e.Item.ItemIndex >= 0 Then
             Session("idCuadroClasificacionActivo") = DataGrid1.DataKeys.Item(e.Item.ItemIndex)

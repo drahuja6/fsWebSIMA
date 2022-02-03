@@ -3,7 +3,7 @@ Imports System.Data.OleDb
 Imports System.IO
 
 Public Class DisplayExpediente
-    Inherits System.Web.UI.Page
+    Inherits Page
 
 #Region " Código generado por el Diseñador de Web Forms "
 
@@ -12,128 +12,128 @@ Public Class DisplayExpediente
 
     End Sub
 
-    Protected WithEvents Label1 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtCodigo As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label2 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label3 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtExpediente As System.Web.UI.WebControls.TextBox
-    Protected WithEvents lbJerarquia As System.Web.UI.WebControls.ListBox
-    Protected WithEvents Label4 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtTipo As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label5 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtRFC As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label6 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtNombre As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label7 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtNoDeFojas As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label8 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtFechaApertura As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label9 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtFechaCierre As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label10 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label11 As System.Web.UI.WebControls.Label
-    Protected WithEvents lblAutorizaPaseBajaHistorico As System.Web.UI.WebControls.Label
-    Protected WithEvents txtFechaPaseBajaHistorico As System.Web.UI.WebControls.TextBox
-    Protected WithEvents lbxUnidadAdmin As System.Web.UI.WebControls.DropDownList
-    Protected WithEvents Label12 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label13 As System.Web.UI.WebControls.Label
-    Protected WithEvents lbxCalidadDoc As System.Web.UI.WebControls.DropDownList
-    Protected WithEvents btnLocalizacion As System.Web.UI.WebControls.Button
-    Protected WithEvents btnClasificacion As System.Web.UI.WebControls.Button
-    Protected WithEvents btnAtributos As System.Web.UI.WebControls.Button
-    Protected WithEvents Label15 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label16 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label17 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label18 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label19 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label20 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label21 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtCaja As System.Web.UI.WebControls.TextBox
-    Protected WithEvents txtAnaquel As System.Web.UI.WebControls.TextBox
-    Protected WithEvents txtPasillo As System.Web.UI.WebControls.TextBox
-    Protected WithEvents txtEntrepano As System.Web.UI.WebControls.TextBox
-    Protected WithEvents txtRelacionAnterior As System.Web.UI.WebControls.TextBox
-    Protected WithEvents txtCajaAnterior As System.Web.UI.WebControls.TextBox
-    Protected WithEvents txtItemAnterior As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Panel1 As System.Web.UI.WebControls.Panel
-    Protected WithEvents Label22 As System.Web.UI.WebControls.Label
-    Protected WithEvents PLocalizacion As System.Web.UI.WebControls.Panel
-    Protected WithEvents ddlstStatus As System.Web.UI.WebControls.DropDownList
-    Protected WithEvents Label26 As System.Web.UI.WebControls.Label
-    Protected WithEvents chkbxParteDelDocumento As System.Web.UI.WebControls.CheckBox
-    Protected WithEvents Label27 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtFojas As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label28 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtFechaDeClasificacion As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label29 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtFechaPropuestaDesclasificacion As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label30 As System.Web.UI.WebControls.Label
-    Protected WithEvents lbFundamentosLegalesClasificacion As System.Web.UI.WebControls.ListBox
-    Protected WithEvents Label31 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label32 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label33 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtNuevaFojas As System.Web.UI.WebControls.TextBox
-    Protected WithEvents txtNuevaFechaPropuestaDesclasificacion As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label34 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label35 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtFechaDesclasificacion As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label36 As System.Web.UI.WebControls.Label
-    Protected WithEvents lblAutorizaNuevaDesc As System.Web.UI.WebControls.Label
-    Protected WithEvents lblAutorizaDesclasificacion As System.Web.UI.WebControls.Label
-    Protected WithEvents chkbxNuevaParteDelDocumento As System.Web.UI.WebControls.CheckBox
-    Protected WithEvents lblValidaFechaClasificacion As System.Web.UI.WebControls.Label
-    Protected WithEvents lblValidaFechaPropuestaDesclasificacion As System.Web.UI.WebControls.Label
-    Protected WithEvents lblValidaFechaNuevaDesclasificacion As System.Web.UI.WebControls.Label
-    Protected WithEvents lblValidaFechaDesclasificacion As System.Web.UI.WebControls.Label
-    Protected WithEvents PClasificacion As System.Web.UI.WebControls.Panel
-    Protected WithEvents Label37 As System.Web.UI.WebControls.Label
-    Protected WithEvents lbxValorDocumental As System.Web.UI.WebControls.ListBox
-    Protected WithEvents Label38 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label39 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label40 As System.Web.UI.WebControls.Label
-    Protected WithEvents ddlstTramite As System.Web.UI.WebControls.DropDownList
-    Protected WithEvents ddlstConcentracion As System.Web.UI.WebControls.DropDownList
-    Protected WithEvents Label41 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label42 As System.Web.UI.WebControls.Label
-    Protected WithEvents ddlstDestinoFinal As System.Web.UI.WebControls.DropDownList
-    Protected WithEvents Label43 As System.Web.UI.WebControls.Label
-    Protected WithEvents lbxFundamentosLegalesDestinoFinal As System.Web.UI.WebControls.ListBox
-    Protected WithEvents PAtributos As System.Web.UI.WebControls.Panel
-    Protected WithEvents Label23 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtFechaDeCreacion As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label24 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label25 As System.Web.UI.WebControls.Label
-    Protected WithEvents btnSalvar As System.Web.UI.WebControls.Button
-    Protected WithEvents btnCancelar As System.Web.UI.WebControls.Button
-    Protected WithEvents btnAgregar As System.Web.UI.WebControls.Button
-    Protected WithEvents btnEditar As System.Web.UI.WebControls.Button
-    Protected WithEvents btnBorrar As System.Web.UI.WebControls.Button
-    Protected WithEvents lblElaborPor As System.Web.UI.WebControls.Label
-    Protected WithEvents lblUltimaedicion As System.Web.UI.WebControls.Label
-    Protected WithEvents lblExpedienteStatus As System.Web.UI.WebControls.Label
-    Protected WithEvents lblValidaCodigo As System.Web.UI.WebControls.Label
-    Protected WithEvents lblValidaExpediente As System.Web.UI.WebControls.Label
-    Protected WithEvents lblValidaFechaApertura As System.Web.UI.WebControls.Label
-    Protected WithEvents lblValidaFechaCreacion As System.Web.UI.WebControls.Label
-    Protected WithEvents lblValidacionNoDeFojas As System.Web.UI.WebControls.Label
-    Protected WithEvents lblValidaNombre As System.Web.UI.WebControls.Label
-    Protected WithEvents lblValidaFechaCierre As System.Web.UI.WebControls.Label
-    Protected WithEvents btnCaratula As System.Web.UI.WebControls.Button
-    Protected WithEvents DataGrid1 As System.Web.UI.WebControls.DataGrid
-    Protected WithEvents NoHayDatos As System.Web.UI.WebControls.Label
-    Protected WithEvents Label14 As System.Web.UI.WebControls.Label
-    Protected WithEvents Button2 As System.Web.UI.WebControls.Button
-    Protected WithEvents lblValidaFechaPaseBajaHistorico As System.Web.UI.WebControls.Label
-    Protected WithEvents DataGrid2 As System.Web.UI.WebControls.DataGrid
-    Protected WithEvents NoHayDatos2 As System.Web.UI.WebControls.Label
-    Protected WithEvents PPDFs As System.Web.UI.WebControls.Panel
-    Protected WithEvents btnVerDocumentos As System.Web.UI.WebControls.Button
-    Protected WithEvents btnCaratula2 As System.Web.UI.WebControls.Button
-    Protected WithEvents btnLomo As System.Web.UI.WebControls.Button
-    Protected WithEvents btnAbreEscogeCuadro As System.Web.UI.WebControls.Button
-    Protected WithEvents Label44 As System.Web.UI.WebControls.Label
-    Protected WithEvents Label45 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtObservConcentracion As System.Web.UI.WebControls.TextBox
+    Protected WithEvents Label1 As Label
+    Protected WithEvents txtCodigo As TextBox
+    Protected WithEvents Label2 As Label
+    Protected WithEvents Label3 As Label
+    Protected WithEvents txtExpediente As TextBox
+    Protected WithEvents lbJerarquia As ListBox
+    Protected WithEvents Label4 As Label
+    Protected WithEvents txtTipo As TextBox
+    Protected WithEvents Label5 As Label
+    Protected WithEvents txtRFC As TextBox
+    Protected WithEvents Label6 As Label
+    Protected WithEvents txtNombre As TextBox
+    Protected WithEvents Label7 As Label
+    Protected WithEvents txtNoDeFojas As TextBox
+    Protected WithEvents Label8 As Label
+    Protected WithEvents txtFechaApertura As TextBox
+    Protected WithEvents Label9 As Label
+    Protected WithEvents txtFechaCierre As TextBox
+    Protected WithEvents Label10 As Label
+    Protected WithEvents Label11 As Label
+    Protected WithEvents lblAutorizaPaseBajaHistorico As Label
+    Protected WithEvents txtFechaPaseBajaHistorico As TextBox
+    Protected WithEvents lbxUnidadAdmin As DropDownList
+    Protected WithEvents Label12 As Label
+    Protected WithEvents Label13 As Label
+    Protected WithEvents lbxCalidadDoc As DropDownList
+    Protected WithEvents btnLocalizacion As Button
+    Protected WithEvents btnClasificacion As Button
+    Protected WithEvents btnAtributos As Button
+    Protected WithEvents Label15 As Label
+    Protected WithEvents Label16 As Label
+    Protected WithEvents Label17 As Label
+    Protected WithEvents Label18 As Label
+    Protected WithEvents Label19 As Label
+    Protected WithEvents Label20 As Label
+    Protected WithEvents Label21 As Label
+    Protected WithEvents txtCaja As TextBox
+    Protected WithEvents txtAnaquel As TextBox
+    Protected WithEvents txtPasillo As TextBox
+    Protected WithEvents txtEntrepano As TextBox
+    Protected WithEvents txtRelacionAnterior As TextBox
+    Protected WithEvents txtCajaAnterior As TextBox
+    Protected WithEvents txtItemAnterior As TextBox
+    Protected WithEvents Panel1 As Panel
+    Protected WithEvents Label22 As Label
+    Protected WithEvents PLocalizacion As Panel
+    Protected WithEvents ddlstStatus As DropDownList
+    Protected WithEvents Label26 As Label
+    Protected WithEvents chkbxParteDelDocumento As CheckBox
+    Protected WithEvents Label27 As Label
+    Protected WithEvents txtFojas As TextBox
+    Protected WithEvents Label28 As Label
+    Protected WithEvents txtFechaDeClasificacion As TextBox
+    Protected WithEvents Label29 As Label
+    Protected WithEvents txtFechaPropuestaDesclasificacion As TextBox
+    Protected WithEvents Label30 As Label
+    Protected WithEvents lbFundamentosLegalesClasificacion As ListBox
+    Protected WithEvents Label31 As Label
+    Protected WithEvents Label32 As Label
+    Protected WithEvents Label33 As Label
+    Protected WithEvents txtNuevaFojas As TextBox
+    Protected WithEvents txtNuevaFechaPropuestaDesclasificacion As TextBox
+    Protected WithEvents Label34 As Label
+    Protected WithEvents Label35 As Label
+    Protected WithEvents txtFechaDesclasificacion As TextBox
+    Protected WithEvents Label36 As Label
+    Protected WithEvents lblAutorizaNuevaDesc As Label
+    Protected WithEvents lblAutorizaDesclasificacion As Label
+    Protected WithEvents chkbxNuevaParteDelDocumento As CheckBox
+    Protected WithEvents lblValidaFechaClasificacion As Label
+    Protected WithEvents lblValidaFechaPropuestaDesclasificacion As Label
+    Protected WithEvents lblValidaFechaNuevaDesclasificacion As Label
+    Protected WithEvents lblValidaFechaDesclasificacion As Label
+    Protected WithEvents PClasificacion As Panel
+    Protected WithEvents Label37 As Label
+    Protected WithEvents lbxValorDocumental As ListBox
+    Protected WithEvents Label38 As Label
+    Protected WithEvents Label39 As Label
+    Protected WithEvents Label40 As Label
+    Protected WithEvents ddlstTramite As DropDownList
+    Protected WithEvents ddlstConcentracion As DropDownList
+    Protected WithEvents Label41 As Label
+    Protected WithEvents Label42 As Label
+    Protected WithEvents ddlstDestinoFinal As DropDownList
+    Protected WithEvents Label43 As Label
+    Protected WithEvents lbxFundamentosLegalesDestinoFinal As ListBox
+    Protected WithEvents PAtributos As Panel
+    Protected WithEvents Label23 As Label
+    Protected WithEvents txtFechaDeCreacion As TextBox
+    Protected WithEvents Label24 As Label
+    Protected WithEvents Label25 As Label
+    Protected WithEvents btnSalvar As Button
+    Protected WithEvents btnCancelar As Button
+    Protected WithEvents btnAgregar As Button
+    Protected WithEvents btnEditar As Button
+    Protected WithEvents btnBorrar As Button
+    Protected WithEvents lblElaborPor As Label
+    Protected WithEvents lblUltimaedicion As Label
+    Protected WithEvents lblExpedienteStatus As Label
+    Protected WithEvents lblValidaCodigo As Label
+    Protected WithEvents lblValidaExpediente As Label
+    Protected WithEvents lblValidaFechaApertura As Label
+    Protected WithEvents lblValidaFechaCreacion As Label
+    Protected WithEvents lblValidacionNoDeFojas As Label
+    Protected WithEvents lblValidaNombre As Label
+    Protected WithEvents lblValidaFechaCierre As Label
+    Protected WithEvents btnCaratula As Button
+    Protected WithEvents DataGrid1 As DataGrid
+    Protected WithEvents NoHayDatos As Label
+    Protected WithEvents Label14 As Label
+    Protected WithEvents Button2 As Button
+    Protected WithEvents lblValidaFechaPaseBajaHistorico As Label
+    Protected WithEvents DataGrid2 As DataGrid
+    Protected WithEvents NoHayDatos2 As Label
+    Protected WithEvents PPDFs As Panel
+    Protected WithEvents btnVerDocumentos As Button
+    Protected WithEvents btnCaratula2 As Button
+    Protected WithEvents btnLomo As Button
+    Protected WithEvents btnAbreEscogeCuadro As Button
+    Protected WithEvents Label44 As Label
+    Protected WithEvents Label45 As Label
+    Protected WithEvents txtObservConcentracion As TextBox
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -661,12 +661,12 @@ Public Class DisplayExpediente
     End Function
 
     'Rutina para cargar datos a un DropDownList.
-    Public Shared Sub FillDropDownList( _
-                        ByVal ConnString As String, _
-                        ByVal MyDropDownList As System.Web.UI.WebControls.DropDownList, _
-                        ByVal StoredProcedure As String, _
-                        ByVal FieldItemData As String, _
-                        ByVal FieldToShow As String, _
+    Public Shared Sub FillDropDownList(
+                        ByVal ConnString As String,
+                        ByVal MyDropDownList As DropDownList,
+                        ByVal StoredProcedure As String,
+                        ByVal FieldItemData As String,
+                        ByVal FieldToShow As String,
                         ByVal ShowItemData As Integer)
 
         'Rutina para llenar un DropDownList
@@ -697,7 +697,7 @@ Public Class DisplayExpediente
                 MyIndice = 0
                 While dr.Read()
 
-                    Dim MyDropDownListItem As New System.Web.UI.WebControls.ListItem
+                    Dim MyDropDownListItem As New ListItem
 
                     MyDropDownListItem.Text = CStr(dr(FieldToShow))
                     MyDropDownListItem.Value = CInt(dr(FieldItemData))
@@ -730,13 +730,13 @@ Public Class DisplayExpediente
 
     'Sobrecarga de la rutina para cargar datos a un DropDownList. 
     'Incluye la posibilidad de pasar un parámetro al SP.
-    Public Shared Sub FillDropDownList( _
-                        ByVal ConnString As String, _
-                        ByVal MyDropDownList As System.Web.UI.WebControls.DropDownList, _
-                        ByVal StoredProcedure As String, _
-                        ByVal SPParameter As Integer, _
-                        ByVal FieldItemData As String, _
-                        ByVal FieldToShow As String, _
+    Public Shared Sub FillDropDownList(
+                        ByVal ConnString As String,
+                        ByVal MyDropDownList As DropDownList,
+                        ByVal StoredProcedure As String,
+                        ByVal SPParameter As Integer,
+                        ByVal FieldItemData As String,
+                        ByVal FieldToShow As String,
                         ByVal ShowItemData As Integer)
 
         'Rutina para llenar un DropDownList
@@ -772,7 +772,7 @@ Public Class DisplayExpediente
                 MyIndice = 0
                 While dr.Read()
 
-                    Dim MyDropDownListItem As New System.Web.UI.WebControls.ListItem
+                    Dim MyDropDownListItem As New ListItem
 
                     MyDropDownListItem.Text = CStr(dr(FieldToShow))
                     MyDropDownListItem.Value = CInt(dr(FieldItemData))
@@ -825,13 +825,13 @@ Public Class DisplayExpediente
     End Sub
 
     'Rutina para cargar una lista y seleccionar algunos items.
-    Public Sub FillListBox2( _
-                                ByVal ConnString As String, _
-                                ByVal MyListBox As ListBox, _
-                                ByVal StoredProcedure As String, _
-                                ByVal idParameter As Integer, _
-                                ByVal FieldItemData As String, _
-                                ByVal FieldToShow As String, _
+    Public Sub FillListBox2(
+                                ByVal ConnString As String,
+                                ByVal MyListBox As ListBox,
+                                ByVal StoredProcedure As String,
+                                ByVal idParameter As Integer,
+                                ByVal FieldItemData As String,
+                                ByVal FieldToShow As String,
                                 ByVal FieldSelected As String)
 
         'Rutina para llenar un combobox
@@ -865,7 +865,7 @@ Public Class DisplayExpediente
             If dr.HasRows Then
                 While dr.Read()
 
-                    Dim MyListItem As New System.Web.UI.WebControls.ListItem
+                    Dim MyListItem As New ListItem
 
                     MyListItem.Text = CStr(dr(FieldToShow))
                     MyListItem.Value = CInt(dr(FieldItemData))
@@ -1132,31 +1132,31 @@ Public Class DisplayExpediente
                 '    lbxUnidadAdmin.SelectedItem.Value, _
                 '    lbxCalidadDoc.SelectedItem.Value)
 
-                IDExpedienteInsertado = Expedientes_INSERT( _
-                    Session("idClasificacionActivo"), _
-                    CStr(IIf(Trim(txtExpediente.Text) = "", "?", Trim(txtExpediente.Text))), _
-                    Trim(txtNombre.Text), _
-                    CInt(IIf(Trim(txtNoDeFojas.Text) = "", "0", Trim(txtNoDeFojas.Text))), _
-                    CDate(Trim(txtFechaApertura.Text)), _
-                    MyFechaCierre, _
-                    IIf(Trim(txtFechaCierre.Text) = "", False, True), _
-                    MyFechaPaseBajaHistorico, _
-                    IIf(Trim(txtFechaPaseBajaHistorico.Text) = "", False, True), _
-                    CInt(IIf(Trim(txtFechaPaseBajaHistorico.Text) = "", -1, CInt(Session("IDUsuarioReal")))), _
-                     txtCajaAnterior.Text, _
-                     txtItemAnterior.Text, _
-                     txtRelacionAnterior.Text, _
-                     txtObservConcentracion.Text, _
-                     txtCaja.Text, _
-                     txtAnaquel.Text, _
-                     txtPasillo.Text, _
-                    Now(), _
-                    CInt(Session("IDUsuarioReal")), _
-                    txtRFC.Text, _
-                    txtTipo.Text, _
-                    CInt(Session("IDUsuarioReal")), _
-                    lbxUnidadAdmin.SelectedItem.Value, _
-                    lbxCalidadDoc.SelectedItem.Value, _
+                IDExpedienteInsertado = Expedientes_INSERT(
+                    Session("idClasificacionActivo"),
+                    CStr(IIf(Trim(txtExpediente.Text) = "", "?", Trim(txtExpediente.Text))),
+                    Trim(txtNombre.Text),
+                    CInt(IIf(Trim(txtNoDeFojas.Text) = "", "0", Trim(txtNoDeFojas.Text))),
+                    CDate(Trim(txtFechaApertura.Text)),
+                    MyFechaCierre,
+                    IIf(Trim(txtFechaCierre.Text) = "", False, True),
+                    MyFechaPaseBajaHistorico,
+                    IIf(Trim(txtFechaPaseBajaHistorico.Text) = "", False, True),
+                    CInt(IIf(Trim(txtFechaPaseBajaHistorico.Text) = "", -1, CInt(Session("IDUsuarioReal")))),
+                     txtCajaAnterior.Text,
+                     txtItemAnterior.Text,
+                     txtRelacionAnterior.Text,
+                     txtObservConcentracion.Text,
+                     txtCaja.Text,
+                     txtAnaquel.Text,
+                     txtPasillo.Text,
+                    Now(),
+                    CInt(Session("IDUsuarioReal")),
+                    txtRFC.Text,
+                    txtTipo.Text,
+                    CInt(Session("IDUsuarioReal")),
+                    lbxUnidadAdmin.SelectedItem.Value,
+                    lbxCalidadDoc.SelectedItem.Value,
                      txtEntrepano.Text)
 
 
@@ -1239,26 +1239,26 @@ Public Class DisplayExpediente
                         MyFechaDesclasificacion = CDate(Trim(txtFechaDesclasificacion.Text))
                     End If
 
-                    IDExpedienteInsertado2 = Expedientes_UPDATE_2( _
-                        Session("AdminConnString"), _
-                        IDExpedienteInsertado, _
-                        ddlstStatus.SelectedItem.Value, _
-                        chkbxParteDelDocumento.Checked, _
-                        txtFojas.Text, _
-                        MyFechaDeClasificacion, _
-                        True, _
-                        MyFechaPropuestaDesclasificacion, _
-                        True, _
-                        MyNuevaFechaPropuestaDesclasificacion, _
-                        IIf(Trim(txtNuevaFechaPropuestaDesclasificacion.Text) = "", False, True), _
-                        chkbxNuevaParteDelDocumento.Checked, _
-                        txtNuevaFojas.Text, _
-                        CInt(IIf(Trim(txtNuevaFechaPropuestaDesclasificacion.Text) = "", -1, CInt(Session("IDUsuarioReal")))), _
-                        MyFechaDesclasificacion, _
-                        IIf(Trim(txtFechaDesclasificacion.Text) = "", False, True), _
-                        CInt(IIf(Trim(txtFechaDesclasificacion.Text) = "", -1, CInt(Session("IDUsuarioReal")))), _
-                        ddlstTramite.SelectedItem.Value, _
-                        ddlstConcentracion.SelectedItem.Value, _
+                    IDExpedienteInsertado2 = Expedientes_UPDATE_2(
+                        Session("AdminConnString"),
+                        IDExpedienteInsertado,
+                        ddlstStatus.SelectedItem.Value,
+                        chkbxParteDelDocumento.Checked,
+                        txtFojas.Text,
+                        MyFechaDeClasificacion,
+                        True,
+                        MyFechaPropuestaDesclasificacion,
+                        True,
+                        MyNuevaFechaPropuestaDesclasificacion,
+                        IIf(Trim(txtNuevaFechaPropuestaDesclasificacion.Text) = "", False, True),
+                        chkbxNuevaParteDelDocumento.Checked,
+                        txtNuevaFojas.Text,
+                        CInt(IIf(Trim(txtNuevaFechaPropuestaDesclasificacion.Text) = "", -1, CInt(Session("IDUsuarioReal")))),
+                        MyFechaDesclasificacion,
+                        IIf(Trim(txtFechaDesclasificacion.Text) = "", False, True),
+                        CInt(IIf(Trim(txtFechaDesclasificacion.Text) = "", -1, CInt(Session("IDUsuarioReal")))),
+                        ddlstTramite.SelectedItem.Value,
+                        ddlstConcentracion.SelectedItem.Value,
                         ddlstDestinoFinal.SelectedItem.Value)
                     'End If
 
@@ -1360,31 +1360,31 @@ Public Class DisplayExpediente
                     MyFechaPaseBajaHistorico = CDate(Trim(txtFechaPaseBajaHistorico.Text))
                 End If
 
-                IDExpedienteEditado = Expedientes_UPDATE( _
-                    Session("idExpedienteActivo"), _
-                    Session("idClasificacionActivo"), _
-                    CStr(IIf(Trim(txtExpediente.Text) = "", "?", Trim(txtExpediente.Text))), _
-                    Trim(txtNombre.Text), _
-                    CInt(IIf(Trim(txtNoDeFojas.Text) = "", "0", Trim(txtNoDeFojas.Text))), _
-                    CDate(Trim(txtFechaApertura.Text)), _
-                    MyFechaCierre, _
-                    IIf(Trim(txtFechaCierre.Text) = "", False, True), _
-                    MyFechaPaseBajaHistorico, _
-                    IIf(Trim(txtFechaPaseBajaHistorico.Text) = "", False, True), _
-                    CInt(IIf(Trim(txtFechaPaseBajaHistorico.Text) = "", -1, CInt(Session("IDUsuarioReal")))), _
-                                         txtCajaAnterior.Text, _
-                     txtItemAnterior.Text, _
-                                          txtRelacionAnterior.Text, _
-                     txtObservConcentracion.Text, _
-                     txtCaja.Text, _
-                     txtAnaquel.Text, _
-                     txtPasillo.Text, _
-                    CDate(Trim(txtFechaDeCreacion.Text)), _
-                    txtRFC.Text, _
-                    txtTipo.Text, _
-                    CInt(Session("IDUsuarioReal")), _
-                    lbxUnidadAdmin.SelectedItem.Value, _
-                    lbxCalidadDoc.SelectedItem.Value, _
+                IDExpedienteEditado = Expedientes_UPDATE(
+                    Session("idExpedienteActivo"),
+                    Session("idClasificacionActivo"),
+                    CStr(IIf(Trim(txtExpediente.Text) = "", "?", Trim(txtExpediente.Text))),
+                    Trim(txtNombre.Text),
+                    CInt(IIf(Trim(txtNoDeFojas.Text) = "", "0", Trim(txtNoDeFojas.Text))),
+                    CDate(Trim(txtFechaApertura.Text)),
+                    MyFechaCierre,
+                    IIf(Trim(txtFechaCierre.Text) = "", False, True),
+                    MyFechaPaseBajaHistorico,
+                    IIf(Trim(txtFechaPaseBajaHistorico.Text) = "", False, True),
+                    CInt(IIf(Trim(txtFechaPaseBajaHistorico.Text) = "", -1, CInt(Session("IDUsuarioReal")))),
+                                         txtCajaAnterior.Text,
+                     txtItemAnterior.Text,
+                                          txtRelacionAnterior.Text,
+                     txtObservConcentracion.Text,
+                     txtCaja.Text,
+                     txtAnaquel.Text,
+                     txtPasillo.Text,
+                    CDate(Trim(txtFechaDeCreacion.Text)),
+                    txtRFC.Text,
+                    txtTipo.Text,
+                    CInt(Session("IDUsuarioReal")),
+                    lbxUnidadAdmin.SelectedItem.Value,
+                    lbxCalidadDoc.SelectedItem.Value,
                      txtEntrepano.Text)
 
 
@@ -1471,26 +1471,26 @@ Public Class DisplayExpediente
                         MyFechaDesclasificacion = CDate(Trim(txtFechaDesclasificacion.Text))
                     End If
 
-                    IDExpedienteEditado2 = Expedientes_UPDATE_2( _
-                        Session("AdminConnString"), _
-                        IDExpedienteEditado, _
-                        ddlstStatus.SelectedItem.Value, _
-                        chkbxParteDelDocumento.Checked, _
-                        txtFojas.Text, _
-                        MyFechaDeClasificacion, _
-                        True, _
-                        MyFechaPropuestaDesclasificacion, _
-                        True, _
-                        MyNuevaFechaPropuestaDesclasificacion, _
-                        IIf(Trim(txtNuevaFechaPropuestaDesclasificacion.Text) = "", False, True), _
-                        chkbxNuevaParteDelDocumento.Checked, _
-                        txtNuevaFojas.Text, _
-                        CInt(IIf(Trim(txtNuevaFechaPropuestaDesclasificacion.Text) = "", -1, CInt(Session("IDUsuarioReal")))), _
-                        MyFechaDesclasificacion, _
-                        IIf(Trim(txtFechaDesclasificacion.Text) = "", False, True), _
-                        CInt(IIf(Trim(txtFechaDesclasificacion.Text) = "", -1, CInt(Session("IDUsuarioReal")))), _
-                        ddlstTramite.SelectedItem.Value, _
-                        ddlstConcentracion.SelectedItem.Value, _
+                    IDExpedienteEditado2 = Expedientes_UPDATE_2(
+                        Session("AdminConnString"),
+                        IDExpedienteEditado,
+                        ddlstStatus.SelectedItem.Value,
+                        chkbxParteDelDocumento.Checked,
+                        txtFojas.Text,
+                        MyFechaDeClasificacion,
+                        True,
+                        MyFechaPropuestaDesclasificacion,
+                        True,
+                        MyNuevaFechaPropuestaDesclasificacion,
+                        IIf(Trim(txtNuevaFechaPropuestaDesclasificacion.Text) = "", False, True),
+                        chkbxNuevaParteDelDocumento.Checked,
+                        txtNuevaFojas.Text,
+                        CInt(IIf(Trim(txtNuevaFechaPropuestaDesclasificacion.Text) = "", -1, CInt(Session("IDUsuarioReal")))),
+                        MyFechaDesclasificacion,
+                        IIf(Trim(txtFechaDesclasificacion.Text) = "", False, True),
+                        CInt(IIf(Trim(txtFechaDesclasificacion.Text) = "", -1, CInt(Session("IDUsuarioReal")))),
+                        ddlstTramite.SelectedItem.Value,
+                        ddlstConcentracion.SelectedItem.Value,
                         ddlstDestinoFinal.SelectedItem.Value)
 
 
@@ -1762,31 +1762,31 @@ Public Class DisplayExpediente
     End Function
 
 
-    Public Function Expedientes_UPDATE( _
-        ByVal idExpediente As Integer, _
-        ByVal idClasificacion As Integer, _
-        ByVal Nombre As String, _
-        ByVal Asunto As String, _
-        ByVal NumeroDeFojas As Integer, _
-        ByVal FechaApertura As DateTime, _
-        ByVal FechaCierre As DateTime, _
-        ByVal FechaCierreChecked As Boolean, _
-        ByVal FechaDePaseABajaHistorico As DateTime, _
-        ByVal FechaDePaseABajaHistoricoChecked As Boolean, _
-        ByVal idUsuario_AutorizaBajaHistorico As Integer, _
-        ByVal Caja As String, _
-        ByVal Pasillo As String, _
-        ByVal Anaquel As String, _
-        ByVal Entrepano As String, _
-        ByVal RelacionAnterior As String, _
-        ByVal CajaAnterior As String, _
-        ByVal ItemAnterior As String, _
-        ByVal FechaDeCreacion As DateTime, _
-        ByVal RFC As String, _
-        ByVal Tipo As String, _
-        ByVal idUsuarioUltimaEdicion As Integer, _
-        ByVal idUnidadAdministrativa As Integer, _
-        ByVal idCalidadDocumental As Integer, _
+    Public Function Expedientes_UPDATE(
+        ByVal idExpediente As Integer,
+        ByVal idClasificacion As Integer,
+        ByVal Nombre As String,
+        ByVal Asunto As String,
+        ByVal NumeroDeFojas As Integer,
+        ByVal FechaApertura As DateTime,
+        ByVal FechaCierre As DateTime,
+        ByVal FechaCierreChecked As Boolean,
+        ByVal FechaDePaseABajaHistorico As DateTime,
+        ByVal FechaDePaseABajaHistoricoChecked As Boolean,
+        ByVal idUsuario_AutorizaBajaHistorico As Integer,
+        ByVal Caja As String,
+        ByVal Pasillo As String,
+        ByVal Anaquel As String,
+        ByVal Entrepano As String,
+        ByVal RelacionAnterior As String,
+        ByVal CajaAnterior As String,
+        ByVal ItemAnterior As String,
+        ByVal FechaDeCreacion As DateTime,
+        ByVal RFC As String,
+        ByVal Tipo As String,
+        ByVal idUsuarioUltimaEdicion As Integer,
+        ByVal idUnidadAdministrativa As Integer,
+        ByVal idCalidadDocumental As Integer,
         ByVal CampoAdicional3 As String) As Integer
 
         Dim cn As New Data.OleDb.OleDbConnection
@@ -1928,32 +1928,32 @@ Public Class DisplayExpediente
 
     End Function
 
-    Public Function Expedientes_INSERT( _
-    ByVal idClasificacion As Integer, _
-    ByVal Nombre As String, _
-    ByVal Asunto As String, _
-    ByVal NumeroDeFojas As Integer, _
-    ByVal FechaApertura As DateTime, _
-    ByVal FechaCierre As DateTime, _
-    ByVal FechaCierreChecked As Boolean, _
-    ByVal FechaDePaseABajaHistorico As DateTime, _
-    ByVal FechaDePaseABajaHistoricoChecked As Boolean, _
-    ByVal idUsuario_AutorizaBajaHistorico As Integer, _
-    ByVal Caja As String, _
-    ByVal Pasillo As String, _
-    ByVal Anaquel As String, _
-    ByVal Entrepano As String, _
-    ByVal RelacionAnterior As String, _
-    ByVal CajaAnterior As String, _
-    ByVal ItemAnterior As String, _
-    ByVal FechaDeCreacion As DateTime, _
-    ByVal idUsuario_ElaboradoPor As Integer, _
-    ByVal RFC As String, _
-    ByVal Tipo As String, _
-    ByVal idUsuarioUltimaEdicion As Integer, _
-    ByVal idUnidadAdministrativa As Integer, _
-    ByVal idCalidadDocumental As Integer, _
-    ByVal CampoAdicional3 As String _
+    Public Function Expedientes_INSERT(
+    ByVal idClasificacion As Integer,
+    ByVal Nombre As String,
+    ByVal Asunto As String,
+    ByVal NumeroDeFojas As Integer,
+    ByVal FechaApertura As DateTime,
+    ByVal FechaCierre As DateTime,
+    ByVal FechaCierreChecked As Boolean,
+    ByVal FechaDePaseABajaHistorico As DateTime,
+    ByVal FechaDePaseABajaHistoricoChecked As Boolean,
+    ByVal idUsuario_AutorizaBajaHistorico As Integer,
+    ByVal Caja As String,
+    ByVal Pasillo As String,
+    ByVal Anaquel As String,
+    ByVal Entrepano As String,
+    ByVal RelacionAnterior As String,
+    ByVal CajaAnterior As String,
+    ByVal ItemAnterior As String,
+    ByVal FechaDeCreacion As DateTime,
+    ByVal idUsuario_ElaboradoPor As Integer,
+    ByVal RFC As String,
+    ByVal Tipo As String,
+    ByVal idUsuarioUltimaEdicion As Integer,
+    ByVal idUnidadAdministrativa As Integer,
+    ByVal idCalidadDocumental As Integer,
+    ByVal CampoAdicional3 As String
     ) As Integer
 
         'OJO: ESTOS PARAMETROS SE COMENTAN POR EL DISEÑO DE LA SEGURIDAD DEL SISTEMA.
@@ -2121,26 +2121,26 @@ Public Class DisplayExpediente
     End Function
 
     'Edita los atributos heredados del Cuadro de Clasificación
-    Public Function Expedientes_UPDATE_2( _
-        ByVal ConexionAUsar As String, _
-        ByVal idExpediente As Integer, _
-        ByVal idClasificacionStatus As Integer, _
-        ByVal ClasificaSoloParte As Boolean, _
-        ByVal FojasParte As String, _
-        ByVal FechaClasificacion As DateTime, _
-        ByVal FechaClasificacionChecked As Boolean, _
-        ByVal FechaPropuestaDesclasificacion As DateTime, _
-        ByVal FechaPropuestaDesclasificacionChecked As Boolean, _
-        ByVal NuevaFechaDesclasificacion As DateTime, _
-        ByVal NuevaFechaDesclasificacionChecked As Boolean, _
-        ByVal NuevaClasificaSoloParte As Boolean, _
-        ByVal NuevaFojasParte As String, _
-        ByVal idUsuario_AutorizaAmpliacionClasificacion As Integer, _
-        ByVal FechaDeDesclasificacion As DateTime, _
-        ByVal FechaDeDesclasificacionChecked As Boolean, _
-        ByVal idUsuario_AutorizaDesclasificacion As Integer, _
-        ByVal idPlazoTramite As Integer, _
-        ByVal idPlazoConcentracion As Integer, _
+    Public Function Expedientes_UPDATE_2(
+        ByVal ConexionAUsar As String,
+        ByVal idExpediente As Integer,
+        ByVal idClasificacionStatus As Integer,
+        ByVal ClasificaSoloParte As Boolean,
+        ByVal FojasParte As String,
+        ByVal FechaClasificacion As DateTime,
+        ByVal FechaClasificacionChecked As Boolean,
+        ByVal FechaPropuestaDesclasificacion As DateTime,
+        ByVal FechaPropuestaDesclasificacionChecked As Boolean,
+        ByVal NuevaFechaDesclasificacion As DateTime,
+        ByVal NuevaFechaDesclasificacionChecked As Boolean,
+        ByVal NuevaClasificaSoloParte As Boolean,
+        ByVal NuevaFojasParte As String,
+        ByVal idUsuario_AutorizaAmpliacionClasificacion As Integer,
+        ByVal FechaDeDesclasificacion As DateTime,
+        ByVal FechaDeDesclasificacionChecked As Boolean,
+        ByVal idUsuario_AutorizaDesclasificacion As Integer,
+        ByVal idPlazoTramite As Integer,
+        ByVal idPlazoConcentracion As Integer,
         ByVal idDestinoFinal As Integer) As Integer
 
         Dim cn As New Data.OleDb.OleDbConnection
@@ -2780,9 +2780,7 @@ Public Class DisplayExpediente
 
     End Function
 
-    Private Sub btnCaratula_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCaratula.Click
-
-        'CargaFormatoCaratulaISSSTE
+    Private Sub BtnCaratula_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCaratula.Click
 
         Dim cn As New OleDbConnection
         Dim cmd As New OleDbCommand
@@ -2790,7 +2788,7 @@ Public Class DisplayExpediente
         Dim da As New OleDbDataAdapter
         Dim ds As New DataSet
 
-        Dim Reporte As New CaratulaFOVISSSTECredito 'CaratulaFOVISSSTE
+        Dim Reporte As New Caratula02
 
         cn.ConnectionString = Session("UsuarioVirtualConnString")
         cn.Open()
@@ -2798,9 +2796,9 @@ Public Class DisplayExpediente
         cmd.CommandType = CommandType.StoredProcedure
         cmd.Connection = cn
         cmd.Parameters.Clear()
-        cmd.CommandText = "CargaFormatoCaratulaFOVISSSTE" '"CargaFormatoCaratulaISSSTE"
+        cmd.CommandText = "CargaFormatoCaratula"
 
-        param = cmd.Parameters.Add("IDExpediente", OleDbType.VarChar)
+        param = cmd.Parameters.Add("IDList", OleDbType.VarChar)
         param.Value = Session("IDExpedienteActivo")
 
         da.SelectCommand = cmd
@@ -2809,19 +2807,12 @@ Public Class DisplayExpediente
 
         Reporte.SetDataSource(ds.Tables(0))
 
-        Reporte.SetParameterValue(0, "ISSSTE")
-        Reporte.SetParameterValue(1, "700. FOVISSSTE")
-
-        'Reporte.SetParameterValue(0, "ISS 100 ISSSTE")
-        'Reporte.SetParameterValue(1, "130. ADMINISTRACIÓN REGIONAL Y ESTATAL")
+        Reporte.SetParameterValue(0, "SENADO DE LA REPÚBLICA")
+        Reporte.SetParameterValue(2, LogoCliente)
 
         Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = Session("SubdirectorioTemporal") & Session("LoginActivo") & guid1.ToString & ".pdf"
+        Dim MyFileName As String = Session("SubdirectorioTemporal").ToString & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
-        'Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
-        'ficheros con reportes pdf del usuario activo (El File.Exists no funciona)
-        'Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-        'Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
         'Write the file directly to the HTTP output stream.
@@ -2829,9 +2820,13 @@ Public Class DisplayExpediente
         Response.WriteFile(MyFileName)
         Response.End()
 
+        If IO.File.Exists(MyFileName) Then
+            IO.File.Delete(MyFileName)
+        End If
+
     End Sub
 
-    'Private Sub DataGrid1_PageIndexChanged(ByVal source As Object, ByVal e As System.Web.UI.WebControls.DataGridPageChangedEventArgs) Handles DataGrid1.PageIndexChanged
+    'Private Sub DataGrid1_PageIndexChanged(ByVal source As Object, ByVal e As DataGridPageChangedEventArgs) Handles DataGrid1.PageIndexChanged
     '    ' Set CurrentPageIndex to the page the user clicked.
     '    DataGrid1.CurrentPageIndex = e.NewPageIndex
 
@@ -2848,7 +2843,7 @@ Public Class DisplayExpediente
     '    'Response.End()
     'End Sub
 
-    Private Sub DataGrid1_ItemCommand(ByVal source As Object, ByVal e As System.Web.UI.WebControls.DataGridCommandEventArgs) Handles DataGrid1.ItemCommand
+    Private Sub DataGrid1_ItemCommand(ByVal source As Object, ByVal e As DataGridCommandEventArgs) Handles DataGrid1.ItemCommand
 
         If e.Item.ItemIndex >= 0 Then
             Session("IDMovimientoActivo") = DataGrid1.DataKeys.Item(e.Item.ItemIndex)
@@ -2866,11 +2861,9 @@ Public Class DisplayExpediente
         Response.Redirect("./MovimientosDisplay.aspx")
     End Sub
 
-    Private Sub DataGrid2_ItemCommand(ByVal source As Object, ByVal e As System.Web.UI.WebControls.DataGridCommandEventArgs) Handles DataGrid2.ItemCommand
-
+    Private Sub DataGrid2_ItemCommand(ByVal source As Object, ByVal e As DataGridCommandEventArgs) Handles DataGrid2.ItemCommand
         Response.ContentType = "Application/pdf"
-        'Response.WriteFile(Session("SubdirectorioDeImagenes") & e.Item.Cells(2).Text)
-        Response.WriteFile(Path.Combine(Session("SubdirectorioDeImagenes").ToString, e.Item.Cells(2).Text))
+        Response.WriteFile(Path.Combine(DirImagenes, e.Item.Cells(2).Text))
         Response.End()
     End Sub
 
@@ -2881,14 +2874,14 @@ Public Class DisplayExpediente
         PPDFs.Visible = True
     End Sub
 
-    Private Sub btnCaratula2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCaratula2.Click
+    Private Sub BtnCaratula2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCaratula2.Click
         Dim cn As New OleDbConnection
         Dim cmd As New OleDbCommand
         Dim param As OleDbParameter
         Dim da As New OleDbDataAdapter
         Dim ds As New DataSet
 
-        Dim Reporte As New CaratulaCONACYT3 'CaratulaFOVISSSTE2
+        Dim Reporte As New Caratula02
 
         cn.ConnectionString = Session("UsuarioVirtualConnString")
         cn.Open()
@@ -2896,7 +2889,7 @@ Public Class DisplayExpediente
         cmd.CommandType = CommandType.StoredProcedure
         cmd.Connection = cn
         cmd.Parameters.Clear()
-        cmd.CommandText = "CargaFormatoCaratulaFOVISSSTE"
+        cmd.CommandText = "CargaFormatoCaratula"
 
         param = cmd.Parameters.Add("IDExpediente", OleDbType.VarChar)
         param.Value = Session("IDExpedienteActivo")
@@ -2907,26 +2900,28 @@ Public Class DisplayExpediente
 
         Reporte.SetDataSource(ds.Tables(0))
 
-        Reporte.SetParameterValue(0, "SENADO")
-        Reporte.SetParameterValue(1, "")
-
         Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = Session("SubdirectorioTemporal").ToString & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
+        Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
-        'Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
-        'ficheros con reportes pdf del usuario activo (El File.Exists no funciona)
-        'Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-        'Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
+        Reporte.SetParameterValue(0, "SENADO DE LA REPÚBLICA")
+        Reporte.SetParameterValue("Logo", LogoCliente)
+
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
         'Write the file directly to the HTTP output stream.
         Response.ContentType = "Application/pdf"
         Response.WriteFile(MyFileName)
+        Response.Flush()
+
+        If IO.File.Exists(MyFileName) Then
+            IO.File.Delete(MyFileName)
+        End If
+
         Response.End()
 
     End Sub
 
-    Private Sub btnLomo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLomo.Click
+    Private Sub BtnLomo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLomo.Click
 
         Dim cn As New OleDbConnection
         Dim cmd As New OleDbCommand
@@ -2934,17 +2929,17 @@ Public Class DisplayExpediente
         Dim da As New OleDbDataAdapter
         Dim ds As New DataSet
 
-        Dim Reporte As New LomoFOVISSSTE
+        Dim Reporte As New Lomo
 
-        cn.ConnectionString = Session("UsuarioVirtualConnString")
+        cn.ConnectionString = Session("UsuarioVirtualConnString").ToString
         cn.Open()
 
         cmd.CommandType = CommandType.StoredProcedure
         cmd.Connection = cn
         cmd.Parameters.Clear()
-        cmd.CommandText = "CargaFormatoCaratulaFOVISSSTE2"
+        cmd.CommandText = "CargaFormatoCaratula"
 
-        param = cmd.Parameters.Add("IDExpediente", OleDbType.VarChar)
+        param = cmd.Parameters.Add("IDLista", OleDbType.VarChar)
         param.Value = Session("IDExpedienteActivo")
 
         da.SelectCommand = cmd
@@ -2953,21 +2948,21 @@ Public Class DisplayExpediente
 
         Reporte.SetDataSource(ds.Tables(0))
 
-        'Reporte.SetParameterValue(0, "ISSSTE")
-        'Reporte.SetParameterValue(1, "700. FOVISSSTE")
+        Reporte.SetParameterValue("Logo", LogoCliente)
 
         Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = Session("SubdirectorioTemporal").ToString & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
+        Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
-        'Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
-        'ficheros con reportes pdf del usuario activo (El File.Exists no funciona)
-        Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-        Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
-        'Write the file directly to the HTTP output stream.
         Response.ContentType = "Application/pdf"
         Response.WriteFile(MyFileName)
+        Response.Flush()
+
+        If IO.File.Exists(MyFileName) Then
+            IO.File.Delete(MyFileName)
+        End If
+
         Response.End()
 
     End Sub
@@ -2975,4 +2970,5 @@ Public Class DisplayExpediente
     Private Sub btnAbreEscogeCuadro_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAbreEscogeCuadro.Click
         Response.Redirect("./EscogeCuadro.aspx")
     End Sub
+
 End Class

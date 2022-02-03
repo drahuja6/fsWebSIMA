@@ -2,7 +2,7 @@ Imports System.Data.OleDb
 Imports System.Text.RegularExpressions
 
 Public Class TramiteAConc
-    Inherits System.Web.UI.Page
+    Inherits Page
 
 #Region " Código generado por el Diseñador de Web Forms "
 
@@ -10,31 +10,31 @@ Public Class TramiteAConc
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
 
     End Sub
-    Protected WithEvents lblFechaDeCorteVigente As System.Web.UI.WebControls.Label
-    Protected WithEvents Label2 As System.Web.UI.WebControls.Label
-    Protected WithEvents lblValidaFechaDeCorteVigente As System.Web.UI.WebControls.Label
-    Protected WithEvents lbExpVencEnTramite As System.Web.UI.WebControls.ListBox
-    Protected WithEvents txtFechaDeCorte As System.Web.UI.WebControls.TextBox
-    Protected WithEvents ddlUnidAdm As System.Web.UI.WebControls.DropDownList
-    Protected WithEvents Button2 As System.Web.UI.WebControls.Button
-    Protected WithEvents txtNuevoBatchID As System.Web.UI.WebControls.TextBox
-    Protected WithEvents txtNuevoBatchDesc As System.Web.UI.WebControls.TextBox
-    Protected WithEvents Label1 As System.Web.UI.WebControls.Label
-    Protected WithEvents btnBuscaVencidos As System.Web.UI.WebControls.Button
-    Protected WithEvents btnNuevoBatch As System.Web.UI.WebControls.Button
-    Protected WithEvents btnAsignaCaja As System.Web.UI.WebControls.Button
-    Protected WithEvents btnRevisaExp As System.Web.UI.WebControls.Button
-    Protected WithEvents lbExpConCaja As System.Web.UI.WebControls.ListBox
-    Protected WithEvents txtCajaProv As System.Web.UI.WebControls.TextBox
-    Protected WithEvents lblValidaCajaProv As System.Web.UI.WebControls.Label
-    Protected WithEvents lblValidaNuevoBatch As System.Web.UI.WebControls.Label
-    Protected WithEvents btnQuitar As System.Web.UI.WebControls.Button
-    Protected WithEvents Label3 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtFechCorteVig As System.Web.UI.WebControls.TextBox
-    Protected WithEvents btnImprimeEnvio As System.Web.UI.WebControls.Button
-    Protected WithEvents btnImpListado As System.Web.UI.WebControls.Button
-    Protected WithEvents Label4 As System.Web.UI.WebControls.Label
-    Protected WithEvents txtNuevoBatchID2 As System.Web.UI.WebControls.TextBox
+    Protected WithEvents lblFechaDeCorteVigente As Label
+    Protected WithEvents Label2 As Label
+    Protected WithEvents lblValidaFechaDeCorteVigente As Label
+    Protected WithEvents lbExpVencEnTramite As ListBox
+    Protected WithEvents txtFechaDeCorte As TextBox
+    Protected WithEvents ddlUnidAdm As DropDownList
+    Protected WithEvents Button2 As Button
+    Protected WithEvents txtNuevoBatchID As TextBox
+    Protected WithEvents txtNuevoBatchDesc As TextBox
+    Protected WithEvents Label1 As Label
+    Protected WithEvents btnBuscaVencidos As Button
+    Protected WithEvents btnNuevoBatch As Button
+    Protected WithEvents btnAsignaCaja As Button
+    Protected WithEvents btnRevisaExp As Button
+    Protected WithEvents lbExpConCaja As ListBox
+    Protected WithEvents txtCajaProv As TextBox
+    Protected WithEvents lblValidaCajaProv As Label
+    Protected WithEvents lblValidaNuevoBatch As Label
+    Protected WithEvents btnQuitar As Button
+    Protected WithEvents Label3 As Label
+    Protected WithEvents txtFechCorteVig As TextBox
+    Protected WithEvents btnImprimeEnvio As Button
+    Protected WithEvents btnImpListado As Button
+    Protected WithEvents Label4 As Label
+    Protected WithEvents txtNuevoBatchID2 As TextBox
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -180,7 +180,7 @@ Public Class TramiteAConc
     'Incluye la posibilidad de pasar un parámetro al SP.
     Public Sub FillDropDownList( _
                         ByVal ConnString As String, _
-                        ByVal MyDropDownList As System.Web.UI.WebControls.DropDownList, _
+                        ByVal MyDropDownList As DropDownList, _
                         ByVal StoredProcedure As String, _
                         ByVal Parameter1 As Integer, _
                         ByVal FieldItemData As String, _
@@ -220,7 +220,7 @@ Public Class TramiteAConc
                 MyIndice = 0
                 While dr.Read()
 
-                    Dim MyDropDownListItem As New System.Web.UI.WebControls.ListItem
+                    Dim MyDropDownListItem As New ListItem
 
                     MyDropDownListItem.Text = CStr(dr(FieldToShow))
                     MyDropDownListItem.Value = CInt(dr(FieldItemData))

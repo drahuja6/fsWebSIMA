@@ -65,10 +65,19 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("D:\prov\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\prov\")>  _
         Public ReadOnly Property DirTemporal() As String
             Get
                 Return CType(Me("DirTemporal"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("D:\Users\Files\source\repos\Visual Studio 2019\fsWebS_SEN\LogoSenado-LXV.png")>  _
+        Public ReadOnly Property LogoCliente() As String
+            Get
+                Return CType(Me("LogoCliente"),String)
             End Get
         End Property
     End Class

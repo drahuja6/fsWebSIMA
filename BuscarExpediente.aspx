@@ -9,7 +9,7 @@
 		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
 	</HEAD>
 	<body bgColor="#ffffff" style="font-size:small">
-		<form id="Form1" method="post" runat="server">
+		<form id="Form1" method="post" runat="server" style="font-size:small">
 			<asp:listbox id="lbUnidAdmin" style="Z-INDEX: 100; LEFT: 8px; POSITION: absolute; TOP: 8px" tabIndex="1"
 				runat="server" Height="64px" Width="200px" SelectionMode="Multiple"></asp:listbox>
 			<asp:label id="Label17" style="Z-INDEX: 160; LEFT: 8px; POSITION: absolute; TOP: 416px" runat="server"
@@ -22,17 +22,12 @@
 				runat="server" Height="20px" Width="48px" BorderStyle="Ridge"></asp:textbox>
 			<asp:textbox id="txtUbicTr" style="Z-INDEX: 156; LEFT: 64px; POSITION: absolute; TOP: 392px"
 				runat="server" Height="20px" Width="48px" BorderStyle="Ridge"></asp:textbox>
-			<asp:label id="Label15" style="Z-INDEX: 155; LEFT: 8px; POSITION: absolute; TOP: 392px" runat="server"
-				Height="16px" Width="48px">UbicTr:</asp:label><asp:label id="lblLimiteExcedido" style="Z-INDEX: 153; LEFT: 128px; POSITION: absolute; TOP: 456px"
-				runat="server" Text="*" Visible="False" ForeColor="Red">*</asp:label>
-			<asp:textbox id="txtReal" style="Z-INDEX: 152; LEFT: 64px; POSITION: absolute; TOP: 480px" runat="server"
-				Height="20px" Width="64px" BorderStyle="Ridge" Enabled="False"></asp:textbox>
-			<asp:textbox id="txtLimite" style="Z-INDEX: 151; LEFT: 64px; POSITION: absolute; TOP: 456px"
-				runat="server" Height="20px" Width="64px" BorderStyle="Ridge"></asp:textbox>
-			<asp:label id="Label14" style="Z-INDEX: 150; LEFT: 8px; POSITION: absolute; TOP: 480px" runat="server"
-				Height="16px" Width="40px">Real:</asp:label>
-			<asp:label id="Label13" style="Z-INDEX: 149; LEFT: 8px; POSITION: absolute; TOP: 456px" runat="server"
-				Height="16px" Width="40px">Límite:</asp:label>
+			<asp:label id="lblUbicTr" Text="UbicTr" style="Z-INDEX: 155; LEFT: 8px; POSITION: absolute; TOP: 392px; right: 875px;" runat="server" Height="16px" Width="48px"/>
+			<asp:label id="lblLimiteExcedido" style="Z-INDEX: 153; LEFT: 128px; POSITION: absolute; TOP: 456px"	runat="server" Text="*" Visible="False" ForeColor="Red">*</asp:label>
+			<asp:label id="Label13" Text="Límite:" style="Z-INDEX: 149; LEFT: 8px; POSITION: absolute; TOP: 456px" runat="server"/>
+			<asp:textbox id="txtLimite" style="Z-INDEX: 151; LEFT: 64px; POSITION: absolute; TOP: 456px" Height="20px" Width="64px" BorderStyle="Ridge" runat="server"/>
+			<asp:label id="Label14" Text="Real:" Style ="Z-INDEX: 150; LEFT: 8px; POSITION: absolute; TOP: 480px" runat="server"/>
+			<asp:textbox id="txtReal" style="Z-INDEX: 152; LEFT: 64px; POSITION: absolute; TOP: 480px" runat="server" Height="20px" Width="64px" BorderStyle="Ridge" Enabled="False"/>
 			<asp:button id="btnExpedientesDadosDeBaja" style="Z-INDEX: 146; LEFT: 728px; POSITION: absolute; TOP: 448px"
 				runat="server" Height="23px" Width="32px" Text="Baja" Enabled="False"></asp:button>
 			<asp:button id="btnEnArchivoHistorico" style="Z-INDEX: 145; LEFT: 648px; POSITION: absolute; TOP: 448px"
@@ -51,10 +46,8 @@
 				runat="server" Height="23px" Width="64px" Text="Lomos" Enabled="False"></asp:button>
 			<asp:button id="btnEtiquetas" style="Z-INDEX: 138; LEFT: 584px; POSITION: absolute; TOP: 480px"
 				runat="server" Height="23px" Width="64px" Text="Etiquetas" Enabled="False"></asp:button>
-			<asp:button id="btnCaratulasNoCredito" style="Z-INDEX: 137; LEFT: 512px; POSITION: absolute; TOP: 480px"
+			<asp:button id="btnCaratulasNoCredito" style="Z-INDEX: 137; LEFT: 512px; POSITION: absolute; TOP: 480px; right: 355px;"
 				runat="server" Height="23px" Width="64px" Text="Carátulas" Enabled="False"></asp:button>
-			<asp:button id="btnImprimeCaratulas" style="Z-INDEX: 136; LEFT: 384px; POSITION: absolute; TOP: 480px"
-				runat="server" Height="23px" Width="120px" Text="Carátulas (Barras)" Enabled="False" Visible="False"></asp:button>
 			<asp:button id="btnImprimeListadoDeExpedientes" style="Z-INDEX: 135; LEFT: 304px; POSITION: absolute; TOP: 480px"
 				runat="server" Height="23px" Width="72px" Text="Imp. Lista" Enabled="False"></asp:button>
 			<asp:button id="btnImprimeGuiaDeExpedientes" style="Z-INDEX: 134; LEFT: 224px; POSITION: absolute; TOP: 480px; right: 635px;"
@@ -67,8 +60,7 @@
 				Height="24px" Width="56px" Text="Código"></asp:label>
 			<asp:textbox id="txtCodigo" style="Z-INDEX: 102; LEFT: 72px; POSITION: absolute; TOP: 74px" tabIndex="2"
 				runat="server" Height="20px" Width="136px"></asp:textbox>
-			<hr style="Z-INDEX: 126; LEFT: 8px; WIDTH: 10%; POSITION: absolute; TOP: 88px; HEIGHT: 1px"
-				color="#000000" SIZE="1">
+			<hr style="Z-INDEX: 126; LEFT: 8px; WIDTH: 10%; POSITION: absolute; TOP: 88px; HEIGHT: 1px" SIZE="1">
 			<asp:label id="Label2" style="Z-INDEX: 103; LEFT: 8px; POSITION: absolute; TOP: 96px" runat="server"
 				Height="16px" Width="208px">Fecha de apertura (dd/mm/aaaa):</asp:label>
 			<asp:label id="Label4" style="Z-INDEX: 104; LEFT: 8px; POSITION: absolute; TOP: 120px" runat="server"
@@ -79,8 +71,7 @@
 				tabIndex="4" runat="server" Height="20px" Width="160px" BorderStyle="Ridge" MaxLength="10"></asp:textbox>
 			<asp:label id="Label3" style="Z-INDEX: 107; LEFT: 8px; POSITION: absolute; TOP: 144px" runat="server"
 				Height="16px" Width="40px">Final</asp:label>
-			<hr style="Z-INDEX: 127; LEFT: 8px; WIDTH: 10%; POSITION: absolute; TOP: 160px; HEIGHT: 1px"
-				color="#000000" SIZE="1">
+			<hr style="Z-INDEX: 127; LEFT: 8px; WIDTH: 10%; POSITION: absolute; TOP: 160px; HEIGHT: 1px" SIZE="1">
 			<asp:label id="Label5" style="Z-INDEX: 108; LEFT: 8px; POSITION: absolute; TOP: 168px" runat="server"
 				Height="16px" Width="136px">Expediente (rango):</asp:label>
 			<asp:label id="Label6" style="Z-INDEX: 109; LEFT: 8px; POSITION: absolute; TOP: 192px" runat="server"
@@ -95,8 +86,7 @@
 				Height="24px" Width="128px">Caracteres excluídos</asp:label>
 			<asp:textbox id="txtCaractExclu" style="Z-INDEX: 114; LEFT: 136px; POSITION: absolute; TOP: 240px"
 				runat="server" Height="20px" Width="72px" BorderStyle="Ridge"></asp:textbox>
-			<hr style="Z-INDEX: 128; LEFT: 8px; WIDTH: 10%; POSITION: absolute; TOP: 264px; HEIGHT: 1px"
-				color="#000000" SIZE="1">
+			<hr style="Z-INDEX: 128; LEFT: 8px; WIDTH: 10%; POSITION: absolute; TOP: 264px; HEIGHT: 1px" SIZE="1">
 			<asp:label id="Label9" style="Z-INDEX: 115; LEFT: 8px; POSITION: absolute; TOP: 272px" runat="server"
 				Height="16px" Width="40px">Ref:</asp:label>
 			<asp:textbox id="txtTipo" style="Z-INDEX: 116; LEFT: 64px; POSITION: absolute; TOP: 272px" runat="server"
@@ -112,7 +102,7 @@
 				Height="16px" Width="40px">CajaC:</asp:label>
 			<asp:textbox id="txtCaja" style="Z-INDEX: 122; LEFT: 168px; POSITION: absolute; TOP: 344px" runat="server"
 				Height="20px" Width="42px" BorderStyle="Ridge"></asp:textbox>
-			<asp:checkbox id="cbBusqExacta" style="Z-INDEX: 123; LEFT: 8px; POSITION: absolute; TOP: 432px"
+			<asp:checkbox id="cbBusqExacta" style="Z-INDEX: 123; LEFT: 5px; POSITION: absolute; TOP: 435px"
 				runat="server" Height="24px" Width="128px" Text="Búsqueda exacta"></asp:checkbox>
 			<asp:button id="Button1" style="Z-INDEX: 124; LEFT: 136px; POSITION: absolute; TOP: 480px" runat="server"
 				Height="23px" Width="72px" Text="Busca"></asp:button>
@@ -122,37 +112,30 @@
 				runat="server" ControlToValidate="txtFApertFinal" ErrorMessage="*" ValidationExpression="^(((0?[1-9]|[12]\d|3[01])[\.\-\/](0?[13578]|1[02])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|((0?[1-9]|[12]\d|30)[\.\-\/](0?[13456789]|1[012])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|((0?[1-9]|1\d|2[0-8])[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|(29[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00|[048])))$"></asp:regularexpressionvalidator>
 			<asp:panel id="Panel1" style="Z-INDEX: 130; LEFT: 216px; OVERFLOW: auto; POSITION: absolute; TOP: 8px"
 				runat="server" Height="424px" Width="664px" BorderStyle="Ridge">
-				<asp:datagrid id="DataGrid1" runat="server" Width="598px" Height="176px" BorderStyle="Ridge" BorderColor="Black"
-					BorderWidth="1px" AllowSorting="True" AutoGenerateColumns="False">
-					<AlternatingItemStyle Wrap="False" BackColor="#E0E0E0"></AlternatingItemStyle>
-					<ItemStyle Wrap="False"></ItemStyle>
-					<HeaderStyle Font-Underline="True" Font-Bold="True"></HeaderStyle>
+				<asp:datagrid id="DataGrid1" runat="server" Width="598px" Height="176px" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" PageSize="15">
+					<AlternatingItemStyle Wrap="False" BackColor="White" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" ForeColor="#284775"></AlternatingItemStyle>
+					<ItemStyle Wrap="False" BackColor="#F7F6F3" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" ForeColor="#333333"></ItemStyle>
+					<EditItemStyle BackColor="#999999" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" />
+                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+					<HeaderStyle Font-Underline="True" Font-Bold="True" BackColor="#5D7B9D" Font-Italic="False" Font-Overline="False" Font-Size="Smaller" Font-Strikeout="False" ForeColor="White"></HeaderStyle>
 					<Columns>
-						<asp:ButtonColumn Text="Ir a" ButtonType="PushButton" CommandName="Select">
-							<HeaderStyle Width="8%"></HeaderStyle>
-							<ItemStyle Wrap="False" HorizontalAlign="Center"></ItemStyle>
+						<asp:ButtonColumn Text="..." ButtonType="PushButton" CommandName="Select">
+							<HeaderStyle Width="8%"/>
+							<ItemStyle Wrap="False" HorizontalAlign="Center"/>
 						</asp:ButtonColumn>
 						<asp:BoundColumn DataField="Codigo" SortExpression="Codigo" HeaderText="C&#243;digo">
-							<HeaderStyle Width="20%"></HeaderStyle>
-							<ItemStyle Wrap="False"></ItemStyle>
+							<HeaderStyle Width="20%"/>
+							<ItemStyle Wrap="False"/>
 						</asp:BoundColumn>
-						<asp:BoundColumn Visible="False" DataField="idExpediente" HeaderText="idExpediente">
-							<HeaderStyle Width="1%"></HeaderStyle>
-							<ItemStyle Wrap="False"></ItemStyle>
-						</asp:BoundColumn>
+						<asp:BoundColumn Visible="False" DataField="idExpediente" HeaderText="idExpediente"/>
 						<asp:BoundColumn DataField="Expediente" SortExpression="Expediente" HeaderText="Expediente">
 							<HeaderStyle Width="20%"></HeaderStyle>
 							<ItemStyle Wrap="False"></ItemStyle>
 						</asp:BoundColumn>
 						<asp:BoundColumn DataField="Tipo" SortExpression="Tipo" HeaderText="Ref">
-							<HeaderStyle Width="20%"></HeaderStyle>
-							<ItemStyle Wrap="False"></ItemStyle>
 						</asp:BoundColumn>
-						<asp:BoundColumn DataField="RFC" SortExpression="RFC" HeaderText="RFC">
-							<HeaderStyle Width="20%"></HeaderStyle>
-							<ItemStyle Wrap="False"></ItemStyle>
-						</asp:BoundColumn>
-						<asp:BoundColumn DataField="Asunto" SortExpression="Nombre" HeaderText="Nombre">
+						<asp:BoundColumn DataField="RFC" SortExpression="RFC" HeaderText="RFC" Visible="False"/>
+						<asp:BoundColumn DataField="Asunto" SortExpression="Nombre" HeaderText="Asunto">
 							<HeaderStyle Width="20%"></HeaderStyle>
 							<ItemStyle Wrap="False"></ItemStyle>
 						</asp:BoundColumn>
@@ -161,16 +144,15 @@
 							<HeaderStyle Width="20%"></HeaderStyle>
 							<ItemStyle Wrap="False"></ItemStyle>
 						</asp:BoundColumn>
-						<asp:BoundColumn DataField="F.Apertura" SortExpression="FechaApertura" HeaderText="Apertura">
-							<HeaderStyle Width="20%"></HeaderStyle>
-							<ItemStyle Wrap="False"></ItemStyle>
-						</asp:BoundColumn>
-						<asp:BoundColumn DataField="F.Cierre" SortExpression="FechaCierre" HeaderText="Cierre"></asp:BoundColumn>
+						<asp:BoundColumn DataField="F.Apertura" SortExpression="FechaApertura" HeaderText="Apertura"/>
+						<asp:BoundColumn DataField="F.Cierre" SortExpression="FechaCierre" HeaderText="Cierre"/>
 						<asp:BoundColumn DataField="NombreCorto" SortExpression="UnidAdmin" HeaderText="Unid. Adm.">
-							<HeaderStyle Width="20%"></HeaderStyle>
-							<ItemStyle Wrap="False"></ItemStyle>
+							<HeaderStyle Width="10%"/>
+							<ItemStyle Wrap="False"/>
 						</asp:BoundColumn>
 					</Columns>
+				    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" Position="TopAndBottom" />
+                    <SelectedItemStyle BackColor="#E2DED6" Font-Bold="True" Font-Italic="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" ForeColor="#333333" />
 				</asp:datagrid>
 				<asp:Label id="NoHayDatos" runat="server" Visible="False" Font-Bold="True">No hay datos que mostrar</asp:Label>
 			</asp:panel>
