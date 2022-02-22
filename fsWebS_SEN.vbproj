@@ -126,8 +126,8 @@
     <Reference Include="System.Text.Encodings.Web, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Text.Encodings.Web.6.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
-    <Reference Include="System.Text.Json, Version=6.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Text.Json.6.0.1\lib\net461\System.Text.Json.dll</HintPath>
+    <Reference Include="System.Text.Json, Version=6.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Json.6.0.2\lib\net461\System.Text.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
@@ -219,6 +219,27 @@
       <DependentUpon>DisplayExpediente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="ErrorPages\Error404.aspx.designer.vb">
+      <DependentUpon>Error404.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPages\Error404.aspx.vb">
+      <DependentUpon>Error404.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPages\ErrorGeneral.aspx.designer.vb">
+      <DependentUpon>ErrorGeneral.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPages\ErrorGeneral.aspx.vb">
+      <DependentUpon>ErrorGeneral.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Expediente.aspx.designer.vb">
+      <DependentUpon>Expediente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Expediente.aspx.vb">
+      <DependentUpon>Expediente.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="EscogeCuadro.aspx.vb">
       <DependentUpon>EscogeCuadro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -287,7 +308,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Globales.vb" />
-    <Compile Include="Modules\HerramientasComunesDatos.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -337,6 +357,9 @@
     <Content Include="CuadroClasificacion.aspx" />
     <Content Include="CuadroClasificacionStatus.aspx" />
     <Content Include="DisplayExpediente.aspx" />
+    <Content Include="ErrorPages\Error404.aspx" />
+    <Content Include="ErrorPages\ErrorGeneral.aspx" />
+    <Content Include="Expediente.aspx" />
     <Content Include="EscogeCuadro.aspx" />
     <Content Include="ExpVencidos.aspx" />
     <Content Include="Frameset1.htm" />
@@ -344,6 +367,7 @@
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Logo.aspx" />
+    <Content Include="GuiaDeExpedientesExistentes.ttx" />
     <None Include="LogoFSM.png" />
     <None Include="LogoSenado-LXV.png" />
     <Content Include="Logout.aspx" />
@@ -468,7 +492,12 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
     <Service Include="{CF845C55-C321-4742-B673-E6212D061ED9}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="fsSimaServicios\fsSimaServicios\fsSimaServicios.csproj">
+      <Project>{b2519bc4-3c2f-4c37-99f3-3264971156f6}</Project>
+      <Name>fsSimaServicios</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent />
@@ -493,11 +522,11 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="packages\System.Text.Json.6.0.1\build\System.Text.Json.targets" Condition="Exists('packages\System.Text.Json.6.0.1\build\System.Text.Json.targets')" />
+  <Import Project="packages\System.Text.Json.6.0.2\build\System.Text.Json.targets" Condition="Exists('packages\System.Text.Json.6.0.2\build\System.Text.Json.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\System.Text.Json.6.0.1\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\System.Text.Json.6.0.1\build\System.Text.Json.targets'))" />
+    <Error Condition="!Exists('packages\System.Text.Json.6.0.2\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\System.Text.Json.6.0.2\build\System.Text.Json.targets'))" />
   </Target>
 </Project>

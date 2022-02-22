@@ -2,8 +2,14 @@
     Public ReadOnly LogoCliente As String = My.Settings.LogoCliente
     Public ReadOnly DirImagenes As String = My.Settings.DirImagenes
     Public ReadOnly DirTemporal As String = My.Settings.DirTemporal
+    Public ReadOnly BaseDatos As String = My.Settings.BaseDatos
+    Public ReadOnly VersionNumero As String = "1.0.12.2042"
 
-    Public ListaIdExpedientes As New System.Collections.Generic.List(Of Integer)
+    Public CadenaConexion As String
+
+    Public ListaIdExpedientes As New Generic.List(Of Integer)
+    Public OrdenExpedientes As String
+
 
     Public Function FechaLatinaAGringa(FechaLatina As String) As String
         Return FechaLatina

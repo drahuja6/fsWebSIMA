@@ -684,19 +684,23 @@ Public Class TramiteAConc
             Reporte.SetParameterValue(0, "Listado de expedientes enviados a Concentración -  LOTE: " & txtNuevoBatchID2.Text)
 
             Dim guid1 As Guid = Guid.NewGuid
-            Dim MyFileName As String = Session("SubdirectorioTemporal") & Session("LoginActivo") & guid1.ToString & ".pdf"
+            Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
-            'Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
-            'ficheros con reportes pdf del usuario activo (El File.Exists no funciona)
-            Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-            Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
             'Write the file directly to the HTTP output stream.
-            Response.ContentType = "Application/pdf"
+            Response.ContentType = "application/pdf"
+            Response.AddHeader("content-Disposition", "inline; filename=enviadosconcentracion.pdf")
             Response.WriteFile(MyFileName)
-            Response.End()
+            Response.Flush()
 
+            If IO.File.Exists(MyFileName) Then
+                IO.File.Delete(MyFileName)
+            End If
+
+            Reporte.Dispose()
+
+            Response.End()
         Catch ex As Exception
 
         End Try
@@ -744,17 +748,22 @@ Public Class TramiteAConc
             Reporte.SetParameterValue(2, "Listado de Expedientes de Trámite Vencidos")
 
             Dim guid1 As Guid = Guid.NewGuid
-            Dim MyFileName As String = Session("SubdirectorioTemporal") & Session("LoginActivo") & guid1.ToString & ".pdf"
+            Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
-            'Tengo que hacer esta doble escritura para asegurar que no se acumulen los 
-            'ficheros con reportes pdf del usuario activo (El File.Exists no funciona)
-            Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-            Kill(Session("SubdirectorioTemporal") & Session("LoginActivo") & "*.pdf")
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
             'Write the file directly to the HTTP output stream.
-            Response.ContentType = "Application/pdf"
+            Response.ContentType = "application/pdf"
+            Response.AddHeader("content-Disposition", "inline; filename=listadovencidostramite.pdf")
             Response.WriteFile(MyFileName)
+            Response.Flush()
+
+            If IO.File.Exists(MyFileName) Then
+                IO.File.Delete(MyFileName)
+            End If
+
+            Reporte.Dispose()
+
             Response.End()
 
         Catch ex As Exception

@@ -2811,18 +2811,23 @@ Public Class DisplayExpediente
         Reporte.SetParameterValue(2, LogoCliente)
 
         Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = Session("SubdirectorioTemporal").ToString & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
+        Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
         'Write the file directly to the HTTP output stream.
-        Response.ContentType = "Application/pdf"
+        Response.ContentType = "application/pdf"
+        Response.AddHeader("content-Disposition", "inline; filename=caratula.pdf")
         Response.WriteFile(MyFileName)
-        Response.End()
+        Response.Flush()
 
         If IO.File.Exists(MyFileName) Then
             IO.File.Delete(MyFileName)
         End If
+
+        Reporte.Dispose()
+
+        Response.End()
 
     End Sub
 
@@ -2862,7 +2867,8 @@ Public Class DisplayExpediente
     End Sub
 
     Private Sub DataGrid2_ItemCommand(ByVal source As Object, ByVal e As DataGridCommandEventArgs) Handles DataGrid2.ItemCommand
-        Response.ContentType = "Application/pdf"
+        Response.ContentType = "application/pdf"
+        Response.AddHeader("content-Disposition", "inline; filename=" + e.Item.Cells(2).Text)
         Response.WriteFile(Path.Combine(DirImagenes, e.Item.Cells(2).Text))
         Response.End()
     End Sub
@@ -2909,13 +2915,16 @@ Public Class DisplayExpediente
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
         'Write the file directly to the HTTP output stream.
-        Response.ContentType = "Application/pdf"
+        Response.ContentType = "application/pdf"
+        Response.AddHeader("content-Disposition", "inline; filename=caratula.pdf")
         Response.WriteFile(MyFileName)
         Response.Flush()
 
         If IO.File.Exists(MyFileName) Then
             IO.File.Delete(MyFileName)
         End If
+
+        Reporte.Dispose()
 
         Response.End()
 
@@ -2955,13 +2964,16 @@ Public Class DisplayExpediente
 
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
 
-        Response.ContentType = "Application/pdf"
+        Response.ContentType = "application/pdf"
+        Response.AddHeader("content-Disposition", "inline; filename=lomo.pdf")
         Response.WriteFile(MyFileName)
         Response.Flush()
 
         If IO.File.Exists(MyFileName) Then
             IO.File.Delete(MyFileName)
         End If
+
+        Reporte.Dispose()
 
         Response.End()
 

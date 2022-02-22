@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("SIMA Web. Versión SQL Server.")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("SIMAWebS")>
-<Assembly: AssemblyCopyright("David R. Ahuja Aguirre 2006-2021")>
+<Assembly: AssemblyCopyright("David R. Ahuja Aguirre 2006-2022")>
 <Assembly: AssemblyTrademark("")> 
 <Assembly: CLSCompliant(True)> 
 
@@ -29,5 +29,5 @@ Imports System.Runtime.InteropServices
 ' Puede especificar todos los valores o usar los valores predeterminados (número de versión de compilación y de revisión) 
 ' usando el símbolo '*' como se muestra a continuación:
 
-<Assembly: AssemblyVersion("1.0.3.2022")>
-<Assembly: AssemblyFileVersion("1.0.3.2022")>
+<Assembly: AssemblyVersion("1.0.12.2042")>
+<Assembly: AssemblyFileVersion("1.0.12.2042")>

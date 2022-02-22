@@ -8,6 +8,8 @@ Public Class Logo
 
     End Sub
 
+    Protected WithEvents versionLabel As Label
+
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
     Private designerPlaceholderDeclaration As System.Object
@@ -19,9 +21,10 @@ Public Class Logo
     End Sub
 
 #End Region
-
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Introducir aquí el código de usuario para inicializar la página
+
+        versionLabel.Text = VersionNumero + " " + BaseDatos
 
     End Sub
 

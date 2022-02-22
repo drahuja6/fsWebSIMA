@@ -8,13 +8,13 @@ Subsubsubserie		String	100
 Codigo				String	100
 ValorPrimario		String	4
 VigenciaDocumental	String	20
-Expediente			String	25
+Nombre				String	25
 FechaApertura		String	10
 FechaCierre			String	10
 Asunto				String	250
 CajaAnterior		String	25
 UbicacionAnterior	String	25
-CajaNueva			String	10
+Caja				String	10
 FechaDeCorte		String	10
 PlazoTramite		String	25
 PlazoConcentracion	String	25

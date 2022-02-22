@@ -80,6 +80,15 @@ Namespace My
                 Return CType(Me("LogoCliente"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("SIMA_Senado")>  _
+        Public ReadOnly Property BaseDatos() As String
+            Get
+                Return CType(Me("BaseDatos"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 
