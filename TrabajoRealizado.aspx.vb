@@ -62,7 +62,7 @@ Public Class TrabajoRealizado
         Dim sqlCliente As New ClienteSQL(CadenaConexion)
 
         'Fecha de Apertura inicial
-        params(0) = New SqlParameter("@FechaAperturaInicial", SqlDbType.Date)
+        params(0) = New SqlParameter("@FechaInicial", SqlDbType.Date)
         If Len(Trim(txtFApertInic.Text)) = 0 Then
             params(0).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", Nothing)
         Else
@@ -70,14 +70,14 @@ Public Class TrabajoRealizado
         End If
 
         'Fecha de Apertura final
-        params(1) = New SqlParameter("@FechaAperturaFinal", SqlDbType.Date)
+        params(1) = New SqlParameter("@FechaFinal", SqlDbType.Date)
         If Len(Trim(txtFApertFinal.Text)) = 0 Then
             params(1).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", Nothing)
         Else
             params(1).Value = DateTime.ParseExact(Trim(txtFApertFinal.Text), "d/M/yyyy", Nothing)
         End If
 
-        dsExpedientes = sqlCliente.ObtenerRegistros(params, "ExpTotPorUsuario")
+        dsExpedientes = sqlCliente.ObtenerRegistros(params, "ExpedientesPorUsuario")
 
         If dsExpedientes.Tables.Count > 0 Then
 
@@ -111,7 +111,7 @@ Public Class TrabajoRealizado
         Dim sqlCliente As New ClienteSQL(CadenaConexion)
 
         'Fecha de Apertura inicial
-        params(0) = New SqlParameter("@FechaAperturaInicial", SqlDbType.Date)
+        params(0) = New SqlParameter("@FechaInicial", SqlDbType.Date)
         If Len(Trim(txtFApertInic.Text)) = 0 Then
             params(0).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", Nothing)
         Else
@@ -119,14 +119,14 @@ Public Class TrabajoRealizado
         End If
 
         'Fecha de Apertura final
-        params(1) = New SqlParameter("@FechaAperturaFinal", SqlDbType.Date)
+        params(1) = New SqlParameter("@FechaFinal", SqlDbType.Date)
         If Len(Trim(txtFApertFinal.Text)) = 0 Then
             params(1).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", Nothing)
         Else
             params(1).Value = DateTime.ParseExact(Trim(txtFApertFinal.Text), "d/M/yyyy", Nothing)
         End If
 
-        dsExpedientes = sqlCliente.ObtenerRegistros(params, "ExpTotPorUA")
+        dsExpedientes = sqlCliente.ObtenerRegistros(params, "ExpedientesPorUnidadAdministrativa")
 
         If dsExpedientes.Tables.Count > 0 Then
 
@@ -180,7 +180,7 @@ Public Class TrabajoRealizado
         Dim reporte As New AuditoriaPorUA
 
         'Fecha de Apertura inicial
-        params(0) = New SqlParameter("@FechaAperturaInicial", SqlDbType.Date)
+        params(0) = New SqlParameter("@FechaInicial", SqlDbType.Date)
         If Len(Trim(txtFApertInic.Text)) = 0 Then
             params(0).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", Nothing)
         Else
@@ -188,17 +188,17 @@ Public Class TrabajoRealizado
         End If
 
         'Fecha de Apertura final
-        params(1) = New SqlParameter("@FechaAperturaFinal", SqlDbType.Date)
+        params(1) = New SqlParameter("@FechaFinal", SqlDbType.Date)
         If Len(Trim(txtFApertFinal.Text)) = 0 Then
             params(1).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", Nothing)
         Else
             params(1).Value = DateTime.ParseExact(Trim(txtFApertFinal.Text), "d/M/yyyy", Nothing)
         End If
 
-        ds = sqlCliente.ObtenerRegistros(params, "ExpTotPorUA")
+        ds = sqlCliente.ObtenerRegistros(params, "ExpedientesPorUnidadAdministrativa")
 
         reporte.SetDataSource(ds.Tables(0))
-        reporte.SetParameterValue(0, "Expedientes Totales por Unidad Administrativa, y con Fecha de Creación entre """ & params(0).Value & """ y """ & params(1).Value & """")
+        reporte.SetParameterValue(0, "Expedientes totales por Unidad Administrativa con Fecha de creación entre """ & params(0).Value & """ y """ & params(1).Value & """")
 
         Dim guid1 As Guid = Guid.NewGuid
         Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
@@ -220,7 +220,7 @@ Public Class TrabajoRealizado
         Dim Reporte As New AuditoriaPorUsuario
 
         'Fecha de Apertura inicial
-        params(0) = New SqlParameter("@FechaAperturaInicial", SqlDbType.Date)
+        params(0) = New SqlParameter("@FechaInicial", SqlDbType.Date)
         If Len(Trim(txtFApertInic.Text)) = 0 Then
             params(0).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", Nothing)
         Else
@@ -228,18 +228,18 @@ Public Class TrabajoRealizado
         End If
 
         'Fecha de Apertura final
-        params(1) = New SqlParameter("@FechaAperturaFinal", SqlDbType.Date)
+        params(1) = New SqlParameter("@FechaFinal", SqlDbType.Date)
         If Len(Trim(txtFApertFinal.Text)) = 0 Then
             params(1).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", Nothing)
         Else
             params(1).Value = DateTime.ParseExact(Trim(txtFApertFinal.Text), "d/M/yyyy", Nothing)
         End If
 
-        ds = sqlCliente.ObtenerRegistros(params, "ExpTotPorUsuario")
+        ds = sqlCliente.ObtenerRegistros(params, "ExpedientesPorUsuario")
 
         Reporte.SetDataSource(ds.Tables(0))
 
-        Reporte.SetParameterValue(0, "Expedientes Totales por Usuario, y con Fecha de Edición entre """ & params(0).Value & """ y """ & params(1).Value & """")
+        Reporte.SetParameterValue(0, "Expedientes totales por usuario con fecha de edición entre """ & params(0).Value & """ y """ & params(1).Value & """")
 
         Dim guid1 As Guid = Guid.NewGuid
         Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"

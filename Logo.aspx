@@ -5,6 +5,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head runat="server">
 		<title>Logo</title>
+		<style type="text/css">
+			.etiqueta-pequena {  
+				font-size: xx-small;
+				font-weight:300;
+				font-family: Arial, Helvetica, sans-serif;
+				color:navy;
+				vertical-align: bottom;
+            }
+		</style> 
 	</head>
 	<body>
 		<form id="form1" runat="server">
@@ -13,7 +22,7 @@
                 <asp:Panel ID="Panel2" runat="server">
 		            <asp:Image ID="logoFullServiceImg" runat="server" src="LogoFSM.png" Height="75px" Width="75px" AlternateText="Full Service de México, S.A. de C.V." />
 					<asp:Image ID="logoCliente" runat="server" src="LogoSenado-LXV.png" Height="75px" Width="75px" AlternateText="Full Service de México, S.A. de C.V. - Cliente" />
-					<asp:Label ID="versionLabel" runat="server" Font-Size="XX-Small"/>
+					<asp:Label class="etiqueta-pequena" ID="versionLabel" runat="server"/>
                 </asp:Panel>
 			</asp:Panel>
 		</div>

@@ -7,37 +7,112 @@
 		<meta name="CODE_LANGUAGE" content="Visual Basic .NET 7.1">
 		<meta name="vs_defaultClientScript" content="JavaScript">
 		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+		<style type="text/css">  
+			.titulo {  
+				width: 100px;
+				font-size: medium;
+				font-weight:700;
+				font-family: Arial, Helvetica, sans-serif;
+				color:navy;
+			}  
+			.liga {  
+				width: 100px;
+				font-weight: 500;
+				font-size: smaller; 
+				font-family: Arial, Helvetica, sans-serif;
+			}  
+		</style> 
 	</HEAD>
 	<body bgcolor="#ffffff">
 		<form id="Form1" method="post" runat="server">
-			<asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/BuscarExpediente.aspx" Style="Z-INDEX: 100; LEFT: 8px; POSITION: absolute; TOP: 32px"
-				Target="PRINCIPAL" Width="96px" tabIndex="1">Buscar / Editar</asp:HyperLink>
-			<asp:HyperLink id="HLVEC" style="Z-INDEX: 116; LEFT: 8px; POSITION: absolute; TOP: 112px" tabIndex="3"
-				runat="server" Width="88px" Target="PRINCIPAL" NavigateUrl="ExpVencidos.aspx" Visible="False"> VEC: 0</asp:HyperLink>
-			<asp:HyperLink id="HLVET" style="Z-INDEX: 115; LEFT: 8px; POSITION: absolute; TOP: 88px" tabIndex="3"
-				runat="server" Width="88px" Target="PRINCIPAL" NavigateUrl="ExpVencidos.aspx" Visible="False"> VET: 0</asp:HyperLink>
-			<asp:HyperLink id="HyperLink8" style="Z-INDEX: 111; LEFT: 8px; POSITION: absolute; TOP: 256px"
-				tabIndex="3" runat="server" Width="96px" Target="PRINCIPAL" NavigateUrl="RecepEnBaja.aspx">Autoriz. Baja</asp:HyperLink>
-			<asp:HyperLink id="HyperLink7" style="Z-INDEX: 110; LEFT: 8px; POSITION: absolute; TOP: 232px"
-				tabIndex="3" runat="server" Width="96px" Target="PRINCIPAL" NavigateUrl="ConcABaja.aspx">Conc >> Baja</asp:HyperLink>
-			<asp:HyperLink id="HyperLink6" style="Z-INDEX: 109; LEFT: 8px; POSITION: absolute; TOP: 208px"
-				tabIndex="3" runat="server" Width="96px" Target="PRINCIPAL" NavigateUrl="RecepEnConc.aspx">Rec. Conc</asp:HyperLink>
-			<asp:HyperLink id="HyperLink4" style="Z-INDEX: 108; LEFT: 8px; POSITION: absolute; TOP: 184px"
-				tabIndex="3" runat="server" Width="96px" Target="PRINCIPAL" NavigateUrl="TramiteAConc.aspx">Tram >> Conc</asp:HyperLink>
-			<asp:Label id="Label4" style="Z-INDEX: 107; LEFT: 8px; POSITION: absolute; TOP: 160px" runat="server"
-				Width="104px" Text="Expedientes" Font-Bold="True">Procesos</asp:Label>
-			<asp:HyperLink id="HyperLink5" style="Z-INDEX: 106; LEFT: 8px; POSITION: absolute; TOP: 56px" tabIndex="3"
-				runat="server" Width="88px" Target="PRINCIPAL" NavigateUrl="TrabajoRealizado.aspx"> Auditoría</asp:HyperLink>
-			<asp:HyperLink id="HyperLink2" style="Z-INDEX: 105; LEFT: 8px; POSITION: absolute; TOP: 400px"
-				runat="server" Width="96px" Target="PRINCIPAL" NavigateUrl="UsuarioRealBuscar.aspx" tabIndex="3">Buscar / Editar</asp:HyperLink>
-			<asp:Label id="Label3" style="Z-INDEX: 104; LEFT: 8px; POSITION: absolute; TOP: 376px" runat="server"
-				Width="64px" Font-Bold="True" Text="Expedientes">Usuarios</asp:Label>
-			<asp:Label id="Label2" runat="server" Width="88px" Text="Expedientes" Font-Bold="True" style="Z-INDEX: 103; LEFT: 8px; POSITION: absolute; TOP: 8px"></asp:Label>
-			<asp:HyperLink id="HyperLink3" style="Z-INDEX: 102; LEFT: 8px; POSITION: absolute; TOP: 328px"
-				runat="server" Width="96px" Target="PRINCIPAL" NavigateUrl="CuadroClasificacion.aspx" tabIndex="2">Buscar / Editar</asp:HyperLink>
-			<asp:Label ID="Label1" runat="server" Font-Bold="True" Text="Expedientes" Width="104px" style="Z-INDEX: 101; LEFT: 8px; POSITION: absolute; TOP: 304px"> Cat.Disp.Doc.</asp:Label>
-            <asp:HyperLink ID="HyperLink9" runat="server" style="Z-INDEX: 101; LEFT: 10px; POSITION: absolute; TOP: 440px" NavigateUrl="~/Logout.aspx" Target="_top">Salir</asp:HyperLink>
-
+			<div>
+				<table style="width: 120px;">
+				<tr>
+					<td class="titulo">
+						<asp:Label id="expedientesLabel" runat="server" Text="Expedientes"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="liga">
+						<asp:HyperLink ID="expedienteLink" runat="server" NavigateUrl="~/BuscarExpediente.aspx" Target="PRINCIPAL" tabIndex="1" Text="Buscar/Editar" ToolTip="Busca expedientes para consulta o edición" Font-Underline="false"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="liga">
+						<asp:HyperLink id="auditoriaLink" tabIndex="2" runat="server" Target="PRINCIPAL" NavigateUrl="TrabajoRealizado.aspx" Text="Auditoría" ToolTip="Auditoría de trabajo realizado" Font-Underline="false"/>
+					</td>
+				</tr>
+				<tr>
+					<td><br/></td>
+				</tr>
+				<tr>
+					<td class="titulo">
+						<asp:Label id="procesosLabel" runat="server" Text="Procesos"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="liga">
+						<asp:HyperLink id="tramiteConcentracionLink" tabIndex="3" runat="server" Target="PRINCIPAL" NavigateUrl="TramiteAConc.aspx" Text="Tram >> Conc" ToolTip="Transferencia de trámite a concentración" Font-Underline="false"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="liga">
+						<asp:HyperLink id="recepConcentracionLink" tabIndex="4" runat="server" Target="PRINCIPAL" NavigateUrl="RecepEnConc.aspx" Text="Rec. Conc" ToolTip="Recepción en concentración" Font-Underline="false"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="liga">
+						<asp:HyperLink id="concentracionBajaLink" tabIndex="5" runat="server" Target="PRINCIPAL" NavigateUrl="ConcABaja.aspx" Text="Conc >> Baja" ToolTip="Transferencia de concentración a baja" Font-Underline="false"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="liga">
+						<asp:HyperLink id="autorizaBajaLink" tabIndex="6" runat="server" Target="PRINCIPAL" NavigateUrl="RecepEnBaja.aspx" Text="Autoriza baja" ToolTip="Autorización de baja" Font-Underline="false"/>
+					</td>
+				</tr>
+				<tr>
+					<td><br /></td>
+				</tr>
+				<tr>
+					<td class="titulo">
+						<asp:Label ID="cuadroLabel" runat="server" Text="Catálogo"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="liga">
+						<asp:HyperLink id="cuadroLink" runat="server" Target="PRINCIPAL" NavigateUrl="CuadroClasificacion.aspx" tabIndex="7" Text="Buscar/Editar" ToolTip="Catálogo de disposición documental" Font-Underline="false"/>
+					</td>
+				</tr>
+				<tr>
+					<td><br /></td>
+				</tr>
+				<tr>
+					<td class="titulo">
+						<asp:Label id="usuariosLabel" runat="server" Text="Usuarios"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="liga">
+						<asp:HyperLink id="usuariosLink" runat="server" Target ="PRINCIPAL" NavigateUrl="UsuarioRealBuscar.aspx" tabIndex="8" Text="Buscar/Editar" ToolTip="Catálogo de usuarios" Font-Underline="false"/>
+					</td>
+				</tr>
+				<tr>
+					<td><br /></td>
+				</tr>
+				<tr>
+					<td><br /></td>
+				</tr>
+				<tr>
+					<td class="liga">
+						<asp:HyperLink ID="salirLink" runat="server" NavigateUrl="~/Logout.aspx" Target="_top" Text="Salir" ToolTip="Cerrar la sesión" Font-Underline="false"/>
+					</td>
+				</tr>
+				<asp:HyperLink id="HLVEC" style="LEFT: 8px; POSITION: absolute; TOP: 112px" tabIndex="3"
+					runat="server" Width="88px" Target="PRINCIPAL" NavigateUrl="ExpVencidos.aspx" Visible="False" Text="VEC: 0"/>
+				<asp:HyperLink id="HLVET" style="LEFT: 8px; POSITION: absolute; TOP: 88px" tabIndex="3"
+					runat="server" Width="88px" Target="PRINCIPAL" NavigateUrl="ExpVencidos.aspx" Visible="False" Text="VET: 0"/>
+				</table>
+			</div>
 		</form>
 	</body>
 </HTML>

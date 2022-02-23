@@ -3,7 +3,7 @@
     Public ReadOnly DirImagenes As String = My.Settings.DirImagenes
     Public ReadOnly DirTemporal As String = My.Settings.DirTemporal
     Public ReadOnly BaseDatos As String = My.Settings.BaseDatos
-    Public ReadOnly VersionNumero As String = "1.0.12.2042"
+    Public ReadOnly VersionNumero As String = "1.0.14.2043"
 
     Public CadenaConexion As String
 

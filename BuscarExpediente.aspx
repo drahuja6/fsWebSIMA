@@ -7,21 +7,14 @@
 		<meta content="Visual Basic .NET 7.1" name="CODE_LANGUAGE">
 		<meta content="JavaScript" name="vs_defaultClientScript">
 		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
-		<style type="text/css">
-			#PanelEspera { 
-				width:200px; height:200px; position: relative;
-				float: left; margin-left: 10px; margin-top: 10px;
-				border-right: gray 1px solid; border-top: gray 1px solid; 
-				border-left: gray 1px solid; border-bottom: gray 1px solid;
-				}
-				#ProgresoEspera {
-				width: 200px; background-color: #FFC080;
-				position: absolute; bottom: 0px; left: 0px;
-				}
-		</style>
+		<script type="text/javascript">
+            function setHourglass() {
+                document.body.style.cursor = 'wait';
+            }
+        </script>
 	</HEAD>
 	<body bgColor="#ffffff" style="font-size:small">
-		<form id="Form1" method="post" runat="server" style="font-size:small">
+		<form id="Form1" method="post" runat="server" style="font-size:small" onsubmit="return setHourglass()">
 			<asp:listbox id="lbUnidAdmin" style="Z-INDEX: 100; LEFT: 8px; POSITION: absolute; TOP: 8px" tabIndex="1"
 				runat="server" Height="64px" Width="200px" SelectionMode="Multiple"></asp:listbox>
 			<asp:label id="Label17" style="Z-INDEX: 160; LEFT: 8px; POSITION: absolute; TOP: 416px" runat="server"
@@ -168,9 +161,9 @@
 			<asp:button id="btnCaratulasNoCredito" style="Z-INDEX: 137; LEFT: 512px; POSITION: absolute; TOP: 480px; right: 355px;"
 				runat="server" Height="23px" Width="64px" Text="Carátulas" Enabled="False" ToolTip="Imprimir carátulas"></asp:button>
 			</p>
-			<asp:Panel ID="Panel2" runat="server" style="Z-INDEX: 123; LEFT: 8px; POSITION: absolute; TOP: 445px;" Width="200px">
+			<asp:panel ID="panelBusqueda" runat="server" style="LEFT: 8px; POSITION: absolute; TOP: 445px;" Width="200px">
 				<asp:checkbox id="cbBusqExacta" runat="server" Height="24px" Width="134px" Text="Búsqueda exacta" TextAlign="Left" ></asp:checkbox>
-                <asp:Panel ID="Panel3" runat="server" Width="200px">
+				<asp:Panel ID="Panel3" runat="server" Width="200px">
 					<asp:label id="Label13" Text="Límite:" style="vertical-align:top;" runat="server" Width="42px"/>
 					<asp:textbox id="txtLimite" style="margin:2px 0px 1px 38px" Height="20px" Width="100px" BorderStyle="Ridge" runat="server"/>
 					<asp:label id="lblLimiteExcedido" style="Z-INDEX: 153; LEFT: 140px;" runat="server" Text="*" Visible="False" ForeColor="Red">*</asp:label>
@@ -186,7 +179,7 @@
 				<asp:Panel ID="Panel4" runat="server" Width="200px">
 					<asp:button id="buscarButton" style="margin:8px 31px 8px 81px" runat="server" Height="23px" Width="100px" Text="Busca"></asp:button>
 				</asp:Panel>
-			</asp:Panel>
+			</asp:panel>
 		</form>
 	</body>
 </HTML>
