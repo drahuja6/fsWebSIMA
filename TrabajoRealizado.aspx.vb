@@ -1,5 +1,7 @@
 Imports System.Data.SqlClient
 Imports fsSimaServicios
+Imports System.Globalization
+
 
 Public Class TrabajoRealizado
     Inherits Page
@@ -16,7 +18,7 @@ Public Class TrabajoRealizado
     Protected WithEvents txtFApertInic As TextBox
     Protected WithEvents Label2 As Label
     Protected WithEvents Label3 As Label
-    Protected WithEvents Button1 As Button
+    Protected WithEvents buscarButton As Button
     Protected WithEvents txtFApertFinal As TextBox
     Protected WithEvents Label4 As Label
     Protected WithEvents Label5 As Label
@@ -24,8 +26,8 @@ Public Class TrabajoRealizado
     Protected WithEvents Panel2 As Panel
     Protected WithEvents RegularExpressionValidator2 As RegularExpressionValidator
     Protected WithEvents Regularexpressionvalidator1 As RegularExpressionValidator
-    Protected WithEvents NoHayDatos As Label
-    Protected WithEvents NoHayDatos2 As Label
+    Protected WithEvents noHayDatosUnidadLabel As Label
+    Protected WithEvents noHayDatosUsuarioLabel As Label
     Protected WithEvents btnImpPorUA As Button
     Protected WithEvents btnImpPorUsuario As Button
 
@@ -40,6 +42,8 @@ Public Class TrabajoRealizado
     End Sub
 
 #End Region
+
+    Private ReadOnly _culture As CultureInfo = CultureInfo.CreateSpecificCulture("es-MX")
 
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Introducir aquí el código de usuario para inicializar la página
@@ -58,23 +62,24 @@ Public Class TrabajoRealizado
     Sub LlenaTotPorUsuario()
         Dim params(1) As SqlParameter
         Dim dsExpedientes As DataSet
+        Dim culture As CultureInfo = CultureInfo.CreateSpecificCulture("es-MX")
 
         Dim sqlCliente As New ClienteSQL(CadenaConexion)
 
         'Fecha de Apertura inicial
         params(0) = New SqlParameter("@FechaInicial", SqlDbType.Date)
         If Len(Trim(txtFApertInic.Text)) = 0 Then
-            params(0).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", Nothing)
+            params(0).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", _culture)
         Else
-            params(0).Value = DateTime.ParseExact(Trim(txtFApertInic.Text), "d/M/yyyy", Nothing)
+            params(0).Value = DateTime.ParseExact(Trim(txtFApertInic.Text), "d/M/yyyy", _culture)
         End If
 
         'Fecha de Apertura final
         params(1) = New SqlParameter("@FechaFinal", SqlDbType.Date)
         If Len(Trim(txtFApertFinal.Text)) = 0 Then
-            params(1).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", Nothing)
+            params(1).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", _culture)
         Else
-            params(1).Value = DateTime.ParseExact(Trim(txtFApertFinal.Text), "d/M/yyyy", Nothing)
+            params(1).Value = DateTime.ParseExact(Trim(txtFApertFinal.Text), "d/M/yyyy", _culture)
         End If
 
         dsExpedientes = sqlCliente.ObtenerRegistros(params, "ExpedientesPorUsuario")
@@ -85,11 +90,11 @@ Public Class TrabajoRealizado
 
             If dsExpedientes.Tables(0).Rows.Count = 0 Then
                 Datagrid2.Visible = False
-                NoHayDatos2.Visible = True
+                noHayDatosUsuarioLabel.Visible = True
                 btnImpPorUsuario.Enabled = False
             Else
                 Datagrid2.Visible = True
-                NoHayDatos2.Visible = False
+                noHayDatosUsuarioLabel.Visible = False
 
                 Datagrid2.DataSource = dsExpedientes
                 Datagrid2.DataMember = "Expedientes"
@@ -113,17 +118,17 @@ Public Class TrabajoRealizado
         'Fecha de Apertura inicial
         params(0) = New SqlParameter("@FechaInicial", SqlDbType.Date)
         If Len(Trim(txtFApertInic.Text)) = 0 Then
-            params(0).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", Nothing)
+            params(0).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", _culture)
         Else
-            params(0).Value = DateTime.ParseExact(Trim(txtFApertInic.Text), "d/M/yyyy", Nothing)
+            params(0).Value = DateTime.ParseExact(Trim(txtFApertInic.Text), "d/M/yyyy", _culture)
         End If
 
         'Fecha de Apertura final
         params(1) = New SqlParameter("@FechaFinal", SqlDbType.Date)
         If Len(Trim(txtFApertFinal.Text)) = 0 Then
-            params(1).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", Nothing)
+            params(1).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", _culture)
         Else
-            params(1).Value = DateTime.ParseExact(Trim(txtFApertFinal.Text), "d/M/yyyy", Nothing)
+            params(1).Value = DateTime.ParseExact(Trim(txtFApertFinal.Text), "d/M/yyyy", _culture)
         End If
 
         dsExpedientes = sqlCliente.ObtenerRegistros(params, "ExpedientesPorUnidadAdministrativa")
@@ -134,11 +139,11 @@ Public Class TrabajoRealizado
 
             If dsExpedientes.Tables(0).Rows.Count = 0 Then
                 DataGrid1.Visible = False
-                NoHayDatos.Visible = True
+                noHayDatosUnidadLabel.Visible = True
                 btnImpPorUA.Enabled = False
             Else
                 DataGrid1.Visible = True
-                NoHayDatos.Visible = False
+                noHayDatosUnidadLabel.Visible = False
 
                 DataGrid1.DataSource = dsExpedientes
 
@@ -153,13 +158,14 @@ Public Class TrabajoRealizado
         End If
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles buscarButton.Click
 
         If Page.IsValid Then
 
             DataGrid1.Visible = False
             Datagrid2.Visible = False
-            NoHayDatos.Visible = False
+            noHayDatosUnidadLabel.Visible = False
+            noHayDatosUsuarioLAbel.Visible = False
             btnImpPorUA.Enabled = False
             btnImpPorUsuario.Enabled = False
 
@@ -182,17 +188,17 @@ Public Class TrabajoRealizado
         'Fecha de Apertura inicial
         params(0) = New SqlParameter("@FechaInicial", SqlDbType.Date)
         If Len(Trim(txtFApertInic.Text)) = 0 Then
-            params(0).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", Nothing)
+            params(0).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", _culture)
         Else
-            params(0).Value = DateTime.ParseExact(Trim(txtFApertInic.Text), "d/M/yyyy", Nothing)
+            params(0).Value = DateTime.ParseExact(Trim(txtFApertInic.Text), "d/M/yyyy", _culture)
         End If
 
         'Fecha de Apertura final
         params(1) = New SqlParameter("@FechaFinal", SqlDbType.Date)
         If Len(Trim(txtFApertFinal.Text)) = 0 Then
-            params(1).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", Nothing)
+            params(1).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", _culture)
         Else
-            params(1).Value = DateTime.ParseExact(Trim(txtFApertFinal.Text), "d/M/yyyy", Nothing)
+            params(1).Value = DateTime.ParseExact(Trim(txtFApertFinal.Text), "d/M/yyyy", _culture)
         End If
 
         ds = sqlCliente.ObtenerRegistros(params, "ExpedientesPorUnidadAdministrativa")
@@ -222,17 +228,17 @@ Public Class TrabajoRealizado
         'Fecha de Apertura inicial
         params(0) = New SqlParameter("@FechaInicial", SqlDbType.Date)
         If Len(Trim(txtFApertInic.Text)) = 0 Then
-            params(0).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", Nothing)
+            params(0).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", _culture)
         Else
-            params(0).Value = DateTime.ParseExact(Trim(txtFApertInic.Text), "d/M/yyyy", Nothing)
+            params(0).Value = DateTime.ParseExact(Trim(txtFApertInic.Text), "d/M/yyyy", _culture)
         End If
 
         'Fecha de Apertura final
         params(1) = New SqlParameter("@FechaFinal", SqlDbType.Date)
         If Len(Trim(txtFApertFinal.Text)) = 0 Then
-            params(1).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", Nothing)
+            params(1).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", _culture)
         Else
-            params(1).Value = DateTime.ParseExact(Trim(txtFApertFinal.Text), "d/M/yyyy", Nothing)
+            params(1).Value = DateTime.ParseExact(Trim(txtFApertFinal.Text), "d/M/yyyy", _culture)
         End If
 
         ds = sqlCliente.ObtenerRegistros(params, "ExpedientesPorUsuario")
