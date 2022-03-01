@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Accesorios.cs" />
     <Compile Include="ClienteSql.cs" />
+    <Compile Include="ExpedientesServicios.cs" />
     <Compile Include="Models\Expediente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

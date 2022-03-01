@@ -29,6 +29,10 @@
         Session("IDUsuarioReal") = ""
         Session("NombreUsuarioReal") = ""
 
+        CadenaConexion = ""
+        ListaIdExpedientes = Nothing
+        OrdenExpedientes = ""
+
         Response.Redirect("./FrameSet1.htm")
     End Sub
 

@@ -5,87 +5,152 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head runat="server">
 		<title>TrabajoRealizado</title>
+		<style type="text/css">
+			.etiqueta-titulo {  
+				font-size: medium;
+				font-weight: 700;
+				font-family: Arial, Helvetica, sans-serif;
+				color: white;
+				background-color: #5D7B9D;
+				vertical-align: central;
+				height: 40px;
+            }  
+			.etiqueta {  
+				font-size: smaller;
+				font-weight:700;
+				font-family: Arial, Helvetica, sans-serif;
+				color:navy;
+				vertical-align:central;
+            }  
+			.editafecha {  
+				width: 100px;
+				font-weight: 500;
+				font-size: smaller; 
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			.col-15 {
+				width: 15%;
+				height: 30px;
+			}
+			.col-2 {
+				width: 2%;
+				height: 30px;
+				text-align: center;
+			}
+			.col-14 {
+				width: 14%;
+				height: 30px;
+			}
+		    .col-11 {
+                width: 11%;
+                height: 30px;
+            }
+            .tabla {
+                width: 600px;
+            }
+		    .panel {
+                overflow: auto;
+            }
+			.separador {
+				height:1px;
+				border-top:1px solid;
+			}
+		</style> 
 	</head>
 	<body>
-		<form id="Form1" method="post" runat="server" bgcolor="#ffffff">
-            <asp:Panel ID="Panel3" runat="server" Font-Size="Small">
-				<asp:label id="Label1" style="Z-INDEX: 100; LEFT: 24px; POSITION: absolute; TOP: 16px" runat="server"
-					Font-Bold="False" Height="24px" Width="488px" Text="Totales de expedientes con fecha de alta en el rango entre:" />
-				<asp:label id="Label2" style="Z-INDEX: 103; LEFT: 24px; POSITION: absolute; TOP: 51px" runat="server"
-					Height="24px" Width="168px" Text="Fecha inicial (dd/mm/aaaa)"/>
-				<asp:textbox id="txtFApertInic" style="Z-INDEX: 102; LEFT: 200px; POSITION: absolute; TOP: 48px; width: 148px;"
-					tabIndex="1" runat="server" Height="20px" BorderStyle="Ridge" MaxLength="10"/>
-				<asp:regularexpressionvalidator id="Regularexpressionvalidator1" style="Z-INDEX: 111; LEFT: 360px; POSITION: absolute; TOP: 48px"
-					runat="server" ValidationExpression="^(((0?[1-9]|[12]\d|3[01])[\.\-\/](0?[13578]|1[02])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|((0?[1-9]|[12]\d|30)[\.\-\/](0?[13456789]|1[012])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|((0?[1-9]|1\d|2[0-8])[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|(29[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00|[048])))$"
-					ErrorMessage="*" ControlToValidate="txtFApertInic"/>
-				<asp:label id="Label3" style="Z-INDEX: 104; LEFT: 24px; POSITION: absolute; TOP: 80px" runat="server"
-					Height="24px" Width="168px" Text="Fecha final (dd/mm/aaaa)"/>
-				<asp:textbox id="txtFApertFinal" style="Z-INDEX: 105; LEFT: 200px; POSITION: absolute; TOP: 80px; width: 148px;"
-					tabIndex="2" runat="server" Height="20px" BorderStyle="Ridge" MaxLength="10"/>
-				<asp:regularexpressionvalidator id="RegularExpressionValidator2" style="Z-INDEX: 110; LEFT: 360px; POSITION: absolute; TOP: 80px"
-					runat="server" Width="1px" ValidationExpression="^(((0?[1-9]|[12]\d|3[01])[\.\-\/](0?[13578]|1[02])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|((0?[1-9]|[12]\d|30)[\.\-\/](0?[13456789]|1[012])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|((0?[1-9]|1\d|2[0-8])[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|(29[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00|[048])))$"
-					ErrorMessage="*" ControlToValidate="txtFApertFinal"/>
-				<asp:button id="buscarButton" style="Z-INDEX: 106; LEFT: 382px; POSITION: absolute; TOP: 81px" runat="server"
-					Height="23px" Width="72px" Text="Busca" TabIndex="3"/>
-				<asp:label id="Label4" style="Z-INDEX: 107; LEFT: 19px; POSITION: absolute; TOP: 120px" runat="server"
-					Font-Bold="True" Height="24px" Width="208px" Text="Totales por unidad administrativa"/>
-				<asp:button id="btnImpPorUA" style="Z-INDEX: 113; LEFT: 731px; POSITION: absolute; TOP: 117px"
-					runat="server" Height="23px" Width="72px" Enabled="False" Text="Imp. Lista" TabIndex="4" ToolTip="Imprimir listado"/>
-				<asp:panel id="Panel1" style="Z-INDEX: 101; LEFT: 16px; OVERFLOW: auto; POSITION: absolute; TOP: 144px; width: 780px;"
-					runat="server" Height="240px" BorderStyle="Ridge">
-					<asp:datagrid id="DataGrid1" runat="server" Height="192px" Width="780px" AllowSorting="false" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
-						<ItemStyle Wrap="False" BackColor="#F7F6F3" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" ForeColor="#333333"></ItemStyle>
-						<EditItemStyle BackColor="#999999" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" />
-						<FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-						<HeaderStyle Font-Underline="True" Font-Bold="True" BackColor="#5D7B9D" Font-Italic="False" Font-Overline="False" Font-Size="Smaller" Font-Strikeout="False" ForeColor="White"></HeaderStyle>
-						<Columns>
-							<asp:BoundColumn Visible="False" DataField="idunidadadministrativa" HeaderText="idUnidadAdministrativa"></asp:BoundColumn>
-							<asp:BoundColumn DataField="Nombre" HeaderText="Unid. Adm.">
-								<HeaderStyle Width="70%"></HeaderStyle>
-								<ItemStyle Wrap="False"></ItemStyle>
-							</asp:BoundColumn>
-							<asp:BoundColumn DataField="TotPorUA" HeaderText="Total general de expedientes">
-								<HeaderStyle Width="15%"></HeaderStyle>
-								<ItemStyle Wrap="False"></ItemStyle>
-							</asp:BoundColumn>
-							<asp:BoundColumn DataField="EntreFechas" HeaderText="Total de expedientes entre fechas">
-								<HeaderStyle Width="15%"></HeaderStyle>
-								<ItemStyle Wrap="False"></ItemStyle>
-							</asp:BoundColumn>
-						</Columns>
-					</asp:datagrid>
-					<asp:Label id="noHayDatosUnidadLabel" runat="server" Font-Bold="True" Visible="False" Text="No hay datos que mostrar"/>
-				</asp:panel>
-				<asp:label id="Label5" style="Z-INDEX: 108; LEFT: 22px; POSITION: absolute; TOP: 428px" runat="server"
-					Font-Bold="True" Height="24px" Width="208px" Text="Totales por usuario"/>
-				<asp:button id="btnImpPorUsuario" style="Z-INDEX: 114; LEFT: 732px; POSITION: absolute; TOP: 429px; right: 127px;"
-					runat="server" Height="23px" Width="72px" Enabled="False" Text="Imp. Lista" TabIndex="5" ToolTip="Imprimir listado"></asp:button>
-				<asp:panel id="Panel2" style="overflow:auto; POSITION: absolute; TOP: 457px; LEFT: 17px; width: 780px;"
-					runat="server" Height="240px" BorderStyle="Ridge">
-					<asp:datagrid id="Datagrid2" runat="server" Height="192px" Width="780px" AllowSorting="false" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
-						<ItemStyle Wrap="False" BackColor="#F7F6F3" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" ForeColor="#333333"></ItemStyle>
-						<EditItemStyle BackColor="#999999" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" />
-						<FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-						<HeaderStyle Font-Underline="True" Font-Bold="True" BackColor="#5D7B9D" Font-Italic="False" Font-Overline="False" Font-Size="Smaller" Font-Strikeout="False" ForeColor="White"></HeaderStyle>
-						<Columns>
-							<asp:BoundColumn Visible="False" DataField="idUsuarioReal" HeaderText="idUsuarioReal"></asp:BoundColumn>
-							<asp:BoundColumn DataField="Nombre" HeaderText="Nombre Usuario">
-								<HeaderStyle Width="70%"></HeaderStyle>
-								<ItemStyle Wrap="False"></ItemStyle>
-							</asp:BoundColumn>
-							<asp:BoundColumn DataField="ExpCreados" HeaderText="Total de expedientes creados">
-								<HeaderStyle Width="15%"></HeaderStyle>
-								<ItemStyle Wrap="False"></ItemStyle>
-							</asp:BoundColumn>
-							<asp:BoundColumn DataField="ExpEditados" HeaderText="Total de expedientes editados">
-								<HeaderStyle Width="15%"></HeaderStyle>
-								<ItemStyle Wrap="False"></ItemStyle>
-							</asp:BoundColumn>
-						</Columns>
-					</asp:datagrid>
-					<asp:Label id="noHayDatosUsuarioLabel" runat="server" Font-Bold="True" Visible="False">No hay datos que mostrar</asp:Label>
-				</asp:panel>
-			</asp:Panel>
+		<form id="Form1" method="post" runat="server">
+			<div>
+				<table class="tabla">
+					<tr>
+						<th class="etiqueta-titulo" colspan="8">
+							<asp:label id="Label6" runat="server" Text="Auditoría de expedientes y trabajo realizado" />
+						</th>
+					</tr>
+					<tr>
+						<td class="col-15" colspan="3">
+							<asp:label CssClass="etiqueta" id="Label1" runat="server" Text="Expedientes registrados entre"/>
+						</td>
+						<td class="col-14">
+							<asp:textbox CssClass="editafecha" id="txtFApertInic" runat="server" MaxLength="10" ToolTip="Formato dd/MM/aaaa"/>
+							<asp:regularexpressionvalidator id="Regularexpressionvalidator1" runat="server" ErrorMessage="*" ControlToValidate="txtFApertInic"
+								ValidationExpression="^(((0?[1-9]|[12]\d|3[01])[\.\-\/](0?[13578]|1[02])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|((0?[1-9]|[12]\d|30)[\.\-\/](0?[13456789]|1[012])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|((0?[1-9]|1\d|2[0-8])[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|(29[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00|[048])))$" />
+						</td>
+						<td class="col-2">
+							<asp:label CssClass="etiqueta" id="Label2" runat="server" Text=" y "/>
+						</td>
+						<td class="col-14" colspan="2">
+							<asp:textbox CssClass="editafecha" id="txtFApertFinal" runat="server" MaxLength="10" ToolTip="Formato dd/MM/aaaa"/>
+							<asp:regularexpressionvalidator id="RegularExpressionValidator2" runat="server" ErrorMessage="*" ControlToValidate="txtFApertFinal"
+								ValidationExpression="^(((0?[1-9]|[12]\d|3[01])[\.\-\/](0?[13578]|1[02])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|((0?[1-9]|[12]\d|30)[\.\-\/](0?[13456789]|1[012])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|((0?[1-9]|1\d|2[0-8])[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|(29[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00|[048])))$" />
+						</td>
+						<td class="col-11">
+							<asp:button CssClass="etiqueta" id="buscarButton" runat="server" Height="23px" Width="95px" Text="Buscar"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="separador" colspan="8"></td>
+					</tr>
+					<tr>
+						<td class="col-15" colspan="4">
+							<asp:label CssClass="etiqueta" id="Label4" runat="server" Text="Totales por unidad administrativa"/>
+						</td>
+						<td colspan="3"></td>
+						<td class="col-14">
+							<asp:button CssClass="etiqueta" id="btnImpPorUA" runat="server" Height="23px" Width="95px" Text="Imprimir lista" ToolTip="Imprimir listado"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-15" colspan="8">
+							<asp:panel id="Panel1" runat="server" Height="240px" width="600px" CssClass="panel">
+								<asp:datagrid id="DataGrid1" runat="server" Width="600px" AllowSorting="false" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+									<ItemStyle Wrap="False" BackColor="#F7F6F3" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" ForeColor="#333333"></ItemStyle>
+									<EditItemStyle BackColor="#999999" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" />
+									<FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+									<HeaderStyle Font-Underline="True" Font-Bold="True" BackColor="#5D7B9D" Font-Italic="False" Font-Overline="False" Font-Size="Smaller" Font-Strikeout="False" ForeColor="White"></HeaderStyle>
+									<Columns>
+										<asp:BoundColumn Visible="False" DataField="idunidadadministrativa" HeaderText="idUnidadAdministrativa"></asp:BoundColumn>
+										<asp:BoundColumn DataField="Nombre" HeaderText="Unidad administrativa" HeaderStyle-Width="70%"/>
+										<asp:BoundColumn DataField="TotPorUA" HeaderText="Total general de expedientes" HeaderStyle-Width="15%"/>
+										<asp:BoundColumn DataField="EntreFechas" HeaderText="Total de expedientes entre fechas" HeaderStyle-Width="15%"/>
+									</Columns>
+								</asp:datagrid>
+								<asp:Label CssClass="etiqueta" id="noHayDatosUnidadLabel" runat="server" Visible="False" Text="No hay datos que mostrar"/>
+							</asp:panel>
+						</td>
+					</tr>
+					<tr>
+						<td class="separador" colspan="8"></td>
+					</tr>
+					<tr>
+						<td class="col-15" colspan="4">
+							<asp:label CssClass="etiqueta" id="Label5" runat="server" Text="Totales por usuario"/>
+						</td>
+						<td colspan="3"></td>
+						<td class="col-14">
+							<asp:button CssClass="etiqueta" id="btnImpPorUsuario" runat="server" Height="23px" Width="95px" Text="Imprimir lista" ToolTip="Imprimir listado"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-15" colspan="8">
+							<asp:panel CssClass="panel" id="Panel2" runat="server" Height="240px" Width="600px">
+								<asp:datagrid id="Datagrid2" runat="server" Width="600px" AllowSorting="false" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+									<ItemStyle Wrap="False" BackColor="#F7F6F3" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" ForeColor="#333333"></ItemStyle>
+									<EditItemStyle BackColor="#999999" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" />
+									<FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+									<HeaderStyle Font-Underline="True" Font-Bold="True" BackColor="#5D7B9D" Font-Italic="False" Font-Overline="False" Font-Size="Smaller" Font-Strikeout="False" ForeColor="White"></HeaderStyle>
+									<Columns>
+										<asp:BoundColumn Visible="False" DataField="idUsuarioReal" HeaderText="idUsuarioReal"/>
+										<asp:BoundColumn DataField="Nombre" HeaderText="Nombre Usuario" HeaderStyle-Width="70%"/>
+										<asp:BoundColumn DataField="ExpCreados" HeaderText="Total de expedientes creados" HeaderStyle-Width="15%"/>
+										<asp:BoundColumn DataField="ExpEditados" HeaderText="Total de expedientes editados" HeaderStyle-Width="15%"/>
+									</Columns>
+								</asp:datagrid>
+								<asp:Label CssClass="etiqueta" id="noHayDatosUsuarioLabel" runat="server" Font-Bold="True" Visible="False" Text="No hay datos que mostrar"/>
+							</asp:panel>
+						</td>
+					</tr>
+				</table>
+			</div>
 		</form>
 	</body>
 </html>

@@ -264,7 +264,7 @@ Public Class BuscarExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaReporte(Me, MyFileName, "guiaexpedientes.pdf")
+            Accesorios.DescargaReporte(Me, MyFileName, "guiaexpedientes.pdf", LongitudMaximaArchivoDescarga)
 
         End If
 
@@ -301,7 +301,7 @@ Public Class BuscarExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaReporte(Me, MyFileName, "listaexpedientes.pdf")
+            Accesorios.DescargaReporte(Me, MyFileName, "listaexpedientes.pdf", LongitudMaximaArchivoDescarga)
 
         End If
     End Sub
@@ -337,7 +337,7 @@ Public Class BuscarExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaReporte(Me, MyFileName, "caratulaslote.pdf")
+            Accesorios.DescargaReporte(Me, MyFileName, "caratulaslote.pdf", LongitudMaximaArchivoDescarga)
 
         End If
 
@@ -372,7 +372,7 @@ Public Class BuscarExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaReporte(Me, MyFileName, "etiquetas.pdf")
+            Accesorios.DescargaReporte(Me, MyFileName, "etiquetas.pdf", LongitudMaximaArchivoDescarga)
 
         End If
     End Sub
@@ -407,7 +407,7 @@ Public Class BuscarExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaReporte(Me, MyFileName, "lomoslote.pdf")
+            Accesorios.DescargaReporte(Me, MyFileName, "lomoslote.pdf", LongitudMaximaArchivoDescarga)
 
         End If
 
@@ -610,21 +610,21 @@ Public Class BuscarExpediente
         condicion = PreparaBusqueda()
 
         sQLString =
-            "SELECT dbo.fnNombreDeJerarquia(e.idClasificacion) as Codigo, " &
-            "e.idExpediente, " &
-            "e.Nombre as Expediente, " &
-            "e.CampoAdicional2 as Observaciones, " &
-            "e.CampoAdicional1 as Titulo, " &
-            "e.Asunto, " &
-            "e.RelacionAnterior as RelacionAnterior, " &
-            "e.Caja, " &
-            "e.CajaAnterior, " &
-            "CONVERT(NVARCHAR(10), e.FechaApertura, 103) as Apertura, " &
-            "Cierre = CASE WHEN (FechaCierreChecked = 1) THEN CONVERT(NVARCHAR(10), e.FechaCierre, 103) ELSE '' END, " &
-            "ua.NombreCorto " &
-            "FROM Expedientes e " &
-            "INNER JOIN UnidadesAdministrativas ua ON e.idUnidadAdministrativa = ua.idUnidadAdministrativa " &
-            CStr(IIf(condicion <> "", " WHERE " & condicion, ""))
+                "SELECT dbo.fnNombreDeJerarquia(e.idClasificacion) as Codigo, " &
+                "e.idExpediente, " &
+                "e.Nombre as Expediente, " &
+                "e.CampoAdicional2 as Observaciones, " &
+                "e.CampoAdicional1 as Titulo, " &
+                "e.Asunto, " &
+                "e.RelacionAnterior as RelacionAnterior, " &
+                "e.Caja, " &
+                "e.CajaAnterior, " &
+                "CONVERT(NVARCHAR(10), e.FechaApertura, 103) as Apertura, " &
+                "Cierre = CASE WHEN (FechaCierreChecked = 1) THEN CONVERT(NVARCHAR(10), e.FechaCierre, 103) ELSE '' END, " &
+                "ua.NombreCorto " &
+                "FROM Expedientes e " &
+                "INNER JOIN UnidadesAdministrativas ua ON e.idUnidadAdministrativa = ua.idUnidadAdministrativa " &
+                CStr(IIf(condicion <> "", " WHERE " & condicion, ""))
 
         'Si llego aquí y no hay siquiera un WHERE, lo pongo ahora y con una condición imposible, para que no devuelva nada
         sQLString &= CStr(IIf(InStr(UCase(sQLString), "WHERE") > 0, "", " WHERE idExpediente < -1000"))
@@ -634,7 +634,7 @@ Public Class BuscarExpediente
 
         dsExpedientes = New ClienteSQL(CadenaConexion).ObtenerRegistros(PreparaParametros(sQLString).ToArray, "Expedientes_BUSCA_WEB")
 
-        If dsExpedientes.Tables.Count > 0 Then
+        If dsExpedientes IsNot Nothing AndAlso dsExpedientes.Tables.Count > 0 Then
             dsExpedientes.Tables(0).TableName = "Expedientes"
 
             If dsExpedientes.Tables("Expedientes").Rows.Count = 0 Then
@@ -698,6 +698,7 @@ Public Class BuscarExpediente
         End If
 
     End Sub
+
 
     Private Function PreparaBusqueda() As String
         Dim operador As String

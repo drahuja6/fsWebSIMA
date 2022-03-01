@@ -1,3 +1,5 @@
+Imports System.Web.Security
+
 Public Class Login
     Inherits Page
 
@@ -202,7 +204,24 @@ Public Class Login
                 Session("NombreUsuarioReal") = NombreUsuarioReal
             End If
             lblAccesoNegado.Visible = False
-            Response.Redirect("./FrameSet2.htm")
+            'Response.Redirect("./FrameSet2.htm")
+            'FormsAuthentication.RedirectFromLoginPage(IDUsuarioReal, False)
+
+            Dim tkt As FormsAuthenticationTicket
+            Dim cookiestr As String
+            Dim ck As HttpCookie
+            tkt = New FormsAuthenticationTicket(1, IDUsuarioReal, DateTime.Now, DateTime.Now.AddMinutes(30), False, "SIMA")
+            cookiestr = FormsAuthentication.Encrypt(tkt)
+            ck = New HttpCookie(FormsAuthentication.FormsCookieName, cookiestr)
+            ck.Path = FormsAuthentication.FormsCookiePath
+            Response.Cookies.Add(ck)
+
+            Dim strRedirect As String = Request("ReturnUrl")
+            If String.IsNullOrEmpty(strRedirect) Then
+                strRedirect = "Frameset2.htm"
+            End If
+
+            Response.Redirect(strRedirect, True)
         Else
             lblAccesoNegado.Visible = True
         End If

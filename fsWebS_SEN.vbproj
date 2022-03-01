@@ -182,20 +182,8 @@
       <DependentUpon>Caratula02.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CaratulaCONACYT31.vb">
-      <DependentUpon>CaratulaCONACYT3.rpt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Caratula.vb">
       <DependentUpon>Caratula.rpt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CaratulaFOVISSSTECredito1.vb">
-      <DependentUpon>CaratulaFOVISSSTECredito.rpt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
@@ -294,12 +282,6 @@
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="LomoFOVISSSTE_NEW1.vb">
-      <DependentUpon>LomoFOVISSSTE_NEW.rpt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Menu.aspx.vb">
       <DependentUpon>Menu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -393,17 +375,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Caratula02.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CaratulaCONACYT3.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CaratulaCONACYT31.vb</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Caratula.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Caratula.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CaratulaFOVISSSTECredito.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CaratulaFOVISSSTECredito1.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ConcABaja.aspx.resx">
       <DependentUpon>ConcABaja.aspx.vb</DependentUpon>
@@ -442,10 +416,6 @@
     <EmbeddedResource Include="Lomo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Lomo.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LomoFOVISSSTE_NEW.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>LomoFOVISSSTE_NEW1.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.aspx.resx">
       <DependentUpon>Menu.aspx.vb</DependentUpon>

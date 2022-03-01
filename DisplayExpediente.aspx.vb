@@ -1,6 +1,9 @@
 Imports System.Text.RegularExpressions
 Imports System.Data.OleDb
+Imports System.Data.SqlClient
 Imports System.IO
+
+Imports fsSimaServicios
 
 Public Class DisplayExpediente
     Inherits Page
@@ -147,6 +150,8 @@ Public Class DisplayExpediente
 
 #End Region
 
+    Private _serviciosExpediente As New ExpedientesServicios()
+
     Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Introducir aquí el código de usuario para inicializar la página
 
@@ -156,7 +161,7 @@ Public Class DisplayExpediente
         If Not Page.IsPostBack Then
             'Beep()
             '0=SOLO LECTURA 1=AÑADIENDO 2=EDITANDO 3=BORRANDO
-            Select Case Session("ExpedienteStatus")
+            Select Case Integer.Parse(Session("ExpedienteStatus"))
                 Case 0, 5 'SOLO LECTURA
                     FillExpediente(CInt(Session("IDExpedienteActivo")))
                     Session("ExpedienteStatus") = 0
@@ -219,68 +224,37 @@ Public Class DisplayExpediente
 
     End Sub
 
-    Function FillPDF(ByVal idExpediente As Integer) As Boolean
+    'Rutina para leer y llenar el grid con los documentos asociados a un expediente
+    Function FillPDF(idExpediente As Integer) As Boolean
 
-        'Rutina para leer y llenar el grid con los documentos asociados a un expediente
+        Dim params(0) As SqlParameter
+        Dim dsPDF As DataSet
+        Dim sqlCliente As New ClienteSQL(CadenaConexion)
 
-        Dim cn As New OleDbConnection
-        Dim cmd As New OleDbCommand
-        Dim param As Data.OleDb.OleDbParameter
-        Dim dsPDF As New Data.DataSet
+        params(0) = New SqlParameter("@idExpediente", idExpediente)
 
-        'Abro la conexión
-        cn.ConnectionString = Session("UsuarioVirtualConnString")
-        cn.Open()
+        dsPDF = sqlCliente.ObtenerRegistros(params, "ExpedientesPDF_SELECT_ALL")
 
-        'Asigno el Stored Procedure para leer los nodos
-        cmd.CommandText = "ExpedientesPDF_SELECT_ALL"
-        cmd.Connection = cn
-        cmd.CommandType = CommandType.StoredProcedure
+        If dsPDF IsNot Nothing AndAlso dsPDF.Tables.Count > 0 Then
+            If dsPDF.Tables(0).Rows.Count = 0 Then
+                DataGrid2.Visible = False
+                NoHayDatos2.Visible = True
+            Else
+                dsPDF.Tables(0).TableName = "PDFs"
+                DataGrid2.Visible = True
+                NoHayDatos2.Visible = False
 
-        'MyidExpediente
-        param = cmd.Parameters.Add("MyidExpediente", Data.OleDb.OleDbType.Integer)
-        param.Value = idExpediente
-
-        'Creo el objeto DataAdapter
-        Dim daPDF As New Data.OleDb.OleDbDataAdapter(cmd)
-
-        'Añado al objeto DataSet una nueva tabla,
-        'llenándola con datos según instrucciones del DataAdapter
-        daPDF.Fill(dsPDF, "PDFs")
-        dsPDF.Tables("PDFs").Rows.Clear()
-        daPDF.Fill(dsPDF, "PDFs")
-
-        If dsPDF.Tables(0).Rows.Count = 0 Then
-            DataGrid2.Visible = False
-            NoHayDatos2.Visible = True
-
-        Else
-            DataGrid2.Visible = True
-            NoHayDatos2.Visible = False
-
-            'Señalo cuál va a ser el DataSet de este grid
-            DataGrid2.DataSource = dsPDF
-
-            'Señalo cual va a ser el campo llave.
-            'Si en esta propiedad coloco el nombre de una DataTable, el grid se llena
-            'con TODO su contenido sin mayor problema. Si en esta propiedad coloco el nombre
-            'de una relación, el grid se llena SOLAMENTE con los datos que cumplen con la
-            'relación. Hay que poner el nombre completo: "TABLA.RELACION"
-            DataGrid2.DataMember = "PDFs"
-            DataGrid2.DataKeyField = "idExpedientePDFRelaciones"
-            'DataGrid1.PagerStyle.Mode = PagerMode.NumericPages
-            DataGrid2.DataBind()
-
+                DataGrid2.DataSource = dsPDF
+                DataGrid2.DataMember = "PDFs"
+                DataGrid2.DataKeyField = "idExpedientePDFRelaciones"
+                DataGrid2.DataBind()
+            End If
         End If
-
-        cn.Close()
 
     End Function
 
-    Function FillMovimientos(ByVal idExpediente As Integer) As Boolean
-
-        'Rutina para leer y llenar el grid con los movimientos de un expediente
-
+    'Rutina para leer y llenar el grid con los movimientos de un expediente
+    Function FillMovimientos(idExpediente As Integer) As Boolean
         Dim cn As New OleDbConnection
         Dim cmd As New OleDbCommand
         Dim param As Data.OleDb.OleDbParameter
@@ -463,7 +437,6 @@ Public Class DisplayExpediente
                 btnAgregar.Enabled = True
                 btnEditar.Enabled = True
                 btnBorrar.Enabled = True
-                btnCaratula.Enabled = True
                 btnCaratula2.Enabled = True
                 btnLomo.Enabled = True
 
@@ -472,7 +445,6 @@ Public Class DisplayExpediente
                 btnAgregar.Enabled = True
                 btnEditar.Enabled = False
                 btnBorrar.Enabled = False
-                btnCaratula.Enabled = False
                 btnCaratula2.Enabled = False
                 btnLomo.Enabled = False
 
@@ -2258,26 +2230,6 @@ Public Class DisplayExpediente
 
     End Function
 
-    Function FechaLatinaAGringa(ByVal FechaLatina As String) As String
-
-        Return FechaLatina
-
-        'Dim MyDia As String
-        'Dim MyMes As String
-        'Dim MyAnno As String
-
-        'Dim PosSlash1 As Integer
-        'Dim PosSlash2 As Integer
-
-        'PosSlash1 = InStr(FechaLatina, "/")
-        'PosSlash2 = InStr(PosSlash1 + 1, FechaLatina, "/")
-        'MyMes = Mid(FechaLatina, PosSlash1 + 1, PosSlash2 - PosSlash1 - 1)
-        'MyDia = Mid(FechaLatina, 1, PosSlash1 - 1)
-        'MyAnno = Mid(FechaLatina, PosSlash2 + 1)
-        'FechaLatinaAGringa = MyMes & "/" & MyDia & "/" & MyAnno
-
-    End Function
-
     Function FundamentosLegalesDeClasificacion_Expedientes_Relaciones_DELETE_ALL(ByVal idExpediente As Integer) As Integer
 
         Dim cn As New Data.OleDb.OleDbConnection
@@ -2780,76 +2732,7 @@ Public Class DisplayExpediente
 
     End Function
 
-    Private Sub BtnCaratula_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCaratula.Click
-
-        Dim cn As New OleDbConnection
-        Dim cmd As New OleDbCommand
-        Dim param As OleDbParameter
-        Dim da As New OleDbDataAdapter
-        Dim ds As New DataSet
-
-        Dim Reporte As New Caratula02
-
-        cn.ConnectionString = Session("UsuarioVirtualConnString")
-        cn.Open()
-
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.Connection = cn
-        cmd.Parameters.Clear()
-        cmd.CommandText = "CargaFormatoCaratula"
-
-        param = cmd.Parameters.Add("IDList", OleDbType.VarChar)
-        param.Value = Session("IDExpedienteActivo")
-
-        da.SelectCommand = cmd
-        da.Fill(ds)
-        da.Dispose()
-
-        Reporte.SetDataSource(ds.Tables(0))
-
-        Reporte.SetParameterValue(0, "SENADO DE LA REPÚBLICA")
-        Reporte.SetParameterValue(2, LogoCliente)
-
-        Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
-
-        Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-
-        'Write the file directly to the HTTP output stream.
-        Response.ContentType = "application/pdf"
-        Response.AddHeader("content-Disposition", "inline; filename=caratula.pdf")
-        Response.WriteFile(MyFileName)
-        Response.Flush()
-
-        If IO.File.Exists(MyFileName) Then
-            IO.File.Delete(MyFileName)
-        End If
-
-        Reporte.Dispose()
-
-        Response.End()
-
-    End Sub
-
-    'Private Sub DataGrid1_PageIndexChanged(ByVal source As Object, ByVal e As DataGridPageChangedEventArgs) Handles DataGrid1.PageIndexChanged
-    '    ' Set CurrentPageIndex to the page the user clicked.
-    '    DataGrid1.CurrentPageIndex = e.NewPageIndex
-
-    '    ' Rebind the data. 
-    '    FillMovimientos(CInt(Session("IDExpedienteActivo")))
-    '    'DataGrid1.DataSource = CreateDataSource()
-    '    'DataGrid1.DataBind()
-
-    'End Sub
-
-    'Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAbreEscogeCuadro.Click
-    '    'Response.ContentType = "Application/pdf"
-    '    'Response.WriteFile("C:\Alfredo\Telmex\prueba.pdf")
-    '    'Response.End()
-    'End Sub
-
     Private Sub DataGrid1_ItemCommand(ByVal source As Object, ByVal e As DataGridCommandEventArgs) Handles DataGrid1.ItemCommand
-
         If e.Item.ItemIndex >= 0 Then
             Session("IDMovimientoActivo") = DataGrid1.DataKeys.Item(e.Item.ItemIndex)
             Session("ExpedienteStatus") = 0
@@ -2866,14 +2749,13 @@ Public Class DisplayExpediente
         Response.Redirect("./MovimientosDisplay.aspx")
     End Sub
 
-    Private Sub DataGrid2_ItemCommand(ByVal source As Object, ByVal e As DataGridCommandEventArgs) Handles DataGrid2.ItemCommand
-        Response.ContentType = "application/pdf"
-        Response.AddHeader("content-Disposition", "inline; filename=" + e.Item.Cells(2).Text)
-        Response.WriteFile(Path.Combine(DirImagenes, e.Item.Cells(2).Text))
-        Response.End()
+    'Item selecciondo en grid que muestra PDFs vinculados al expediente.
+    Private Sub DataGrid2_ItemCommand(source As Object, e As DataGridCommandEventArgs) Handles DataGrid2.ItemCommand
+        'Llamada a dll de accesorios.
+        Accesorios.DescargaArchivo(Response, Path.Combine(DirImagenes, e.Item.Cells(2).Text), LongitudMaximaArchivoDescarga)
     End Sub
 
-    Private Sub btnVerDocumentos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnVerDocumentos.Click
+    Private Sub BtnVerDocumentos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnVerDocumentos.Click
         PLocalizacion.Visible = False
         PClasificacion.Visible = False
         PAtributos.Visible = False
@@ -2881,105 +2763,65 @@ Public Class DisplayExpediente
     End Sub
 
     Private Sub BtnCaratula2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCaratula2.Click
-        Dim cn As New OleDbConnection
-        Dim cmd As New OleDbCommand
-        Dim param As OleDbParameter
-        Dim da As New OleDbDataAdapter
-        Dim ds As New DataSet
+        Dim ds As DataSet
+        Dim sqlCliente As New ClienteSQL(CadenaConexion)
+        Dim params(0) As SqlParameter
 
         Dim Reporte As New Caratula02
 
-        cn.ConnectionString = Session("UsuarioVirtualConnString")
-        cn.Open()
+        params(0) = New SqlParameter("@IdList", Session("IDExpedienteActivo").ToString)
 
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.Connection = cn
-        cmd.Parameters.Clear()
-        cmd.CommandText = "CargaFormatoCaratula"
+        ds = sqlCliente.ObtenerRegistros(params, "CargaFormatoCaratula")
 
-        param = cmd.Parameters.Add("IDExpediente", OleDbType.VarChar)
-        param.Value = Session("IDExpedienteActivo")
+        If ds IsNot Nothing AndAlso ds.Tables.Count > 0 Then
 
-        da.SelectCommand = cmd
-        da.Fill(ds)
-        da.Dispose()
+            Reporte.SetDataSource(ds.Tables(0))
 
-        Reporte.SetDataSource(ds.Tables(0))
+            Dim guid1 As Guid = Guid.NewGuid
+            Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
-        Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
+            Reporte.SetParameterValue(0, "SENADO DE LA REPÚBLICA")
+            Reporte.SetParameterValue("Logo", LogoCliente)
 
-        Reporte.SetParameterValue(0, "SENADO DE LA REPÚBLICA")
-        Reporte.SetParameterValue("Logo", LogoCliente)
+            Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
+            Reporte.Dispose()
 
-        Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
+            Accesorios.DescargaReporte(Me, MyFileName, "lomoslote.pdf", LongitudMaximaArchivoDescarga)
 
-        'Write the file directly to the HTTP output stream.
-        Response.ContentType = "application/pdf"
-        Response.AddHeader("content-Disposition", "inline; filename=caratula.pdf")
-        Response.WriteFile(MyFileName)
-        Response.Flush()
-
-        If IO.File.Exists(MyFileName) Then
-            IO.File.Delete(MyFileName)
         End If
-
-        Reporte.Dispose()
-
-        Response.End()
 
     End Sub
 
     Private Sub BtnLomo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLomo.Click
 
-        Dim cn As New OleDbConnection
-        Dim cmd As New OleDbCommand
-        Dim param As OleDbParameter
-        Dim da As New OleDbDataAdapter
-        Dim ds As New DataSet
-
+        Dim ds As DataSet
+        Dim sqlCliente As New ClienteSQL(CadenaConexion)
+        Dim params(0) As SqlParameter
         Dim Reporte As New Lomo
 
-        cn.ConnectionString = Session("UsuarioVirtualConnString").ToString
-        cn.Open()
+        params(0) = New SqlParameter("@IdList", Session("IDExpedienteActivo").ToString)
 
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.Connection = cn
-        cmd.Parameters.Clear()
-        cmd.CommandText = "CargaFormatoCaratula"
+        ds = sqlCliente.ObtenerRegistros(params, "CargaFormatoCaratula")
 
-        param = cmd.Parameters.Add("IDLista", OleDbType.VarChar)
-        param.Value = Session("IDExpedienteActivo")
+        If ds IsNot Nothing AndAlso ds.Tables.Count > 0 Then
 
-        da.SelectCommand = cmd
-        da.Fill(ds)
-        da.Dispose()
+            Reporte.SetDataSource(ds.Tables(0))
 
-        Reporte.SetDataSource(ds.Tables(0))
+            Reporte.SetParameterValue("Logo", LogoCliente)
 
-        Reporte.SetParameterValue("Logo", LogoCliente)
+            Dim guid1 As Guid = Guid.NewGuid
+            Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
-        Dim guid1 As Guid = Guid.NewGuid
-        Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
+            Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
+            Reporte.Dispose()
 
-        Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
+            Accesorios.DescargaReporte(Me, MyFileName, "lomoslote.pdf", LongitudMaximaArchivoDescarga)
 
-        Response.ContentType = "application/pdf"
-        Response.AddHeader("content-Disposition", "inline; filename=lomo.pdf")
-        Response.WriteFile(MyFileName)
-        Response.Flush()
-
-        If IO.File.Exists(MyFileName) Then
-            IO.File.Delete(MyFileName)
         End If
-
-        Reporte.Dispose()
-
-        Response.End()
 
     End Sub
 
-    Private Sub btnAbreEscogeCuadro_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAbreEscogeCuadro.Click
+    Private Sub BtnAbreEscogeCuadro_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAbreEscogeCuadro.Click
         Response.Redirect("./EscogeCuadro.aspx")
     End Sub
 

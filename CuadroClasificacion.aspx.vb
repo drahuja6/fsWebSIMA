@@ -1,4 +1,6 @@
-Imports System.Data.OleDb
+Imports System.Data.SqlClient
+
+Imports fsSimaServicios
 
 Public Class CuadroClasificacion
     Inherits Page
@@ -29,6 +31,8 @@ Public Class CuadroClasificacion
 
 #End Region
 
+#Region "Eventos de la forma"
+
     Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Introducir aquí el código de usuario para inicializar la página
 
@@ -43,62 +47,7 @@ Public Class CuadroClasificacion
 
     End Sub
 
-    Sub FillCuadro(ByVal MyFiltro As String)
-
-        Dim cn As New OleDbConnection
-        Dim cmd As New OleDbCommand
-        Dim param As Data.OleDb.OleDbParameter
-        Dim dsCuadroClasificacion As New Data.DataSet
-        'Dim dr As OleDbDataReader
-
-        'Abro la conexión
-        cn.ConnectionString = Session("UsuarioVirtualConnString")
-        cn.Open()
-
-        'Asigno el Stored Procedure para leer los nodos
-        cmd.CommandText = "SubArbolDeCuentasOrdenado3"
-        cmd.Connection = cn
-        cmd.CommandType = CommandType.StoredProcedure
-
-        'idExpediente
-        param = cmd.Parameters.Add("Filtro", Data.OleDb.OleDbType.VarChar, 250)
-        param.Value = MyFiltro
-
-        'Creo el objeto DataAdapter
-        Dim daCuadroClasificacion As New Data.OleDb.OleDbDataAdapter(cmd)
-
-        'Añado al objeto DataSet una nueva tabla,
-        'llenándola con datos según instrucciones del DataAdapter
-        daCuadroClasificacion.Fill(dsCuadroClasificacion, "CuadroClasificacion")
-        dsCuadroClasificacion.Tables("CuadroClasificacion").Rows.Clear()
-        daCuadroClasificacion.Fill(dsCuadroClasificacion, "CuadroClasificacion")
-
-        If dsCuadroClasificacion.Tables(0).Rows.Count = 0 Then
-            DataGrid1.Visible = False
-            NoHayDatos.Visible = True
-        Else
-            DataGrid1.Visible = True
-            NoHayDatos.Visible = False
-
-            'Señalo cuál va a ser el DataSet de este grid
-            DataGrid1.DataSource = dsCuadroClasificacion
-
-            'Señalo cual va a ser el campo llave.
-            'Si en esta propiedad coloco el nombre de una DataTable, el grid se llena
-            'con TODO su contenido sin mayor problema. Si en esta propiedad coloco el nombre
-            'de una relación, el grid se llena SOLAMENTE con los datos que cumplen con la
-            'relación. Hay que poner el nombre completo: "TABLA.RELACION"
-            DataGrid1.DataMember = "CuadroClasificacion"
-            DataGrid1.DataKeyField = "idClasificacion"
-            DataGrid1.DataBind()
-
-        End If
-
-        cn.Close()
-
-    End Sub
-
-    Private Sub DataGrid1_ItemCommand(ByVal source As System.Object, ByVal e As DataGridCommandEventArgs) Handles DataGrid1.ItemCommand
+    Private Sub DataGrid1_ItemCommand(source As Object, e As DataGridCommandEventArgs) Handles DataGrid1.ItemCommand
 
         If e.Item.ItemIndex >= 0 Then
             Session("idCuadroClasificacionActivo") = DataGrid1.DataKeys.Item(e.Item.ItemIndex)
@@ -112,7 +61,7 @@ Public Class CuadroClasificacion
 
     End Sub
 
-    Private Sub btnAplicar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAplicar.Click
+    Private Sub BtnAplicar_Click(sender As Object, e As EventArgs) Handles btnAplicar.Click
 
         If Page.IsValid Then
             FillCuadro(txbFiltro.Text)
@@ -120,7 +69,38 @@ Public Class CuadroClasificacion
 
     End Sub
 
-    Private Sub DataGrid1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DataGrid1.SelectedIndexChanged
+#End Region
 
+#Region "Métodos privados"
+
+    Sub FillCuadro(filtro As String)
+
+        Dim params(0) As SqlParameter
+        Dim sqlCliente As New ClienteSQL(CadenaConexion)
+        Dim dsCuadroClasificacion As DataSet
+
+        params(0) = New SqlParameter("@CadenaABuscar", filtro)
+
+        dsCuadroClasificacion = sqlCliente.ObtenerRegistros(params, "SubArbolDeCuentasOrdenado3")
+
+        If dsCuadroClasificacion.Tables.Count > 0 Then
+            dsCuadroClasificacion.Tables(0).TableName = "CuadroClasificacion"
+            If dsCuadroClasificacion.Tables(0).Rows.Count = 0 Then
+                DataGrid1.Visible = False
+                NoHayDatos.Visible = True
+            Else
+                DataGrid1.Visible = True
+                NoHayDatos.Visible = False
+
+                DataGrid1.DataSource = dsCuadroClasificacion
+
+                DataGrid1.DataMember = "CuadroClasificacion"
+                DataGrid1.DataKeyField = "idClasificacion"
+                DataGrid1.DataBind()
+            End If
+        End If
     End Sub
+
+#End Region
+
 End Class

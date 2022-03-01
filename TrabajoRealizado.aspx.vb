@@ -1,7 +1,7 @@
 Imports System.Data.SqlClient
-Imports fsSimaServicios
 Imports System.Globalization
 
+Imports fsSimaServicios
 
 Public Class TrabajoRealizado
     Inherits Page
@@ -53,8 +53,13 @@ Public Class TrabajoRealizado
         Session("CuadroClasificacionStatus") = 0
         Session("UsuarioRealStatus") = 0
 
+        btnImpPorUA.Visible = False
+        btnImpPorUsuario.Visible = False
+
         If Not Page.IsPostBack Then
         Else
+
+
         End If
 
     End Sub
@@ -101,7 +106,7 @@ Public Class TrabajoRealizado
                 Datagrid2.DataKeyField = "idusuarioreal"
                 Datagrid2.DataBind()
 
-                btnImpPorUsuario.Enabled = True
+                btnImpPorUsuario.Visible = True
 
             End If
 
@@ -151,7 +156,7 @@ Public Class TrabajoRealizado
                 DataGrid1.DataKeyField = "idunidadadministrativa"
                 DataGrid1.DataBind()
 
-                btnImpPorUA.Enabled = True
+                btnImpPorUA.Visible = True
 
             End If
 
@@ -166,8 +171,8 @@ Public Class TrabajoRealizado
             Datagrid2.Visible = False
             noHayDatosUnidadLabel.Visible = False
             noHayDatosUsuarioLAbel.Visible = False
-            btnImpPorUA.Enabled = False
-            btnImpPorUsuario.Enabled = False
+            btnImpPorUA.Visible = False
+            btnImpPorUsuario.Visible = False
 
             LlenaTotPorUA()
             LlenaTotPorUsuario()
@@ -176,7 +181,7 @@ Public Class TrabajoRealizado
 
     End Sub
 
-    Private Sub btnImpPorUA_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImpPorUA.Click
+    Private Sub BtnImpPorUA_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImpPorUA.Click
 
         Dim params(1) As SqlParameter
         Dim ds As DataSet
@@ -212,11 +217,11 @@ Public Class TrabajoRealizado
         reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
         reporte.Dispose()
 
-        Accesorios.DescargaReporte(Me, MyFileName, "trabajorealizado.pdf")
+        Accesorios.DescargaReporte(Me, MyFileName, "trabajorealizado.pdf", LongitudMaximaArchivoDescarga)
 
     End Sub
 
-    Private Sub btnImpPorUsuario_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImpPorUsuario.Click
+    Private Sub BtnImpPorUsuario_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImpPorUsuario.Click
 
         Dim params(1) As SqlParameter
         Dim ds As DataSet
@@ -253,7 +258,7 @@ Public Class TrabajoRealizado
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
         Reporte.Dispose()
 
-        Accesorios.DescargaReporte(Me, MyFileName, "trabajousuario.pdf")
+        Accesorios.DescargaReporte(Me, MyFileName, "trabajousuario.pdf", LongitudMaximaArchivoDescarga)
 
     End Sub
 End Class

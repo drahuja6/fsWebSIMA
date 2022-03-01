@@ -95,8 +95,7 @@
 				tabIndex="41" runat="server" Text="Editar" Width="72px"></asp:button>
 			<asp:button id="btnBorrar" style="Z-INDEX: 139; LEFT: 312px; POSITION: absolute; TOP: 472px"
 				tabIndex="42" runat="server" Text="Borrar" Width="72px"></asp:button>
-			<asp:button id="btnCaratula" style="Z-INDEX: 150; LEFT: 536px; POSITION: absolute; TOP: 472px"
-				tabIndex="43" runat="server" Text="Carátula (Barras)" Width="110px" Visible="False"></asp:button>&nbsp;
+			&nbsp;
 			<asp:label id="lblElaborPor" style="Z-INDEX: 140; LEFT: 352px; POSITION: absolute; TOP: 448px"
 				runat="server" Width="128px" BorderStyle="None" Font-Size="XX-Small"></asp:label>&nbsp;
 			<asp:label id="lblUltimaedicion" style="Z-INDEX: 141; LEFT: 592px; POSITION: absolute; TOP: 448px"

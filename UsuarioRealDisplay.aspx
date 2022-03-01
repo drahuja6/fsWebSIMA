@@ -5,55 +5,140 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head runat="server">
 		<title>UsuarioRealDisplay</title>
+		<style type="text/css">
+			.etiqueta-titulo {  
+				font-size: medium;
+				font-weight: 700;
+				font-family: Arial, Helvetica, sans-serif;
+				color: white;
+				background-color: #5D7B9D;
+				vertical-align: central;
+				height: 40px;
+            }  
+			.etiqueta {  
+				font-size: smaller;
+				font-weight:700;
+				font-family: Arial, Helvetica, sans-serif;
+				color:navy;
+				vertical-align:central;
+            }  
+			.textbox {  
+				font-weight: 500;
+				font-size: smaller; 
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			.col {
+				width: 20%;
+				height: 30px;
+			}
+			.col-2 {
+				width: 20%;
+				height: 30px;
+				text-align:right;
+			}
+		</style> 
 	</head>
 	<body>
-		<form id="Form1" method="post" runat="server" bgcolor="#ffffff">
-			<asp:label id="Label1" style="Z-INDEX: 100; LEFT: 8px; POSITION: absolute; TOP: 8px" runat="server"
-				Font-Bold="True" Width="56px" Height="16px">Nombre</asp:label>
-			<asp:button id="btnRegresar" style="Z-INDEX: 123; LEFT: 416px; POSITION: absolute; TOP: 256px"
-				runat="server" Width="72px" Text="Regresar"></asp:button>
-			<asp:label id="lblValidaNombre" style="Z-INDEX: 122; LEFT: 488px; POSITION: absolute; TOP: 8px"
-				runat="server" Width="1px" Height="3px" Visible="False" Text="*" ForeColor="Red">*</asp:label>
-			<asp:label id="lblValidaLogin" style="Z-INDEX: 121; LEFT: 248px; POSITION: absolute; TOP: 40px"
-				runat="server" Width="1px" Height="3px" Visible="False" Text="*" ForeColor="Red">*</asp:label>
-			<asp:label id="lblValidaPassword2" style="Z-INDEX: 120; LEFT: 312px; POSITION: absolute; TOP: 104px"
-				runat="server" Width="1px" Height="3px" Visible="False" Text="*" ForeColor="Red">*</asp:label>
-			<asp:label id="lblValidaPassword1" style="Z-INDEX: 119; LEFT: 312px; POSITION: absolute; TOP: 72px"
-				runat="server" Width="1px" Height="3px" Visible="False" Text="*" ForeColor="Red">*</asp:label>
-			<asp:label id="lblUsuarioRealStatus" style="Z-INDEX: 118; LEFT: 320px; POSITION: absolute; TOP: 40px"
-				runat="server" Font-Bold="False" Width="160px" Text="(SÓLO LECTURA)" ForeColor="Red">(SÓLO LECTURA)</asp:label>
-			<asp:button id="btnCancelar" style="Z-INDEX: 117; LEFT: 408px; POSITION: absolute; TOP: 96px"
-				runat="server" Width="72px" Text="Cancelar" Enabled="False"></asp:button>
-			<asp:button id="btnSalvar" style="Z-INDEX: 116; LEFT: 408px; POSITION: absolute; TOP: 72px"
-				runat="server" Width="72px" Text="Salvar" Enabled="False"></asp:button>
-			<asp:button id="btnBorrar" style="Z-INDEX: 115; LEFT: 296px; POSITION: absolute; TOP: 256px"
-				runat="server" Width="72px" Text="Borrar"></asp:button>
-			<asp:button id="btnEditar" style="Z-INDEX: 113; LEFT: 216px; POSITION: absolute; TOP: 256px"
-				runat="server" Width="72px" Text="Editar"></asp:button>
-			<asp:button id="btnAgregar" style="Z-INDEX: 112; LEFT: 136px; POSITION: absolute; TOP: 256px"
-				runat="server" Width="72px" Text="Agregar"></asp:button>
-			<asp:listbox id="lbxUnidadesAdministrativas" style="Z-INDEX: 111; LEFT: 256px; POSITION: absolute; TOP: 168px"
-				runat="server" Width="232px" Enabled="False" SelectionMode="Multiple"></asp:listbox>
-			<asp:label id="Label6" style="Z-INDEX: 110; LEFT: 8px; POSITION: absolute; TOP: 168px" runat="server"
-				Font-Bold="True" Width="256px" Height="24px">Unidades Administrativas asociadas</asp:label>
-			<asp:dropdownlist id="ddlstUsuarioVirtualAsociado" style="Z-INDEX: 109; LEFT: 216px; POSITION: absolute; TOP: 136px"
-				runat="server" Width="272px" Enabled="False"></asp:dropdownlist>
-			<asp:label id="Label5" style="Z-INDEX: 108; LEFT: 8px; POSITION: absolute; TOP: 136px" runat="server"
-				Font-Bold="True" Width="200px" Height="16px">Usuario Virtual asociado (rol)</asp:label>
-			<asp:label id="Label4" style="Z-INDEX: 107; LEFT: 8px; POSITION: absolute; TOP: 104px" runat="server"
-				Font-Bold="True" Width="144px" Height="16px">Verificar contraseña</asp:label>
-			<asp:textbox id="txtVerificacionContrasena" style="Z-INDEX: 106; LEFT: 160px; POSITION: absolute; TOP: 104px"
-				tabIndex="1" runat="server" Width="152px" Height="20px" Text="" Enabled="False" TextMode="Password"></asp:textbox>
-			<asp:textbox id="txtContrasena" style="Z-INDEX: 105; LEFT: 160px; POSITION: absolute; TOP: 72px"
-				tabIndex="1" runat="server" Width="152px" Height="20px" Text="" Enabled="False" TextMode="Password"></asp:textbox>
-			<asp:label id="Label3" style="Z-INDEX: 104; LEFT: 8px; POSITION: absolute; TOP: 72px" runat="server"
-				Font-Bold="True" Width="80px" Height="16px">Contraseña</asp:label>
-			<asp:label id="Label2" style="Z-INDEX: 103; LEFT: 8px; POSITION: absolute; TOP: 40px" runat="server"
-				Font-Bold="True" Width="56px" Height="16px">Login</asp:label>
-			<asp:textbox id="txtLogin" style="Z-INDEX: 102; LEFT: 96px; POSITION: absolute; TOP: 40px" tabIndex="1"
-				runat="server" Width="152px" Height="20px" Text="" Enabled="False"></asp:textbox>
-			<asp:textbox id="txtNombre" style="Z-INDEX: 101; LEFT: 96px; POSITION: absolute; TOP: 8px" tabIndex="1"
-				runat="server" Width="392px" Height="20px" Text="" Enabled="False"></asp:textbox>
+		<form id="Form1" method="post" runat="server">
+			<div>
+				<table style="width:500px">
+					<tr>
+						<th class="etiqueta-titulo" colspan="6">
+							<asp:label id="tituloLabel" runat="server" Text="Información de usuario"/>
+						</th>
+					</tr>
+					<tr>
+						<td class="col-2">
+							<asp:label CssClass="etiqueta" id="Label1" runat="server" Text="Descripción:"/>
+						</td>
+						<td class="col" colspan="5">
+							<asp:textbox CssClass="textbox" id="txtNombre" runat="server" Width="370px" Enabled="False" TabIndex="1"/>
+							<asp:label id="lblValidaNombre" runat="server" Visible="False" Text="*" ForeColor="Red"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-2">
+							<asp:label CssClass="etiqueta" id="Label2" runat="server" Text="Usuario:"/>
+						</td>
+						<td class="col" colspan="2">
+							<asp:textbox CssClass="textbox" id="txtLogin" tabIndex="2"	runat="server" Enabled="False"/>
+						</td>
+						<td>
+							<asp:label id="lblValidaLogin" runat="server" Visible="False" Text="*" ForeColor="Red"/>
+						</td>
+						<td class="col-2" colspan="2">
+							<asp:label CssClass="etiqueta" id="lblUsuarioRealStatus" runat="server" Text="(SÓLO LECTURA)" ForeColor="Red"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-2">
+							<asp:label CssClass="etiqueta" id="Label3" runat="server" Text="Contraseña:" />
+						</td>
+						<td class="col" colspan="2">
+							<asp:textbox CssClass="textbox" id="txtContrasena" tabIndex="3" runat="server" Enabled="False" TextMode="Password"/>
+						</td>
+						<td>
+							<asp:label id="lblValidaPassword1" runat="server" Visible="False" Text="*" ForeColor="Red"/>
+						</td>
+						<td class="col"></td>
+						<td class="col"></td>
+					</tr>
+					<tr>
+						<td class="col-2">
+							<asp:label CssClass="etiqueta" id="Label4" runat="server" Text="Verificar contraseña:" />
+						</td>
+						<td class="col" colspan="2">
+							<asp:textbox CssClass="textbox" id="txtVerificacionContrasena" runat="server" Enabled="False" TextMode="Password" TabIndex="4"/>
+						</td>
+						<td>
+							<asp:label id="lblValidaPassword2" runat="server" Visible="False" Text="*" ForeColor="Red"/>						
+						</td>
+						<td class="col"></td>
+						<td class="col">
+							<asp:button CssClass="etiqueta" id="btnSalvar" runat="server" Width="72px" Text="Salvar" Enabled="False" TabIndex="7"/>							
+						</td>
+					</tr>
+					<tr>
+						<td class="col-2">
+							<asp:label CssClass="etiqueta" id="Label5" runat="server" Text="Rol asociado:" />
+						</td>
+						<td class="col" colspan="3">
+							<asp:dropdownlist id="ddlstUsuarioVirtualAsociado" runat="server" Enabled="False" TabIndex="5"/>
+						</td>
+						<td class="col"></td>
+						<td class="col">
+							<asp:button id="btnCancelar" runat="server" Width="72px" Text="Cancelar" Enabled="False" TabIndex="8"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-2">
+							<asp:label CssClass="etiqueta" id="Label6" runat="server" Text="Unidades Administrativas asociadas:" />
+						</td>
+						<td class="col" colspan="5">
+							<asp:listbox id="lbxUnidadesAdministrativas" runat="server" Width="232px" Enabled="False" SelectionMode="Multiple" TabIndex="6"/>
+						</td>
+					</tr>
+					<tr>
+						<td><br /></td>
+					</tr>
+					<tr>
+						<td class="col"></td>
+						<td class="col">
+							<asp:button CssClass="etiqueta" id="btnAgregar" runat="server" Width="72px" Text="Agregar" TabIndex="9"/>
+						</td>
+						<td class="col">
+							<asp:button CssClass="etiqueta" id="btnEditar" runat="server" Width="72px" Text="Editar" TabIndex="10"/>
+						</td>
+						<td class="col">
+							<asp:button CssClass="etiqueta" id="btnBorrar" runat="server" Width="72px" Text="Borrar" TabIndex="11"/>
+						</td>
+						<td class="col"></td>
+						<td	class="col">
+							<asp:button CssClass="etiqueta" id="btnRegresar" runat="server" Width="72px" Text="Regresar" TabIndex="12"/>
+						</td>
+					</tr>
+				</table>
+			</div>
 		</form>
 	</body>
 </html>

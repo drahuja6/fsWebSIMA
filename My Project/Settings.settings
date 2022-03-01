@@ -14,5 +14,8 @@
     <Setting Name="BaseDatos" Type="System.String" Scope="Application">
       <Value Profile="(Default)">SIMA_Senado</Value>
     </Setting>
+    <Setting Name="LongitudMaximaArchivoDescarga" Type="System.Int64" Scope="Application">
+      <Value Profile="(Default)">20971520</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
