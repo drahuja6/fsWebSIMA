@@ -74,12 +74,13 @@ Public Class BuscarExpediente
     Protected WithEvents txtObsTr As TextBox
     Protected WithEvents Label17 As Label
     Protected WithEvents ordenamientoDropDownList As DropDownList
+    Protected WithEvents ddlCodigosUsuario As DropDownList
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
-    Private designerPlaceholderDeclaration As System.Object
+    Private designerPlaceholderDeclaration As Object
 
-    Private Sub Page_Init(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Init
+    Private Sub Page_Init(sender As Object, ByVal e As EventArgs) Handles MyBase.Init
         'CODEGEN: el Diseñador de Web Forms requiere esta llamada de método
         'No la modifique con el editor de código.
         InitializeComponent()
@@ -115,7 +116,10 @@ Public Class BuscarExpediente
 
         If Not Page.IsPostBack Then
             Accesorios.CargaListBox(lbUnidAdmin, CadenaConexion, "UnidadesAdministrativasDeUnUsuarioReal", Session("IDUsuarioReal"), "NombreCorto", "idUnidadAdministrativa")
+            Accesorios.CargaDropDownList(ddlCodigosUsuario, CadenaConexion, "CargaUsuarioRealCodigosRelaciones", Session("IDUsuarioReal"), "Codigo", "idClasificacion")
+
             lbUnidAdmin.SelectedIndex = 0
+            ddlCodigosUsuario.SelectedIndex = 0
 
             Dim listaOrdenamiento As Dictionary(Of String, String) =
                 New Dictionary(Of String, String) From
@@ -126,7 +130,9 @@ Public Class BuscarExpediente
                     {" campoAdicional2, nombre", "Observaciones"},
                     {" campoAdicional1, nombre ", "Título"},
                     {" fechaApertura, nombre ", "Apertura"},
-                    {" nombreCorto, nombre ", "Unidad Admin."}
+                    {" nombreCorto, nombre ", "Unidad Admin."},
+                    {" control2 ", "Consecutivo área"},
+                    {" control1 ", "Consecutivo general"}
                 }
 
             ordenamientoDropDownList.DataSource = listaOrdenamiento
@@ -699,7 +705,6 @@ Public Class BuscarExpediente
 
     End Sub
 
-
     Private Function PreparaBusqueda() As String
         Dim operador As String
         Dim lista As String
@@ -727,7 +732,8 @@ Public Class BuscarExpediente
         End If
 
         'Codigo
-        condicion = AgregaCondicion(condicion, CStr(IIf(Trim(txtCodigo.Text) <> "", "dbo.fnNombreDeJerarquia(e.idClasificacion) " & operador & " @Codigo ", "")))
+        'condicion = AgregaCondicion(condicion, CStr(IIf(Trim(txtCodigo.Text) <> "", "dbo.fnNombreDeJerarquia(e.idClasificacion) " & operador & " @Codigo ", "")))
+        condicion = AgregaCondicion(condicion, IIf(ddlCodigosUsuario.SelectedIndex > 0, " e.idClasificacion " & operador & " @Codigo ", ""))
 
         'Número de expediente (nombre)
         If Trim(txtExpInic.Text) <> "" And Trim(txtExpFinal.Text) <> "" Then
@@ -827,7 +833,8 @@ Public Class BuscarExpediente
         paramsList.Add(New SqlClient.SqlParameter("SQLString", sqlString))
 
         'Codigo
-        paramsList.Add(AgregaParametro(txtCodigo.Text, "Codigo", busquedaExacta))
+        'paramsList.Add(AgregaParametro(txtCodigo.Text, "Codigo", busquedaExacta))
+        paramsList.Add(AgregaParametro(ddlCodigosUsuario.SelectedValue, "Codigo", busquedaExacta))
 
         'Expediente
         paramsList.Add(AgregaParametro(txtExpInic.Text, "Expediente", busquedaExacta))

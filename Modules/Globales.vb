@@ -9,7 +9,7 @@
 #End Region
 
 #Region "Variables globales"
-    Public ReadOnly VersionNumero As String = "1.0.20.2059"
+    Public ReadOnly VersionNumero As String = "1.0.21.2060"
 
     Public CadenaConexion As String
     Public ListaIdExpedientes As New Generic.List(Of Integer)

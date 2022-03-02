@@ -31,4 +31,6 @@ Fundamento		String	100
 Estatus			String	2
 CajaAnterior	String	25
 Ref				String	25
+Control1		String	25
+Control2		String	25
 
