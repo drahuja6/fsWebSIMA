@@ -1,6 +1,5 @@
 Imports System.Text.RegularExpressions
 Imports System.Data.OleDb
-Imports System.Data.SqlClient
 Imports System.IO
 
 Imports fsSimaServicios
@@ -227,11 +226,11 @@ Public Class DisplayExpediente
     'Rutina para leer y llenar el grid con los documentos asociados a un expediente
     Function FillPDF(idExpediente As Integer) As Boolean
 
-        Dim params(0) As SqlParameter
+        Dim params(0) As OleDbParameter
         Dim dsPDF As DataSet
         Dim sqlCliente As New ClienteSQL(CadenaConexion)
 
-        params(0) = New SqlParameter("@idExpediente", idExpediente)
+        params(0) = New OleDbParameter("@idExpediente", idExpediente)
 
         dsPDF = sqlCliente.ObtenerRegistros(params, "ExpedientesPDF_SELECT_ALL")
 
@@ -2765,11 +2764,11 @@ Public Class DisplayExpediente
     Private Sub BtnCaratula2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCaratula2.Click
         Dim ds As DataSet
         Dim sqlCliente As New ClienteSQL(CadenaConexion)
-        Dim params(0) As SqlParameter
+        Dim params(0) As OleDbParameter
 
         Dim Reporte As New Caratula02
 
-        params(0) = New SqlParameter("@IdList", Session("IDExpedienteActivo").ToString)
+        params(0) = New OleDbParameter("@IdList", Session("IDExpedienteActivo").ToString)
 
         ds = sqlCliente.ObtenerRegistros(params, "CargaFormatoCaratula")
 
@@ -2786,7 +2785,7 @@ Public Class DisplayExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaReporte(Me, MyFileName, "lomoslote.pdf", LongitudMaximaArchivoDescarga)
+            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf")
 
         End If
 
@@ -2796,10 +2795,10 @@ Public Class DisplayExpediente
 
         Dim ds As DataSet
         Dim sqlCliente As New ClienteSQL(CadenaConexion)
-        Dim params(0) As SqlParameter
+        Dim params(0) As OleDbParameter
         Dim Reporte As New Lomo
 
-        params(0) = New SqlParameter("@IdList", Session("IDExpedienteActivo").ToString)
+        params(0) = New OleDbParameter("@IdList", Session("IDExpedienteActivo").ToString)
 
         ds = sqlCliente.ObtenerRegistros(params, "CargaFormatoCaratula")
 
@@ -2815,7 +2814,7 @@ Public Class DisplayExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaReporte(Me, MyFileName, "lomoslote.pdf", LongitudMaximaArchivoDescarga)
+            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf")
 
         End If
 

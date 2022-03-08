@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+Imports System.Data.OleDb
 Imports System.Globalization
 
 Imports fsSimaServicios
@@ -65,14 +65,14 @@ Public Class TrabajoRealizado
     End Sub
 
     Sub LlenaTotPorUsuario()
-        Dim params(1) As SqlParameter
+        Dim params(1) As OleDbParameter
         Dim dsExpedientes As DataSet
         Dim culture As CultureInfo = CultureInfo.CreateSpecificCulture("es-MX")
 
         Dim sqlCliente As New ClienteSQL(CadenaConexion)
 
         'Fecha de Apertura inicial
-        params(0) = New SqlParameter("@FechaInicial", SqlDbType.Date)
+        params(0) = New OleDbParameter("@FechaInicial", SqlDbType.Date)
         If Len(Trim(txtFApertInic.Text)) = 0 Then
             params(0).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", _culture)
         Else
@@ -80,7 +80,7 @@ Public Class TrabajoRealizado
         End If
 
         'Fecha de Apertura final
-        params(1) = New SqlParameter("@FechaFinal", SqlDbType.Date)
+        params(1) = New OleDbParameter("@FechaFinal", SqlDbType.Date)
         If Len(Trim(txtFApertFinal.Text)) = 0 Then
             params(1).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", _culture)
         Else
@@ -115,13 +115,13 @@ Public Class TrabajoRealizado
     End Sub
 
     Sub LlenaTotPorUA()
-        Dim params(1) As SqlParameter
+        Dim params(1) As OleDbParameter
         Dim dsExpedientes As DataSet
 
         Dim sqlCliente As New ClienteSQL(CadenaConexion)
 
         'Fecha de Apertura inicial
-        params(0) = New SqlParameter("@FechaInicial", SqlDbType.Date)
+        params(0) = New OleDbParameter("@FechaInicial", SqlDbType.Date)
         If Len(Trim(txtFApertInic.Text)) = 0 Then
             params(0).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", _culture)
         Else
@@ -129,7 +129,7 @@ Public Class TrabajoRealizado
         End If
 
         'Fecha de Apertura final
-        params(1) = New SqlParameter("@FechaFinal", SqlDbType.Date)
+        params(1) = New OleDbParameter("@FechaFinal", SqlDbType.Date)
         If Len(Trim(txtFApertFinal.Text)) = 0 Then
             params(1).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", _culture)
         Else
@@ -183,7 +183,7 @@ Public Class TrabajoRealizado
 
     Private Sub BtnImpPorUA_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImpPorUA.Click
 
-        Dim params(1) As SqlParameter
+        Dim params(1) As OleDbParameter
         Dim ds As DataSet
 
         Dim sqlCliente As New ClienteSQL(CadenaConexion)
@@ -191,7 +191,7 @@ Public Class TrabajoRealizado
         Dim reporte As New AuditoriaPorUA
 
         'Fecha de Apertura inicial
-        params(0) = New SqlParameter("@FechaInicial", SqlDbType.Date)
+        params(0) = New OleDbParameter("@FechaInicial", SqlDbType.Date)
         If Len(Trim(txtFApertInic.Text)) = 0 Then
             params(0).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", _culture)
         Else
@@ -199,7 +199,7 @@ Public Class TrabajoRealizado
         End If
 
         'Fecha de Apertura final
-        params(1) = New SqlParameter("@FechaFinal", SqlDbType.Date)
+        params(1) = New OleDbParameter("@FechaFinal", SqlDbType.Date)
         If Len(Trim(txtFApertFinal.Text)) = 0 Then
             params(1).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", _culture)
         Else
@@ -217,13 +217,13 @@ Public Class TrabajoRealizado
         reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
         reporte.Dispose()
 
-        Accesorios.DescargaReporte(Me, MyFileName, "trabajorealizado.pdf", LongitudMaximaArchivoDescarga)
+        Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "trabajorealizado.pdf")
 
     End Sub
 
     Private Sub BtnImpPorUsuario_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImpPorUsuario.Click
 
-        Dim params(1) As SqlParameter
+        Dim params(1) As OleDbParameter
         Dim ds As DataSet
 
         Dim sqlCliente As New ClienteSQL(CadenaConexion)
@@ -231,7 +231,7 @@ Public Class TrabajoRealizado
         Dim Reporte As New AuditoriaPorUsuario
 
         'Fecha de Apertura inicial
-        params(0) = New SqlParameter("@FechaInicial", SqlDbType.Date)
+        params(0) = New OleDbParameter("@FechaInicial", SqlDbType.Date)
         If Len(Trim(txtFApertInic.Text)) = 0 Then
             params(0).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", _culture)
         Else
@@ -239,7 +239,7 @@ Public Class TrabajoRealizado
         End If
 
         'Fecha de Apertura final
-        params(1) = New SqlParameter("@FechaFinal", SqlDbType.Date)
+        params(1) = New OleDbParameter("@FechaFinal", SqlDbType.Date)
         If Len(Trim(txtFApertFinal.Text)) = 0 Then
             params(1).Value = DateTime.ParseExact("1/1/1900", "d/M/yyyy", _culture)
         Else
@@ -258,7 +258,7 @@ Public Class TrabajoRealizado
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
         Reporte.Dispose()
 
-        Accesorios.DescargaReporte(Me, MyFileName, "trabajousuario.pdf", LongitudMaximaArchivoDescarga)
+        Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "trabajousuario.pdf")
 
     End Sub
 End Class

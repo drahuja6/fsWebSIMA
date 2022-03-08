@@ -239,7 +239,7 @@ Public Class BuscarExpediente
 
     Private Sub BtnImprimeGuiaDeExpedientes_Click(sender As Object, ByVal e As EventArgs) Handles btnImprimeGuiaDeExpedientes.Click
 
-        Dim params(1) As SqlClient.SqlParameter
+        Dim params(1) As OleDbParameter
         Dim ds As DataSet
 
         Dim Reporte As New GuiaDeExpedientes
@@ -251,8 +251,8 @@ Public Class BuscarExpediente
             expedientes.Append(",")
         Next
 
-        params(0) = New SqlClient.SqlParameter("@IDList", expedientes.ToString)
-        params(1) = New SqlClient.SqlParameter("@Orden", OrdenExpedientes)
+        params(0) = New OleDbParameter("@IDList", expedientes.ToString)
+        params(1) = New OleDbParameter("@Orden", OrdenExpedientes)
 
         ds = New ClienteSQL(CadenaConexion).ObtenerRegistros(params, "GuiaDeExpedientesExistentes")
 
@@ -270,7 +270,7 @@ Public Class BuscarExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaReporte(Me, MyFileName, "guiaexpedientes.pdf", LongitudMaximaArchivoDescarga)
+            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "guiaexpedientes.pdf")
 
         End If
 
@@ -278,7 +278,7 @@ Public Class BuscarExpediente
 
     Private Sub BtnImprimeListadoDeExpedientes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimeListadoDeExpedientes.Click
 
-        Dim params(1) As SqlClient.SqlParameter
+        Dim params(1) As OleDbParameter
         Dim ds As DataSet
 
         Dim Reporte As New ListaDeExpedientes
@@ -290,8 +290,8 @@ Public Class BuscarExpediente
             expedientes.Append(",")
         Next
 
-        params(0) = New SqlClient.SqlParameter("@IDList", expedientes.ToString)
-        params(1) = New SqlClient.SqlParameter("@Orden", OrdenExpedientes)
+        params(0) = New OleDbParameter("@IDList", expedientes.ToString)
+        params(1) = New OleDbParameter("@Orden", OrdenExpedientes)
 
         ds = New ClienteSQL(CadenaConexion).ObtenerRegistros(params, "ListadoDeExpedientes")
 
@@ -307,13 +307,13 @@ Public Class BuscarExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaReporte(Me, MyFileName, "listaexpedientes.pdf", LongitudMaximaArchivoDescarga)
+            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "listaexpedientes.pdf")
 
         End If
     End Sub
 
     Private Sub BtnCaratulasNoCredito_Click(sender As Object, e As EventArgs) Handles btnCaratulasNoCredito.Click
-        Dim params(1) As SqlClient.SqlParameter
+        Dim params(1) As OleDbParameter
         Dim ds As DataSet
 
         Dim Reporte As New Caratula02
@@ -325,8 +325,8 @@ Public Class BuscarExpediente
             expedientes.Append(",")
         Next
 
-        params(0) = New SqlClient.SqlParameter("@IDList", expedientes.ToString)
-        params(1) = New SqlClient.SqlParameter("@Orden", OrdenExpedientes)
+        params(0) = New OleDbParameter("@IDList", expedientes.ToString)
+        params(1) = New OleDbParameter("@Orden", OrdenExpedientes)
 
         ds = New ClienteSQL(CadenaConexion).ObtenerRegistros(params, "CargaFormatoCaratula")
 
@@ -343,14 +343,14 @@ Public Class BuscarExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaReporte(Me, MyFileName, "caratulaslote.pdf", LongitudMaximaArchivoDescarga)
+            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "caratulaslote.pdf")
 
         End If
 
     End Sub
 
     Private Sub BtnEtiquetas_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnEtiquetas.Click
-        Dim params(1) As SqlClient.SqlParameter
+        Dim params(1) As OleDbParameter
         Dim ds As DataSet
 
         Dim Reporte As New Etiquetas
@@ -362,8 +362,8 @@ Public Class BuscarExpediente
             expedientes.Append(",")
         Next
 
-        params(0) = New SqlClient.SqlParameter("@IDList", expedientes.ToString)
-        params(1) = New SqlClient.SqlParameter("@Orden", OrdenExpedientes)
+        params(0) = New OleDbParameter("@IDList", expedientes.ToString)
+        params(1) = New OleDbParameter("@Orden", OrdenExpedientes)
 
         ds = New ClienteSQL(CadenaConexion).ObtenerRegistros(params, "ListadoDeExpedientes")
 
@@ -378,13 +378,13 @@ Public Class BuscarExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaReporte(Me, MyFileName, "etiquetas.pdf", LongitudMaximaArchivoDescarga)
+            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "etiquetas.pdf")
 
         End If
     End Sub
 
     Private Sub BtnLomos_Click(sender As Object, e As EventArgs) Handles btnLomos.Click
-        Dim params(1) As SqlClient.SqlParameter
+        Dim params(1) As OleDbParameter
         Dim ds As DataSet
 
         Dim Reporte As New Lomo
@@ -396,8 +396,8 @@ Public Class BuscarExpediente
             expedientes.Append(",")
         Next
 
-        params(0) = New SqlClient.SqlParameter("@IDList", expedientes.ToString)
-        params(1) = New SqlClient.SqlParameter("@Orden", OrdenExpedientes)
+        params(0) = New OleDbParameter("@IDList", expedientes.ToString)
+        params(1) = New OleDbParameter("@Orden", OrdenExpedientes)
 
         ds = New ClienteSQL(CadenaConexion).ObtenerRegistros(params, "CargaFormatoCaratula")
 
@@ -413,7 +413,7 @@ Public Class BuscarExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaReporte(Me, MyFileName, "lomoslote.pdf", LongitudMaximaArchivoDescarga)
+            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf")
 
         End If
 
@@ -826,11 +826,11 @@ Public Class BuscarExpediente
         Return condicion
     End Function
 
-    Private Function PreparaParametros(sqlString As String) As List(Of SqlClient.SqlParameter)
-        Dim paramsList As New List(Of SqlClient.SqlParameter)
+    Private Function PreparaParametros(sqlString As String) As List(Of OleDbParameter)
+        Dim paramsList As New List(Of OleDbParameter)
         Dim busquedaExacta As Boolean = cbBusqExacta.Checked
 
-        paramsList.Add(New SqlClient.SqlParameter("SQLString", sqlString))
+        paramsList.Add(New OleDbParameter("SQLString", sqlString))
 
         'Codigo
         'paramsList.Add(AgregaParametro(txtCodigo.Text, "Codigo", busquedaExacta))
@@ -869,24 +869,24 @@ Public Class BuscarExpediente
         'Le tengo que pasar los dos parámetros de fecha, aunque no los use. Si no los uso, no aparecen en la cadena SQL generada.
         'Fecha de Apertura inicial
         If Len(Trim(txtFApertInic.Text)) = 0 Then
-            paramsList.Add(New SqlClient.SqlParameter("FechaInicial", DateTime.ParseExact("1/1/2000", "d/M/yyyy", Nothing)))
+            paramsList.Add(New OleDbParameter("FechaInicial", DateTime.ParseExact("1/1/2000", "d/M/yyyy", Nothing)))
         Else
-            paramsList.Add(New SqlClient.SqlParameter("FechaInicial", DateTime.ParseExact(Trim(txtFApertInic.Text), "d/M/yyyy", Nothing)))
+            paramsList.Add(New OleDbParameter("FechaInicial", DateTime.ParseExact(Trim(txtFApertInic.Text), "d/M/yyyy", Nothing)))
         End If
 
         'Fecha de Apertura final
         If Len(Trim(txtFApertFinal.Text)) = 0 Then
-            paramsList.Add(New SqlClient.SqlParameter("FechaFinal", DateTime.ParseExact("1/1/2000", "d/M/yyyy", Nothing)))
+            paramsList.Add(New OleDbParameter("FechaFinal", DateTime.ParseExact("1/1/2000", "d/M/yyyy", Nothing)))
         Else
-            paramsList.Add(New SqlClient.SqlParameter("FechaFinal", DateTime.ParseExact(Trim(txtFApertFinal.Text), "d/M/yyyy", Nothing)))
+            paramsList.Add(New OleDbParameter("FechaFinal", DateTime.ParseExact(Trim(txtFApertFinal.Text), "d/M/yyyy", Nothing)))
         End If
 
         Return paramsList
     End Function
 
-    Private Function AgregaParametro(valor As String, paramNombre As String, busquedaExacta As Boolean) As SqlClient.SqlParameter
+    Private Function AgregaParametro(valor As String, paramNombre As String, busquedaExacta As Boolean) As OleDbParameter
 
-        Dim param As New SqlClient.SqlParameter(paramNombre, valor)
+        Dim param As New OleDbParameter(paramNombre, valor)
 
         If Not busquedaExacta Then
             param.Value = IIf(Trim(valor) <> "", "%" & Trim(valor) & "%", "%")
@@ -898,10 +898,10 @@ Public Class BuscarExpediente
 
     Sub ActualizaStatusDeExpedientes()
 
-        Dim params(0) As SqlClient.SqlParameter
+        Dim params(0) As OleDbParameter
         Dim sqlCliente As New ClienteSQL(CadenaConexion)
 
-        params(0) = New SqlClient.SqlParameter("@FechaDeCorrida", Now)
+        params(0) = New OleDbParameter("@FechaDeCorrida", Now)
 
         sqlCliente.EjecutaProcedimiento(params, "ActualizaEstatusExpedientesVencidos")
 

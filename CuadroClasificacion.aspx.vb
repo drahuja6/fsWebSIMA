@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+Imports System.Data.OleDb
 
 Imports fsSimaServicios
 
@@ -75,11 +75,11 @@ Public Class CuadroClasificacion
 
     Sub FillCuadro(filtro As String)
 
-        Dim params(0) As SqlParameter
+        Dim params(0) As OleDbParameter
         Dim sqlCliente As New ClienteSQL(CadenaConexion)
         Dim dsCuadroClasificacion As DataSet
 
-        params(0) = New SqlParameter("@CadenaABuscar", filtro)
+        params(0) = New OleDbParameter("@CadenaABuscar", filtro)
 
         dsCuadroClasificacion = sqlCliente.ObtenerRegistros(params, "SubArbolDeCuentasOrdenado3")
 

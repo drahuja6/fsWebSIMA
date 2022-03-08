@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+Imports System.Data.OleDb
 
 Imports fsSimaServicios
 
@@ -91,12 +91,12 @@ Public Class UsuarioRealBuscar
 #Region "Métodos privados"
     Sub FillCuadroUsuarios(cadenaABuscar As String)
 
-        Dim params(0) As SqlParameter
+        Dim params(0) As OleDbParameter
         Dim sqlCliente As New ClienteSQL(CadenaConexion)
 
         Dim dsUsuarioReal As DataSet
 
-        params(0) = New SqlParameter("@CadenaABuscar", cadenaABuscar)
+        params(0) = New OleDbParameter("@CadenaABuscar", cadenaABuscar)
 
         dsUsuarioReal = sqlCliente.ObtenerRegistros(params, "UsuariosReales_FILTERED")
 

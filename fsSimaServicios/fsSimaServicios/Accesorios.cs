@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
+using System.Data.OleDb;
+
 using System.IO;
 
 namespace fsSimaServicios
@@ -13,8 +13,8 @@ namespace fsSimaServicios
         {
             try
             {
-                var parametros = new SqlParameter[1];
-                parametros[0] = new SqlParameter("@IdParameter", idParametro);
+                var parametros = new OleDbParameter[1];
+                parametros[0] = new OleDbParameter("@IdParameter", idParametro);
 
                 //Ejecuto el sp y obtengo el DataSet
                 var ds = new ClienteSQL(cadenaConexion).ObtenerRegistros(parametros, storedProcedure);
@@ -35,8 +35,8 @@ namespace fsSimaServicios
         {
             try
             {
-                var parametros = new SqlParameter[1];
-                parametros[0] = new SqlParameter("@IdParameter", idParametro);
+                var parametros = new OleDbParameter[1];
+                parametros[0] = new OleDbParameter("@IdParameter", idParametro);
 
                 //Ejecuto el sp y obtengo el DataSet
                 var ds = new ClienteSQL(cadenaConexion).ObtenerRegistros(parametros, storedProcedure);
@@ -64,6 +64,9 @@ namespace fsSimaServicios
                     case ".pdf":
                         response.ContentType = "application/pdf";
                         break;
+                    case ".xls":
+                        response.ContentType = "application/vnd.ms-excel";
+                        break;
                     default:
                         response.ContentType = "application/pdf";
                         break;
@@ -76,21 +79,13 @@ namespace fsSimaServicios
                 response.WriteFile(archivo);
                 response.Flush();
 
+                File.Delete(archivo);
+
                 response.End();
             }
             else
                 throw new HttpException(404, "Archivo no localizado");
         }
-
-        //Descarga PDF generado por el reporteador Crystal Reports.
-        public static void DescargaReporte(Page pagina, string archivoTemp, string archivoPdf, long longitudMaximaArchivo)
-        {
-            if (File.Exists(archivoTemp))
-            {
-                DescargaArchivo(pagina.Response, archivoTemp, longitudMaximaArchivo, archivoPdf);
-
-                File.Delete(archivoTemp);
-            }
-        }
     }
 }
+
