@@ -98,6 +98,15 @@ Namespace My
                 Return CType(Me("LongitudMaximaArchivoDescarga"),Long)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("5000")>  _
+        Public ReadOnly Property RegistrosMaximos() As String
+            Get
+                Return CType(Me("RegistrosMaximos"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 
