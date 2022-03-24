@@ -123,8 +123,8 @@ Public Class Login
             'Ejecuto el sp
             cmd.ExecuteNonQuery()
 
-            Session("UsuarioVirtualConnString") = "Provider=SQLOLEDB;Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & scrambler.Scramble(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value), Chr(25) & Chr(26)) & ";Persist Security Info=True;Connect Timeout=15;"
-            CadenaConexion = "Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & scrambler.Scramble(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value), Chr(25) & Chr(26)) & ";Persist Security Info=True;Connect Timeout=15;"
+            Session("UsuarioVirtualConnString") = "Provider=SQLOLEDB;Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & scrambler.Scramble(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value), Chr(25) & Chr(26)) & ";Persist Security Info=True;Connect Timeout=15;Encryption=True;"
+            CadenaConexion = "Provider=SQLOLEDB;Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & scrambler.Scramble(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value), Chr(25) & Chr(26)) & ";Persist Security Info=True;Connect Timeout=15;Encryption=True;"
 
             cn.Close()
 
@@ -151,7 +151,7 @@ Public Class Login
     Private Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         'Introducir aquí el código de usuario al cargar la página
 
-        Session("AdminConnString") = "Provider=SQLOLEDB;Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;UID=USOC;Pwd=f5*HIDDENUSER;Persist Security Info=True;Connect Timeout=15;Database=" & BaseDatos & ";"
+        Session("AdminConnString") = "Provider=SQLOLEDB;Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;UID=USOC;Pwd=f5*HIDDENUSER;Persist Security Info=True;Connect Timeout=15;Database=" & BaseDatos & ";Encryption=True;"
 
         Session("OrdenDeGridDeExpedientes") = " e.Nombre "
         'Estas dos variables de sesión se dejan por compatibilidad en lugar de la variable global definida en Globales.vb

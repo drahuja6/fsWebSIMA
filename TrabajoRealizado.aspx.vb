@@ -217,7 +217,7 @@ Public Class TrabajoRealizado
         reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
         reporte.Dispose()
 
-        Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "trabajorealizado.pdf")
+        Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "trabajorealizado.pdf", True)
 
     End Sub
 
@@ -258,7 +258,7 @@ Public Class TrabajoRealizado
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
         Reporte.Dispose()
 
-        Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "trabajousuario.pdf")
+        Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "trabajousuario.pdf", True)
 
     End Sub
 End Class

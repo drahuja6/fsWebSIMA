@@ -8,6 +8,7 @@ Module Globales
     Public ReadOnly BaseDatos As String = My.Settings.BaseDatos
     Public ReadOnly RegistrosMaximos As Long = My.Settings.RegistrosMaximos
     Public ReadOnly LongitudMaximaArchivoDescarga As Long = My.Settings.LongitudMaximaArchivoDescarga
+    Public ReadOnly ImagenNuevaVentana As Boolean = My.Settings.ImagenNuevaVentana
 
 #End Region
 

@@ -203,6 +203,13 @@
       <DependentUpon>CuadroClasificacionStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DescargaArchivo.aspx.designer.vb">
+      <DependentUpon>DescargaArchivo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DescargaArchivo.aspx.vb">
+      <DependentUpon>DescargaArchivo.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="DisplayExpediente.aspx.vb">
       <DependentUpon>DisplayExpediente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -338,6 +345,7 @@
     <Content Include="ConcABaja.aspx" />
     <Content Include="CuadroClasificacion.aspx" />
     <Content Include="CuadroClasificacionStatus.aspx" />
+    <Content Include="DescargaArchivo.aspx" />
     <Content Include="DisplayExpediente.aspx" />
     <Content Include="ErrorPages\Error404.aspx" />
     <Content Include="ErrorPages\ErrorGeneral.aspx" />
@@ -373,6 +381,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BuscarExpediente.aspx.resx">
       <DependentUpon>BuscarExpediente.aspx.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Caratula02.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -384,6 +393,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConcABaja.aspx.resx">
       <DependentUpon>ConcABaja.aspx.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DisplayExpediente.aspx.resx">
       <DependentUpon>DisplayExpediente.aspx.vb</DependentUpon>

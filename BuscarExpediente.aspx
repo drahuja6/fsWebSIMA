@@ -119,13 +119,46 @@
                 width: 106px;
                 height: 24px;
             }
+            .auto-style18 {
+                z-index: 127;
+                left: 8px;
+                width: 10%;
+                position: absolute;
+                top: 160px;
+                height: -13px;
+            }
+            .auto-style19 {
+                right: 883px;
+            }
+            .auto-style20 {
+                z-index: 108;
+                left: 8px;
+                position: absolute;
+                top: 168px;
+                width: 196px;
+            }
+            .auto-style21 {
+                z-index: 100;
+                left: 8px;
+                position: absolute;
+                top: 27px;
+                height: 40px;
+            }
+            .auto-style22 {
+                z-index: 160;
+                left: 8px;
+                position: absolute;
+                top: 9px;
+            }
         </style>
 	</HEAD>
 	<body bgColor="#ffffff" style="font-size:small">
 		<form id="Form1" method="post" runat="server" style="font-size:small" onsubmit="return setHourglass()">
 			<div>
-				<asp:listbox id="lbUnidAdmin" style="Z-INDEX: 100; LEFT: 8px; POSITION: absolute; TOP: 8px" tabIndex="1"
-					runat="server" Height="64px" Width="200px" SelectionMode="Multiple" />
+				<asp:label id="Label18" runat="server"
+					Height="16px" Visible="true" Text="Unidades Administrativas" CssClass="auto-style22" />
+				<asp:listbox id="lbUnidAdmin" tabIndex="1"
+					runat="server" Width="200px" SelectionMode="Multiple" CssClass="auto-style21" />
 				<asp:DropDownList ID="ddlCodigosUsuario" runat="server" CssClass="auto-style17" />
 				<asp:label id="Label17" style="Z-INDEX: 160; LEFT: 8px; POSITION: absolute; TOP: 416px" runat="server"
 					Height="16px" Width="48px" Visible="false">ObsTr:</asp:label>
@@ -169,28 +202,28 @@
 				<asp:label id="Label2" style="Z-INDEX: 103; LEFT: 8px; POSITION: absolute; TOP: 97px" runat="server"
 					Height="16px" Width="208px">Fecha de apertura (dd/mm/aaaa):</asp:label>
 				<asp:label id="Label4" style="Z-INDEX: 104; LEFT: 8px; POSITION: absolute; TOP: 120px" runat="server"
-					Height="16px" Width="40px">Inicial</asp:label>
+					Height="16px" Width="40px">Desde:</asp:label>
 				<asp:textbox id="txtFApertInic" style="Z-INDEX: 105; LEFT: 48px; POSITION: absolute; TOP: 120px"
 					tabIndex="3" runat="server" Height="20px" Width="160px" BorderStyle="Ridge" MaxLength="10"></asp:textbox>&nbsp;
 				<asp:textbox id="txtFApertFinal" style="Z-INDEX: 106; LEFT: 48px; POSITION: absolute; TOP: 144px"
 					tabIndex="4" runat="server" Height="20px" Width="160px" BorderStyle="Ridge" MaxLength="10"></asp:textbox>
 				<asp:label id="Label3" style="Z-INDEX: 107; LEFT: 8px; POSITION: absolute; TOP: 144px" runat="server"
-					Height="16px" Width="40px">Final</asp:label>
-				<hr style="Z-INDEX: 127; LEFT: 8px; WIDTH: 10%; POSITION: absolute; TOP: 160px; HEIGHT: 1px" SIZE="1">
-				<asp:label id="Label5" style="Z-INDEX: 108; LEFT: 8px; POSITION: absolute; TOP: 168px" runat="server"
-					Height="16px" Width="136px" Text="Expediente"/>
+					Height="16px" Width="40px">Hasta:</asp:label>
+				<hr SIZE="1" class="auto-style18">
+				<asp:label id="Label5" runat="server"
+					Height="16px" Text="Consecutivo expediente:" CssClass="auto-style20"/>
 				<asp:label id="Label6" style="Z-INDEX: 109; LEFT: 8px; POSITION: absolute; TOP: 192px" runat="server"
-					Height="16px" Width="40px">Inicial</asp:label>
+					Height="16px" Width="40px">Desde:</asp:label>
 				<asp:label id="Label7" style="Z-INDEX: 110; LEFT: 8px; POSITION: absolute; TOP: 216px" runat="server"
-					Height="16px" Width="40px" Text="Final" Visible="false" />
+					Height="16px" Width="40px" Text="Hasta:" Visible="True" CssClass="auto-style19" />
 				<asp:textbox id="txtExpInic" style="Z-INDEX: 111; LEFT: 48px; POSITION: absolute; TOP: 192px"
 					runat="server" Height="20px" Width="160px" BorderStyle="Ridge" />
 				<asp:textbox id="txtExpFinal" style="Z-INDEX: 112; LEFT: 48px; POSITION: absolute; TOP: 216px"
-					runat="server" Height="20px" Width="160px" BorderStyle="Ridge" Visible="false" />
+					runat="server" Height="20px" Width="160px" BorderStyle="Ridge" Visible="true" />
 				<asp:label id="Label8" style="Z-INDEX: 113; LEFT: 8px; POSITION: absolute; TOP: 240px" runat="server"
-					Height="24px" Width="128px">Caracteres excluídos</asp:label>
+					Height="24px" Width="128px" Visible="False">Caracteres excluídos</asp:label>
 				<asp:textbox id="txtCaractExclu" style="Z-INDEX: 114; LEFT: 136px; POSITION: absolute; TOP: 240px"
-					runat="server" Height="20px" Width="72px" BorderStyle="Ridge"></asp:textbox>
+					runat="server" Height="20px" Width="72px" BorderStyle="Ridge" Visible="False"></asp:textbox>
 				<hr style="Z-INDEX: 128; LEFT: 8px; WIDTH: 10%; POSITION: absolute; TOP: 259px; HEIGHT: 1px" SIZE="1">
 				<asp:label id="Label9" style="Z-INDEX: 115; LEFT: 8px; POSITION: absolute; TOP: 272px" runat="server"
 					Height="16px" Width="40px">Ref:</asp:label>

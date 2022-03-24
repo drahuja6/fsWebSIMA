@@ -2750,8 +2750,14 @@ Public Class DisplayExpediente
 
     'Item selecciondo en grid que muestra PDFs vinculados al expediente.
     Private Sub DataGrid2_ItemCommand(source As Object, e As DataGridCommandEventArgs) Handles DataGrid2.ItemCommand
-        'Llamada a dll de accesorios.
-        Accesorios.DescargaArchivo(Response, Path.Combine(DirImagenes, e.Item.Cells(2).Text), LongitudMaximaArchivoDescarga)
+        If Not ImagenNuevaVentana Then
+            'Llamada a dll de accesorios.
+            Accesorios.DescargaArchivo(Response, Path.Combine(DirImagenes, e.Item.Cells(2).Text), LongitudMaximaArchivoDescarga)
+        Else
+            'Llamada a página extra para mostrar imagen. Necesario activar Pop-Ups en cliente.
+            Dim url As String = $"DescargaArchivo.aspx?FN={e.Item.Cells(2).Text}"
+            ClientScript.RegisterClientScriptBlock(Me.GetType(), "script", "open('" & url & "');", True)
+        End If
     End Sub
 
     Private Sub BtnVerDocumentos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnVerDocumentos.Click
@@ -2785,7 +2791,7 @@ Public Class DisplayExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf")
+            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf", True)
 
         End If
 
@@ -2814,7 +2820,7 @@ Public Class DisplayExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf")
+            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf", True)
 
         End If
 

@@ -25,7 +25,7 @@ namespace fsSimaServicios
 
                 listBox.DataBind();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 ;
             }
@@ -54,7 +54,7 @@ namespace fsSimaServicios
         }
 
         //Descarga archivo en general.
-        public static void DescargaArchivo(HttpResponse response, string archivo, long longitudMaximaArchivo, string nombreArchivoDescarga = "")
+        public static void DescargaArchivo(HttpResponse response, string archivo, long longitudMaximaArchivo, string nombreArchivoDescarga = "", bool borraArchivoDescargado = false )
         {
             var infoArchivo = new FileInfo(archivo);
             if (infoArchivo.Exists)
@@ -76,10 +76,14 @@ namespace fsSimaServicios
                 else
                     response.AddHeader("content-Disposition", "inline; filename=" + (!string.IsNullOrEmpty(nombreArchivoDescarga) ? nombreArchivoDescarga : infoArchivo.Name));
 
+                
                 response.WriteFile(archivo);
                 response.Flush();
 
-                File.Delete(archivo);
+                if (borraArchivoDescargado)
+                {
+                    File.Delete(archivo);
+                }
 
                 response.End();
             }

@@ -142,12 +142,15 @@ Public Class BuscarExpediente
 
             OrdenExpedientes = ordenamientoDropDownList.SelectedValue
 
-            txtLimite.Text = CStr(Session("LimiteDeRecordsEnBusqueda"))
-        Else
-            If Trim(txtLimite.Text) = "" Or Not IsNumeric(txtLimite.Text) Then
-                txtLimite.Text = "500"
-                Session("LimiteDeRecordsEnBusqueda") = CInt(txtLimite.Text)
-            End If
+            'txtLimite.Text = CStr(Session("LimiteDeRecordsEnBusqueda"))
+            txtLimite.Text = RegistrosMaximos.ToString()
+            txtLimite.Enabled = False
+
+            'Else
+            '    If Trim(txtLimite.Text) = "" Or Not IsNumeric(txtLimite.Text) Then
+            '        txtLimite.Text = "500"
+            '        Session("LimiteDeRecordsEnBusqueda") = CInt(txtLimite.Text)
+            '    End If
         End If
 
     End Sub
@@ -156,7 +159,7 @@ Public Class BuscarExpediente
 
         If Page.IsValid Then
 
-            Session("LimiteDeRecordsEnBusqueda") = CInt(txtLimite.Text)
+            'Session("LimiteDeRecordsEnBusqueda") = CInt(txtLimite.Text)
             txtReal.Text = CuentaRegistros().ToString
 
             DataGrid1.Visible = False
@@ -270,7 +273,7 @@ Public Class BuscarExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "guiaexpedientes.pdf")
+            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "guiaexpedientes.pdf", True)
 
         End If
 
@@ -307,7 +310,7 @@ Public Class BuscarExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "listaexpedientes.pdf")
+            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "listaexpedientes.pdf", True)
 
         End If
     End Sub
@@ -343,7 +346,7 @@ Public Class BuscarExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "caratulaslote.pdf")
+            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "caratulaslote.pdf", True)
 
         End If
 
@@ -378,7 +381,7 @@ Public Class BuscarExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "etiquetas.pdf")
+            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "etiquetas.pdf", True)
 
         End If
     End Sub
@@ -413,7 +416,7 @@ Public Class BuscarExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf")
+            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf", True)
 
         End If
 
@@ -738,7 +741,7 @@ Public Class BuscarExpediente
         'Número de expediente (nombre)
         If Trim(txtExpInic.Text) <> "" And Trim(txtExpFinal.Text) <> "" Then
             'Rango de expedientes
-            condicion = AgregaCondicion(condicion, " e.Nombre >=  @Expediente AND e.Nombre <= @ExpedienteFinal ")
+            condicion = AgregaCondicion(condicion, " e.Control1 >= @Expediente AND e.Control1 <= @ExpedienteFinal ")
         ElseIf Trim(txtExpInic.Text) <> "" And Trim(txtExpFinal.Text) = "" Then
             'Condición normal para LIKE ó =, usando txtExpediente
             condicion = AgregaCondicion(condicion, CStr(IIf(Trim(txtExpInic.Text) <> "", " e.Nombre " & operador & " @Expediente ", "")))
