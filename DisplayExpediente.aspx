@@ -1,4 +1,4 @@
-<%@ Page Language="vb" AutoEventWireup="false" Codebehind="DisplayExpediente.aspx.vb" Inherits="fsWebS_SEN.DisplayExpediente" %>
+<%@ Page Language="vb" AutoEventWireup="false" Codebehind="DisplayExpediente.aspx.vb" Inherits="fsWebS_SEN.DisplayExpediente" EnableSessionState="True" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 	<HEAD>

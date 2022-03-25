@@ -105,6 +105,11 @@ Public Class BuscarExpediente
         Public CampoAdicional3 As String
     End Class
 
+    'Variables privadas como alias de variables de sesión.
+    Private _cadenaConexion As String
+    Private _listaIdExpedientes As List(Of Integer)
+    Private _ordenExpedientes As String
+
 #Region "Métodos privados manejadores de eventos de la forma"
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Introducir aquí el código de usuario para inicializar la página
@@ -114,9 +119,15 @@ Public Class BuscarExpediente
         Session("CuadroClasificacionStatus") = 0
         Session("UsuarioRealStatus") = 0
 
+        _cadenaConexion = Session("UsuarioVirtualConnString").ToString
+        _listaIdExpedientes = CType(Session("ListaIdExpedientes"), List(Of Integer))
+        _ordenExpedientes = Session("OrdenDeGridDeExpedientes")
+
         If Not Page.IsPostBack Then
-            Accesorios.CargaListBox(lbUnidAdmin, CadenaConexion, "UnidadesAdministrativasDeUnUsuarioReal", Session("IDUsuarioReal"), "NombreCorto", "idUnidadAdministrativa")
-            Accesorios.CargaDropDownList(ddlCodigosUsuario, CadenaConexion, "CargaUsuarioRealCodigosRelaciones", Session("IDUsuarioReal"), "Codigo", "idClasificacion")
+            _cadenaConexion = Session("UsuarioVirtualConnString").ToString
+
+            Accesorios.CargaListBox(lbUnidAdmin, _cadenaConexion, "UnidadesAdministrativasDeUnUsuarioReal", Session("IDUsuarioReal"), "NombreCorto", "idUnidadAdministrativa")
+            Accesorios.CargaDropDownList(ddlCodigosUsuario, _cadenaConexion, "CargaUsuarioRealCodigosRelaciones", Session("IDUsuarioReal"), "Codigo", "idClasificacion")
 
             lbUnidAdmin.SelectedIndex = 0
             ddlCodigosUsuario.SelectedIndex = 0
@@ -140,17 +151,15 @@ Public Class BuscarExpediente
             ordenamientoDropDownList.DataTextField = "Value"
             ordenamientoDropDownList.DataBind()
 
-            OrdenExpedientes = ordenamientoDropDownList.SelectedValue
+            _ordenExpedientes = ordenamientoDropDownList.SelectedValue
 
-            'txtLimite.Text = CStr(Session("LimiteDeRecordsEnBusqueda"))
-            txtLimite.Text = RegistrosMaximos.ToString()
-            txtLimite.Enabled = False
+            txtLimite.Text = Session("LimiteDeRecordsEnBusqueda").ToString()
 
-            'Else
-            '    If Trim(txtLimite.Text) = "" Or Not IsNumeric(txtLimite.Text) Then
-            '        txtLimite.Text = "500"
-            '        Session("LimiteDeRecordsEnBusqueda") = CInt(txtLimite.Text)
-            '    End If
+            If Trim(txtLimite.Text) = "" Or Not IsNumeric(txtLimite.Text) Then
+                txtLimite.Text = RegistrosMaximos.ToString
+                Session("LimiteDeRecordsEnBusqueda") = CInt(txtLimite.Text)
+            End If
+
         End If
 
     End Sub
@@ -194,25 +203,30 @@ Public Class BuscarExpediente
 
         Select Case e.SortExpression
             Case "Codigo"
-                OrdenExpedientes = " dbo.fnNombreDeJerarquia(idClasificacion), nombre "
+                _ordenExpedientes = " dbo.fnNombreDeJerarquia(idClasificacion), nombre "
             Case "Numero"
-                OrdenExpedientes = " nombre "
+                _ordenExpedientes = " nombre "
             Case "Observaciones" 'Reemplazar por Observaciones
-                OrdenExpedientes = " campoAdicional2, nombre "
+                _ordenExpedientes = " campoAdicional2, nombre "
             Case "Titulo"  'Reemplazar por Titulo
-                OrdenExpedientes = " campoAdicional1, nombre "
+                _ordenExpedientes = " campoAdicional1, nombre "
             Case "Caja"
-                OrdenExpedientes = " caja, nombre "
+                _ordenExpedientes = " caja, nombre "
             Case "FechaApertura"
-                OrdenExpedientes = " fechaApertura, nombre "
+                _ordenExpedientes = " fechaApertura, nombre "
             Case "UnidAdmin"
-                OrdenExpedientes = " nombreCorto, nombre "
+                _ordenExpedientes = " nombreCorto, nombre "
+            Case "Consecutivo área"
+                _ordenExpedientes = " control2 "
+            Case "Consecutivo general"
+                _ordenExpedientes = " control1 "
             Case Else
-                OrdenExpedientes = " caja, nombre "
+                _ordenExpedientes = " caja, nombre "
         End Select
 
-        Session("OrdenDeGridDeExpedientes") = OrdenExpedientes 'Asignación que será deprecada al eliminarse variables de sesión.
-        ordenamientoDropDownList.SelectedValue = OrdenExpedientes
+        Session("OrdenDeGridDeExpedientes") = _ordenExpedientes
+
+        ordenamientoDropDownList.SelectedValue = _ordenExpedientes
         ordenamientoDropDownList.DataBind()
 
         LlenaGrid()
@@ -249,15 +263,15 @@ Public Class BuscarExpediente
 
         Dim expedientes As New StringBuilder()
 
-        For Each item As Integer In ListaIdExpedientes
+        For Each item As Integer In _listaIdExpedientes
             expedientes.Append(item)
             expedientes.Append(",")
         Next
 
         params(0) = New OleDbParameter("@IDList", expedientes.ToString)
-        params(1) = New OleDbParameter("@Orden", OrdenExpedientes)
+        params(1) = New OleDbParameter("@Orden", _ordenExpedientes)
 
-        ds = New ClienteSQL(CadenaConexion).ObtenerRegistros(params, "GuiaDeExpedientesExistentes")
+        ds = New ClienteSQL(_cadenaConexion).ObtenerRegistros(params, "GuiaDeExpedientesExistentes")
 
         If ds.Tables.Count > 0 Then
 
@@ -288,15 +302,15 @@ Public Class BuscarExpediente
 
         Dim expedientes As New StringBuilder()
 
-        For Each item As Integer In ListaIdExpedientes
+        For Each item As Integer In _listaIdExpedientes
             expedientes.Append(item)
             expedientes.Append(",")
         Next
 
         params(0) = New OleDbParameter("@IDList", expedientes.ToString)
-        params(1) = New OleDbParameter("@Orden", OrdenExpedientes)
+        params(1) = New OleDbParameter("@Orden", _ordenExpedientes)
 
-        ds = New ClienteSQL(CadenaConexion).ObtenerRegistros(params, "ListadoDeExpedientes")
+        ds = New ClienteSQL(_cadenaConexion).ObtenerRegistros(params, "ListadoDeExpedientes")
 
         If ds.Tables.Count > 0 Then
             Reporte.SetDataSource(ds.Tables(0))
@@ -323,15 +337,15 @@ Public Class BuscarExpediente
 
         Dim expedientes As New StringBuilder()
 
-        For Each item As Integer In ListaIdExpedientes
+        For Each item As Integer In _listaIdExpedientes
             expedientes.Append(item)
             expedientes.Append(",")
         Next
 
         params(0) = New OleDbParameter("@IDList", expedientes.ToString)
-        params(1) = New OleDbParameter("@Orden", OrdenExpedientes)
+        params(1) = New OleDbParameter("@Orden", _ordenExpedientes)
 
-        ds = New ClienteSQL(CadenaConexion).ObtenerRegistros(params, "CargaFormatoCaratula")
+        ds = New ClienteSQL(_cadenaConexion).ObtenerRegistros(params, "CargaFormatoCaratula")
 
         If ds.Tables.Count > 0 Then
 
@@ -360,15 +374,15 @@ Public Class BuscarExpediente
 
         Dim expedientes As New StringBuilder()
 
-        For Each item As Integer In ListaIdExpedientes
+        For Each item As Integer In _listaIdExpedientes
             expedientes.Append(item)
             expedientes.Append(",")
         Next
 
         params(0) = New OleDbParameter("@IDList", expedientes.ToString)
-        params(1) = New OleDbParameter("@Orden", OrdenExpedientes)
+        params(1) = New OleDbParameter("@Orden", _ordenExpedientes)
 
-        ds = New ClienteSQL(CadenaConexion).ObtenerRegistros(params, "ListadoDeExpedientes")
+        ds = New ClienteSQL(_cadenaConexion).ObtenerRegistros(params, "ListadoDeExpedientes")
 
         If ds.Tables.Count > 0 Then
             Reporte.SetDataSource(ds.Tables(0))
@@ -394,15 +408,15 @@ Public Class BuscarExpediente
 
         Dim expedientes As New StringBuilder()
 
-        For Each item As Integer In ListaIdExpedientes
+        For Each item As Integer In _listaIdExpedientes
             expedientes.Append(item)
             expedientes.Append(",")
         Next
 
         params(0) = New OleDbParameter("@IDList", expedientes.ToString)
-        params(1) = New OleDbParameter("@Orden", OrdenExpedientes)
+        params(1) = New OleDbParameter("@Orden", _ordenExpedientes)
 
-        ds = New ClienteSQL(CadenaConexion).ObtenerRegistros(params, "CargaFormatoCaratula")
+        ds = New ClienteSQL(_cadenaConexion).ObtenerRegistros(params, "CargaFormatoCaratula")
 
         If ds.Tables.Count > 0 Then
 
@@ -439,7 +453,7 @@ Public Class BuscarExpediente
 
         Dim Reporte As New ListaDeExpedientes
         Dim MisParametros As New BuscarExpediente.SQLParameters
-        Dim MiCondicion As String
+        Dim MiCondicion As String = ""
 
         ActualizaStatusDeExpedientes()
 
@@ -600,7 +614,7 @@ Public Class BuscarExpediente
         'Si llego aquí y no hay siquiera un WHERE, lo pongo ahora y con una condición imposible, para que no devuelva nada
         sQLString &= CStr(IIf(InStr(UCase(sQLString), "WHERE") > 0, "", " WHERE idExpediente < -1000"))
 
-        dsExpedientes = New ClienteSQL(CadenaConexion).ObtenerRegistros(PreparaParametros(sQLString).ToArray, "Expedientes_BUSCA_WEB")
+        dsExpedientes = New ClienteSQL(_cadenaConexion).ObtenerRegistros(PreparaParametros(sQLString).ToArray, "Expedientes_BUSCA_WEB")
 
         If dsExpedientes.Tables.Count > 0 Then
             contador = CInt(dsExpedientes.Tables(0).Rows(0)(0))
@@ -638,10 +652,10 @@ Public Class BuscarExpediente
         'Si llego aquí y no hay siquiera un WHERE, lo pongo ahora y con una condición imposible, para que no devuelva nada
         sQLString &= CStr(IIf(InStr(UCase(sQLString), "WHERE") > 0, "", " WHERE idExpediente < -1000"))
 
-        OrdenExpedientes = ordenamientoDropDownList.SelectedValue
-        sQLString &= " ORDER BY " & OrdenExpedientes.ToString
+        _ordenExpedientes = ordenamientoDropDownList.SelectedValue
+        sQLString &= " ORDER BY " & _ordenExpedientes.ToString
 
-        dsExpedientes = New ClienteSQL(CadenaConexion).ObtenerRegistros(PreparaParametros(sQLString).ToArray, "Expedientes_BUSCA_WEB")
+        dsExpedientes = New ClienteSQL(_cadenaConexion).ObtenerRegistros(PreparaParametros(sQLString).ToArray, "Expedientes_BUSCA_WEB")
 
         If dsExpedientes IsNot Nothing AndAlso dsExpedientes.Tables.Count > 0 Then
             dsExpedientes.Tables(0).TableName = "Expedientes"
@@ -669,10 +683,18 @@ Public Class BuscarExpediente
             Else
                 Dim dr As DataRow
                 'Preparo variable global para recibir Ids de expedientes localizados
-                ListaIdExpedientes.Clear()
+
+                If _listaIdExpedientes Is Nothing Then
+                    _listaIdExpedientes = New List(Of Integer)
+                ElseIf _listaIdExpedientes.Count > 0 Then
+                    _listaIdExpedientes.Clear()
+                End If
+
                 For Each dr In dsExpedientes.Tables("Expedientes").Rows
-                    ListaIdExpedientes.Add(dr("IdExpediente"))
+                    _listaIdExpedientes.Add(dr("IdExpediente"))
                 Next
+
+                Session("ListaIdExpedientes") = _listaIdExpedientes
 
                 DataGrid1.Visible = True
                 NoHayDatos.Visible = False
@@ -744,10 +766,10 @@ Public Class BuscarExpediente
             condicion = AgregaCondicion(condicion, " e.Control1 >= @Expediente AND e.Control1 <= @ExpedienteFinal ")
         ElseIf Trim(txtExpInic.Text) <> "" And Trim(txtExpFinal.Text) = "" Then
             'Condición normal para LIKE ó =, usando txtExpediente
-            condicion = AgregaCondicion(condicion, CStr(IIf(Trim(txtExpInic.Text) <> "", " e.Nombre " & operador & " @Expediente ", "")))
+            condicion = AgregaCondicion(condicion, " e.Control1 >= @Expediente ")
         ElseIf Trim(txtExpInic.Text) = "" And Trim(txtExpFinal.Text) <> "" Then
             'Condición normal para LIKE ó =, usando txtExpedienteFinal
-            condicion = AgregaCondicion(condicion, CStr(IIf(Trim(txtExpFinal.Text) <> "", " e.Nombre " & operador & " @ExpedienteFinal ", "")))
+            condicion = AgregaCondicion(condicion, " e.Control1 <= @ExpedienteFinal ")
         Else
             'No hay rango de expedientes
         End If
@@ -839,12 +861,6 @@ Public Class BuscarExpediente
         'paramsList.Add(AgregaParametro(txtCodigo.Text, "Codigo", busquedaExacta))
         paramsList.Add(AgregaParametro(ddlCodigosUsuario.SelectedValue, "Codigo", busquedaExacta))
 
-        'Expediente
-        paramsList.Add(AgregaParametro(txtExpInic.Text, "Expediente", busquedaExacta))
-
-        'ExpedienteFinal
-        paramsList.Add(AgregaParametro(txtExpFinal.Text, "ExpedienteFinal", busquedaExacta))
-
         'Tipo 
         paramsList.Add(AgregaParametro(txtTipo.Text, "Observaciones", busquedaExacta))
 
@@ -884,6 +900,20 @@ Public Class BuscarExpediente
             paramsList.Add(New OleDbParameter("FechaFinal", DateTime.ParseExact(Trim(txtFApertFinal.Text), "d/M/yyyy", Nothing)))
         End If
 
+        'Expediente
+        If Len(Trim(txtExpInic.Text)) = 0 Then
+            paramsList.Add(New OleDbParameter("Expediente", 0))
+        Else
+            paramsList.Add(New OleDbParameter("Expediente", Integer.Parse(txtExpInic.Text)))
+        End If
+
+        'ExpedienteFinal
+        If Len(Trim(txtExpFinal.Text)) = 0 Then
+            paramsList.Add(New OleDbParameter("ExpedienteFinal", 0))
+        Else
+            paramsList.Add(New OleDbParameter("ExpedienteFinal", Integer.Parse(txtExpFinal.Text)))
+        End If
+
         Return paramsList
     End Function
 
@@ -902,7 +932,7 @@ Public Class BuscarExpediente
     Sub ActualizaStatusDeExpedientes()
 
         Dim params(0) As OleDbParameter
-        Dim sqlCliente As New ClienteSQL(CadenaConexion)
+        Dim sqlCliente As New ClienteSQL(_cadenaConexion)
 
         params(0) = New OleDbParameter("@FechaDeCorrida", Now)
 

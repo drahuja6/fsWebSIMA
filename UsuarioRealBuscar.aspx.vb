@@ -32,6 +32,8 @@ Public Class UsuarioRealBuscar
 
 #End Region
 
+    Private _cadenaConexion As String
+
 #Region "Manejadores de eventos de la forma"
 
     Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -41,6 +43,8 @@ Public Class UsuarioRealBuscar
         Session("MovimientoStatus") = 0
         Session("CuadroClasificacionStatus") = 0
         Session("UsuarioRealStatus") = 0
+
+        _cadenaConexion = Session("UsuarioVirtualConnString").ToString
 
     End Sub
 
@@ -92,7 +96,7 @@ Public Class UsuarioRealBuscar
     Sub FillCuadroUsuarios(cadenaABuscar As String)
 
         Dim params(0) As OleDbParameter
-        Dim sqlCliente As New ClienteSQL(CadenaConexion)
+        Dim sqlCliente As New ClienteSQL(_cadenaConexion)
 
         Dim dsUsuarioReal As DataSet
 

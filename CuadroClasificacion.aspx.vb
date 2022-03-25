@@ -31,6 +31,8 @@ Public Class CuadroClasificacion
 
 #End Region
 
+    Private _cadenaConexion As String
+
 #Region "Eventos de la forma"
 
     Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -40,6 +42,9 @@ Public Class CuadroClasificacion
         Session("MovimientoStatus") = 0
         Session("CuadroClasificacionStatus") = 0
         Session("UsuarioRealStatus") = 0
+
+        _cadenaConexion = Session("UsuarioVirtualConnString").ToString
+
 
         If Not Page.IsPostBack Then
 
@@ -76,7 +81,7 @@ Public Class CuadroClasificacion
     Sub FillCuadro(filtro As String)
 
         Dim params(0) As OleDbParameter
-        Dim sqlCliente As New ClienteSQL(CadenaConexion)
+        Dim sqlCliente As New ClienteSQL(_cadenaConexion)
         Dim dsCuadroClasificacion As DataSet
 
         params(0) = New OleDbParameter("@CadenaABuscar", filtro)

@@ -43,6 +43,7 @@ Public Class TrabajoRealizado
 
 #End Region
 
+    Private _cadenaConexion As String
     Private ReadOnly _culture As CultureInfo = CultureInfo.CreateSpecificCulture("es-MX")
 
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -52,6 +53,8 @@ Public Class TrabajoRealizado
         Session("MovimientoStatus") = 0
         Session("CuadroClasificacionStatus") = 0
         Session("UsuarioRealStatus") = 0
+
+        _cadenaConexion = Session("UsuarioVirtualConnString").ToString
 
         btnImpPorUA.Visible = False
         btnImpPorUsuario.Visible = False
@@ -69,7 +72,7 @@ Public Class TrabajoRealizado
         Dim dsExpedientes As DataSet
         Dim culture As CultureInfo = CultureInfo.CreateSpecificCulture("es-MX")
 
-        Dim sqlCliente As New ClienteSQL(CadenaConexion)
+        Dim sqlCliente As New ClienteSQL(_cadenaConexion)
 
         'Fecha de Apertura inicial
         params(0) = New OleDbParameter("@FechaInicial", SqlDbType.Date)
@@ -118,7 +121,7 @@ Public Class TrabajoRealizado
         Dim params(1) As OleDbParameter
         Dim dsExpedientes As DataSet
 
-        Dim sqlCliente As New ClienteSQL(CadenaConexion)
+        Dim sqlCliente As New ClienteSQL(_cadenaConexion)
 
         'Fecha de Apertura inicial
         params(0) = New OleDbParameter("@FechaInicial", SqlDbType.Date)
@@ -186,7 +189,7 @@ Public Class TrabajoRealizado
         Dim params(1) As OleDbParameter
         Dim ds As DataSet
 
-        Dim sqlCliente As New ClienteSQL(CadenaConexion)
+        Dim sqlCliente As New ClienteSQL(_cadenaConexion)
 
         Dim reporte As New AuditoriaPorUA
 
@@ -226,7 +229,7 @@ Public Class TrabajoRealizado
         Dim params(1) As OleDbParameter
         Dim ds As DataSet
 
-        Dim sqlCliente As New ClienteSQL(CadenaConexion)
+        Dim sqlCliente As New ClienteSQL(_cadenaConexion)
 
         Dim Reporte As New AuditoriaPorUsuario
 

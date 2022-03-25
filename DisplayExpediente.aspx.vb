@@ -149,6 +149,7 @@ Public Class DisplayExpediente
 
 #End Region
 
+    Private _cadenaConexion As String
     Private _serviciosExpediente As New ExpedientesServicios()
 
     Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -156,6 +157,7 @@ Public Class DisplayExpediente
 
         Session("CuadroClasificacionStatus") = 0
         Session("UsuarioRealStatus") = 0
+        _cadenaConexion = Session("UsuarioVirtualConnString").ToString
 
         If Not Page.IsPostBack Then
             'Beep()
@@ -228,7 +230,7 @@ Public Class DisplayExpediente
 
         Dim params(0) As OleDbParameter
         Dim dsPDF As DataSet
-        Dim sqlCliente As New ClienteSQL(CadenaConexion)
+        Dim sqlCliente As New ClienteSQL(_cadenaConexion)
 
         params(0) = New OleDbParameter("@idExpediente", idExpediente)
 
@@ -2769,7 +2771,7 @@ Public Class DisplayExpediente
 
     Private Sub BtnCaratula2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCaratula2.Click
         Dim ds As DataSet
-        Dim sqlCliente As New ClienteSQL(CadenaConexion)
+        Dim sqlCliente As New ClienteSQL(_cadenaConexion)
         Dim params(0) As OleDbParameter
 
         Dim Reporte As New Caratula02
@@ -2800,7 +2802,7 @@ Public Class DisplayExpediente
     Private Sub BtnLomo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLomo.Click
 
         Dim ds As DataSet
-        Dim sqlCliente As New ClienteSQL(CadenaConexion)
+        Dim sqlCliente As New ClienteSQL(_cadenaConexion)
         Dim params(0) As OleDbParameter
         Dim Reporte As New Lomo
 

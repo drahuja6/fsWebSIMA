@@ -82,6 +82,7 @@
     <Reference Include="GITCommonClasses">
       <Name>GITCommonClasses</Name>
       <HintPath>bin\GITCommonClasses.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="GITDataTools">
       <Name>GITDataTools</Name>

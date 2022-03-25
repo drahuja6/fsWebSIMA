@@ -1,4 +1,4 @@
-<%@ Page Language="vb" AutoEventWireup="false" Codebehind="BuscarExpediente.aspx.vb" Inherits="fsWebS_SEN.BuscarExpediente" %>
+<%@ Page Language="vb" AutoEventWireup="false" Codebehind="BuscarExpediente.aspx.vb" Inherits="fsWebS_SEN.BuscarExpediente"  %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 	<HEAD>
@@ -139,16 +139,18 @@
             }
             .auto-style21 {
                 z-index: 100;
-                left: 8px;
+                left: 107px;
                 position: absolute;
-                top: 27px;
-                height: 40px;
+                top: 8px;
+                height: 60px;
+                width: 106px;
             }
             .auto-style22 {
                 z-index: 160;
                 left: 8px;
                 position: absolute;
-                top: 9px;
+                top: 28px;
+                width: 49px;
             }
         </style>
 	</HEAD>
@@ -158,7 +160,7 @@
 				<asp:label id="Label18" runat="server"
 					Height="16px" Visible="true" Text="Unidades Administrativas" CssClass="auto-style22" />
 				<asp:listbox id="lbUnidAdmin" tabIndex="1"
-					runat="server" Width="200px" SelectionMode="Multiple" CssClass="auto-style21" />
+					runat="server" SelectionMode="Multiple" CssClass="auto-style21" />
 				<asp:DropDownList ID="ddlCodigosUsuario" runat="server" CssClass="auto-style17" />
 				<asp:label id="Label17" style="Z-INDEX: 160; LEFT: 8px; POSITION: absolute; TOP: 416px" runat="server"
 					Height="16px" Width="48px" Visible="false">ObsTr:</asp:label>

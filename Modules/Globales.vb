@@ -14,11 +14,7 @@ Module Globales
 
 #Region "Variables globales"
     Public ReadOnly VersionNumero As String = "1.0.23.2063"
-
-    Public sesionIniciada As Boolean = False
-    Public CadenaConexion As String
-    Public ListaIdExpedientes As New List(Of Integer)
-    Public OrdenExpedientes As String = " e.Nombre "
+    Public ReadOnly OrdenExpedientes As String = " Nombre "
 
 #End Region
 
