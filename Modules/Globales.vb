@@ -13,7 +13,7 @@ Module Globales
 #End Region
 
 #Region "Variables globales"
-    Public ReadOnly VersionNumero As String = "1.0.23.2063"
+    Public ReadOnly VersionNumero As String = "1.0.24.2084"
     Public ReadOnly OrdenExpedientes As String = " Nombre "
 
 #End Region
