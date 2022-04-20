@@ -20,8 +20,8 @@
 		<div>
 			<asp:Panel ID="Panel1" runat="server">
                 <asp:Panel ID="Panel2" runat="server">
-		            <asp:Image ID="logoFullServiceImg" runat="server" src="LogoFSM.png" Height="75px" Width="75px" AlternateText="Full Service de México, S.A. de C.V." />
-					<asp:Image ID="logoCliente" runat="server" src="LogoSenado-LXV.png" Height="75px" Width="75px" AlternateText="Full Service de México, S.A. de C.V. - Cliente" />
+		            <asp:Image ID="logoFullServiceImg" runat="server" src="Images/LogoFSM.png" Height="75px" Width="75px" AlternateText="Full Service de México, S.A. de C.V." />
+					<asp:Image ID="logoCliente" runat="server" src="Images/LogoSenado-LXV.png" Height="75px" Width="75px" AlternateText="Full Service de México, S.A. de C.V. - Cliente" />
 					<asp:Label class="etiqueta-pequena" ID="versionLabel" runat="server"/>
                 </asp:Panel>
 			</asp:Panel>

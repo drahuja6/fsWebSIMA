@@ -3,16 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="DirImagenes" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">D:\PdfSIMA\Senado\</Value>
+      <Value Profile="(Default)">D:\Temp\PdfSIMA\Senado\</Value>
     </Setting>
     <Setting Name="DirTemporal" Type="System.String" Scope="Application">
       <Value Profile="(Default)">C:\prov\</Value>
     </Setting>
     <Setting Name="LogoCliente" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">D:\Users\Files\source\repos\Visual Studio 2019\fsWebS_SEN\LogoSenado-LXV.png</Value>
+      <Value Profile="(Default)">D:\Users\Files\source\repos\Visual Studio 2019\fsWebS_SEN\Images\LogoSenado-LXV.png</Value>
     </Setting>
     <Setting Name="BaseDatos" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">SIMA_Senado</Value>
+      <Value Profile="(Default)">SIMA_Senado_II</Value>
     </Setting>
     <Setting Name="LongitudMaximaArchivoDescarga" Type="System.Int64" Scope="Application">
       <Value Profile="(Default)">20971520</Value>

@@ -12,7 +12,23 @@
                 document.body.style.cursor = 'wait';
             }
         </script>
+		<script type="text/javascript">
+            $(function () {
+                $("[id*=ibtMuestraDocs]").each(function () {
+                    if ($(this)[0].src.indexOf("minus") != -1) {
+                        $(this).closest("tr").after("<tr><td></td<td colspan = '999'>" + $(this).next().html() + "</td></tr>");
+                        $(this).next().remove();
+                    }
+                });
+            });
+        </script>
 	    <style type="text/css">
+			.gvDocumentos td {
+				background-color: #fff;
+				color: black;
+				line-height: 100%;
+				font-size:smaller;
+			}
             .auto-style1 {
                 z-index: 135;
                 left: 400px;
@@ -152,6 +168,9 @@
                 top: 28px;
                 width: 49px;
             }
+	    	[class*="grid"]{
+				text-align:center;
+	    	}
         </style>
 	</HEAD>
 	<body bgColor="#ffffff" style="font-size:small">
@@ -247,18 +266,33 @@
 				<asp:regularexpressionvalidator id="RegularExpressionValidator2" style="Z-INDEX: 129; LEFT: 208px; POSITION: absolute; TOP: 144px"
 					runat="server" ControlToValidate="txtFApertFinal" ErrorMessage="*" ValidationExpression="^(((0?[1-9]|[12]\d|3[01])[\.\-\/](0?[13578]|1[02])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|((0?[1-9]|[12]\d|30)[\.\-\/](0?[13456789]|1[012])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|((0?[1-9]|1\d|2[0-8])[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|(29[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00|[048])))$"></asp:regularexpressionvalidator>
 				<asp:panel id="Panel1" style="Z-INDEX: 130; LEFT: 216px; OVERFLOW: auto; POSITION: absolute; TOP: 8px"
-					runat="server" Height="424px" Width="664px" BorderStyle="Ridge">
-					<asp:datagrid id="DataGrid1" runat="server" Width="598px" Height="176px" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" PageSize="15">
+					runat="server" Height="430px" Width="800px" BorderStyle="Ridge">
+					<asp:datagrid id="DataGrid1" runat="server" Width="598px" Height="176px" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="true" PageSize="12">
 						<AlternatingItemStyle Wrap="False" BackColor="White" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" ForeColor="#284775"></AlternatingItemStyle>
 						<ItemStyle Wrap="False" BackColor="#F7F6F3" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" ForeColor="#333333"></ItemStyle>
 						<EditItemStyle BackColor="#999999" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" />
 						<FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
 						<HeaderStyle Font-Underline="True" Font-Bold="True" BackColor="#5D7B9D" Font-Italic="False" Font-Overline="False" Font-Size="Smaller" Font-Strikeout="False" ForeColor="White"></HeaderStyle>
 						<Columns>
-							<asp:ButtonColumn Text="..." ButtonType="PushButton" CommandName="Select">
-								<HeaderStyle Width="8%"/>
-								<ItemStyle Wrap="False" HorizontalAlign="Center"/>
-							</asp:ButtonColumn>
+							<asp:ButtonColumn Text="..." ButtonType="PushButton" CommandName="Expediente" HeaderText=" " />
+							<asp:TemplateColumn HeaderText=" ">
+								<ItemTemplate>
+									<asp:Label ID="txtArchivosNoLocalizados" runat="server" Text='<%# String.Format("{0}", DataBinder.Eval(Container, "DataItem.ArchivosNoLocalizados")) %>' Visible="false" CssClass="" />
+								</ItemTemplate>
+							</asp:TemplateColumn>
+							<asp:TemplateColumn HeaderText=" ">
+								<ItemTemplate>
+									<asp:ImageButton ID="ibtMuestraDocs" runat="server" CommandName="Documentos" ImageUrl="~/images/docs.png"
+										CommandArgument="Show" Visible='<%# If(Eval("ArchivosLocalizados").ToString = "0" Or CType(Eval("ArchivosNoLocalizados").ToString, Integer) > 0, False, True) %>' />
+									<asp:Panel ID="pnlDocumentos" Width="180px" runat="server" Visible="false" Style="position:relative;">
+                                        <asp:GridView ID="gvDocumentos" runat="server" AutoGenerateColumns="false" CssClass="gvDocumentos" ShowHeader="false" OnRowCommand="GvDocumentos_RowCommand">
+											<Columns>
+												<asp:ButtonField ButtonType="Link" DataTextField="Descripcion" ControlStyle-CssClass="docs-link"/>
+											</Columns>
+										</asp:GridView>
+									</asp:Panel>
+								</ItemTemplate>
+							</asp:TemplateColumn>
 							<asp:BoundColumn DataField="Codigo" SortExpression="Codigo" HeaderText="C&#243;digo">
 								<HeaderStyle Width="20%"/>
 								<ItemStyle Wrap="False"/>
@@ -268,6 +302,12 @@
 								<HeaderStyle Width="20%"></HeaderStyle>
 								<ItemStyle Wrap="False"></ItemStyle>
 							</asp:BoundColumn>
+							<asp:TemplateColumn  HeaderText="Digitalización">
+								<ItemTemplate>
+									<asp:Label ID="lblDigitalizacion" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.Digitalizacion") %>' />
+								</ItemTemplate>
+								<ItemStyle CssClass="grid" />
+							</asp:TemplateColumn>
 							<asp:BoundColumn DataField="Observaciones" SortExpression="Observaciones" HeaderText="Obs" Visible="false">
 							</asp:BoundColumn>
 							<asp:BoundColumn DataField="CajaAnterior" SortExpression="CajaAnterior" HeaderText="Caja Anterior" Visible="false"></asp:BoundColumn>
@@ -287,7 +327,7 @@
 								<ItemStyle Wrap="False" ></ItemStyle>
 							</asp:BoundColumn>
 						</Columns>
-						<PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" Position="TopAndBottom" />
+						<PagerStyle BackColor="#5D7B9D" ForeColor="White" HorizontalAlign="Left" NextPageText=">>" PrevPageText="<<" Mode="NextPrev" Position="Top" />
 						<SelectedItemStyle BackColor="#E2DED6" Font-Bold="True" Font-Italic="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Font-Underline="False" ForeColor="#333333" />
 					</asp:datagrid>
 					<asp:Label id="NoHayDatos" runat="server" Visible="False" Font-Bold="True">No se encontraron datos para este criterio de búsqueda</asp:Label>

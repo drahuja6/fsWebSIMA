@@ -11,6 +11,10 @@
         <div>
             <h1>SIMA</h1>
             <h2>La página solicitada no existe.</h2>
+            <br />
+            <br />
+            <h4>Si ha intentado cargar una imagen, es probable que ésta no esté registrada correctamente.</h4>
+            <br />
             <h4>Si considera que se trata de un error de la aplicación, por favor notifique al área de soporte. Versión: <%=versionConBaseDatos %></h4>
         </div>
     </form>

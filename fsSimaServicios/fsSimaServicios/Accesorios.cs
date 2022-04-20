@@ -9,7 +9,13 @@ namespace fsSimaServicios
 {
     public class Accesorios
     {
-        public static void CargaListBox(ListBox listBox, string cadenaConexion, string storedProcedure, int idParametro, string dataText, string dataValue)
+        public static void CargaListBox(
+            ListBox listBox, 
+            string cadenaConexion, 
+            string storedProcedure, 
+            int idParametro, 
+            string dataText, 
+            string dataValue)
         {
             try
             {
@@ -25,13 +31,51 @@ namespace fsSimaServicios
 
                 listBox.DataBind();
             }
+
             catch (Exception e)
             {
                 ;
             }
         }
 
-        public static void CargaDropDownList(DropDownList dropDownList, string cadenaConexion, string storedProcedure, int idParametro, string dataText, string dataValue)
+        public static void CargaListBox(
+            ListBox listBox,
+            string cadenaConexion,
+            string storedProcedure,
+            int idParametro,
+            string dataText,
+            string dataValue,
+            string dataSelected)
+        {
+            try
+            {
+                var parametros = new OleDbParameter[1];
+                parametros[0] = new OleDbParameter("@IdParameter", idParametro);
+
+                //Ejecuto el sp y obtengo el DataSet
+                var ds = new ClienteSQL(cadenaConexion).ObtenerRegistros(parametros, storedProcedure);
+
+                listBox.DataSource = ds.Tables[0];
+                listBox.DataTextField = dataText;
+                listBox.DataValueField = dataValue;
+
+                listBox.DataBind();
+
+                listBox.SelectedValue = dataSelected;
+            }
+            catch (Exception e)
+            { 
+                ;
+            }
+        }
+
+        public static void CargaDropDownList(
+            DropDownList dropDownList,
+            string cadenaConexion,
+            string storedProcedure,
+            int idParametro,
+            string dataText,
+            string dataValue)
         {
             try
             {
@@ -47,8 +91,39 @@ namespace fsSimaServicios
 
                 dropDownList.DataBind();
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                ;
+            }
+        }
+
+        public static void CargaDropDownList(
+            DropDownList dropDownList, 
+            string cadenaConexion, 
+            string storedProcedure, 
+            int idParametro, 
+            string dataText, 
+            string dataValue,
+            int dataSelected)
+        {
+            try
+            {
+                var parametros = new OleDbParameter[1];
+                parametros[0] = new OleDbParameter("@IdParameter", idParametro);
+
+                //Ejecuto el sp y obtengo el DataSet
+                var ds = new ClienteSQL(cadenaConexion).ObtenerRegistros(parametros, storedProcedure);
+
+                dropDownList.DataSource = ds.Tables[0];
+                dropDownList.DataTextField = dataText;
+                dropDownList.DataValueField = dataValue;
+
+                dropDownList.DataBind();
+
+                dropDownList.SelectedValue = dataSelected.ToString();
+            }
+            catch (Exception e)
+            { 
                 ;
             }
         }
@@ -90,6 +165,7 @@ namespace fsSimaServicios
             else
                 throw new HttpException(404, "Archivo no localizado");
         }
+
     }
 }
 

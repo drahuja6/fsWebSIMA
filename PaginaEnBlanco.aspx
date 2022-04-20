@@ -11,6 +11,16 @@
 	</HEAD>
 	<body bgColor="#ffffff">
 		<form id="Form1" method="post" runat="server">
+			<div>
+				<div>
+
+				</div>
+				<div>
+					<center>
+						<asp:Image ID="Image1" ImageUrl="~/Images/Senado3.jpg" Width="75%" Height="75%" AlternateText="Senado de la República" runat="server" />
+					</center>
+				 </div>  
+			</div>
 		</form>
 	</body>
 </HTML>

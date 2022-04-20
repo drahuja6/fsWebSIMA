@@ -1,3 +1,4 @@
+Imports System.Data.OleDb
 Imports System.Web.Security
 
 Public Class Login
@@ -29,139 +30,20 @@ Public Class Login
 
 #End Region
 
-#Region " Métodos privados "
+#Region "Eventos de la página"
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-    Public Function Get_IDUsuarioReal_From_Login(ByVal MyLogin As String, ByRef MyidUsuarioReal As Integer, ByRef MyNombreUsuarioReal As String) As Boolean
-
-        Dim cn As New Data.OleDb.OleDbConnection
-        Dim cmd As New Data.OleDb.OleDbCommand
-        Dim param As Data.OleDb.OleDbParameter
-
-        Try
-
-            'Abro la conexión
-            cn.ConnectionString = Session("AdminConnString")
-            cn.Open()
-
-            'Asigno el Stored Procedure
-            cmd.CommandText = "Get_IDUsuarioReal_From_Login"
-            cmd.Connection = cn
-            cmd.CommandType = Data.CommandType.StoredProcedure
-
-            'MyLogin
-            param = cmd.Parameters.Add("MyLogin", Data.OleDb.OleDbType.VarChar, 25)
-            param.Value = MyLogin
-
-            'MyidUsuarioReal
-            param = cmd.Parameters.Add("MyidUsuarioReal", Data.OleDb.OleDbType.Integer)
-            param.Direction = Data.ParameterDirection.Output
-
-            'MyNombreUsuarioReal
-            param = cmd.Parameters.Add("MyNombreUsuarioReal", Data.OleDb.OleDbType.VarChar, 50)
-            param.Direction = Data.ParameterDirection.Output
-
-            'Ejecuto el sp
-            cmd.ExecuteNonQuery()
-
-            MyidUsuarioReal = CInt(cmd.Parameters("MyidUsuarioReal").Value)
-            MyNombreUsuarioReal = CStr(cmd.Parameters("MyNombreUsuarioReal").Value)
-
-            If CInt(cmd.Parameters("MyidUsuarioReal").Value) <> -1 Then
-                Get_IDUsuarioReal_From_Login = True
-            Else
-                Get_IDUsuarioReal_From_Login = False
-            End If
-
-            cn.Close()
-
-        Catch ex As Exception
-
-            'MsgBox(ex.Message.ToString)
-            Get_IDUsuarioReal_From_Login = False
-            If cn.State <> Data.ConnectionState.Closed Then
-                cn.Close()
-            End If
-
-        End Try
-
-    End Function
-
-    Private Function FillUsuarioVirtualConnString(ByVal LoginUsuarioReal As String, ByVal PasswordUsuarioReal As String) As Boolean
-
-        Dim cn As New Data.OleDb.OleDbConnection
-        Dim cmd As New Data.OleDb.OleDbCommand
-        Dim param As Data.OleDb.OleDbParameter
-        Dim scrambler As New GITDataTools.ScrambleNET
-
-        Try
-
-            'Abro la conexión
-            cn.ConnectionString = Session("AdminConnString")
-            cn.Open()
-
-            'Asigno el Stored Procedure
-            cmd.CommandText = "Get_UsuarioVirtual_From_UsuarioReal"
-            cmd.Connection = cn
-            cmd.CommandType = Data.CommandType.StoredProcedure
-
-            'MyLoginUsuarioReal
-            param = cmd.Parameters.Add("MyLoginUsuarioReal", Data.OleDb.OleDbType.VarChar, 50)
-            param.Value = LoginUsuarioReal
-
-            'MyPasswordUsuarioReal
-            param = cmd.Parameters.Add("MyPasswordUsuarioReal", Data.OleDb.OleDbType.VarChar, 50)
-            param.Value = PasswordUsuarioReal
-
-            'MyLoginUsuarioVirtual
-            param = cmd.Parameters.Add("MyLoginUsuarioVirtual", Data.OleDb.OleDbType.VarChar, 50)
-            param.Direction = Data.ParameterDirection.Output
-
-            'MyPasswordUsuarioVirtual
-            param = cmd.Parameters.Add("MyPasswordUsuarioVirtual", Data.OleDb.OleDbType.VarChar, 50)
-            param.Direction = Data.ParameterDirection.Output
-
-            'Ejecuto el sp
-            cmd.ExecuteNonQuery()
-
-            Session("UsuarioVirtualConnString") = "Provider=MSOLEDBSQL;Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & scrambler.Scramble(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value), Chr(25) & Chr(26)) & ";Persist Security Info=True;Connect Timeout=15;Encryption=True;"
-
-            cn.Close()
-
-            If CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) <> "?" Then
-                FillUsuarioVirtualConnString = True
-            Else
-                FillUsuarioVirtualConnString = False
-            End If
-
-        Catch ex As Exception
-
-            If cn.State <> Data.ConnectionState.Closed Then
-                cn.Close()
-            End If
-            Session("UsuarioVirtualConnString") = ""
-            FillUsuarioVirtualConnString = False
-        End Try
-
-    End Function
-
-#End Region
-
-#Region " Eventos de la página "
-    Private Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-        'Introducir aquí el código de usuario al cargar la página
-
-        Session("AdminConnString") = "Provider=MSOLEDBSQL;Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;UID=USOC;Pwd=f5*HIDDENUSER;Persist Security Info=True;Connect Timeout=15;Database=" & BaseDatos & ";Encryption=True;"
+        Session("AdminConnString") = ConexionAdministrativa
 
         Session("OrdenDeGridDeExpedientes") = OrdenExpedientes
-        'Estas dos variables de sesión se dejan por compatibilidad en lugar de la variable global definida en Globales.vb
-        Session("SubdirectorioDeImagenes") = My.Settings.DirImagenes
-        Session("SubdirectorioTemporal") = My.Settings.DirTemporal
-
+        Session("SubdirectorioDeImagenes") = DirImagenes
+        Session("SubdirectorioTemporal") = DirTemporal
         Session("LimiteDeRecordsEnBusqueda") = RegistrosMaximos
 
         If Not Page.IsPostBack Then
 
             Session("UsuarioVirtualConnString") = ""
+            Session("LoginUsuarioVirtual") = ""
 
             Session("IDExpedienteActivo") = -1
             Session("IDMovimientoActivo") = -1
@@ -211,8 +93,9 @@ Public Class Login
             Dim ck As HttpCookie
             tkt = New FormsAuthenticationTicket(1, IDUsuarioReal, DateTime.Now, DateTime.Now.AddMinutes(30), False, "SIMA")
             cookiestr = FormsAuthentication.Encrypt(tkt)
-            ck = New HttpCookie(FormsAuthentication.FormsCookieName, cookiestr)
-            ck.Path = FormsAuthentication.FormsCookiePath
+            ck = New HttpCookie(FormsAuthentication.FormsCookieName, cookiestr) With {
+                .Path = FormsAuthentication.FormsCookiePath
+            }
             Response.Cookies.Add(ck)
 
             Dim strRedirect As String = Request("ReturnUrl")
@@ -226,6 +109,124 @@ Public Class Login
         End If
 
     End Sub
+
+#End Region
+
+#Region "Métodos privados"
+
+    Public Function Get_IDUsuarioReal_From_Login(ByVal MyLogin As String, ByRef MyidUsuarioReal As Integer, ByRef MyNombreUsuarioReal As String) As Boolean
+
+        Dim cn As New OleDbConnection
+        Dim cmd As New OleDbCommand
+        Dim param As OleDbParameter
+
+        Try
+
+            'Abro la conexión
+            cn.ConnectionString = Session("AdminConnString")
+            cn.Open()
+
+            'Asigno el Stored Procedure
+            cmd.CommandText = "Get_IDUsuarioReal_From_Login"
+            cmd.Connection = cn
+            cmd.CommandType = Data.CommandType.StoredProcedure
+
+            'MyLogin
+            param = cmd.Parameters.Add("MyLogin", OleDbType.VarChar, 25)
+            param.Value = MyLogin
+
+            'MyidUsuarioReal
+            param = cmd.Parameters.Add("MyidUsuarioReal", OleDbType.Integer)
+            param.Direction = ParameterDirection.Output
+
+            'MyNombreUsuarioReal
+            param = cmd.Parameters.Add("MyNombreUsuarioReal", OleDbType.VarChar, 50)
+            param.Direction = ParameterDirection.Output
+
+            'Ejecuto el sp
+            cmd.ExecuteNonQuery()
+
+            MyidUsuarioReal = CInt(cmd.Parameters("MyidUsuarioReal").Value)
+            MyNombreUsuarioReal = CStr(cmd.Parameters("MyNombreUsuarioReal").Value)
+
+            If CInt(cmd.Parameters("MyidUsuarioReal").Value) <> -1 Then
+                Get_IDUsuarioReal_From_Login = True
+            Else
+                Get_IDUsuarioReal_From_Login = False
+            End If
+
+            cn.Close()
+
+        Catch ex As Exception
+
+            'MsgBox(ex.Message.ToString)
+            Get_IDUsuarioReal_From_Login = False
+            If cn.State <> ConnectionState.Closed Then
+                cn.Close()
+            End If
+
+        End Try
+
+    End Function
+
+    Private Function FillUsuarioVirtualConnString(LoginUsuarioReal As String, PasswordUsuarioReal As String) As Boolean
+
+        Dim cn As New OleDbConnection
+        Dim cmd As New OleDbCommand
+        Dim param As OleDbParameter
+        Dim scrambler As New GITDataTools.ScrambleNET
+
+        Try
+
+            'Abro la conexión
+            cn.ConnectionString = Session("AdminConnString")
+            cn.Open()
+
+            'Asigno el Stored Procedure
+            cmd.CommandText = "Get_UsuarioVirtual_From_UsuarioReal"
+            cmd.Connection = cn
+            cmd.CommandType = Data.CommandType.StoredProcedure
+
+            'MyLoginUsuarioReal
+            param = cmd.Parameters.Add("MyLoginUsuarioReal", Data.OleDb.OleDbType.VarChar, 50)
+            param.Value = LoginUsuarioReal
+
+            'MyPasswordUsuarioReal
+            param = cmd.Parameters.Add("MyPasswordUsuarioReal", Data.OleDb.OleDbType.VarChar, 50)
+            param.Value = PasswordUsuarioReal
+
+            'MyLoginUsuarioVirtual
+            param = cmd.Parameters.Add("MyLoginUsuarioVirtual", Data.OleDb.OleDbType.VarChar, 50)
+            param.Direction = Data.ParameterDirection.Output
+
+            'MyPasswordUsuarioVirtual
+            param = cmd.Parameters.Add("MyPasswordUsuarioVirtual", Data.OleDb.OleDbType.VarChar, 50)
+            param.Direction = Data.ParameterDirection.Output
+
+            'Ejecuto el sp
+            cmd.ExecuteNonQuery()
+
+            Session("UsuarioVirtualConnString") = "Provider=MSOLEDBSQL;Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & scrambler.Scramble(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value), Chr(25) & Chr(26)) & ";Persist Security Info=True;Connect Timeout=15;Encryption=True;"
+
+            cn.Close()
+
+            If CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) <> "?" Then
+                FillUsuarioVirtualConnString = True
+                Session("LoginUsuarioVirtual") = cmd.Parameters("MyLoginUsuarioVirtual").Value.ToString
+            Else
+                FillUsuarioVirtualConnString = False
+            End If
+
+        Catch ex As Exception
+
+            If cn.State <> Data.ConnectionState.Closed Then
+                cn.Close()
+            End If
+            Session("UsuarioVirtualConnString") = ""
+            FillUsuarioVirtualConnString = False
+        End Try
+
+    End Function
 
 #End Region
 

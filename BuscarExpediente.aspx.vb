@@ -1,6 +1,7 @@
 Imports System.Collections.Generic
 Imports System.Data.OleDb
 Imports System.Text
+Imports System.IO
 
 Imports fsSimaServicios
 
@@ -114,14 +115,14 @@ Public Class BuscarExpediente
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Introducir aquí el código de usuario para inicializar la página
 
+        _cadenaConexion = Session("UsuarioVirtualConnString").ToString
+        _listaIdExpedientes = CType(Session("ListaIdExpedientes"), List(Of Integer))
+        _ordenExpedientes = Session("OrdenDeGridDeExpedientes")
+
         Session("ExpedienteStatus") = 0
         Session("MovimientoStatus") = 0
         Session("CuadroClasificacionStatus") = 0
         Session("UsuarioRealStatus") = 0
-
-        _cadenaConexion = Session("UsuarioVirtualConnString").ToString
-        _listaIdExpedientes = CType(Session("ListaIdExpedientes"), List(Of Integer))
-        _ordenExpedientes = Session("OrdenDeGridDeExpedientes")
 
         If Not Page.IsPostBack Then
             _cadenaConexion = Session("UsuarioVirtualConnString").ToString
@@ -235,14 +236,84 @@ Public Class BuscarExpediente
 
     Private Sub DataGrid1_ItemCommand(source As Object, e As DataGridCommandEventArgs) Handles DataGrid1.ItemCommand
         If e.Item.ItemIndex >= 0 Then
-            Session("IDExpedienteActivo") = DataGrid1.DataKeys.Item(e.Item.ItemIndex)
-            Session("ExpedienteStatus") = 0
-            Session("MovimientoStatus") = 0
-            Session("CuadroClasificacionStatus") = 0
-            Session("UsuarioRealStatus") = 0
-            Response.Redirect("./DisplayExpediente.aspx")
+            Select Case e.CommandName
+                Case "Expediente"
+                    Session("IDExpedienteActivo") = DataGrid1.DataKeys.Item(e.Item.ItemIndex)
+                    Session("ExpedienteStatus") = 0
+                    Session("MovimientoStatus") = 0
+                    Session("CuadroClasificacionStatus") = 0
+                    Session("UsuarioRealStatus") = 0
+                    Response.Redirect("./DisplayExpediente.aspx")
+                Case "Documentos"
+                    Dim dgItem As DataGridItem = e.Item
+                    Dim imgButton As ImageButton = TryCast(dgItem.FindControl("ibtMuestraDocs"), ImageButton)
+                    If e.CommandArgument = "Show" Then
+                        dgItem.FindControl("pnlDocumentos").Visible = True
+                        imgButton.CommandArgument = "Hide"
+                        imgButton.ImageUrl = "~/images/minus.png"
+                        Dim orderId As Integer = DataGrid1.DataKeys.Item(e.Item.ItemIndex)
+                        Dim gvDocumentos As GridView = TryCast(dgItem.FindControl("gvDocumentos"), GridView)
+                        BindDocumentos(orderId, gvDocumentos)
+                    Else
+                        dgItem.FindControl("pnlDocumentos").Visible = False
+                        imgButton.CommandArgument = "Show"
+                        imgButton.ImageUrl = "~/images/docs.png"
+                    End If
+                Case Else
+            End Select
         End If
 
+    End Sub
+
+    Protected Sub DataGrid1_PageIndexChanged(source As Object, e As DataGridPageChangedEventArgs) Handles DataGrid1.PageIndexChanged
+        DataGrid1.CurrentPageIndex = e.NewPageIndex
+        LlenaGrid()
+    End Sub
+
+    Private Sub BindDocumentos(idExpediente As Integer, gvDocumentos As GridView)
+        gvDocumentos.ToolTip = "Click para descargar documento"
+
+        Dim params(0) As OleDbParameter
+        Dim dsPDF As DataSet
+        Dim sqlCliente As New ClienteSQL(_cadenaConexion)
+
+        params(0) = New OleDbParameter("@idExpediente", idExpediente)
+
+        dsPDF = sqlCliente.ObtenerRegistros(params, "ExpedientesPDF_SELECT_ALL")
+
+        If dsPDF IsNot Nothing AndAlso dsPDF.Tables.Count > 0 Then
+            dsPDF.Tables(0).TableName = "PDFs"
+            gvDocumentos.Visible = True
+
+            gvDocumentos.DataSource = dsPDF
+            gvDocumentos.DataMember = "PDFs"
+            gvDocumentos.DataKeyNames = {"NombrePDF"}
+            gvDocumentos.DataBind()
+        End If
+
+    End Sub
+
+    Protected Sub GvDocumentos_RowCommand(sender As Object, e As GridViewCommandEventArgs)
+        Dim gv As GridView = CType(sender, GridView)
+        Dim archivo As String = gv.DataKeys(e.CommandArgument.ToString()).Value.ToString
+
+        If Not ImagenNuevaVentana Then
+            'Llamada a dll de accesorios.
+            Accesorios.DescargaArchivo(Response, Path.Combine(DirImagenes, archivo), LongitudMaximaArchivoDescarga, False)
+        Else
+            'Llamada a página extra para mostrar imagen. Necesario activar Pop-Ups en cliente.
+            Dim url As String = $"DescargaArchivo.aspx?FN={archivo}"
+            ClientScript.RegisterClientScriptBlock(Me.GetType(), "script", "open('" & url & "');", True)
+        End If
+
+    End Sub
+
+    Protected Sub DataGrid1_ItemDataBound(sender As Object, e As DataGridItemEventArgs) Handles DataGrid1.ItemDataBound
+        If e.Item.ItemIndex > -1 Then
+            If CType(DirectCast(e.Item.FindControl("txtArchivosNoLocalizados"), Label).Text, Integer) > 0 And DirectCast(e.Item.FindControl("lblDigitalizacion"), Label).Text = "Sí" Then
+                e.Item.BackColor = Color.IndianRed
+            End If
+        End If
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -608,7 +679,7 @@ Public Class BuscarExpediente
         condicion = PreparaBusqueda()
 
         sQLString =
-            "SELECT COUNT(*) FROM Expedientes e INNER JOIN UnidadesAdministrativas u on e.IdUnidadAdministrativa = u.IdUnidadAdministrativa " &
+            "Select COUNT(*) FROM Expedientes e INNER JOIN UnidadesAdministrativas u On e.IdUnidadAdministrativa = u.IdUnidadAdministrativa " &
             CStr(IIf(condicion <> "", " WHERE " & condicion, ""))
 
         'Si llego aquí y no hay siquiera un WHERE, lo pongo ahora y con una condición imposible, para que no devuelva nada
@@ -633,18 +704,19 @@ Public Class BuscarExpediente
         condicion = PreparaBusqueda()
 
         sQLString =
-                "SELECT dbo.fnNombreDeJerarquia(e.idClasificacion) as Codigo, " &
+                "Select dbo.fnNombreDeJerarquia(e.idClasificacion) As Codigo, " &
                 "e.idExpediente, " &
-                "e.Nombre as Expediente, " &
-                "e.CampoAdicional2 as Observaciones, " &
-                "e.CampoAdicional1 as Titulo, " &
+                "e.Nombre As Expediente, " &
+                "e.CampoAdicional2 As Observaciones, " &
+                "e.CampoAdicional1 As Titulo, " &
                 "e.Asunto, " &
-                "e.RelacionAnterior as RelacionAnterior, " &
+                "e.RelacionAnterior As RelacionAnterior, " &
                 "e.Caja, " &
                 "e.CajaAnterior, " &
-                "CONVERT(NVARCHAR(10), e.FechaApertura, 103) as Apertura, " &
-                "Cierre = CASE WHEN (FechaCierreChecked = 1) THEN CONVERT(NVARCHAR(10), e.FechaCierre, 103) ELSE '' END, " &
-                "ua.NombreCorto " &
+                "CONVERT(NVARCHAR(10), e.FechaApertura, 103) As Apertura, " &
+                "Cierre = Case When (FechaCierreChecked = 1) Then CONVERT(NVARCHAR(10), e.FechaCierre, 103) Else '' END, " &
+                "ua.NombreCorto, " &
+                "CASE e.DocumentosDigitalizados WHEN 1 THEN 'Sí' ELSE 'No' END AS Digitalizacion " &
                 "FROM Expedientes e " &
                 "INNER JOIN UnidadesAdministrativas ua ON e.idUnidadAdministrativa = ua.idUnidadAdministrativa " &
                 CStr(IIf(condicion <> "", " WHERE " & condicion, ""))
@@ -655,7 +727,7 @@ Public Class BuscarExpediente
         _ordenExpedientes = ordenamientoDropDownList.SelectedValue
         sQLString &= " ORDER BY " & _ordenExpedientes.ToString
 
-        dsExpedientes = New ClienteSQL(_cadenaConexion).ObtenerRegistros(PreparaParametros(sQLString).ToArray, "Expedientes_BUSCA_WEB")
+        dsExpedientes = New ClienteSQL(_cadenaConexion).ObtenerRegistros(PreparaParametros(sQLString).ToArray, "Expedientes_Busqueda")
 
         If dsExpedientes IsNot Nothing AndAlso dsExpedientes.Tables.Count > 0 Then
             dsExpedientes.Tables(0).TableName = "Expedientes"
@@ -760,7 +832,7 @@ Public Class BuscarExpediente
         'condicion = AgregaCondicion(condicion, CStr(IIf(Trim(txtCodigo.Text) <> "", "dbo.fnNombreDeJerarquia(e.idClasificacion) " & operador & " @Codigo ", "")))
         condicion = AgregaCondicion(condicion, IIf(ddlCodigosUsuario.SelectedIndex > 0, " e.idClasificacion " & operador & " @Codigo ", ""))
 
-        'Número de expediente (nombre)
+        'Número de expediente (Consecutivo interno FSM)
         If Trim(txtExpInic.Text) <> "" And Trim(txtExpFinal.Text) <> "" Then
             'Rango de expedientes
             condicion = AgregaCondicion(condicion, " e.Control1 >= @Expediente AND e.Control1 <= @ExpedienteFinal ")

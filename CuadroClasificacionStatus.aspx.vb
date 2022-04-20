@@ -951,6 +951,8 @@ Public Class CuadroClasificacionStatus
                 While dr.Read()
                     MyNombreDeJerarquia = dr("Nomenclatura")
                 End While
+            Else
+                MyNombreDeJerarquia = ""
             End If
 
             cn.Close()

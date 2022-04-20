@@ -21,6 +21,8 @@ Public Class Menu
     Protected WithEvents HyperLink8 As HyperLink
     Protected WithEvents HLVET As HyperLink
     Protected WithEvents HLVEC As HyperLink
+    Protected WithEvents lblTituloHerramientas As Label
+    Protected WithEvents lnkVerificaArchivos As HyperLink
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -35,7 +37,13 @@ Public Class Menu
 #End Region
 
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Introducir aquí el código de usuario para inicializar la página
+
+        'Permiso de acceso a herramientas.
+        If Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = "USOC" Or Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = "SUPERUSER" Then    'Perfil usuario administrador
+            lblTituloHerramientas.Visible = True
+            lnkVerificaArchivos.Visible = True
+        End If
+
         LlenaEVT(Today())
         LlenaEVC(Today())
 

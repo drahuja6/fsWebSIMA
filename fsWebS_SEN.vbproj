@@ -342,6 +342,13 @@
       <DependentUpon>UsuarioRealDisplay.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="VerificarArchivos.aspx.designer.vb">
+      <DependentUpon>VerificarArchivos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerificarArchivos.aspx.vb">
+      <DependentUpon>VerificarArchivos.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Content Include="BuscarExpediente.aspx" />
     <Content Include="ConcABaja.aspx" />
     <Content Include="CuadroClasificacion.aspx" />
@@ -356,21 +363,30 @@
     <Content Include="Frameset1.htm" />
     <Content Include="Frameset2.htm" />
     <Content Include="Global.asax" />
+    <Content Include="Images\docs.png" />
+    <Content Include="Images\minus.png" />
+    <Content Include="Images\Senado3.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="Logo.aspx" />
     <Content Include="GuiaDeExpedientesExistentes.ttx" />
-    <None Include="LogoFSM.png" />
-    <None Include="LogoSenado-LXV.png" />
+    <None Include="Images\LogoFSM.png" />
+    <None Include="Images\LogoSenado-LXV.png" />
     <Content Include="Logout.aspx" />
     <Content Include="Menu.aspx" />
     <Content Include="PaginaEnBlanco.aspx" />
     <Content Include="RecepEnBaja.aspx" />
     <Content Include="RecepEnConc.aspx" />
+    <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.6.0.js" />
+    <Content Include="Scripts\jquery-3.6.0.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
     <Content Include="Styles.css" />
     <Content Include="TrabajoRealizado.aspx" />
     <Content Include="TramiteAConc.aspx" />
     <Content Include="UsuarioRealBuscar.aspx" />
     <Content Include="UsuarioRealDisplay.aspx" />
+    <Content Include="VerificarArchivos.aspx" />
     <Content Include="Web.config" />
     <EmbeddedResource Include="AuditoriaPorUA.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -468,6 +484,8 @@
     </None>
     <None Include="Etiquetas.ttx" />
     <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.6.0.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
@@ -479,6 +497,7 @@
       <Name>fsSimaServicios</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent />

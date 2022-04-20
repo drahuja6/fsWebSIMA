@@ -100,11 +100,24 @@
 					<td><br /></td>
 				</tr>
 				<tr>
+					<td class="titulo">
+						<asp:Label ID="lblTituloHerramientas" runat="server" Text="Herramientas" Visible="false" />
+					</td>
+				</tr>
+				<tr>
+					<td class="liga">
+						<asp:HyperLink id="lnkVerificaArchivos" runat="server" Target="PRINCIPAL" NavigateUrl="VerificarArchivos.aspx" tabIndex="9" Text="Verifica archivos" ToolTip="Verifica la existencia de archivo de imágenes" Font-Underline="false" Visible="false" />
+					</td>
+				</tr>
+				<tr>
+					<td><br /></td>
+				</tr>
+				<tr>
 					<td><br /></td>
 				</tr>
 				<tr>
 					<td class="liga">
-						<asp:HyperLink ID="salirLink" runat="server" NavigateUrl="~/Logout.aspx" Target="_top" Text="Salir" ToolTip="Cerrar la sesión" Font-Underline="false"/>
+						<asp:HyperLink ID="salirLink" runat="server" NavigateUrl="~/Logout.aspx" Target="_top" Text="Salir" ToolTip="Cerrar la sesión" Font-Underline="false" TabIndex="10" />
 					</td>
 				</tr>
 				<asp:HyperLink id="HLVEC" style="LEFT: 8px; POSITION: absolute; TOP: 112px" tabIndex="3"
