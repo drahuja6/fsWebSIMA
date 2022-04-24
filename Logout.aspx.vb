@@ -19,8 +19,8 @@
         Session("idInformacionClasificadaActivo") = -1
         Session("idClasificacionActivo") = -1
         Session("CodigoCompletoCuadroClasificacion") = -1
-        Session("NextLeftActivo") = 0
-        Session("NextRightActivo") = 0
+        'Session("NextLeftActivo") = 0
+        'Session("NextRightActivo") = 0
         Session("ExpedienteStatus") = 0
         Session("MovimientoStatus") = 0
         Session("CuadroClasificacionStatus") = 0

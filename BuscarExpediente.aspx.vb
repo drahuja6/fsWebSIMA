@@ -133,12 +133,11 @@ Public Class BuscarExpediente
             lbUnidAdmin.SelectedIndex = 0
             ddlCodigosUsuario.SelectedIndex = 0
 
-            Dim listaOrdenamiento As Dictionary(Of String, String) =
-                New Dictionary(Of String, String) From
+            Dim listaOrdenamiento As New Dictionary(Of String, String) From
                 {
-                    {" caja, nombre ", "Caja"},
+                    {" caja, control1 ", "Caja"},
                     {" nombre ", "Número"},
-                    {" dbo.fnNombreDeJerarquia(idClasificacion), nombre ", "Código"},
+                    {" dbo.fnOrdenamientoDeJerarquia(idClasificacion), nombre ", "Código"},
                     {" campoAdicional2, nombre", "Observaciones"},
                     {" campoAdicional1, nombre ", "Título"},
                     {" fechaApertura, nombre ", "Apertura"},
@@ -204,7 +203,7 @@ Public Class BuscarExpediente
 
         Select Case e.SortExpression
             Case "Codigo"
-                _ordenExpedientes = " dbo.fnNombreDeJerarquia(idClasificacion), nombre "
+                _ordenExpedientes = " dbo.fnOrdenamientoDeJerarquia(idClasificacion), nombre "
             Case "Numero"
                 _ordenExpedientes = " nombre "
             Case "Observaciones" 'Reemplazar por Observaciones
@@ -222,7 +221,7 @@ Public Class BuscarExpediente
             Case "Consecutivo general"
                 _ordenExpedientes = " control1 "
             Case Else
-                _ordenExpedientes = " caja, nombre "
+                _ordenExpedientes = " caja, control1 "
         End Select
 
         Session("OrdenDeGridDeExpedientes") = _ordenExpedientes
@@ -310,7 +309,9 @@ Public Class BuscarExpediente
 
     Protected Sub DataGrid1_ItemDataBound(sender As Object, e As DataGridItemEventArgs) Handles DataGrid1.ItemDataBound
         If e.Item.ItemIndex > -1 Then
-            If CType(DirectCast(e.Item.FindControl("txtArchivosNoLocalizados"), Label).Text, Integer) > 0 And DirectCast(e.Item.FindControl("lblDigitalizacion"), Label).Text = "Sí" Then
+            If DirectCast(e.Item.FindControl("lblDigitalizacion"), Label).Text = "No" Then
+                e.Item.BackColor = Color.AliceBlue
+            ElseIf CType(DirectCast(e.Item.FindControl("txtArchivosNoLocalizados"), Label).Text, Integer) > 0 Then
                 e.Item.BackColor = Color.IndianRed
             End If
         End If
@@ -716,7 +717,7 @@ Public Class BuscarExpediente
                 "CONVERT(NVARCHAR(10), e.FechaApertura, 103) As Apertura, " &
                 "Cierre = Case When (FechaCierreChecked = 1) Then CONVERT(NVARCHAR(10), e.FechaCierre, 103) Else '' END, " &
                 "ua.NombreCorto, " &
-                "CASE e.DocumentosDigitalizados WHEN 1 THEN 'Sí' ELSE 'No' END AS Digitalizacion " &
+                "e.DocumentosDigitalizados AS Digitalizacion " &
                 "FROM Expedientes e " &
                 "INNER JOIN UnidadesAdministrativas ua ON e.idUnidadAdministrativa = ua.idUnidadAdministrativa " &
                 CStr(IIf(condicion <> "", " WHERE " & condicion, ""))
@@ -767,6 +768,7 @@ Public Class BuscarExpediente
                 Next
 
                 Session("ListaIdExpedientes") = _listaIdExpedientes
+                Session("OrdenDeGridDeExpedientes") = _ordenExpedientes
 
                 DataGrid1.Visible = True
                 NoHayDatos.Visible = False

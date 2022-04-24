@@ -283,7 +283,7 @@
 							<asp:TemplateColumn HeaderText=" ">
 								<ItemTemplate>
 									<asp:ImageButton ID="ibtMuestraDocs" runat="server" CommandName="Documentos" ImageUrl="~/images/docs.png"
-										CommandArgument="Show" Visible='<%# If(Eval("ArchivosLocalizados").ToString = "0" Or CType(Eval("ArchivosNoLocalizados").ToString, Integer) > 0, False, True) %>' />
+										CommandArgument="Show" Visible='<%# If(Eval("ArchivosLocalizados").ToString <= "0", False, True) %>' />
 									<asp:Panel ID="pnlDocumentos" Width="180px" runat="server" Visible="false" Style="position:relative;">
                                         <asp:GridView ID="gvDocumentos" runat="server" AutoGenerateColumns="false" CssClass="gvDocumentos" ShowHeader="false" OnRowCommand="GvDocumentos_RowCommand">
 											<Columns>
@@ -304,7 +304,7 @@
 							</asp:BoundColumn>
 							<asp:TemplateColumn  HeaderText="Digitalización">
 								<ItemTemplate>
-									<asp:Label ID="lblDigitalizacion" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.Digitalizacion") %>' />
+									<asp:Label ID="lblDigitalizacion" runat="server" Text='<%# If(DataBinder.Eval(Container, "DataItem.Digitalizacion"), "Sí", "No") %>' />
 								</ItemTemplate>
 								<ItemStyle CssClass="grid" />
 							</asp:TemplateColumn>

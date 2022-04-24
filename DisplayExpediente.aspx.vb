@@ -364,8 +364,8 @@ Public Class DisplayExpediente
                 While dr.Read()
                     Session("IDExpedienteActivo") = CInt(dr("idExpediente"))
 
-                    Session("NextLeftActivo") = CInt(dr("NextLeft"))
-                    Session("NextRightActivo") = CInt(dr("NextRight"))
+                    'Session("NextLeftActivo") = CInt(dr("NextLeft"))
+                    'Session("NextRightActivo") = CInt(dr("NextRight"))
 
                     txtCodigo.Text = CStr(dr("Codigo"))
                     FillJerarquia(txtCodigo.Text)
@@ -1600,15 +1600,16 @@ Public Class DisplayExpediente
                 If Expedientes_DELETE(Session("idExpedienteActivo")) <> Session("idExpedienteActivo") Then
                     'Throw New ApplicationException("Se produjo un error al intentar borrar Expedientes o sus relaciones")
                 Else
-                    If Session("NextRightActivo") > 0 Then
-                        FillExpediente(Session("NextRightActivo"))
-                    Else
-                        If Session("NextLeftActivo") > 0 Then
-                            FillExpediente(Session("NextLeftActivo"))
-                        Else
-                            FillExpediente(-1)
-                        End If
-                    End If
+                    FillExpediente(-1)
+                    'If Session("NextRightActivo") > 0 Then
+                    '    FillExpediente(Session("NextRightActivo"))
+                    'Else
+                    '    If Session("NextLeftActivo") > 0 Then
+                    '        FillExpediente(Session("NextLeftActivo"))
+                    '    Else
+                    '        FillExpediente(-1)
+                    '    End If
+                    'End If
                 End If
 
             End If

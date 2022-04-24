@@ -59,8 +59,8 @@ Public Class Login
 
             Session("CodigoCompletoCuadroClasificacion") = -1
 
-            Session("NextLeftActivo") = 0
-            Session("NextRightActivo") = 0
+            'Session("NextLeftActivo") = 0
+            'Session("NextRightActivo") = 0
 
             Session("ExpedienteStatus") = 0 '0=SOLO LECTURA 1=AÑADIENDO 2=EDITANDO 3=BORRANDO
             Session("MovimientoStatus") = 0
