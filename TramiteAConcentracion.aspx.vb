@@ -1,5 +1,6 @@
 ﻿Imports System.Collections.Generic
 Imports System.Data.SqlClient
+Imports System.Globalization
 
 Imports fsSimaServicios
 
@@ -33,10 +34,11 @@ Public Class TramiteAConcentracion
     Protected Sub BtnBuscaVencidos_Click(sender As Object, e As EventArgs) Handles btnBuscaVencidos.Click
 
         If Page.IsValid Then
+
             Dim parametros(1) As SqlParameter
 
             parametros(0) = New SqlParameter("@IdUnidAdm", CInt(ddlUnidAdm.SelectedValue))
-            parametros(1) = New SqlParameter("@FechaDeCorte", CDate(txtFechaDeCorte.Text))
+            parametros(1) = New SqlParameter("@FechaDeCorte", DateTime.ParseExact(txtFechaDeCorte.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture))
             Accesorios.CargaListBoxSql(lbExpVencEnTramite, Session("UsuarioVirtualConnStringSQL"), "SelVencEnTramite", parametros, "Expediente", "idExpediente")
         End If
     End Sub
@@ -50,7 +52,7 @@ Public Class TramiteAConcentracion
 
         Try
             params(0) = New SqlParameter("@IdUnidAdm", CInt(ddlUnidAdm.SelectedValue))
-            params(1) = New SqlParameter("@FechaDeCorte", CDate(txtFechaDeCorte.Text))
+            params(1) = New SqlParameter("@FechaDeCorte", DateTime.ParseExact(txtFechaDeCorte.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture))
 
             ds = New ClienteSQL(Session("UsuarioVirtualConnStringSQL").ToString).ObtenerRegistrosSql(params, "SelVencEnTramite")
 
@@ -84,11 +86,9 @@ Public Class TramiteAConcentracion
             Dim expedientesBatchServicios As New ExpedientesBatchServicios(Session("UsuarioVirtualConnStringSQL").ToString)
             Dim idNuevoBatch As Integer
 
-            idNuevoBatch = expedientesBatchServicios.Batches_Insert(txtNuevoBatchDesc.Text, CInt(Session("idUsuarioReal")), Now.Date, 1, CInt(ddlUnidAdm.SelectedValue), CDate(txtFechaDeCorte.Text))
-
+            idNuevoBatch = expedientesBatchServicios.Batches_Insert(txtNuevoBatchDesc.Text, CInt(Session("idUsuarioReal")), Now.Date, 1, CInt(ddlUnidAdm.SelectedValue), DateTime.ParseExact(txtFechaDeCorte.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture))
             txtNuevoBatchID.Text = idNuevoBatch
             txtNuevoBatchID2.Text = idNuevoBatch
-
             txtFechCorteVig.Text = txtFechaDeCorte.Text
 
         End If
@@ -122,7 +122,7 @@ Public Class TramiteAConcentracion
             Dim parametros(1) As SqlParameter
 
             parametros(0) = New SqlParameter("@IdUnidAdm", CInt(ddlUnidAdm.SelectedValue))
-            parametros(1) = New SqlParameter("@FechaDeCorte", CDate(txtFechaDeCorte.Text))
+            parametros(1) = New SqlParameter("@FechaDeCorte", DateTime.ParseExact(txtFechaDeCorte.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture))
 
             Accesorios.CargaListBoxSql(lbExpVencEnTramite, Session("UsuarioVirtualConnStringSQL"), "SelVencEnTramite", parametros, "Expediente", "idExpediente")
 
@@ -189,7 +189,7 @@ Public Class TramiteAConcentracion
             Dim parametros(1) As SqlParameter
 
             parametros(0) = New SqlParameter("@IdUnidAdm", CInt(ddlUnidAdm.SelectedValue))
-            parametros(1) = New SqlParameter("@FechaDeCorte", CDate(txtFechaDeCorte.Text))
+            parametros(1) = New SqlParameter("@FechaDeCorte", DateTime.ParseExact(txtFechaDeCorte.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture))
 
             Accesorios.CargaListBoxSql(lbExpVencEnTramite, Session("UsuarioVirtualConnStringSQL"), "SelVencEnTramite", parametros, "Expediente", "idExpediente")
 

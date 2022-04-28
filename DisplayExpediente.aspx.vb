@@ -1,8 +1,10 @@
 Imports System.Text.RegularExpressions
 Imports System.Data.OleDb
 Imports System.IO
+Imports System.Globalization
 
 Imports fsSimaServicios
+
 
 Public Class DisplayExpediente
     Inherits Page
@@ -1079,19 +1081,18 @@ Public Class DisplayExpediente
             'Añadiendo un record nuevo
             If Session("ExpedienteStatus") = 1 Then
 
-                'Debo tratar aparte las fechas que en la version convencional 
-                'de la aplicacion tienen checkmark
+                'Debo tratar aparte las fechas que en la version convencional de la aplicacion tienen checkmark
 
                 If Trim(txtFechaCierre.Text) = "" Then
-                    MyFechaCierre = CDate("1/1/1900")
+                    MyFechaCierre = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 Else
-                    MyFechaCierre = CDate(Trim(txtFechaCierre.Text))
+                    MyFechaCierre = DateTime.ParseExact(Trim(txtFechaCierre.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 End If
 
                 If Trim(txtFechaPaseBajaHistorico.Text) = "" Then
-                    MyFechaPaseBajaHistorico = CDate("1/1/1900")
+                    MyFechaPaseBajaHistorico = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 Else
-                    MyFechaPaseBajaHistorico = CDate(Trim(txtFechaPaseBajaHistorico.Text))
+                    MyFechaPaseBajaHistorico = DateTime.ParseExact(Trim(txtFechaPaseBajaHistorico.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 End If
 
                 'IDExpedienteInsertado = Expedientes_INSERT( _
@@ -1125,7 +1126,7 @@ Public Class DisplayExpediente
                     CStr(IIf(Trim(txtExpediente.Text) = "", "?", Trim(txtExpediente.Text))),
                     Trim(txtNombre.Text),
                     CInt(IIf(Trim(txtNoDeFojas.Text) = "", "0", Trim(txtNoDeFojas.Text))),
-                    CDate(Trim(txtFechaApertura.Text)),
+                    DateTime.ParseExact(Trim(txtFechaApertura.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture),
                     MyFechaCierre,
                     IIf(Trim(txtFechaCierre.Text) = "", False, True),
                     MyFechaPaseBajaHistorico,
@@ -1204,27 +1205,27 @@ Public Class DisplayExpediente
                     'Debo tratar aparte las fechas 
 
                     If Trim(txtFechaDeClasificacion.Text) = "" Then
-                        MyFechaDeClasificacion = CDate("1/1/1900")
+                        MyFechaDeClasificacion = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     Else
-                        MyFechaDeClasificacion = CDate(Trim(txtFechaDeClasificacion.Text))
+                        MyFechaDeClasificacion = DateTime.ParseExact(Trim(txtFechaDeClasificacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     End If
 
                     If Trim(txtFechaPropuestaDesclasificacion.Text) = "" Then
-                        MyFechaPropuestaDesclasificacion = CDate("1/1/1900")
+                        MyFechaPropuestaDesclasificacion = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     Else
-                        MyFechaPropuestaDesclasificacion = CDate(Trim(txtFechaPropuestaDesclasificacion.Text))
+                        MyFechaPropuestaDesclasificacion = DateTime.ParseExact(Trim(txtFechaPropuestaDesclasificacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     End If
 
                     If Trim(txtNuevaFechaPropuestaDesclasificacion.Text) = "" Then
-                        MyNuevaFechaPropuestaDesclasificacion = CDate("1/1/1900")
+                        MyNuevaFechaPropuestaDesclasificacion = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     Else
-                        MyNuevaFechaPropuestaDesclasificacion = CDate(Trim(txtNuevaFechaPropuestaDesclasificacion.Text))
+                        MyNuevaFechaPropuestaDesclasificacion = DateTime.ParseExact(Trim(txtNuevaFechaPropuestaDesclasificacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     End If
 
                     If Trim(txtFechaDesclasificacion.Text) = "" Then
-                        MyFechaDesclasificacion = CDate("1/1/1900")
+                        MyFechaDesclasificacion = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     Else
-                        MyFechaDesclasificacion = CDate(Trim(txtFechaDesclasificacion.Text))
+                        MyFechaDesclasificacion = DateTime.ParseExact(Trim(txtFechaDesclasificacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     End If
 
                     IDExpedienteInsertado2 = Expedientes_UPDATE_2(
@@ -1337,15 +1338,15 @@ Public Class DisplayExpediente
                 '        CType(cbCalidadDocumental.SelectedItem, ComboBoxLine).LineItemData)
 
                 If Trim(txtFechaCierre.Text) = "" Then
-                    MyFechaCierre = CDate("1/1/1900")
+                    MyFechaCierre = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 Else
-                    MyFechaCierre = CDate(Trim(txtFechaCierre.Text))
+                    MyFechaCierre = DateTime.ParseExact(Trim(txtFechaCierre.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 End If
 
                 If Trim(txtFechaPaseBajaHistorico.Text) = "" Then
-                    MyFechaPaseBajaHistorico = CDate("1/1/1900")
+                    MyFechaPaseBajaHistorico = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 Else
-                    MyFechaPaseBajaHistorico = CDate(Trim(txtFechaPaseBajaHistorico.Text))
+                    MyFechaPaseBajaHistorico = DateTime.ParseExact(Trim(txtFechaPaseBajaHistorico.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 End If
 
                 IDExpedienteEditado = Expedientes_UPDATE(
@@ -1354,7 +1355,7 @@ Public Class DisplayExpediente
                     CStr(IIf(Trim(txtExpediente.Text) = "", "?", Trim(txtExpediente.Text))),
                     Trim(txtNombre.Text),
                     CInt(IIf(Trim(txtNoDeFojas.Text) = "", "0", Trim(txtNoDeFojas.Text))),
-                    CDate(Trim(txtFechaApertura.Text)),
+                    DateTime.ParseExact(Trim(txtFechaApertura.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture),
                     MyFechaCierre,
                     IIf(Trim(txtFechaCierre.Text) = "", False, True),
                     MyFechaPaseBajaHistorico,
@@ -1367,7 +1368,7 @@ Public Class DisplayExpediente
                      txtCaja.Text,
                      txtAnaquel.Text,
                      txtPasillo.Text,
-                    CDate(Trim(txtFechaDeCreacion.Text)),
+                    DateTime.ParseExact(Trim(txtFechaDeCreacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture),
                     txtRFC.Text,
                     txtTipo.Text,
                     CInt(Session("IDUsuarioReal")),
@@ -1436,27 +1437,27 @@ Public Class DisplayExpediente
 
 
                     If Trim(txtFechaDeClasificacion.Text) = "" Then
-                        MyFechaDeClasificacion = CDate("1/1/1900")
+                        MyFechaDeClasificacion = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     Else
-                        MyFechaDeClasificacion = CDate(Trim(txtFechaDeClasificacion.Text))
+                        MyFechaDeClasificacion = DateTime.ParseExact(Trim(txtFechaDeClasificacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     End If
 
                     If Trim(txtFechaPropuestaDesclasificacion.Text) = "" Then
-                        MyFechaPropuestaDesclasificacion = CDate("1/1/1900")
+                        MyFechaPropuestaDesclasificacion = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     Else
-                        MyFechaPropuestaDesclasificacion = CDate(Trim(txtFechaPropuestaDesclasificacion.Text))
+                        MyFechaPropuestaDesclasificacion = DateTime.ParseExact(Trim(txtFechaPropuestaDesclasificacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     End If
 
                     If Trim(txtNuevaFechaPropuestaDesclasificacion.Text) = "" Then
-                        MyNuevaFechaPropuestaDesclasificacion = CDate("1/1/1900")
+                        MyNuevaFechaPropuestaDesclasificacion = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     Else
-                        MyNuevaFechaPropuestaDesclasificacion = CDate(Trim(txtNuevaFechaPropuestaDesclasificacion.Text))
+                        MyNuevaFechaPropuestaDesclasificacion = DateTime.ParseExact(Trim(txtNuevaFechaPropuestaDesclasificacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     End If
 
                     If Trim(txtFechaDesclasificacion.Text) = "" Then
-                        MyFechaDesclasificacion = CDate("1/1/1900")
+                        MyFechaDesclasificacion = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     Else
-                        MyFechaDesclasificacion = CDate(Trim(txtFechaDesclasificacion.Text))
+                        MyFechaDesclasificacion = DateTime.ParseExact(Trim(txtFechaDesclasificacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     End If
 
                     IDExpedienteEditado2 = Expedientes_UPDATE_2(
@@ -1480,10 +1481,6 @@ Public Class DisplayExpediente
                         ddlstTramite.SelectedItem.Value,
                         ddlstConcentracion.SelectedItem.Value,
                         ddlstDestinoFinal.SelectedItem.Value)
-
-
-
-
 
                     If IDExpedienteEditado2 = 0 Then
 

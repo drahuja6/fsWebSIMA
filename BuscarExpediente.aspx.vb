@@ -2,6 +2,7 @@ Imports System.Collections.Generic
 Imports System.Data.OleDb
 Imports System.Text
 Imports System.IO
+Imports System.Globalization
 
 Imports fsSimaServicios
 
@@ -1304,20 +1305,18 @@ Public Class BuscarExpediente
         End If
 
         'Fecha de Apertura inicial
-        'Parametros.FechaInicial = CDate(Trim(txtFApertInic.Text)) ' GITdtpFechaAperturaInicial.GIT_Value
         If Len(Trim(txtFApertInic.Text)) = 0 Then
-            Parametros.FechaInicial = CDate("1/1/2000")
+            Parametros.FechaInicial = DateTime.ParseExact("01/01/2000", "dd/MM/yyy", CultureInfo.InvariantCulture)
         Else
-            Parametros.FechaInicial = CDate(Trim(txtFApertInic.Text))
+            Parametros.FechaInicial = DateTime.ParseExact(Trim(txtFApertInic.Text), "dd/MM/yyy", CultureInfo.InvariantCulture)
         End If
 
 
         'Fecha de Apertura final
-        'Parametros.FechaFinal = CDate(Trim(txtFApertFinal.Text)) 'GITdtpFechaAperturaFinal.GIT_Value
         If Len(Trim(txtFApertFinal.Text)) = 0 Then
-            Parametros.FechaFinal = CDate("1/1/2000")
+            Parametros.FechaFinal = DateTime.ParseExact("01/01/2000", "dd/MM/yyy", CultureInfo.InvariantCulture)
         Else
-            Parametros.FechaFinal = CDate(Trim(txtFApertFinal.Text))
+            Parametros.FechaFinal = DateTime.ParseExact(Trim(txtFApertFinal.Text), "dd/MM/yyy", CultureInfo.InvariantCulture)
         End If
 
     End Sub

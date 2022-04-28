@@ -161,23 +161,6 @@ Public Class ConcABaja
             lblValidaFechaDeCorteVigente.Visible = False
         End If
 
-
-        ''Validacion para evitar que la fecha propuesta sea anterior a la vigente
-        'If CDate(txtFechaDeCorteVigente.Text) < CDate(LeeMemoStatusVigente()) Then
-        '    lblValidaFechaDeCorteVigente.Visible = True
-        '    Return False
-        'Else
-        '    lblValidaFechaDeCorteVigente.Visible = False
-        'End If
-
-        ''Validacion para evitar que la fecha propuesta sea posterior en más de 31 días a la vigente
-        'If DateDiff(DateInterval.Day, CDate(LeeMemoStatusVigente()), CDate(txtFechaDeCorteVigente.Text)) > 31 Then
-        '    lblValidaFechaDeCorteVigente.Visible = True
-        '    Return False
-        'Else
-        '    lblValidaFechaDeCorteVigente.Visible = False
-        'End If
-
         Return True
 
     End Function
