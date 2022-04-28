@@ -52,22 +52,22 @@
 				</tr>
 				<tr>
 					<td class="liga">
-						<asp:HyperLink id="tramiteConcentracionLink" tabIndex="3" runat="server" Target="PRINCIPAL" NavigateUrl="TramiteAConc.aspx" Text="Tram >> Conc" ToolTip="Transferencia de trámite a concentración" Font-Underline="false"/>
+						<asp:HyperLink id="tramiteConcentracionLink" tabIndex="3" runat="server" Target="PRINCIPAL" NavigateUrl="TramiteAConcentracion.aspx" Text="Trámite" ToolTip="Transferencia de trámite a concentración" Font-Underline="false"/>
 					</td>
 				</tr>
 				<tr>
 					<td class="liga">
-						<asp:HyperLink id="recepConcentracionLink" tabIndex="4" runat="server" Target="PRINCIPAL" NavigateUrl="RecepEnConc.aspx" Text="Rec. Conc" ToolTip="Recepción en concentración" Font-Underline="false"/>
+						<asp:HyperLink id="recepConcentracionLink" tabIndex="4" runat="server" Target="PRINCIPAL" NavigateUrl="RecepcionEnConcentracion.aspx" Text="Concentración" ToolTip="Recepción en concentración" Font-Underline="false"/>
 					</td>
 				</tr>
 				<tr>
 					<td class="liga">
-						<asp:HyperLink id="concentracionBajaLink" tabIndex="5" runat="server" Target="PRINCIPAL" NavigateUrl="ConcABaja.aspx" Text="Conc >> Baja" ToolTip="Transferencia de concentración a baja" Font-Underline="false"/>
+						<asp:HyperLink id="concentracionBajaLink" tabIndex="5" runat="server" Target="PRINCIPAL" NavigateUrl="ConcABaja.aspx" Text="Baja" ToolTip="Transferencia de concentración a baja" Font-Underline="false"/>
 					</td>
 				</tr>
 				<tr>
 					<td class="liga">
-						<asp:HyperLink id="autorizaBajaLink" tabIndex="6" runat="server" Target="PRINCIPAL" NavigateUrl="RecepEnBaja.aspx" Text="Autoriza baja" ToolTip="Autorización de baja" Font-Underline="false"/>
+						<asp:HyperLink id="autorizaBajaLink" tabIndex="6" runat="server" Target="PRINCIPAL" NavigateUrl="RecepEnBaja.aspx" Text="Autorización baja" ToolTip="Autorización de baja" Font-Underline="false"/>
 					</td>
 				</tr>
 				<tr>

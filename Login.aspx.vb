@@ -207,6 +207,7 @@ Public Class Login
             cmd.ExecuteNonQuery()
 
             Session("UsuarioVirtualConnString") = "Provider=MSOLEDBSQL;Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & scrambler.Scramble(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value), Chr(25) & Chr(26)) & ";Persist Security Info=True;Connect Timeout=15;Encryption=True;"
+            Session("UsuarioVirtualConnStringSQL") = "Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & scrambler.Scramble(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value), Chr(25) & Chr(26)) & ";Persist Security Info=True;Connect Timeout=15;Encrypt=Yes;TrustServerCertificate=Yes;"
 
             cn.Close()
 

@@ -254,8 +254,8 @@
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ListaBatchExpFOV1.vb">
-      <DependentUpon>ListaBatchExpFOV.rpt</DependentUpon>
+    <Compile Include="BatchExpedientesTramiteConcentracion.vb">
+      <DependentUpon>BatchExpedientesTramiteConcentracion.rpt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
@@ -318,21 +318,27 @@
       <DependentUpon>PaginaEnBlanco.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="RecepcionEnConcentracion.aspx.designer.vb">
+      <DependentUpon>RecepcionEnConcentracion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecepcionEnConcentracion.aspx.vb">
+      <DependentUpon>RecepcionEnConcentracion.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="RecepEnBaja.aspx.vb">
       <DependentUpon>RecepEnBaja.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="RecepEnConc.aspx.vb">
-      <DependentUpon>RecepEnConc.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="TrabajoRealizado.aspx.vb">
       <DependentUpon>TrabajoRealizado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TramiteAConc.aspx.vb">
-      <DependentUpon>TramiteAConc.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="TramiteAConcentracion.aspx.designer.vb">
+      <DependentUpon>TramiteAConcentracion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TramiteAConcentracion.aspx.vb">
+      <DependentUpon>TramiteAConcentracion.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="UsuarioRealBuscar.aspx.vb">
       <DependentUpon>UsuarioRealBuscar.aspx</DependentUpon>
@@ -374,16 +380,17 @@
     <Content Include="Logout.aspx" />
     <Content Include="Menu.aspx" />
     <Content Include="PaginaEnBlanco.aspx" />
+    <Content Include="RecepcionEnConcentracion.aspx" />
     <Content Include="RecepEnBaja.aspx" />
-    <Content Include="RecepEnConc.aspx" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\jquery-3.6.0.slim.js" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
+    <Content Include="Senado.css" />
     <Content Include="Styles.css" />
     <Content Include="TrabajoRealizado.aspx" />
-    <Content Include="TramiteAConc.aspx" />
+    <Content Include="TramiteAConcentracion.aspx" />
     <Content Include="UsuarioRealBuscar.aspx" />
     <Content Include="UsuarioRealDisplay.aspx" />
     <Content Include="VerificarArchivos.aspx" />
@@ -425,9 +432,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>GuiaDeExpedientes.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListaBatchExpFOV.rpt">
+    <EmbeddedResource Include="BatchExpedientesTramiteConcentracion.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ListaBatchExpFOV1.vb</LastGenOutput>
+      <LastGenOutput>BatchExpedientesTramiteConcentracion.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ListaDeExpedientes.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -465,16 +472,13 @@
     <EmbeddedResource Include="TrabajoRealizado.aspx.resx">
       <DependentUpon>TrabajoRealizado.aspx.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TramiteAConc.aspx.resx">
-      <DependentUpon>TramiteAConc.aspx.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UsuarioRealDisplay.aspx.resx">
       <DependentUpon>UsuarioRealDisplay.aspx.vb</DependentUpon>
     </EmbeddedResource>
     <None Include="AuditoriaPorUA.ttx" />
     <None Include="AuditoriaPorUsuario.ttx" />
     <None Include="Caratula.ttx" />
-    <None Include="ListaBatchExpFOV.ttx" />
+    <None Include="BatchExpedientesTramiteConcentracion.ttx" />
     <None Include="ListaDeExpedientes.ttx" />
     <None Include="ListaExpTramVenc.ttx" />
     <None Include="My Project\Settings.settings">

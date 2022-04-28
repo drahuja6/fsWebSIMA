@@ -10,50 +10,17 @@
             document.body.style.cursor = 'wait';
         }
     </script>
-		<style type="text/css">
-			[class*="etiqueta"] {
-				font-size: smaller;
-				font-weight:700;
-				font-family: Arial, Helvetica, sans-serif;
-				color:navy;
-				vertical-align:central;
-			}
-			.etiqueta-titulo {  
-				font-size: medium;
-				color: white;
-				background-color: #5D7B9D;
-				height: 40px;
-            }  
-			.etiqueta-boton {  
-				align-self:center;
-				float:right;
-				display:inline;		
-            }  
-			.etiqueta-textbox {  
-				width: 70px;
-				font-weight: 500;
-			}
-			.col {
-				height: 30px;
-			}
-			[class*="grid"] {
-				font-weight: 500;
-				font-size: smaller; 
-				font-family: Arial, Helvetica, sans-serif;
-				text-align:center;
-			}
-			.grid-ua {
-				width:28%;
-				text-align:unset;
-			}
-			.grid-datos {
-				width:9%;		
-			}
-			.error
-			{
-				color:red;
-			}
-		</style> 
+	<link type="text/css" rel="stylesheet" href="Senado.css" />
+	<style type="text/css">
+		.grid-ua {
+			width:28%;
+			text-align:unset;
+		}
+		.grid-datos {
+			width:9%;		
+		}
+	</style> 
+
 </head>
 <body>
     <form id="form1" runat="server" onsubmit="return setHourglass()">

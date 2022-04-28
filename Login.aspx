@@ -7,11 +7,12 @@
 		<meta content="Visual Basic .NET 7.1" name="CODE_LANGUAGE">
 		<meta content="JavaScript" name="vs_defaultClientScript">
 		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<link type="text/css" rel="stylesheet" href="Senado.css" />
 	    <style type="text/css">
             #Form1 {
                 width: 350px;
             }
-			.etiqueta-titulo {  
+/*			.etiqueta-titulo {  
 				font-size: medium;
 				font-weight: 700;
 				font-family: Arial, Helvetica, sans-serif;
@@ -32,7 +33,7 @@
 				font-weight: 500;
 				font-size: smaller; 
 				font-family: Arial, Helvetica, sans-serif;
-			}
+			}*/
 			.col-1 {
 				width: 50%;
 				height: 30px;
@@ -61,7 +62,7 @@
 						<td class="col-1">
 							<asp:label CssClass="etiqueta" id="usuarioLabel" runat="server" Text="Usuario:"/>
 						<td class="col-2">
-							<asp:textbox CssClass="textbox" id="txtUsuario" tabIndex="1" runat="server"/>
+							<asp:textbox CssClass="etiqueta-textbox" Width="160px" id="txtUsuario" tabIndex="1" runat="server"/>
 						<td class="col-3">
 							<asp:requiredfieldvalidator id="RequiredFieldValidator1" runat="server" ErrorMessage="**" ControlToValidate="txtUsuario"/>
 					</tr>
@@ -70,19 +71,19 @@
 							<asp:label CssClass="etiqueta" id="contrasenaLabel" runat="server" Text="Contraseña:"/>
 						</td>
 						<td class="col-2">
-							<asp:textbox CssClass="textbox" id="txtPassword" tabIndex="2" runat="server" TextMode="Password"/>
+							<asp:textbox CssClass="etiqueta-textbox" Width="160px" id="txtPassword" tabIndex="2" runat="server" TextMode="Password"/>
 						</td>
 						<td class="col-3"/>
 					</tr>
 					<tr>
 						<td class="col-1"/>
 						<td class="col-2">
-							<asp:button CssClass="etiqueta" id="btnEntrar" tabIndex="3" runat="server" Text="Entrar"/>
+							<asp:button CssClass="etiqueta-boton" id="btnEntrar" tabIndex="3" runat="server" Text="Entrar"/>
 						</td>
 					</tr>
 					<tr><td colspan="3"><br /></td></tr>
 				</table>
-				<asp:Label CssClass="etiqueta" ID="lblAccesoNegado" runat="server" ForeColor="Red" Text="Acceso denegado. Verifique usuario y contraseña." Visible="False"/>
+				<asp:Label CssClass="etiqueta error" ID="lblAccesoNegado" runat="server" ForeColor="Red" Text="Acceso denegado. Verifique usuario y contraseña." Visible="False"/>
 			</div>
 		</form>
 	</body>

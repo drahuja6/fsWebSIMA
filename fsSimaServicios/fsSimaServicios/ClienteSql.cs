@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.OleDb;
@@ -14,6 +15,10 @@ namespace fsSimaServicios
         #endregion Propiedades públicas.
 
         #region Constructor.
+
+        public ClienteSQL()
+        {
+        }
 
         public ClienteSQL(string cadenaConexionDb)
         {
@@ -154,7 +159,7 @@ namespace fsSimaServicios
                     return true;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }
@@ -178,7 +183,7 @@ namespace fsSimaServicios
                     return true;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }
@@ -209,6 +214,40 @@ namespace fsSimaServicios
             catch (Exception)
             {
                 return new DataSet();
+            }
+        }
+
+        public SqlParameter[] CreaParametros(Dictionary<string, object> parametrosValores)
+        {
+            try
+            {
+                var parametros = new SqlParameter[parametrosValores.Count];
+                var i = 0;
+                foreach (var item in parametrosValores)
+                {
+                    parametros[i++] = new SqlParameter(item.Key, item.Value);
+                }
+
+                return parametros;
+            }
+            catch (Exception)
+            {
+                return default;
+            }
+        }
+
+        public SqlParameter[] CreaParametros(string parametro, object valor)
+        {
+            try
+            {
+                var parametros = new SqlParameter[1];
+                parametros[0] = new SqlParameter(parametro, valor);
+
+                return parametros;
+            }
+            catch (Exception)
+            {
+                return default;
             }
         }
 

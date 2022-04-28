@@ -618,7 +618,7 @@ Public Class ConcABaja
         Dim da As New OleDbDataAdapter
         Dim ds As New DataSet
 
-        Dim Reporte As New ListaBatchExpFOV
+        Dim Reporte As New BatchExpedientesTramiteConcentracion
 
         Try
 
@@ -645,6 +645,7 @@ Public Class ConcABaja
             Reporte.SetDataSource(ds.Tables(0))
 
             Reporte.SetParameterValue(0, "Listado de expedientes enviados a Baja -  LOTE: " & txtNuevoBatchID2.Text)
+            Reporte.SetParameterValue(1, Globales.LogoCliente)
 
             Dim guid1 As Guid = Guid.NewGuid
             Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
