@@ -239,11 +239,6 @@
 	</head>
 	<body bgColor="#ffffff" style="font-size:small">
 		<form id="Form1" method="post" runat="server" style="font-size:small" onsubmit="return setHourglass()">
-            <div class="loading" align="center">
-                Por favor espere<br />
-                <br />
-                <img src="Images/loader.gif" alt="" />
-            </div>
 				<asp:label id="Label18" runat="server"
 					Height="16px" Visible="true" Text="Unidades Administrativas" CssClass="auto-style22" />
 				<asp:listbox id="lbUnidAdmin" tabIndex="1"
