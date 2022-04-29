@@ -5,16 +5,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Trámite a concentración</title>
-	<script type="text/javascript">
-        function setHourglass() {
-            document.body.style.cursor = 'wait';
-        }
-    </script>
+    <script src="Scripts/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="Scripts/sima.js"></script>
     <link type="text/css" rel="stylesheet" href="Senado.css" />
 </head>
 <body>
-    <form id="form1" runat="server" onsubmit="return setHourglass()">
-        <div>
+    <form id="form1" runat="server">
+            <div class="loading" align="center">
+                Por favor espere<br />
+                <br />
+                <img src="Images/loader.gif" alt="" />
+            </div>
             <table>
 			    <tr>
 				    <th class="etiqueta-titulo" colspan="8">
@@ -32,10 +33,10 @@
 			            <asp:textbox id="txtFechaDeCorte" runat="server" CssClass="etiqueta-textbox" />
                         <asp:regularexpressionvalidator id="RegularExpressionValidator1" runat="server" ControlToValidate="txtFechaDeCorte" ErrorMessage="*" ValidationExpression="^(((0?[1-9]|[12]\d|3[01])[\.\-\/](0?[13578]|1[02])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|((0?[1-9]|[12]\d|30)[\.\-\/](0?[13456789]|1[012])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|((0?[1-9]|1\d|2[0-8])[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}|\d))|(29[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00|[048])))$" />
                     </td>
-                    <td class="col">
+                    <td class="col" onclick="ShowProgress()">
                         <asp:button id="btnBuscaVencidos" runat="server" Text="(1)Buscar Exp" CssClass="etiqueta-boton" />
                     </td>
-                    <td>
+                    <td onclick="ShowProgress()">
                         <asp:button id="btnImpListado" runat="server" Text="(2)Imprimir lista" CssClass="etiqueta-boton" />
                     </td>
                     <td class="col">
@@ -90,16 +91,15 @@
                     <td>
                         <asp:textbox id="txtNuevoBatchID2"	runat="server" CssClass="etiqueta-textbox" />
                     </td>
-                    <td>
+                    <td onclick="ShowProgress()">
                         <asp:button id="btnImprimeEnvio" runat="server" Text="(5)Imprimir envío" CssClass="etiqueta-boton" />
                     </td>
                     <td colspan="3" class="col"></td>
-                    <td>
+                    <td onclick="ShowProgress()">
                         <asp:button id="btnQuitar" runat="server" Text="Quitar Exp" CssClass="etiqueta-boton" />
                     </td>
                 </tr>
             </table>
-        </div>
     </form>
 </body>
 </html>

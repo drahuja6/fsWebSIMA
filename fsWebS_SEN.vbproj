@@ -370,6 +370,7 @@
     <Content Include="Frameset2.htm" />
     <Content Include="Global.asax" />
     <Content Include="Images\docs.png" />
+    <Content Include="Images\loader.gif" />
     <Content Include="Images\minus.png" />
     <Content Include="Images\Senado3.jpg" />
     <Content Include="Login.aspx" />
@@ -387,6 +388,7 @@
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\jquery-3.6.0.slim.js" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
+    <Content Include="Scripts\sima.js" />
     <Content Include="Senado.css" />
     <Content Include="Styles.css" />
     <Content Include="TrabajoRealizado.aspx" />

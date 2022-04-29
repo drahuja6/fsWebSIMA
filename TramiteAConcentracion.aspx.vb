@@ -5,14 +5,14 @@ Imports System.Globalization
 Imports fsSimaServicios
 
 Public Class TramiteAConcentracion
-    Inherits System.Web.UI.Page
+    Inherits Page
 
 #Region "Eventos de la forma"
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
             Accesorios.CargaDropDownListSql(ddlUnidAdm, Session("UsuarioVirtualConnStringSQL"), "UnidadesAdministrativasDeUnUsuarioReal", "IdParameter", Session("IDUsuarioReal"), "NombreCorto", "idUnidadAdministrativa", -1)
-            txtFechaDeCorte.Text = Format(Now.AddDays(-Now.DayOfYear), "dd/MM/yyyy")
+            txtFechaDeCorte.Text = Format(Now.Date, "dd/MM/yyyy")
             txtCajaProv.Text = "CajaTemp"
         End If
     End Sub
@@ -34,7 +34,6 @@ Public Class TramiteAConcentracion
     Protected Sub BtnBuscaVencidos_Click(sender As Object, e As EventArgs) Handles btnBuscaVencidos.Click
 
         If Page.IsValid Then
-
             Dim parametros(1) As SqlParameter
 
             parametros(0) = New SqlParameter("@IdUnidAdm", CInt(ddlUnidAdm.SelectedValue))

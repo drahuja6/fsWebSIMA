@@ -52,3 +52,28 @@
 .panel {
     overflow: auto;
 }
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    z-index: 99;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    min-height: 100%;
+    width: 100%;
+}
+.loading {
+    padding: 5px;
+    font-family: Arial;
+    font-size: 10pt;
+    border: 1px outset #0094ff;
+    width: 200px;
+    height: 100px;
+    display: none;
+    background-color: lightgrey;
+    z-index: 999;
+    position: absolute;
+}
+
+
