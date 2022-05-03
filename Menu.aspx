@@ -34,7 +34,7 @@
 				</tr>
 				<tr>
 					<td class="liga">
-						<asp:HyperLink ID="expedienteLink" runat="server" NavigateUrl="~/BuscarExpediente.aspx" Target="PRINCIPAL" tabIndex="1" Text="Buscar/Editar" ToolTip="Busca expedientes para consulta o edición" Font-Underline="false"/>
+						<asp:HyperLink ID="expedienteLink" runat="server" NavigateUrl="~/BusquedaExpedientes.aspx" Target="PRINCIPAL" tabIndex="1" Text="Buscar/Editar" ToolTip="Busca expedientes para consulta o edición" Font-Underline="false"/>
 					</td>
 				</tr>
 				<tr>

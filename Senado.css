@@ -19,8 +19,20 @@
     display: inline;
 }
 
+.etiqueta-boton-ancho {
+    align-self: center;
+    float: inline-end;
+    display: inline;
+    width: 100px;
+}
+
 .etiqueta-textbox {
     width: 70px;
+    font-weight: 500;
+}
+
+.etiqueta-textbox-ancho {
+    width: 140px;
     font-weight: 500;
 }
 

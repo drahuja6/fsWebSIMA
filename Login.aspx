@@ -1,7 +1,7 @@
 <%@ Page Language="vb" AutoEventWireup="false" Codebehind="Login.aspx.vb" Inherits="fsWebS_SEN.Login" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
-	<HEAD>
+	<head>
 		<title>Login</title>
 		<meta content="Microsoft Visual Studio .NET 7.1" name="GENERATOR">
 		<meta content="Visual Basic .NET 7.1" name="CODE_LANGUAGE">
@@ -12,28 +12,6 @@
             #Form1 {
                 width: 350px;
             }
-/*			.etiqueta-titulo {  
-				font-size: medium;
-				font-weight: 700;
-				font-family: Arial, Helvetica, sans-serif;
-				color: white;
-				background-color: #5D7B9D;
-				vertical-align: central;
-				height: 40px;
-            }  
-			.etiqueta {  
-				font-size: smaller;
-				font-weight:700;
-				font-family: Arial, Helvetica, sans-serif;
-				color:navy;
-				vertical-align:central;
-            }  
-			.textbox {  
-				width: 160px;
-				font-weight: 500;
-				font-size: smaller; 
-				font-family: Arial, Helvetica, sans-serif;
-			}*/
 			.col-1 {
 				width: 50%;
 				height: 30px;
@@ -48,7 +26,7 @@
 				height: 30px;
 			}
 		</style> 
-	</HEAD>
+	</head>
 	<body bgColor="#ffffff">
 		<form id="Form1" method="post" runat="server" visible="True">
 			<div>
@@ -62,7 +40,7 @@
 						<td class="col-1">
 							<asp:label CssClass="etiqueta" id="usuarioLabel" runat="server" Text="Usuario:"/>
 						<td class="col-2">
-							<asp:textbox CssClass="etiqueta-textbox" Width="160px" id="txtUsuario" tabIndex="1" runat="server"/>
+							<asp:textbox CssClass="etiqueta-textbox-ancho" id="txtUsuario" tabIndex="1" runat="server"/>
 						<td class="col-3">
 							<asp:requiredfieldvalidator id="RequiredFieldValidator1" runat="server" ErrorMessage="**" ControlToValidate="txtUsuario"/>
 					</tr>
@@ -71,7 +49,7 @@
 							<asp:label CssClass="etiqueta" id="contrasenaLabel" runat="server" Text="Contraseña:"/>
 						</td>
 						<td class="col-2">
-							<asp:textbox CssClass="etiqueta-textbox" Width="160px" id="txtPassword" tabIndex="2" runat="server" TextMode="Password"/>
+							<asp:textbox CssClass="etiqueta-textbox-ancho" id="txtPassword" tabIndex="2" runat="server" TextMode="Password"/>
 						</td>
 						<td class="col-3"/>
 					</tr>

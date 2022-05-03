@@ -169,7 +169,6 @@
 	    	}
             .auto-style23 {
                 z-index: 122;
-                left: 163px;
                 position: absolute;
                 top: 344px;
             }

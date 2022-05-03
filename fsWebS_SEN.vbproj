@@ -180,6 +180,13 @@
       <DependentUpon>BuscarExpediente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="BusquedaExpedientes.aspx.designer.vb">
+      <DependentUpon>BusquedaExpedientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BusquedaExpedientes.aspx.vb">
+      <DependentUpon>BusquedaExpedientes.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Caratula02.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -356,6 +363,7 @@
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Content Include="BuscarExpediente.aspx" />
+    <Content Include="BusquedaExpedientes.aspx" />
     <Content Include="ConcABaja.aspx" />
     <Content Include="CuadroClasificacion.aspx" />
     <Content Include="CuadroClasificacionStatus.aspx" />
