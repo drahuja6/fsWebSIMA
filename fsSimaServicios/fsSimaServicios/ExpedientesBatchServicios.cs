@@ -115,19 +115,20 @@ namespace fsSimaServicios
             return (int)parametros[2].Value;
         }
 
-        public int ExpedientesActualiza_StatusConcentracion(int idBatch)
+        public int ExpedientesActualiza_Status(int idBatch, int status)
         {
-            var parametros = new SqlParameter[2];
+            var parametros = new SqlParameter[3];
 
             parametros[0] = new SqlParameter("@IdBatch", idBatch);
-            parametros[1] = new SqlParameter("@IdRecordProcesadoOK", SqlDbType.Int)
+            parametros[1] = new SqlParameter("@Status", status);
+            parametros[2] = new SqlParameter("@IdRecordProcesadoOK", SqlDbType.Int)
             {
                 Direction = ParameterDirection.Output
             };
 
-            new ClienteSQL(CadenaConexion).EjecutaProcedimiento(parametros, "Expedientes_Update_StatusConcentracion");
+            new ClienteSQL(CadenaConexion).EjecutaProcedimiento(parametros, "Expedientes_Update_Status");
 
-            return (int)parametros[1].Value;
+            return (int)parametros[2].Value;
         }
 
         public bool Batch_VerificaEstatusExpediente(int idBatch, int statusAComprobar)

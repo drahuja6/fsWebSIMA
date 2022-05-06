@@ -4,22 +4,58 @@ Imports System.Globalization
 
 Imports fsSimaServicios
 
-Public Class TramiteAConcentracion
-    Inherits Page
+Public Class TraspasoExpedientesVencidos
+    Inherits System.Web.UI.Page
+
+#Region "Variables privadas globales a la clase"
+
+    Private _tipoProceso As Integer
+    Private _statusAnterior As Integer
+    Private _seleccionaVencidos As String
+    Private _loteEnviado As String
+    Private _tituloProceso As String
+
+#End Region
 
 #Region "Eventos de la forma"
-
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
             Accesorios.CargaDropDownListSql(ddlUnidAdm, Session("UsuarioVirtualConnStringSQL"), "UnidadesAdministrativasDeUnUsuarioReal", "IdParameter", Session("IDUsuarioReal"), "NombreCorto", "idUnidadAdministrativa", -1)
             txtFechaDeCorte.Text = Format(Now.Date, "dd/MM/yyyy")
             txtCajaProv.Text = "CajaTemp"
         End If
+
+        _tipoProceso = CInt(Request.QueryString("Proceso"))
+
+        Select Case _tipoProceso
+                'Trámite a concentración
+            Case 1
+                _seleccionaVencidos = "SelVencEnTramite"
+                _tituloProceso = "expedientes vencidos en trámite."
+                _loteEnviado = "Batches_ListaTramiteConcentracion"
+                _statusAnterior = 2
+                lblTitulo.Text = "Traspaso de expedientes de trámite a concentración"
+                'Concentración a baja
+            Case 2
+                _seleccionaVencidos = "SelVencEnConc"
+                _tituloProceso = "expedientes vencidos en concentración para baja."
+                _loteEnviado = "Batches_ListaConcentracionBaja"
+                _statusAnterior = 5
+                lblTitulo.Text = "Traspaso de expedientes de concentración a baja"
+                'Concentración a histórico
+            Case Else
+                _seleccionaVencidos =
+                    _tituloProceso = "expedientes vencidos en concentración para histórico."
+                _loteEnviado = "Batches_ListaConcentracionHistorico"
+                _statusAnterior = 5
+                _lblTitulo.Text = "Traspaso de expedientes de concentración a histórico"
+        End Select
+
     End Sub
 
     Protected Sub BtnRevisaExp_Click(sender As Object, e As EventArgs) Handles btnRevisaExp.Click
         Dim item As ListItem
-        For Each item In lbExpVencEnTramite.Items
+        For Each item In lbExpedientesVencidos.Items
             If item.Selected Then
                 Session("IDExpedienteActivo") = item.Value
                 Session("ExpedienteStatus") = 0
@@ -38,7 +74,7 @@ Public Class TramiteAConcentracion
 
             parametros(0) = New SqlParameter("@IdUnidAdm", CInt(ddlUnidAdm.SelectedValue))
             parametros(1) = New SqlParameter("@FechaDeCorte", DateTime.ParseExact(txtFechaDeCorte.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture))
-            Accesorios.CargaListBoxSql(lbExpVencEnTramite, Session("UsuarioVirtualConnStringSQL"), "SelVencEnTramite", parametros, "Expediente", "idExpediente")
+            Accesorios.CargaListBoxSql(lbExpedientesVencidos, Session("UsuarioVirtualConnStringSQL"), _seleccionaVencidos, parametros, "Expediente", "idExpediente")
         End If
     End Sub
 
@@ -53,7 +89,7 @@ Public Class TramiteAConcentracion
             params(0) = New SqlParameter("@IdUnidAdm", CInt(ddlUnidAdm.SelectedValue))
             params(1) = New SqlParameter("@FechaDeCorte", DateTime.ParseExact(txtFechaDeCorte.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture))
 
-            ds = New ClienteSQL(Session("UsuarioVirtualConnStringSQL").ToString).ObtenerRegistrosSql(params, "SelVencEnTramite")
+            ds = New ClienteSQL(Session("UsuarioVirtualConnStringSQL").ToString).ObtenerRegistrosSql(params, _seleccionaVencidos)
 
             If ds.Tables.Count > 0 Then
 
@@ -61,7 +97,7 @@ Public Class TramiteAConcentracion
 
                 Reporte.SetParameterValue(0, ddlUnidAdm.SelectedItem.Text)
                 Reporte.SetParameterValue(1, txtFechaDeCorte.Text)
-                Reporte.SetParameterValue(2, "Listado de Expedientes de Trámite Vencidos")
+                Reporte.SetParameterValue(2, $"Listado de {_tituloProceso}.")
 
                 Dim guid1 As Guid = Guid.NewGuid
                 Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
@@ -69,7 +105,7 @@ Public Class TramiteAConcentracion
                 Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
                 Reporte.Dispose()
 
-                Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "listadovencidostramite.pdf")
+                Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "expedientesvencidos.pdf")
 
             End If
 
@@ -80,12 +116,12 @@ Public Class TramiteAConcentracion
 
     Protected Sub BtnNuevoBatch_Click(sender As Object, e As EventArgs) Handles btnNuevoBatch.Click
 
-        If Page.IsValid And lbExpVencEnTramite.Items.Count > 0 And lbExpConCaja.Items.Count = 0 Then
+        If Page.IsValid And lbExpedientesVencidos.Items.Count > 0 And lbExpConCaja.Items.Count = 0 Then
 
             Dim expedientesBatchServicios As New ExpedientesBatchServicios(Session("UsuarioVirtualConnStringSQL").ToString)
             Dim idNuevoBatch As Integer
 
-            idNuevoBatch = expedientesBatchServicios.Batches_Insert(txtNuevoBatchDesc.Text, CInt(Session("idUsuarioReal")), Now.Date, 1, CInt(ddlUnidAdm.SelectedValue), DateTime.ParseExact(txtFechaDeCorte.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture))
+            idNuevoBatch = expedientesBatchServicios.Batches_Insert(txtNuevoBatchDesc.Text, CInt(Session("idUsuarioReal")), Now.Date, _tipoProceso, CInt(ddlUnidAdm.SelectedValue), DateTime.ParseExact(txtFechaDeCorte.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture))
             txtNuevoBatchID.Text = idNuevoBatch
             txtNuevoBatchID2.Text = idNuevoBatch
             txtFechCorteVig.Text = txtFechaDeCorte.Text
@@ -101,7 +137,7 @@ Public Class TramiteAConcentracion
         If Page.IsValid Then
             Dim expedientesBatchServicios As New ExpedientesBatchServicios(Session("UsuarioVirtualConnStringSQL").ToString)
             Dim item As ListItem
-            For Each item In lbExpVencEnTramite.Items
+            For Each item In lbExpedientesVencidos.Items
                 If item.Selected Then
                     If Not Mid(item.Text, 1, 5) = "*****" Then
                         Dim nitem As New ListItem With {
@@ -123,7 +159,7 @@ Public Class TramiteAConcentracion
             parametros(0) = New SqlParameter("@IdUnidAdm", CInt(ddlUnidAdm.SelectedValue))
             parametros(1) = New SqlParameter("@FechaDeCorte", DateTime.ParseExact(txtFechaDeCorte.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture))
 
-            Accesorios.CargaListBoxSql(lbExpVencEnTramite, Session("UsuarioVirtualConnStringSQL"), "SelVencEnTramite", parametros, "Expediente", "idExpediente")
+            Accesorios.CargaListBoxSql(lbExpedientesVencidos, Session("UsuarioVirtualConnStringSQL"), _seleccionaVencidos, parametros, "Expediente", "idExpediente")
 
         End If
 
@@ -144,12 +180,12 @@ Public Class TramiteAConcentracion
 
             params(0) = New SqlParameter("@IdBatch", CInt(txtNuevoBatchID2.Text))
 
-            ds = New ClienteSQL(Session("UsuarioVirtualConnStringSQL").ToString).ObtenerRegistrosSql(params, "Batches_ListaTramiteConcentracion")
+            ds = New ClienteSQL(Session("UsuarioVirtualConnStringSQL").ToString).ObtenerRegistrosSql(params, _loteEnviado)
 
             If ds.Tables.Count > 0 Then
                 Reporte.SetDataSource(ds.Tables(0))
 
-                Reporte.SetParameterValue(0, "Listado de expedientes enviados a baja -  LOTE: " & txtNuevoBatchID2.Text)
+                Reporte.SetParameterValue(0, $"Listado de expedientes {_tituloProceso} enviados. -  LOTE: {txtNuevoBatchID2.Text}")
                 Reporte.SetParameterValue(1, Globales.LogoCliente)
 
                 Dim guid1 As Guid = Guid.NewGuid
@@ -158,7 +194,7 @@ Public Class TramiteAConcentracion
                 Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
                 Reporte.Dispose()
 
-                Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "enviadosconcentracion.pdf")
+                Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "listaenviados.pdf")
 
             End If
 
@@ -177,7 +213,7 @@ Public Class TramiteAConcentracion
                 BorreAlgunItem = False
                 For Each item In lbExpConCaja.Items
                     If item.Selected Then
-                        expedientesBatchServicios.Batches_Relaciones_Delete(txtNuevoBatchID.Text, item.Value, 2)
+                        expedientesBatchServicios.Batches_Relaciones_Delete(txtNuevoBatchID.Text, item.Value, _statusAnterior)
                         lbExpConCaja.Items.Remove(item)
                         BorreAlgunItem = True
                         Exit For
@@ -190,7 +226,7 @@ Public Class TramiteAConcentracion
             parametros(0) = New SqlParameter("@IdUnidAdm", CInt(ddlUnidAdm.SelectedValue))
             parametros(1) = New SqlParameter("@FechaDeCorte", DateTime.ParseExact(txtFechaDeCorte.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture))
 
-            Accesorios.CargaListBoxSql(lbExpVencEnTramite, Session("UsuarioVirtualConnStringSQL"), "SelVencEnTramite", parametros, "Expediente", "idExpediente")
+            Accesorios.CargaListBoxSql(lbExpedientesVencidos, Session("UsuarioVirtualConnStringSQL"), _seleccionaVencidos, parametros, "Expediente", "idExpediente")
 
         Catch ex As Exception
 
@@ -198,10 +234,5 @@ Public Class TramiteAConcentracion
     End Sub
 
 #End Region
-
-#Region "Métodos privados"
-
-#End Region
-
 
 End Class

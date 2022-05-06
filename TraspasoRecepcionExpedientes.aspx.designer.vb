@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class RecepcionEnConcentracion
+Partial Public Class TraspasoRecepcionExpedientes
 
     '''<summary>
     '''form1 control.
@@ -95,40 +95,40 @@ Partial Public Class RecepcionEnConcentracion
     Protected WithEvents lbExpDelLote As Global.System.Web.UI.WebControls.ListBox
 
     '''<summary>
-    '''txtCajaConc control.
+    '''txtCaja control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtCajaConc As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtCaja As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''lblValidaCajaConc control.
+    '''lblValidaCaja control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblValidaCajaConc As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblValidaCaja As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''btnAsignaCajaConc control.
+    '''btnAsignaCaja control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnAsignaCajaConc As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnAsignaCaja As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''lbExpConCajaConc control.
+    '''lbExpConCaja control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbExpConCajaConc As Global.System.Web.UI.WebControls.ListBox
+    Protected WithEvents lbExpConCaja As Global.System.Web.UI.WebControls.ListBox
 
     '''<summary>
     '''btnImprimeResguardo control.

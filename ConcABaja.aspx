@@ -7,6 +7,17 @@
 		<meta content="Visual Basic .NET 7.1" name="CODE_LANGUAGE">
 		<meta content="JavaScript" name="vs_defaultClientScript">
 		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+	    <style type="text/css">
+            .auto-style1 {
+                right: 541px;
+            }
+            .auto-style2 {
+                right: 427px;
+            }
+            .auto-style3 {
+                right: 227px;
+            }
+        </style>
 	</HEAD>
 	<body bgColor="#ffffff">
 		<form id="Form1" method="post" runat="server">
@@ -15,7 +26,7 @@
 			<asp:label id="lblValidaCajaProv" style="Z-INDEX: 124; LEFT: 704px; POSITION: absolute; TOP: 248px"
 				runat="server" Width="3px" Font-Size="Large" Text="*" Height="3px" ForeColor="Red" Visible="False">*</asp:label>
 			<asp:textbox id="txtCajaProv" style="Z-INDEX: 123; LEFT: 648px; POSITION: absolute; TOP: 248px"
-				runat="server" Width="56px"></asp:textbox>
+				runat="server" Width="56px" CssClass="auto-style3"></asp:textbox>
 			<asp:button id="btnQuitar" style="Z-INDEX: 122; LEFT: 776px; POSITION: absolute; TOP: 480px"
 				runat="server" Text="Quitar Exp"></asp:button>
 			<asp:button id="btnImprimeEnvio" style="Z-INDEX: 121; LEFT: 208px; POSITION: absolute; TOP: 480px"
@@ -50,8 +61,8 @@
 			<asp:label id="lblValidaFechaDeCorteVigente" style="Z-INDEX: 104; LEFT: 504px; POSITION: absolute; TOP: 40px"
 				runat="server" Font-Size="Large" Width="3px" Height="3px" Visible="False" ForeColor="Red" Text="*">*</asp:label>
 			<asp:textbox id="txtFechaDeCorte" style="Z-INDEX: 103; LEFT: 392px; POSITION: absolute; TOP: 40px"
-				runat="server" Width="112px"></asp:textbox>
-			<asp:label id="Label2" style="Z-INDEX: 102; LEFT: 208px; POSITION: absolute; TOP: 40px" runat="server"> Fecha de corte (dd/mm/aaaa):</asp:label>
+				runat="server" Width="112px" CssClass="auto-style2"></asp:textbox>
+			<asp:label id="Label2" style="Z-INDEX: 102; LEFT: 208px; POSITION: absolute; TOP: 40px" runat="server" CssClass="auto-style1"> Fecha de corte (dd/mm/aaaa):</asp:label>
 			<asp:dropdownlist id="ddlUnidAdm" style="Z-INDEX: 101; LEFT: 8px; POSITION: absolute; TOP: 40px" tabIndex="11"
 				runat="server" Width="184px"></asp:dropdownlist>
 		</form>

@@ -203,6 +203,13 @@
       <DependentUpon>ConcABaja.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="ConcentracionABaja.aspx.designer.vb">
+      <DependentUpon>ConcentracionABaja.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConcentracionABaja.aspx.vb">
+      <DependentUpon>ConcentracionABaja.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="CuadroClasificacion.aspx.vb">
       <DependentUpon>CuadroClasificacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -325,11 +332,18 @@
       <DependentUpon>PaginaEnBlanco.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RecepcionEnConcentracion.aspx.designer.vb">
-      <DependentUpon>RecepcionEnConcentracion.aspx</DependentUpon>
+    <Compile Include="TraspasoExpedientesVencidos.aspx.designer.vb">
+      <DependentUpon>TraspasoExpedientesVencidos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RecepcionEnConcentracion.aspx.vb">
-      <DependentUpon>RecepcionEnConcentracion.aspx</DependentUpon>
+    <Compile Include="TraspasoExpedientesVencidos.aspx.vb">
+      <DependentUpon>TraspasoExpedientesVencidos.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="TraspasoRecepcionExpedientes.aspx.designer.vb">
+      <DependentUpon>TraspasoRecepcionExpedientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TraspasoRecepcionExpedientes.aspx.vb">
+      <DependentUpon>TraspasoRecepcionExpedientes.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="RecepEnBaja.aspx.vb">
@@ -365,6 +379,7 @@
     <Content Include="BuscarExpediente.aspx" />
     <Content Include="BusquedaExpedientes.aspx" />
     <Content Include="ConcABaja.aspx" />
+    <Content Include="ConcentracionABaja.aspx" />
     <Content Include="CuadroClasificacion.aspx" />
     <Content Include="CuadroClasificacionStatus.aspx" />
     <Content Include="DescargaArchivo.aspx" />
@@ -389,7 +404,8 @@
     <Content Include="Logout.aspx" />
     <Content Include="Menu.aspx" />
     <Content Include="PaginaEnBlanco.aspx" />
-    <Content Include="RecepcionEnConcentracion.aspx" />
+    <Content Include="TraspasoExpedientesVencidos.aspx" />
+    <Content Include="TraspasoRecepcionExpedientes.aspx" />
     <Content Include="RecepEnBaja.aspx" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
