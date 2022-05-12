@@ -24,7 +24,7 @@
 			</tr>
             <tr>
                 <td colspan="2">
-                    <asp:dropdownlist id="ddlUnidAdm" runat="server" Width="184px" />
+                    <asp:dropdownlist id="ddlUnidAdm" runat="server" Width="184px" ToolTip="Seleccione la unidad administrativa" />
                 </td>
                 <td colspan="2">
                     <asp:button id="btnBuscaLotes" CssClass="etiqueta-boton" runat="server" Text="(1)Buscar lotes" />
@@ -35,14 +35,14 @@
                     <asp:label id="Label2" runat="server" Text="Lotes por atender:" />
                 </td>
                 <td colspan="2">
-                    <asp:dropdownlist id="ddlBatches" runat="server" AutoPostBack="True" />
+                    <asp:dropdownlist id="ddlBatches" runat="server" AutoPostBack="True" ToolTip="Lotes disponibles para esa unidad administrativa" />
                 </td>
                 <td></td>
                 <td onclick="ShowProgress()">
-                    <asp:button id="btnTraerLote" runat="server" CssClass="etiqueta-boton" Text="(2)Traer lote" />
+                    <asp:button id="btnTraerLote" runat="server" CssClass="etiqueta-boton" Text="(2)Traer lote" ToolTip="Cargar detalle de expedientes en el lote" />
                 </td>
                 <td>
-                    <asp:button id="btnRevisaExp" runat="server" CssClass="etiqueta-boton" Text="Revisar expediente" />
+                    <asp:button id="btnRevisaExp" runat="server" CssClass="etiqueta-boton" Text="Revisar expediente" ToolTip="Ver detalles de un expediente" />
                 </td>
             </tr>
             <tr>
@@ -53,7 +53,7 @@
             <tr>
                 <td colspan="5"></td>
                 <td>
-                    <asp:textbox id="txtCaja" runat="server" CssClass="etiqueta-textbox" />
+                    <asp:textbox id="txtCaja" runat="server" CssClass="etiqueta-textbox" ToolTip="Escriba el número de caja que será asignado al expediente transferido" />
                     <asp:label id="lblValidaCaja" runat="server" CssClass="etiqueta error" Text="*" Visible="False" />
                 </td>
                 <td onclick="ShowProgress()">
@@ -76,7 +76,7 @@
                 </td>
                 <td colspan="2"></td>
                 <td onclick="ShowProgress()"> 
-                    <asp:button id="btnQuitar" runat="server" CssClass="etiqueta-boton" Text="Quitar expediente" />
+                    <asp:button id="btnQuitar" runat="server" CssClass="etiqueta-boton" Text="Remover expediente" ToolTip="Remover expediente de la lista de traspaso" />
                 </td>
             </tr>
         </table>

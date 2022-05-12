@@ -23,6 +23,7 @@ Public Class Menu
     Protected WithEvents HLVEC As HyperLink
     Protected WithEvents lblTituloHerramientas As Label
     Protected WithEvents lnkVerificaArchivos As HyperLink
+    Protected WithEvents lnkHerramientasPdf As HyperLink
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -42,6 +43,7 @@ Public Class Menu
         If Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = "USOC" Or Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = "SUPERUSER" Then    'Perfil usuario administrador
             lblTituloHerramientas.Visible = True
             lnkVerificaArchivos.Visible = True
+            lnkHerramientasPdf.Visible = False
         End If
 
         LlenaEVT(Today())

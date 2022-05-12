@@ -110,6 +110,11 @@
 					</td>
 				</tr>
 				<tr>
+					<td class="liga">
+						<asp:HyperLink id="lnkHerramientasPdf" runat="server" Target="PRINCIPAL" NavigateUrl="HerramientasPdf.aspx" tabIndex="10" Text="Herramientas para archivos PDF" ToolTip="Verifica la existencia de archivo de imágenes" Font-Underline="false" Visible="false" />
+					</td>
+				</tr>
+				<tr>
 					<td><br /></td>
 				</tr>
 				<tr>
@@ -117,7 +122,7 @@
 				</tr>
 				<tr>
 					<td class="liga">
-						<asp:HyperLink ID="salirLink" runat="server" NavigateUrl="~/Logout.aspx" Target="_top" Text="Salir" ToolTip="Cerrar la sesión" Font-Underline="false" TabIndex="10" />
+						<asp:HyperLink ID="salirLink" runat="server" NavigateUrl="~/Logout.aspx" Target="_top" Text="Salir" ToolTip="Cerrar la sesión" Font-Underline="false" TabIndex="11" />
 					</td>
 				</tr>
 				<asp:HyperLink id="HLVEC" style="LEFT: 8px; POSITION: absolute; TOP: 112px" tabIndex="3"

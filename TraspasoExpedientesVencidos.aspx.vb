@@ -28,27 +28,24 @@ Public Class TraspasoExpedientesVencidos
         _tipoProceso = CInt(Request.QueryString("Proceso"))
 
         Select Case _tipoProceso
-                'Trámite a concentración
-            Case 1
-                _seleccionaVencidos = "SelVencEnTramite"
+            Case 1  'Trámite a concentración
+                _seleccionaVencidos = "Batch_SeleccionaExpedientesVencidosTramite"
                 _tituloProceso = "expedientes vencidos en trámite."
                 _loteEnviado = "Batches_ListaTramiteConcentracion"
                 _statusAnterior = 2
                 lblTitulo.Text = "Traspaso de expedientes de trámite a concentración"
-                'Concentración a baja
-            Case 2
-                _seleccionaVencidos = "SelVencEnConc"
+            Case 2  'Concentración a baja
+                _seleccionaVencidos = "Batch_SeleccionaExpedientesVencidosConcentracion"
                 _tituloProceso = "expedientes vencidos en concentración para baja."
                 _loteEnviado = "Batches_ListaConcentracionBaja"
                 _statusAnterior = 5
                 lblTitulo.Text = "Traspaso de expedientes de concentración a baja"
-                'Concentración a histórico
-            Case Else
-                _seleccionaVencidos =
-                    _tituloProceso = "expedientes vencidos en concentración para histórico."
-                _loteEnviado = "Batches_ListaConcentracionHistorico"
-                _statusAnterior = 5
-                _lblTitulo.Text = "Traspaso de expedientes de concentración a histórico"
+            Case Else 'Concentración a histórico. Pendiete de desarrollar
+                '_seleccionaVencidos = "Batch_SeleccionaExpedientesVencidosConcentracion"
+                '_tituloProceso = "expedientes vencidos en concentración para histórico."
+                '_loteEnviado = "Batches_ListaConcentracionHistorico"
+                '_statusAnterior = 5
+                '_lblTitulo.Text = "Traspaso de expedientes de concentración a histórico"
         End Select
 
     End Sub
@@ -70,17 +67,18 @@ Public Class TraspasoExpedientesVencidos
     Protected Sub BtnBuscaVencidos_Click(sender As Object, e As EventArgs) Handles btnBuscaVencidos.Click
 
         If Page.IsValid Then
-            Dim parametros(1) As SqlParameter
+            Dim parametros(2) As SqlParameter
 
             parametros(0) = New SqlParameter("@IdUnidAdm", CInt(ddlUnidAdm.SelectedValue))
             parametros(1) = New SqlParameter("@FechaDeCorte", DateTime.ParseExact(txtFechaDeCorte.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture))
+            parametros(2) = New SqlParameter("Caja", txtCaja.Text)
             Accesorios.CargaListBoxSql(lbExpedientesVencidos, Session("UsuarioVirtualConnStringSQL"), _seleccionaVencidos, parametros, "Expediente", "idExpediente")
         End If
     End Sub
 
     Protected Sub BtnImpListado_Click(sender As Object, e As EventArgs) Handles btnImpListado.Click
 
-        Dim params(1) As SqlParameter
+        Dim params(2) As SqlParameter
         Dim ds As DataSet
 
         Dim Reporte As New ListaExpTramVenc
@@ -88,6 +86,7 @@ Public Class TraspasoExpedientesVencidos
         Try
             params(0) = New SqlParameter("@IdUnidAdm", CInt(ddlUnidAdm.SelectedValue))
             params(1) = New SqlParameter("@FechaDeCorte", DateTime.ParseExact(txtFechaDeCorte.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture))
+            params(2) = New SqlParameter("Caja", txtCaja.Text)
 
             ds = New ClienteSQL(Session("UsuarioVirtualConnStringSQL").ToString).ObtenerRegistrosSql(params, _seleccionaVencidos)
 
@@ -146,7 +145,7 @@ Public Class TraspasoExpedientesVencidos
                         }
                         lbExpConCaja.Items.Add(nitem)
                         item.Text = "*****" & item.Text
-                        lista.Add(CInt(item.Value), txtCajaProv.Text)
+                        lista.Add(item.Value, txtCajaProv.Text)
 
                     End If
                 End If
@@ -154,10 +153,11 @@ Public Class TraspasoExpedientesVencidos
 
             expedientesBatchServicios.Batches_Relaciones_Insert(txtNuevoBatchID.Text, Accesorios.CreaDataTable(lista))
 
-            Dim parametros(1) As SqlParameter
+            Dim parametros(2) As SqlParameter
 
             parametros(0) = New SqlParameter("@IdUnidAdm", CInt(ddlUnidAdm.SelectedValue))
             parametros(1) = New SqlParameter("@FechaDeCorte", DateTime.ParseExact(txtFechaDeCorte.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture))
+            parametros(2) = New SqlParameter("Caja", txtCaja.Text)
 
             Accesorios.CargaListBoxSql(lbExpedientesVencidos, Session("UsuarioVirtualConnStringSQL"), _seleccionaVencidos, parametros, "Expediente", "idExpediente")
 
@@ -221,10 +221,11 @@ Public Class TraspasoExpedientesVencidos
                 Next
             Loop While BorreAlgunItem
 
-            Dim parametros(1) As SqlParameter
+            Dim parametros(2) As SqlParameter
 
             parametros(0) = New SqlParameter("@IdUnidAdm", CInt(ddlUnidAdm.SelectedValue))
             parametros(1) = New SqlParameter("@FechaDeCorte", DateTime.ParseExact(txtFechaDeCorte.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture))
+            parametros(2) = New SqlParameter("Caja", txtCaja.Text)
 
             Accesorios.CargaListBoxSql(lbExpedientesVencidos, Session("UsuarioVirtualConnStringSQL"), _seleccionaVencidos, parametros, "Expediente", "idExpediente")
 

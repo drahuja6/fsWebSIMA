@@ -199,17 +199,6 @@
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ConcABaja.aspx.vb">
-      <DependentUpon>ConcABaja.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ConcentracionABaja.aspx.designer.vb">
-      <DependentUpon>ConcentracionABaja.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ConcentracionABaja.aspx.vb">
-      <DependentUpon>ConcentracionABaja.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="CuadroClasificacion.aspx.vb">
       <DependentUpon>CuadroClasificacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -273,6 +262,13 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HerramientasPdf.aspx.designer.vb">
+      <DependentUpon>HerramientasPdf.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HerramientasPdf.aspx.vb">
+      <DependentUpon>HerramientasPdf.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="ListaDeExpedientes.vb">
       <DependentUpon>ListaDeExpedientes.rpt</DependentUpon>
@@ -354,13 +350,6 @@
       <DependentUpon>TrabajoRealizado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TramiteAConcentracion.aspx.designer.vb">
-      <DependentUpon>TramiteAConcentracion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TramiteAConcentracion.aspx.vb">
-      <DependentUpon>TramiteAConcentracion.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="UsuarioRealBuscar.aspx.vb">
       <DependentUpon>UsuarioRealBuscar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -378,8 +367,6 @@
     </Compile>
     <Content Include="BuscarExpediente.aspx" />
     <Content Include="BusquedaExpedientes.aspx" />
-    <Content Include="ConcABaja.aspx" />
-    <Content Include="ConcentracionABaja.aspx" />
     <Content Include="CuadroClasificacion.aspx" />
     <Content Include="CuadroClasificacionStatus.aspx" />
     <Content Include="DescargaArchivo.aspx" />
@@ -392,6 +379,7 @@
     <Content Include="Frameset1.htm" />
     <Content Include="Frameset2.htm" />
     <Content Include="Global.asax" />
+    <Content Include="HerramientasPdf.aspx" />
     <Content Include="Images\docs.png" />
     <Content Include="Images\loader.gif" />
     <Content Include="Images\minus.png" />
@@ -416,7 +404,6 @@
     <Content Include="Senado.css" />
     <Content Include="Styles.css" />
     <Content Include="TrabajoRealizado.aspx" />
-    <Content Include="TramiteAConcentracion.aspx" />
     <Content Include="UsuarioRealBuscar.aspx" />
     <Content Include="UsuarioRealDisplay.aspx" />
     <Content Include="VerificarArchivos.aspx" />
@@ -440,10 +427,6 @@
     <EmbeddedResource Include="Caratula.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Caratula.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ConcABaja.aspx.resx">
-      <DependentUpon>ConcABaja.aspx.vb</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DisplayExpediente.aspx.resx">
       <DependentUpon>DisplayExpediente.aspx.vb</DependentUpon>

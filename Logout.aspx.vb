@@ -29,7 +29,7 @@
         Session("IDUsuarioReal") = ""
         Session("NombreUsuarioReal") = ""
 
-        Response.Redirect("./FrameSet1.htm")
+        Response.Redirect("~/FrameSet1.htm")
     End Sub
 
 End Class

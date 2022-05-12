@@ -57,6 +57,7 @@
     <Compile Include="ClienteSql.cs" />
     <Compile Include="ExpedientesBatchServicios.cs" />
     <Compile Include="ExpedientesServicios.cs" />
+    <Compile Include="VariosPdf.cs" />
     <Compile Include="Models\Expediente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

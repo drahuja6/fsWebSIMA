@@ -68,6 +68,24 @@ Partial Public Class TraspasoExpedientesVencidos
     Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
+    '''lblCaja control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCaja As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtCaja control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCaja As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''btnBuscaVencidos control.
     '''</summary>
     '''<remarks>
@@ -104,13 +122,13 @@ Partial Public Class TraspasoExpedientesVencidos
     Protected WithEvents lbExpedientesVencidos As Global.System.Web.UI.WebControls.ListBox
 
     '''<summary>
-    '''Label1 control.
+    '''lblLote control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblLote As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtNuevoBatchID control.
