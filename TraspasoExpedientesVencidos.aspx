@@ -55,6 +55,19 @@
                     </td>
                 </tr>
                 <tr>
+                    <td colspan="2">
+                        <asp:label id="lblExpedientesLocalizados" runat="server" Text="Expedientes localizados:" CssClass="etiqueta" />
+                    </td>
+                    <td>
+			            <asp:textbox id="txtExpedientesLocalizados" runat="server" Enabled="False" CssClass="etiqueta-textbox" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="12">
+                        <hr />
+                    </td>
+                </tr>
+                <tr>
                     <td>
                         <asp:label id="lblLote" runat="server" Text="Lote:" CssClass="etiqueta" />
                     </td>

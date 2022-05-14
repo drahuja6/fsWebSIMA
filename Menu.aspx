@@ -29,6 +29,32 @@
 				<table style="width: 120px;">
 				<tr>
 					<td class="titulo">
+						<asp:Label id="usuariosLabel" runat="server" Text="Usuarios"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="liga">
+						<asp:HyperLink id="usuariosLink" runat="server" Target ="PRINCIPAL" NavigateUrl="~/UsuarioRealBuscar.aspx" tabIndex="8" Text="Buscar/Editar" ToolTip="Catálogo de usuarios" Font-Underline="false"/>
+					</td>
+				</tr>
+				<tr>
+					<td><br /></td>
+				</tr>
+				<tr>
+					<td class="titulo">
+						<asp:Label ID="cuadroLabel" runat="server" Text="Catálogo"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="liga">
+						<asp:HyperLink id="cuadroLink" runat="server" Target="PRINCIPAL" NavigateUrl="~/CuadroClasificacion.aspx" tabIndex="7" Text="Buscar/Editar" ToolTip="Catálogo de disposición documental" Font-Underline="false"/>
+					</td>
+				</tr>
+				<tr>
+					<td><br /></td>
+				</tr>
+				<tr>
+					<td class="titulo">
 						<asp:Label id="expedientesLabel" runat="server" Text="Expedientes"/>
 					</td>
 				</tr>
@@ -52,48 +78,22 @@
 				</tr>
 				<tr>
 					<td class="liga">
-						<asp:HyperLink id="tramiteConcentracionLink" tabIndex="3" runat="server" Target="PRINCIPAL" NavigateUrl="TraspasoExpedientesVencidos.aspx?Proceso=1" Text="Trámite" ToolTip="Transferencia de trámite a concentración" Font-Underline="false"/>
+						<asp:HyperLink id="tramiteConcentracionLink" tabIndex="3" runat="server" Target="PRINCIPAL" NavigateUrl="~/TraspasoExpedientesVencidos.aspx?Proceso=1" Text="Trámite" ToolTip="Transferencia de trámite a concentración" Font-Underline="false"/>
 					</td>
 				</tr>
 				<tr>
 					<td class="liga">
-						<asp:HyperLink id="recepConcentracionLink" tabIndex="4" runat="server" Target="PRINCIPAL" NavigateUrl="TraspasoRecepcionExpedientes.aspx?Proceso=1" Text="Concentración" ToolTip="Recepción en concentración" Font-Underline="false"/>
+						<asp:HyperLink id="recepConcentracionLink" tabIndex="4" runat="server" Target="PRINCIPAL" NavigateUrl="~/TraspasoRecepcionExpedientes.aspx?Proceso=1" Text="Concentración" ToolTip="Recepción en concentración" Font-Underline="false"/>
 					</td>
 				</tr>
 				<tr>
 					<td class="liga">
-						<asp:HyperLink id="concentracionBajaLink" tabIndex="5" runat="server" Target="PRINCIPAL" NavigateUrl="TraspasoExpedientesVencidos.aspx?Proceso=2" Text="Baja" ToolTip="Transferencia de concentración a baja" Font-Underline="false"/>
+						<asp:HyperLink id="concentracionBajaLink" tabIndex="5" runat="server" Target="PRINCIPAL" NavigateUrl="~/TraspasoExpedientesVencidos.aspx?Proceso=2" Text="Baja" ToolTip="Transferencia de concentración a baja" Font-Underline="false"/>
 					</td>
 				</tr>
 				<tr>
 					<td class="liga">
-						<asp:HyperLink id="autorizaBajaLink" tabIndex="6" runat="server" Target="PRINCIPAL" NavigateUrl="TraspasoRecepcionExpedientes.aspx?Proceso=2" Text="Autorización baja" ToolTip="Autorización de baja" Font-Underline="false"/>
-					</td>
-				</tr>
-				<tr>
-					<td><br /></td>
-				</tr>
-				<tr>
-					<td class="titulo">
-						<asp:Label ID="cuadroLabel" runat="server" Text="Catálogo"/>
-					</td>
-				</tr>
-				<tr>
-					<td class="liga">
-						<asp:HyperLink id="cuadroLink" runat="server" Target="PRINCIPAL" NavigateUrl="CuadroClasificacion.aspx" tabIndex="7" Text="Buscar/Editar" ToolTip="Catálogo de disposición documental" Font-Underline="false"/>
-					</td>
-				</tr>
-				<tr>
-					<td><br /></td>
-				</tr>
-				<tr>
-					<td class="titulo">
-						<asp:Label id="usuariosLabel" runat="server" Text="Usuarios"/>
-					</td>
-				</tr>
-				<tr>
-					<td class="liga">
-						<asp:HyperLink id="usuariosLink" runat="server" Target ="PRINCIPAL" NavigateUrl="UsuarioRealBuscar.aspx" tabIndex="8" Text="Buscar/Editar" ToolTip="Catálogo de usuarios" Font-Underline="false"/>
+						<asp:HyperLink id="autorizaBajaLink" tabIndex="6" runat="server" Target="PRINCIPAL" NavigateUrl="~/TraspasoRecepcionExpedientes.aspx?Proceso=2" Text="Autorización baja" ToolTip="Autorización de baja" Font-Underline="false"/>
 					</td>
 				</tr>
 				<tr>
@@ -106,12 +106,12 @@
 				</tr>
 				<tr>
 					<td class="liga">
-						<asp:HyperLink id="lnkVerificaArchivos" runat="server" Target="PRINCIPAL" NavigateUrl="VerificarArchivos.aspx" tabIndex="9" Text="Verifica archivos" ToolTip="Verifica la existencia de archivo de imágenes" Font-Underline="false" Visible="false" />
+						<asp:HyperLink id="lnkVerificaArchivos" runat="server" Target="PRINCIPAL" NavigateUrl="~/VerificarArchivos.aspx" tabIndex="9" Text="Verifica archivos" ToolTip="Verifica la existencia de archivo de imágenes" Font-Underline="false" Visible="false" />
 					</td>
 				</tr>
 				<tr>
 					<td class="liga">
-						<asp:HyperLink id="lnkHerramientasPdf" runat="server" Target="PRINCIPAL" NavigateUrl="HerramientasPdf.aspx" tabIndex="10" Text="Herramientas para archivos PDF" ToolTip="Verifica la existencia de archivo de imágenes" Font-Underline="false" Visible="false" />
+						<asp:HyperLink id="lnkHerramientasPdf" runat="server" Target="PRINCIPAL" NavigateUrl="~/HerramientasPdf.aspx" tabIndex="10" Text="Herramientas para archivos PDF" ToolTip="Verifica la existencia de archivo de imágenes" Font-Underline="false" Visible="false" />
 					</td>
 				</tr>
 				<tr>

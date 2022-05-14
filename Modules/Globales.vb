@@ -13,7 +13,7 @@ Module Globales
 #End Region
 
 #Region "Variables globales"
-    Public ReadOnly VersionNumero As String = "1.0.36.2132"
+    Public ReadOnly VersionNumero As String = "1.0.37.2133"
     Public ReadOnly OrdenExpedientes As String = " Nombre "
     Public ReadOnly ConexionAdministrativa As String = "Provider=MSOLEDBSQL;Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;UID=USOC;Pwd=f5*HIDDENUSER;Persist Security Info=True;Connect Timeout=15;Database=" & BaseDatos & ";Encryption=True;"
 

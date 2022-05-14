@@ -365,7 +365,9 @@ namespace fsSimaServicios
                     File.Delete(archivo);
                 }
 
-                response.End();
+                //response.End();
+                HttpContext.Current.Response.SuppressContent = true;
+                HttpContext.Current.ApplicationInstance.CompleteRequest();
             }
             else
                 throw new HttpException(404, "Archivo no localizado");

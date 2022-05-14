@@ -122,6 +122,24 @@ Partial Public Class TraspasoExpedientesVencidos
     Protected WithEvents lbExpedientesVencidos As Global.System.Web.UI.WebControls.ListBox
 
     '''<summary>
+    '''lblExpedientesLocalizados control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblExpedientesLocalizados As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtExpedientesLocalizados control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtExpedientesLocalizados As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''lblLote control.
     '''</summary>
     '''<remarks>

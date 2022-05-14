@@ -5,7 +5,7 @@ Imports System.Globalization
 Imports fsSimaServicios
 
 Public Class TraspasoExpedientesVencidos
-    Inherits System.Web.UI.Page
+    Inherits Page
 
 #Region "Variables privadas globales a la clase"
 
@@ -21,8 +21,11 @@ Public Class TraspasoExpedientesVencidos
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
             Accesorios.CargaDropDownListSql(ddlUnidAdm, Session("UsuarioVirtualConnStringSQL"), "UnidadesAdministrativasDeUnUsuarioReal", "IdParameter", Session("IDUsuarioReal"), "NombreCorto", "idUnidadAdministrativa", -1)
+
             txtFechaDeCorte.Text = Format(Now.Date, "dd/MM/yyyy")
             txtCajaProv.Text = "CajaTemp"
+            txtExpedientesLocalizados.ReadOnly = True
+
         End If
 
         _tipoProceso = CInt(Request.QueryString("Proceso"))
@@ -73,6 +76,7 @@ Public Class TraspasoExpedientesVencidos
             parametros(1) = New SqlParameter("@FechaDeCorte", DateTime.ParseExact(txtFechaDeCorte.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture))
             parametros(2) = New SqlParameter("Caja", txtCaja.Text)
             Accesorios.CargaListBoxSql(lbExpedientesVencidos, Session("UsuarioVirtualConnStringSQL"), _seleccionaVencidos, parametros, "Expediente", "idExpediente")
+            txtExpedientesLocalizados.Text = lbExpedientesVencidos.Items.Count.ToString
         End If
     End Sub
 
@@ -104,7 +108,8 @@ Public Class TraspasoExpedientesVencidos
                 Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
                 Reporte.Dispose()
 
-                Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "expedientesvencidos.pdf")
+                Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=ExpedientesVencidos.pdf")
+                'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "expedientesvencidos.pdf")
 
             End If
 
@@ -160,6 +165,7 @@ Public Class TraspasoExpedientesVencidos
             parametros(2) = New SqlParameter("Caja", txtCaja.Text)
 
             Accesorios.CargaListBoxSql(lbExpedientesVencidos, Session("UsuarioVirtualConnStringSQL"), _seleccionaVencidos, parametros, "Expediente", "idExpediente")
+            txtExpedientesLocalizados.Text = lbExpedientesVencidos.Items.Count.ToString
 
         End If
 
@@ -194,7 +200,8 @@ Public Class TraspasoExpedientesVencidos
                 Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
                 Reporte.Dispose()
 
-                Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "listaenviados.pdf")
+                Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=ListaEnviados.pdf")
+                'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "listaenviados.pdf")
 
             End If
 
@@ -228,6 +235,7 @@ Public Class TraspasoExpedientesVencidos
             parametros(2) = New SqlParameter("Caja", txtCaja.Text)
 
             Accesorios.CargaListBoxSql(lbExpedientesVencidos, Session("UsuarioVirtualConnStringSQL"), _seleccionaVencidos, parametros, "Expediente", "idExpediente")
+            txtExpedientesLocalizados.Text = lbExpedientesVencidos.Items.Count.ToString
 
         Catch ex As Exception
 

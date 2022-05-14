@@ -2773,10 +2773,11 @@ Public Class DisplayExpediente
     Private Sub DataGrid2_ItemCommand(source As Object, e As DataGridCommandEventArgs) Handles DataGrid2.ItemCommand
         If Not ImagenNuevaVentana Then
             'Llamada a dll de accesorios.
-            Accesorios.DescargaArchivo(Response, Path.Combine(DirImagenes, e.Item.Cells(2).Text), LongitudMaximaArchivoDescarga)
+            Response.Redirect($"~/DescargaArchivo.aspx?FN={Path.Combine(DirImagenes, e.Item.Cells(2).Text)}")
+            'Accesorios.DescargaArchivo(Response, Path.Combine(DirImagenes, e.Item.Cells(2).Text), LongitudMaximaArchivoDescarga)
         Else
             'Llamada a página extra para mostrar imagen. Necesario activar Pop-Ups en cliente.
-            Dim url As String = $"DescargaArchivo.aspx?FN={e.Item.Cells(2).Text}"
+            Dim url As String = $"DescargaArchivo.aspx?FN={Path.Combine(DirImagenes, e.Item.Cells(2).Text)}"
             ClientScript.RegisterClientScriptBlock(Me.GetType(), "script", "open('" & url & "');", True)
         End If
     End Sub
@@ -2812,7 +2813,8 @@ Public Class DisplayExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf", True)
+            Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=lomoslote.pdf")
+            'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf", True)
 
         End If
 
@@ -2841,7 +2843,8 @@ Public Class DisplayExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf", True)
+            Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=lomoslote.pdf")
+            'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf", True)
 
         End If
 

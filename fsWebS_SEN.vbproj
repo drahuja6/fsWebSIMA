@@ -176,10 +176,6 @@
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BuscarExpediente.aspx.vb">
-      <DependentUpon>BuscarExpediente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="BusquedaExpedientes.aspx.designer.vb">
       <DependentUpon>BusquedaExpedientes.aspx</DependentUpon>
     </Compile>
@@ -365,7 +361,6 @@
       <DependentUpon>VerificarArchivos.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Content Include="BuscarExpediente.aspx" />
     <Content Include="BusquedaExpedientes.aspx" />
     <Content Include="CuadroClasificacion.aspx" />
     <Content Include="CuadroClasificacionStatus.aspx" />
@@ -415,10 +410,6 @@
     <EmbeddedResource Include="AuditoriaPorUsuario.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>AuditoriaPorUsuario.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BuscarExpediente.aspx.resx">
-      <DependentUpon>BuscarExpediente.aspx.vb</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Caratula02.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

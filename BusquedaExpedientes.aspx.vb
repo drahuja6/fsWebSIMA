@@ -220,7 +220,8 @@ Public Class BusquedaExpedientes
 
         If Not ImagenNuevaVentana Then
             'Llamada a dll de accesorios.
-            Accesorios.DescargaArchivo(Response, Path.Combine(DirImagenes, archivo), LongitudMaximaArchivoDescarga, False)
+            Response.Redirect($"~/DescargaArchivo.aspx?FN={Path.Combine(DirImagenes, archivo)}")
+            'Accesorios.DescargaArchivo(Response, Path.Combine(DirImagenes, archivo), LongitudMaximaArchivoDescarga, False)
         Else
             'Llamada a página extra para mostrar imagen. Necesario activar Pop-Ups en cliente.
             Dim url As String = $"DescargaArchivo.aspx?FN={archivo}"
@@ -281,7 +282,8 @@ Public Class BusquedaExpedientes
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "guiaexpedientes.pdf", True)
+            Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=GuiaExpedientes.pdf")
+            'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "guiaexpedientes.pdf", True)
 
         End If
 
@@ -318,7 +320,8 @@ Public Class BusquedaExpedientes
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "listaexpedientes.pdf", True)
+            Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=ListaExpedientes.pdf")
+            'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "listaexpedientes.pdf", True)
 
         End If
     End Sub
@@ -354,7 +357,8 @@ Public Class BusquedaExpedientes
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "caratulaslote.pdf", True)
+            Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=Caratulas.pdf")
+            'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "caratulaslote.pdf", True)
 
         End If
 
@@ -389,7 +393,8 @@ Public Class BusquedaExpedientes
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "etiquetas.pdf", True)
+            Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=Etiquetas.pdf")
+            'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "etiquetas.pdf", True)
 
         End If
     End Sub
@@ -424,7 +429,8 @@ Public Class BusquedaExpedientes
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf", True)
+            Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=Lomos.pdf")
+            'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf", True)
 
         End If
 

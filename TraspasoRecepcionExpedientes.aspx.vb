@@ -19,27 +19,24 @@ Public Class TraspasoRecepcionExpedientes
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
             Accesorios.CargaDropDownListSql(ddlUnidAdm, Session("UsuarioVirtualConnStringSQL"), "UnidadesAdministrativasDeUnUsuarioReal", "IdParameter", Session("IDUsuarioReal"), "NombreCorto", "idUnidadAdministrativa", -1)
-
+            txtCaja.Text = "CajaFinal"
         End If
         _tipoProceso = CInt(Request.QueryString("Proceso"))
 
         Select Case _tipoProceso
-            'Recepción en concentración
-            Case 1
+            Case 1 'Recepción en concentración
                 _statusExpedientes = 4
                 _expedientesSinCaja = "Batches_SeleccionaExpedientesParaConcentracion"
                 _expedientesConCaja = "Batches_SeleccionaExpedientesConCajaProvParaConcentracion"
                 _tituloListadoExpedientes = "en concentración."
                 lblTitulo.Text = "Recepción de expedientes en archivo de concentración"
-                txtCaja.Text = "Conc"
-            'Recepción en baja (autoriza baja)
-            Case 2
+
+            Case 2 'Recepción en baja (autoriza baja)
                 _statusExpedientes = 7
                 _expedientesSinCaja = "Batches_SeleccionaExpedientesParaBaja"
                 _expedientesConCaja = "Batches_SeleccionaExpedientesConCajaProvParaBaja"
                 _tituloListadoExpedientes = "para baja."
                 lblTitulo.Text = "Autorización de expedientes para baja"
-                txtCaja.Text = "99999"
             Case Else
 
         End Select
@@ -183,7 +180,8 @@ Public Class TraspasoRecepcionExpedientes
                 Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
                 Reporte.Dispose()
 
-                Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "recepcionexpedientes.pdf")
+                Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=RecepcionExpedientes.pdf")
+                'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "recepcionexpedientes.pdf")
 
             End If
 
