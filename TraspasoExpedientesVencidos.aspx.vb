@@ -108,8 +108,7 @@ Public Class TraspasoExpedientesVencidos
                 Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
                 Reporte.Dispose()
 
-                Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=ExpedientesVencidos.pdf")
-                'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "expedientesvencidos.pdf")
+                Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(MyFileName)}&Nombre=ExpedientesVencidos.pdf")
 
             End If
 
@@ -200,8 +199,7 @@ Public Class TraspasoExpedientesVencidos
                 Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
                 Reporte.Dispose()
 
-                Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=ListaEnviados.pdf")
-                'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "listaenviados.pdf")
+                Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(MyFileName)}&Nombre=ListaEnviados.pdf")
 
             End If
 

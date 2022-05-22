@@ -6,8 +6,9 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Collections.Generic;
 using System.Reflection;
-
 using System.IO;
+
+using ClosedXML.Excel;
 
 namespace fsSimaServicios
 {
@@ -345,6 +346,7 @@ namespace fsSimaServicios
                         response.ContentType = "application/pdf";
                         break;
                     case ".xls":
+                    case ".xlsx":
                         response.ContentType = "application/vnd.ms-excel";
                         break;
                     default:
@@ -401,6 +403,68 @@ namespace fsSimaServicios
             return dataTable;
         }
 
+        public static string GeneraReporteExcel(DataTable dt, string archivoXlsx, string hoja, string titulo)
+        {
+            return GeneraReporteExcel(new DataTable[] { dt }, archivoXlsx, new string[] { hoja }, new string[] { titulo });
+        }
+
+        public static string GeneraReporteExcel(DataTable[] dt, string archivoXlsx, string[] hoja, string[] titulo)
+        {
+            try
+            {
+                IXLWorksheet ws;
+                using (XLWorkbook wb = new XLWorkbook())
+                {
+                    wb.Author = "Full Service de México, S.A. de C.V.";
+
+                    for (int i = 0; i < dt.Length; i++)
+                    {
+                        if (dt[i].Rows.Count > 0)
+                        {
+                            ws = wb.Worksheets.Add(dt[i], hoja[i]);
+                            //ws.Column(1).Delete();
+                            ws.Row(1).InsertRowsAbove(4);
+                            ws.Cell(1, 1).Value = $"SIMA (Sistema para el manejo de archivos).";
+                            ws.Cell(2, 1).Value = titulo[i];
+                            ws.Cell(3, 1).Value = $"Fecha de ejecución: {DateTime.Now:yyyy-MM-ddTHH:mm:ss}";
+                            ws.Columns().AdjustToContents(4);
+                        }
+                    }
+                    wb.SaveAs(archivoXlsx);
+                }
+                return archivoXlsx;
+            }
+            catch (Exception e)
+            {
+                EscribeBitacora($"Error. {e.Message}\r\n{e.InnerException}", "fsSimaServicios.Accesorios.GeneraReporteExcel", "c:/prov");
+                return "";
+            }
+        }
+
+        public static void EscribeBitacora(string mensaje, string nombreAplicacion, string directorio)
+        {
+            try
+            {
+                var di = new DirectoryInfo($"{directorio}/{DateTime.Today.Year:D4}{DateTime.Today.Month:D2}");
+                if (!di.Exists)
+                    di.Create();
+
+                using (FileStream objFilestream = new FileStream($"{di.FullName}/{nombreAplicacion}-{DateTime.Today.Year:D4}{DateTime.Today.Month:D2}{DateTime.Today.Day:D2}.txt", FileMode.Append, FileAccess.Write))
+                {
+                    using (StreamWriter objStreamWriter = new StreamWriter(objFilestream))
+                    {
+                        objStreamWriter.WriteLine($"{DateTime.Now:u}\r\n{mensaje}");
+                        objStreamWriter.Close();
+                        objFilestream.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex != null)
+                    EscribeBitacora(ex.InnerException.Message, nombreAplicacion, directorio);
+            }
+        }
     }
 }
 

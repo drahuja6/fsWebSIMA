@@ -131,6 +131,24 @@ Partial Public Class VerificarArchivos
     Protected WithEvents txtExpedientesSinArchivos As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''lblTotalHojas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTotalHojas As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtTotalHojasEsperadas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTotalHojasEsperadas As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''lblImagenesEsperadas control.
     '''</summary>
     '''<remarks>
@@ -221,6 +239,15 @@ Partial Public Class VerificarArchivos
     Protected WithEvents btnIniciarVerificacion As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''chkReiniciarContadores control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkReiniciarContadores As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''lblVerificados control.
     '''</summary>
     '''<remarks>
@@ -237,4 +264,94 @@ Partial Public Class VerificarArchivos
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtVerificados As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblInformacionDirectorio control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblInformacionDirectorio As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtEspacioDisco control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtEspacioDisco As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblArchivosFS control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblArchivosFS As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtArchivosDirectorio control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtArchivosDirectorio As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblArchivosDirectorioVinculados control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblArchivosDirectorioVinculados As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtArchivosDirectorioVinculados control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtArchivosDirectorioVinculados As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblArchivosDirectorioSinVincular control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblArchivosDirectorioSinVincular As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtArchivosDirectorioSinVincular control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtArchivosDirectorioSinVincular As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btnActualizarDatosDirectorio control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnActualizarDatosDirectorio As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''chkGenerarReporte control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkGenerarReporte As Global.System.Web.UI.WebControls.CheckBox
 End Class

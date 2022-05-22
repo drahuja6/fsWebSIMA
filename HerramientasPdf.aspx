@@ -32,11 +32,24 @@
                     <td colspan="2" onclick="ShowProgress()">
                         <asp:Button ID="btnActualizatitulo" runat="server" Text="Actualizar título" />
                     </td>
-                    <td>
+                    <td rowspan="2">
                         <asp:Label ID="lblCaja" runat="server" Text="Caja:" />
                     </td>
-                    <td>
+                    <td rowspan="2">
                         <asp:TextBox ID="txtCaja" runat="server" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" onclick="ShowProgress()">
+                        <asp:Button ID="btnContarPaginas" runat="server" Text="Contar páginas" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <asp:Label ID="Label1" runat="server" Text="Páginas:" />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtPaginas" runat="server" />
                     </td>
                 </tr>
             </table>

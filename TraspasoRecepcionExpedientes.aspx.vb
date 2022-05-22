@@ -180,8 +180,7 @@ Public Class TraspasoRecepcionExpedientes
                 Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
                 Reporte.Dispose()
 
-                Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=RecepcionExpedientes.pdf")
-                'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "recepcionexpedientes.pdf")
+                Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(MyFileName)}&Nombre=RecepcionExpedientes.pdf")
 
             End If
 

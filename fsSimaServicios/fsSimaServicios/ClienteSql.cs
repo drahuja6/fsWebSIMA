@@ -141,6 +141,30 @@ namespace fsSimaServicios
             }
         }
 
+        public bool EjecutaProcedimientoSql(SqlParameter[] parametros, string storedProcedure)
+        {
+            try
+            {
+                using (var sqlConn = new SqlConnection(CadenaConexionDB))
+                {
+                    sqlConn.Open();
+                    using (var sqlCommand = sqlConn.CreateCommand())
+                    {
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+                        sqlCommand.CommandText = storedProcedure;
+                        if (parametros != null)
+                            sqlCommand.Parameters.AddRange(parametros);
+                        sqlCommand.ExecuteNonQuery();
+                    }
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         public bool EjecutaProcedimiento(SqlParameter[] parametros, string storedProcedure)
         {
             try

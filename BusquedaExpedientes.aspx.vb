@@ -220,11 +220,10 @@ Public Class BusquedaExpedientes
 
         If Not ImagenNuevaVentana Then
             'Llamada a dll de accesorios.
-            Response.Redirect($"~/DescargaArchivo.aspx?FN={Path.Combine(DirImagenes, archivo)}")
-            'Accesorios.DescargaArchivo(Response, Path.Combine(DirImagenes, archivo), LongitudMaximaArchivoDescarga, False)
+            Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(Path.Combine(DirImagenes, archivo))}")
         Else
             'Llamada a página extra para mostrar imagen. Necesario activar Pop-Ups en cliente.
-            Dim url As String = $"DescargaArchivo.aspx?FN={archivo}"
+            Dim url As String = $"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(Path.Combine(DirImagenes, archivo))}"
             ClientScript.RegisterClientScriptBlock(Me.GetType(), "script", "open('" & url & "');", True)
         End If
 
@@ -282,8 +281,7 @@ Public Class BusquedaExpedientes
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=GuiaExpedientes.pdf")
-            'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "guiaexpedientes.pdf", True)
+            Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(MyFileName)}&Nombre=GuiaExpedientes.pdf&Eliminar=True")
 
         End If
 
@@ -320,8 +318,7 @@ Public Class BusquedaExpedientes
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=ListaExpedientes.pdf")
-            'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "listaexpedientes.pdf", True)
+            Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(MyFileName)}&Nombre=ListaExpedientes.pdf&Eliminar=True")
 
         End If
     End Sub
@@ -357,8 +354,7 @@ Public Class BusquedaExpedientes
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=Caratulas.pdf")
-            'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "caratulaslote.pdf", True)
+            Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(MyFileName)}&Nombre=Caratulas.pdf&Eliminar=True")
 
         End If
 
@@ -393,8 +389,7 @@ Public Class BusquedaExpedientes
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=Etiquetas.pdf")
-            'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "etiquetas.pdf", True)
+            Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(MyFileName)}&Nombre=Etiquetas.pdf&Eliminar=True")
 
         End If
     End Sub
@@ -429,8 +424,8 @@ Public Class BusquedaExpedientes
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=Lomos.pdf")
-            'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf", True)
+            Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(MyFileName)}&Nombre=Lomos.pdf&Eliminar=True")
+
 
         End If
 
@@ -546,40 +541,18 @@ Public Class BusquedaExpedientes
             Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
 
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
-
-            'Write the file directly to the HTTP output stream.
-            Response.ContentType = "application/pdf"
-            Response.AddHeader("content-Disposition", "inline; filename=estatusexpedientes.pdf")
-            Response.WriteFile(MyFileName)
-            Response.Flush()
-
-            If IO.File.Exists(MyFileName) Then
-                IO.File.Delete(MyFileName)
-            End If
-
             Reporte.Dispose()
 
-            Response.End()
+            Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(MyFileName)}&Nombre=EstatusExpedientes.pdf&Eliminar=True")
 
         Else
             Dim guid1 As Guid = Guid.NewGuid
             Dim MyFileName As String = Session("SubdirectorioTemporal") & Session("LoginActivo") & guid1.ToString & ".xls"
 
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.Excel, MyFileName)
-
-            'Write the file directly to the HTTP output stream.
-            Response.ContentType = "Application/vnd.ms-excel"
-            Response.AddHeader("content-Disposition", "inline; filename=estatusexpedientes.xls")
-            Response.WriteFile(MyFileName)
-            Response.Flush()
-
-            If IO.File.Exists(MyFileName) Then
-                IO.File.Delete(MyFileName)
-            End If
-
             Reporte.Dispose()
 
-            Response.End()
+            Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(MyFileName)}&Nombre=EstatusExpedientes.xls")
 
         End If
 

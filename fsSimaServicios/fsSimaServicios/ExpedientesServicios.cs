@@ -2,7 +2,9 @@
 using System.Text;
 using System.IO;
 using System.Data;
-using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace fsSimaServicios
 {
@@ -21,6 +23,11 @@ namespace fsSimaServicios
         public int ArchivosSinDigitalizacion { get; private set; }
         public int ArchivosConDigitalizacion { get; private set; }
         public int ImagenesEsperadas { get; private set; }
+        public int TotalHojasBD { get; private set; }
+        public int TotalArchivosEnDirectorio { get; private set; }
+        public int ArchivosDirectorioVinculados { get; private set; }
+        public int ArchivosDirectorioSinVincular { get; private set; }
+        public int EspacionEnDisco { get; private set; }
 
         public DataTable Detalle { get; private set; }
 
@@ -30,12 +37,22 @@ namespace fsSimaServicios
             Directorio = directorio;
         }
 
-        public void VerificaArchivos()
+        public void VerificaArchivos(bool reiniciarContadores = false)
         {
-            NuevosArchivosLocalizados= VerificaArchivos(CadenaConexion, Directorio);
+            NuevosArchivosLocalizados = VerificaArchivos(CadenaConexion, Directorio, reiniciarContadores);
         }
 
-        private int VerificaArchivos(string cadenaConexionDb, string directorio)
+        public void VerificaArchivosFS()
+        {
+            VerificaArchivosFS(CadenaConexion, Directorio, "", "", false);
+        }
+
+        public void VerificaArchivosFS(string directorioTemporal, string nombreArchivoExcel, bool generarArchivoExcel)
+        {
+            VerificaArchivosFS(CadenaConexion, Directorio, directorioTemporal, nombreArchivoExcel, generarArchivoExcel);
+        }
+
+        private int VerificaArchivos(string cadenaConexionDb, string directorio, bool reiniciarContadores)
         {
             try
             {
@@ -44,7 +61,10 @@ namespace fsSimaServicios
                 var listaIdsNoLocalizados = new StringBuilder();
                 var cuentaLocalizados = 0;
 
-                var ds = sqlCliente.ObtenerRegistros(null, "ExpedientesPDF_Archivos_SELECT_ALL");
+                if (reiniciarContadores)
+                    sqlCliente.EjecutaProcedimientoSql(null, "ExpedientesPDF_ReiniciaBanderaVerificacion");
+
+                var ds = sqlCliente.ObtenerRegistrosSql(null, "ExpedientesPDF_Archivos_SELECT_ALL");
 
                 if (ds != null && ds.Tables.Count == 1)
                 {
@@ -67,23 +87,85 @@ namespace fsSimaServicios
                             listaIdsNoLocalizados.Append(',');
                         }
                     }
-                    var pars = new OleDbParameter[2];
-                    pars[0] = new OleDbParameter("@IdList", OleDbType.LongVarWChar);
-                    pars[1] = new OleDbParameter("@Verificado", OleDbType.Boolean);
+                    var pars = new SqlParameter[2];
+                    pars[0] = new SqlParameter("@IdList", SqlDbType.Text);
+                    pars[1] = new SqlParameter("@Verificado", SqlDbType.Bit);
                     // Actualizo marca de los localizados.
                     pars[0].Value = listaIdsVerificados.ToString();
                     pars[1].Value = true;
-                    sqlCliente.EjecutaProcedimiento(pars, "ExpedientesPDF_Archivos_Verifica");
+                    sqlCliente.EjecutaProcedimientoSql(pars, "ExpedientesPDF_Archivos_Verifica");
                     // Actualizo marca de los no localizados.
-                    pars[0].Value = listaIdsNoLocalizados.ToString();
-                    pars[1].Value = false;
-                    sqlCliente.EjecutaProcedimiento(pars, "ExpedientesPDF_Archivos_Verifica");
+                    var pars1 = new SqlParameter[2];
+                    pars1[0] = new SqlParameter("@IdList", listaIdsNoLocalizados.ToString());
+                    pars1[1] = new SqlParameter("@Verificado", false);
+                    sqlCliente.EjecutaProcedimientoSql(pars1, "ExpedientesPDF_Archivos_Verifica");
                 }
                 return cuentaLocalizados;
             }
             catch (Exception)
             {
                 return -1;
+            }
+        }
+
+        private void VerificaArchivosFS(string cadenaConexionDb, string directorio, string directorioTemporal, string nombreArchivoExcel, bool generarArchivoExcel)
+        {
+            try
+            {
+                string[] archivosFS;
+                string[] archivosBD;
+
+                var ds = new ClienteSQL(cadenaConexionDb).ObtenerRegistrosSql(null, "ExpedientesPDF_Archivos_SELECT_ALL");
+
+                if (ds != null && ds.Tables.Count == 1)
+                {
+                    archivosBD = new string[ds.Tables[0].Rows.Count];
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        archivosBD[i] = Path.Combine(directorio, ds.Tables[0].Rows[i]["NombrePDF"].ToString()).Replace("\\", "/").ToUpperInvariant();
+                    }
+
+                    archivosFS = Directory.GetFiles(directorio, "*.PDF", SearchOption.AllDirectories);
+
+                    TotalArchivosEnDirectorio = archivosFS.Length;
+
+                    for (int i = 0; i < archivosFS.Length; i++)
+                    {
+                        archivosFS[i] = archivosFS[i].Replace("\\", "/").ToUpperInvariant();
+                    }
+                    var noHalladosFS = archivosFS.Except(archivosBD).ToList();
+                    var noHalladosBD = archivosBD.Except(archivosFS).ToList();
+
+                    // Propiedades para mostrar en UI
+                    TotalArchivosEnDirectorio = archivosFS.Length;
+                    ArchivosDirectorioVinculados = archivosFS.Intersect(archivosBD).Count();
+                    ArchivosDirectorioSinVincular = noHalladosFS.Count;
+                    EspacionEnDisco = (int)Math.Round(Directory.GetFiles(directorio, "*.PDF", SearchOption.AllDirectories).Sum(t => (new FileInfo(t).Length)) / Math.Pow(1024.0, 2), 0);
+
+                    if (generarArchivoExcel)
+                    {
+                        // Preparo exportación a Excel con los resultados del proceso.
+                        DataTable[] dt = new DataTable[2];
+                        dt[0] = new DataTable();
+                        dt[0].Columns.Add("NombreArchivo", typeof(string));
+                        dt[1] = new DataTable();
+                        dt[1].Columns.Add("NombreArchivo", typeof(string));
+
+                        foreach (var archivo in noHalladosFS)
+                        {
+                            dt[0].Rows.Add(archivo);
+                        }
+
+                        foreach (var archivo in noHalladosBD)
+                        {
+                            dt[1].Rows.Add(archivo);
+                        }
+                        var archivoExcel = Accesorios.GeneraReporteExcel(dt, Path.Combine(directorioTemporal, string.IsNullOrEmpty(nombreArchivoExcel) ? "ConciliacionDirectorio" : nombreArchivoExcel), new string[] { "FS_SinCorrespondencia_BD", "BD_SinCorrespondencia_FS" }, new string[] { "Archivos de imagen en el directorio sin datos en la base de datos.", "Datos de archivo en la BD no localizados en el directorio." });
+                    }
+                }
+            }
+            catch (Exception e)
+            {
             }
         }
 
@@ -94,7 +176,7 @@ namespace fsSimaServicios
 
         private void ObtieneEstadisticaArchivos(string cadenaConexion)
         {
-            var ds = new ClienteSQL(cadenaConexion).ObtenerRegistros(null, "EstadisticaExpedientes");
+            var ds = new ClienteSQL(cadenaConexion).ObtenerRegistrosSql(null, "EstadisticaExpedientes");
 
             if (ds != null && ds.Tables.Count > 0)
             {
@@ -106,9 +188,12 @@ namespace fsSimaServicios
                 ArchivosSinDigitalizacion = (int)ds.Tables[0].Rows[0]["SinDigitalizacion"];
                 ArchivosConDigitalizacion = (int)ds.Tables[0].Rows[0]["ConDigitalizacion"];
                 ImagenesEsperadas = (int)ds.Tables[0].Rows[0]["TotalImagenes"];
+                TotalHojasBD = (int)ds.Tables[0].Rows[0]["TotalHojasBD"];
 
                 Detalle = ds.Tables[1];
             }
         }
     }
 }
+
+

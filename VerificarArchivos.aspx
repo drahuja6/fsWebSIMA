@@ -36,19 +36,19 @@
 					<asp:Label CssClass="etiqueta" ID="lblTotalExpedientes" runat="server" Text="Expedientes en BD:" />
 				</td>
 				<td>
-					<asp:TextBox ID="txtTotalExpedientes" runat="server" Enabled="false" CssClass="etiqueta-textbox" />
+					<asp:TextBox ID="txtTotalExpedientes" runat="server" Enabled="false" CssClass="textbox numero" />
 				</td>
 				<td>
 					<asp:Label CssClass="etiqueta" ID="Label3" runat="server" Text="Aplica digitalización:" />
 				</td>
 				<td>
-					<asp:TextBox ID="txtAplicaDigitalizacion" runat="server" Enabled="false" CssClass="etiqueta-textbox" />
+					<asp:TextBox ID="txtAplicaDigitalizacion" runat="server" Enabled="false" CssClass="textbox numero" />
 				</td>
 				<td>
 					<asp:Label CssClass="etiqueta" ID="Label4" runat="server" Text="No aplica digitalización:" />
 				</td>
 				<td>
-					<asp:TextBox ID="txtNoAplicaDigitalizacion" runat="server" Enabled="false" CssClass="etiqueta-textbox" />
+					<asp:TextBox ID="txtNoAplicaDigitalizacion" runat="server" Enabled="false" CssClass="textbox numero" />
 				</td>
 			</tr>
 			<tr>
@@ -66,13 +66,19 @@
 					<asp:Label CssClass="etiqueta" ID="lblExpedientesConArchivos" runat="server" Text="Expedientes con información en BD:" />
 				</td>
 				<td>
-					<asp:TextBox ID="txtExpedientesConArchivos" runat="server" Enabled="false" CssClass="etiqueta-textbox" />
+					<asp:TextBox ID="txtExpedientesConArchivos" runat="server" Enabled="false" CssClass="textbox numero" />
 				</td>
 				<td>
-					<asp:Label CssClass="etiqueta error" ID="lblExpedientesSinArchivos" runat="server" Text="Expedientes sin información en BD:" />
+					<asp:Label CssClass="etiqueta error" ID="lblExpedientesSinArchivos" runat="server" Text="Expedientes sin información en BD:"  Visible='<%# CInt(Me.txtExpedientesSinArchivos.Text) > 0 %>' />
 				</td>
 				<td>
-					<asp:TextBox ID="txtExpedientesSinArchivos" runat="server" Enabled="false" CssClass="etiqueta-textbox error" />
+					<asp:TextBox ID="txtExpedientesSinArchivos" runat="server" Enabled="false" Visible='<%# CInt(Me.txtExpedientesSinArchivos.Text) > 0 %>' CssClass="textbox numero error" />
+				</td>
+				<td>
+					<asp:Label CssClass="etiqueta" ID="lblTotalHojas" runat="server" Text="Total de hojas en BD:" />
+				</td>
+				<td>
+					<asp:TextBox ID="txtTotalHojasEsperadas" runat="server" Enabled="false" CssClass="textbox numero" />
 				</td>
 			</tr>
 			<tr>
@@ -80,19 +86,19 @@
 					<asp:Label CssClass="etiqueta" ID="lblImagenesEsperadas" runat="server" Text="Archivos de imagen esperados:" />
 				</td>
 				<td>
-					<asp:TextBox ID="txtImagenesEsperadas" runat="server" Enabled="false" CssClass="etiqueta-textbox" />
+					<asp:TextBox ID="txtImagenesEsperadas" runat="server" Enabled="false" CssClass="textbox numero" />
 				</td>
 				<td>
 					<asp:Label CssClass="etiqueta" ID="lblArchivosLocalizados" runat="server" Text="Archivos de imagen localizados:" />
 				</td>
 				<td>
-					<asp:TextBox ID="txtArchivosLocalizados" runat="server" Enabled="false" CssClass="etiqueta-textbox" />
+					<asp:TextBox ID="txtArchivosLocalizados" runat="server" Enabled="false" CssClass="textbox numero" />
 				</td>
 				<td>
 					<asp:Label CssClass="etiqueta error" ID="lblArchivosNoLocalizados" runat="server" Text="Archivos de imagen no localizados:" />
 				</td>
 				<td>
-					<asp:TextBox ID="txtArchivosNoLocalizados" runat="server" Enabled="false" CssClass="etiqueta-textbox error" />
+					<asp:TextBox ID="txtArchivosNoLocalizados" runat="server" Enabled="false" CssClass="textbox numero error" />
 				</td>
 			</tr>
 			<tr>
@@ -119,6 +125,7 @@
                                 <asp:BoundField DataField="ExpedientesConArchivoBD" HeaderText="Con información en BD" ItemStyle-CssClass="grid-datos" />
                                 <asp:BoundField DataField="ExpedientesSinArchivoBD" HeaderText="Sin información en BD" ItemStyle-CssClass="grid-datos error" />
                                 <asp:BoundField DataField="TotalImagenes" HeaderText="Imágenes esperadas" ItemStyle-CssClass="grid-datos" />
+								<asp:BoundField DataField="TotalHojasBD" HeaderText="Hojas esperadas" ItemStyle-CssClass="grid-datos" />
                                 <asp:BoundField DataField="ArchivosLocalizadosFS" HeaderText="Imágenes localizadas" ItemStyle-CssClass="grid-datos" />
                                 <asp:BoundField DataField="ArchivosNoLocalizadosFS" HeaderText="Imágenes no localizadas" ItemStyle-CssClass="grid-datos error" />
                             </Columns>
@@ -143,16 +150,59 @@
 				</td>
 			</tr>
 			<tr>
-				<td></td>
-				<td class="col" colspan="2" onclick="ShowProgress()" >
+				<td onclick="ShowProgress()">
 					<asp:Button ID="btnIniciarVerificacion" runat="server" Text="Iniciar verificación" CssClass="etiqueta-boton" />
 				</td>
-				<td></td>
+				<td>
+					<asp:CheckBox ID="chkReiniciarContadores" runat="server" Text="Reiniciar contadores" CssClass="etiqueta" ToolTip="Reiniciar contador de archivos hallados" />
+				</td>
+				<td colspan="2"></td>
 				<td>
 					<asp:Label ID="lblVerificados" runat="server" Text="Nuevos archivos localizados:" CssClass="etiqueta" />
 				</td>
 				<td>
                     <asp:TextBox ID="txtVerificados" runat="server" Enabled="false" CssClass="etiqueta-textbox" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="6">
+					<hr />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="etiqueta-titulo">
+					<asp:Label ID="lblInformacionDirectorio" runat="server" Text="Información general del directorio de imágenes (en disco):" />
+				</td>
+				<td colspan="2">
+					<asp:TextBox ID="txtEspacioDisco" runat="server" Enabled="false" CssClass="textbox ancho" ToolTip="Espacio utilizado en el directorio de imágenes. Estimado en MB." />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<asp:Label ID="lblArchivosFS" runat="server" Text="Archivos en directorio:" CssClass="etiqueta" />
+				</td>
+				<td>
+                    <asp:TextBox ID="txtArchivosDirectorio" runat="server" Enabled="false" CssClass="textbox numero" ToolTip="Archivos de imágenes presentes físicamente" />
+				</td>
+				<td>
+					<asp:Label ID="lblArchivosDirectorioVinculados" runat="server" Text="Vinculados:" CssClass="etiqueta" />
+				</td>
+				<td>
+                    <asp:TextBox ID="txtArchivosDirectorioVinculados" runat="server" Enabled="false" CssClass="textbox numero" ToolTip="Archivos de imágenes en disco vinculadas a información de la base de datos" />
+				</td>
+				<td>
+					<asp:Label ID="lblArchivosDirectorioSinVincular" runat="server" Text="No vinculados:" CssClass="etiqueta" />
+				</td>
+				<td>
+                    <asp:TextBox ID="txtArchivosDirectorioSinVincular" runat="server" Enabled="false" Visible='<%# CInt(Me.txtArchivosDirectorioSinVincular.Text) > 0 %>' CssClass="textbox numero error" ToolTip="Archivos de imágenes en disco no vinculados a la base de datos. " />
+				</td>
+			</tr>
+			<tr>
+				<td onclick="ShowProgress()">
+					<asp:Button ID="btnActualizarDatosDirectorio" runat="server" Text="Actualizar información" CssClass="etiqueta-boton" ToolTip="Recalcula datos sobre el directorio, espacio utilizado y vinculación de imágenes a base de datos" />
+				</td>
+				<td>
+					<asp:CheckBox ID="chkGenerarReporte" runat="server" Text="Generar reporte en Excel" CssClass="etiqueta" ToolTip="Genera reporte con detalle de las imágenes no vinculadas entre directorio y base de datos. " />
 				</td>
 			</tr>
 		</table>

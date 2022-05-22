@@ -34,6 +34,7 @@ Public Class Login
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Session("AdminConnString") = ConexionAdministrativa
+        Session("AdminConnStringSql") = ConexionAdministrativaSql
 
         Session("OrdenDeGridDeExpedientes") = OrdenExpedientes
         Session("SubdirectorioDeImagenes") = DirImagenes

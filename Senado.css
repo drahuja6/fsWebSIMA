@@ -36,6 +36,31 @@
     font-weight: 500;
 }
 
+.etiqueta-textbox-numero {
+    width: 70px;
+    font-weight: 500;
+    text-align: right; 
+}
+
+.textbox {
+    font-size: smaller;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    color: navy;
+    vertical-align: central;
+    width: 70px;
+    font-weight: 500;
+}
+
+.textbox.ancho {
+    width: 140px;
+}
+
+.textbox.numero {
+    width: 70px;
+    text-align: right;
+}
+
 .col {
     height: 30px;
     vertical-align: central; 

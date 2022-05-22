@@ -220,8 +220,7 @@ Public Class TrabajoRealizado
         reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
         reporte.Dispose()
 
-        Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=TrabajoRealizado.pdf")
-        'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "trabajorealizado.pdf", True)
+        Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(MyFileName)}&Nombre=TrabajoRealizado.pdf")
 
     End Sub
 
@@ -262,8 +261,7 @@ Public Class TrabajoRealizado
         Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
         Reporte.Dispose()
 
-        Response.Redirect($"~/DescargaArchivo.aspx?FN={MyFileName}&Nombre=TrabajoUsuario.pdf")
-        'Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "trabajousuario.pdf", True)
+        Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(MyFileName)}&Nombre=TrabajoUsuario.pdf")
 
     End Sub
 End Class

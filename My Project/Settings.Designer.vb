@@ -56,34 +56,6 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("D:\Temp\PdfSIMA\Senado\")>  _
-        Public ReadOnly Property DirImagenes() As String
-            Get
-                Return CType(Me("DirImagenes"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("C:\prov\")>  _
-        Public ReadOnly Property DirTemporal() As String
-            Get
-                Return CType(Me("DirTemporal"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("D:\Users\Files\source\repos\Visual Studio 2019\fsWebS_SEN\Images\LogoSenado-LXV.p"& _ 
-            "ng")>  _
-        Public ReadOnly Property LogoCliente() As String
-            Get
-                Return CType(Me("LogoCliente"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("SIMA_Senado_II")>  _
         Public ReadOnly Property BaseDatos() As String
             Get
@@ -115,6 +87,34 @@ Namespace My
         Public ReadOnly Property ImagenNuevaVentana() As Boolean
             Get
                 Return CType(Me("ImagenNuevaVentana"),Boolean)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("D:/Temp/PdfSIMA/Senado/")>  _
+        Public ReadOnly Property DirImagenes() As String
+            Get
+                Return CType(Me("DirImagenes"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:/prov/")>  _
+        Public ReadOnly Property DirTemporal() As String
+            Get
+                Return CType(Me("DirTemporal"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("D:\Users\Files\source\repos\Visual Studio 2019\fsWebS_SEN\Images\LogoSenado-LXV.p"& _ 
+            "ng""")>  _
+        Public ReadOnly Property LogoCliente() As String
+            Get
+                Return CType(Me("LogoCliente"),String)
             End Get
         End Property
     End Class
