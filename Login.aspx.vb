@@ -17,6 +17,7 @@ Public Class Login
     Protected WithEvents txtPassword As TextBox
     Protected WithEvents RequiredFieldValidator1 As RequiredFieldValidator
     Protected WithEvents lblAccesoNegado As Label
+    Protected WithEvents divMensaje As Panel
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -106,6 +107,7 @@ Public Class Login
 
             Response.Redirect(strRedirect, True)
         Else
+            divMensaje.Visible = True
             lblAccesoNegado.Visible = True
         End If
 
