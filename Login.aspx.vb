@@ -42,6 +42,8 @@ Public Class Login
         Session("SubdirectorioTemporal") = DirTemporal
         Session("LimiteDeRecordsEnBusqueda") = RegistrosMaximos
 
+        txtUsuario.Focus()
+
         If Not Page.IsPostBack Then
 
             Session("UsuarioVirtualConnString") = ""

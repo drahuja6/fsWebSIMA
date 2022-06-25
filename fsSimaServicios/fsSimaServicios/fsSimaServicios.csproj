@@ -73,6 +73,7 @@
     <Compile Include="Accesorios.cs" />
     <Compile Include="Accesos.cs" />
     <Compile Include="ClienteSql.cs" />
+    <Compile Include="Encripcion.cs" />
     <Compile Include="ExpedientesBatchServicios.cs" />
     <Compile Include="ExpedientesServicios.cs" />
     <Compile Include="VariosPdf.cs" />

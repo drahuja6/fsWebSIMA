@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head runat="server">
 		<title>UsuarioRealBuscar</title>
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema" />
 		<style type="text/css">
 			.etiqueta-titulo {  
 				font-size: medium;

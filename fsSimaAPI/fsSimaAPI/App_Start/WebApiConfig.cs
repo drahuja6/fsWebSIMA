@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace fsSimaAPI
 {
@@ -9,14 +6,16 @@ namespace fsSimaAPI
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
+            // Configuración y servicios de API web
 
-            // Web API routes
+            // Rutas de API web
             config.MapHttpAttributeRoutes();
+
+            config.MessageHandlers.Add(new TokenValidationHandler());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "Api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
         }

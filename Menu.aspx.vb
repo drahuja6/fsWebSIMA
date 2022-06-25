@@ -21,9 +21,9 @@ Public Class Menu
     Protected WithEvents HyperLink8 As HyperLink
     Protected WithEvents HLVET As HyperLink
     Protected WithEvents HLVEC As HyperLink
-    Protected WithEvents lblTituloHerramientas As Label
     Protected WithEvents lnkVerificaArchivos As HyperLink
     Protected WithEvents lnkHerramientasPdf As HyperLink
+    Protected WithEvents pnlHerramientas As Panel
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -41,7 +41,7 @@ Public Class Menu
 
         'Permiso de acceso a herramientas.
         If Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = "USOC" Or Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = "SUPERUSER" Then    'Perfil usuario administrador
-            lblTituloHerramientas.Visible = True
+            pnlHerramientas.Visible = True
             lnkVerificaArchivos.Visible = True
             lnkHerramientasPdf.Visible = False
         End If

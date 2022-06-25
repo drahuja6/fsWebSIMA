@@ -29,5 +29,5 @@ Imports System.Runtime.InteropServices
 ' Puede especificar todos los valores o usar los valores predeterminados (número de versión de compilación y de revisión) 
 ' usando el símbolo '*' como se muestra a continuación:
 
-<Assembly: AssemblyVersion("1.0.39.2141")>
-<Assembly: AssemblyFileVersion("1.0.39.2141")>
+<Assembly: AssemblyVersion("1.0.40.2149")>
+<Assembly: AssemblyFileVersion("1.0.40.2149")>
