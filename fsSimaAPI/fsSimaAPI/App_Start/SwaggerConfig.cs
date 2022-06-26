@@ -40,10 +40,13 @@ namespace fsSimaAPI
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
                         //
-                        c.SingleApiVersion("v1", "fsSimaAPI");
+                        c.SingleApiVersion("v1", "fsSimaAPI")
+                            .Description("Descarga de metadata de expedientes y documentos vinculados.")
+                            .Contact(x => x
+                                .Name("Full Service de México, S.A. de C.V.")
+                                .Url("http://fullservicedemexico.com")
+                        );
 
-                        // If you want the output Swagger docs to be indented properly, enable the "PrettyPrint" option.
-                        //
                         c.PrettyPrint();
 
                         // If your API has multiple versions, use "MultipleApiVersions" instead of "SingleApiVersion".

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace fsSimaAPI.Controllers
 {
@@ -18,6 +19,7 @@ namespace fsSimaAPI.Controllers
         /// <returns>Resultado de la autentificación en <strong>LogonResponse</strong>.</returns>
         [HttpPost]
         [AllowAnonymous]
+        [ResponseType(typeof(LoginResponse))]
         [Route("Autentificacion")]
         public IHttpActionResult Autentificacion(LoginRequest login)
         {

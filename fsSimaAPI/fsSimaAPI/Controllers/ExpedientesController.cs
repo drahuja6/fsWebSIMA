@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace fsSimaAPI.Controllers
 {
@@ -16,12 +18,16 @@ namespace fsSimaAPI.Controllers
         /// </summary>
         /// <returns>Listado con metadata de expedientes.</returns>
         [HttpGet]
+        [ResponseType(typeof(List<ExpedienteMetadata>))]
         [Route("ObtenerMetadata")]
-        public IHttpActionResult ObtenerMetadata()
+        public IHttpActionResult ObtenerMetadata(int maximoRegistros, bool marcarTransferido = false)
         {
             try
             {
-                return Ok(new ExpedientesServicio().ObtenerMetadata());
+                if (maximoRegistros <= 0)
+                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+
+                return Ok(new ExpedientesServicio().ObtenerMetadata(maximoRegistros, marcarTransferido));
             }
             catch (Exception)
             {
@@ -32,18 +38,20 @@ namespace fsSimaAPI.Controllers
         /// <summary>
         /// Obtiene una imagen a partir del identificador de la misma.
         /// </summary>
-        /// <param name="idImagen">Identificador de imagen</param>
+        /// <param name="idExpediente">Identificador de expediente.</param>
+        /// <param name="idImagen">Identificador de imagen.</param>
         /// <returns></returns>
         [HttpGet]
+        [ResponseType(typeof(string))]
         [Route("ObtenerImagen")]
-        public IHttpActionResult ObtenerImagen(int idImagen)
+        public IHttpActionResult ObtenerImagen(int idExpediente, int idImagen)
         {
             try
             {
                 if (idImagen <= 0)
                     throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-                return Ok(new ExpedientesServicio().ObtenerImagen(idImagen));
+                return Ok(new ExpedientesServicio().ObtenerImagen(idExpediente, idImagen));
             }
             catch (Exception)
             {
