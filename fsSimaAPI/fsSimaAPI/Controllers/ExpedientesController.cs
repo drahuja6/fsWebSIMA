@@ -42,7 +42,7 @@ namespace fsSimaAPI.Controllers
         /// <param name="idImagen">Identificador de imagen.</param>
         /// <returns></returns>
         [HttpGet]
-        [ResponseType(typeof(string))]
+        [ResponseType(typeof(DocumentoContenido))]
         [Route("ObtenerImagen")]
         public IHttpActionResult ObtenerImagen(int idExpediente, int idImagen)
         {

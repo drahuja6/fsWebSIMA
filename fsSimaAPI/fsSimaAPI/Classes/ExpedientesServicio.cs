@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.IO;
+using System.Security.Cryptography;
 
 using fsSimaServicios;
 
@@ -35,7 +36,7 @@ namespace fsSimaAPI
             }
         }
 
-        public string ObtenerImagen(int idExpediente, int idImagen)
+        public DocumentoContenido ObtenerImagen(int idExpediente, int idImagen)
         {
             try
             {
@@ -53,13 +54,25 @@ namespace fsSimaAPI
 
                 if (sqlParams[2].Value != null)
                 {
+                    var contenido = new DocumentoContenido
+                    {
+                        Id = idImagen
+                    };
                     var file = Path.Combine(ConfigurationManager.AppSettings["DirectorioImagenes"], sqlParams[2].Value.ToString().Trim());
-                    return Convert.ToBase64String(File.ReadAllBytes(file));
+                    contenido.Contenido64 = Convert.ToBase64String(File.ReadAllBytes(file)); 
+                    using (var md5 = MD5.Create())
+                    {
+                        using (var fs = File.OpenRead(file))
+                        {
+                            contenido.MD5 = BitConverter.ToString(md5.ComputeHash(fs)).Replace("-", "").ToLowerInvariant();
+                        }
+                    }
+                    return contenido;
                 }
                 else
                     return default;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return default;
             }

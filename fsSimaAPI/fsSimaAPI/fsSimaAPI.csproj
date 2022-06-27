@@ -157,6 +157,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DocumentoContenido.cs" />
     <Compile Include="Models\DocumentoMetadata.cs" />
     <Compile Include="Models\ExpedienteMetadata.cs" />
     <Compile Include="Models\LoginRequest.cs" />
