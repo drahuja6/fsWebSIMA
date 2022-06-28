@@ -53,8 +53,8 @@ namespace fsSimaAPI
                             loginResponse.AuthenticationOk = true;
                     }
                 }
-
-                RegistraBitacora(loginData, ip, loginResponse.AuthenticationOk);
+   
+                Accesorios.EscribeBitacoraBD(ConfigurationManager.AppSettings["CadenaConexion"], loginData.User, ip, loginResponse.AuthenticationOk, 1000); //ApId=1000 para API.
 
                 return loginResponse;
             }
@@ -67,26 +67,6 @@ namespace fsSimaAPI
         #endregion Métodos públicos
 
         #region Métodos privados
-
-        private bool RegistraBitacora(LoginRequest loginData, string ip, bool loginOK, int appId = 000)
-        {
-            try
-            {
-                var sqlCliente = new ClienteSQL(ConfigurationManager.AppSettings["CadenaConexion"]);
-
-                SqlParameter[] parametros = new SqlParameter[4];
-                parametros[0] = new SqlParameter("@Identificador", loginData.User);
-                parametros[1] = new SqlParameter("@IpAddress", ip);
-                parametros[2] = new SqlParameter("@LoginStatus", loginOK);
-                parametros[3] = new SqlParameter("@AppId", appId);
-
-                return sqlCliente.EjecutaProcedimientoSql(parametros, "BitacoraAcceso_Insert");
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
 
         #endregion Métodos privados
     }

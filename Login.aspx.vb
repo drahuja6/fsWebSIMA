@@ -85,6 +85,9 @@ Public Class Login
         Session("LoginActivo") = txtUsuario.Text.ToString
 
         'If FillUsuarioVirtualConnString(txtUsuario.Text.ToString, scrambler.Scramble(txtPassword.Text.ToString, Chr(25) & Chr(26))) Then
+
+        Dim ip As String = If(Not String.IsNullOrEmpty(HttpContext.Current.Request.ServerVariables("HTTP_X_FORWARDED_FOR")), HttpContext.Current.Request.ServerVariables("HTTP_X_FORWARDED_FOR"), HttpContext.Current.Request.ServerVariables("REMOTE_ADDR"))
+
         If FillUsuarioVirtualConnString(txtUsuario.Text.ToString, New Encripcion(Globales.CodigoAcceso).Encripta(txtPassword.Text.ToString.Trim)) Then
             If Get_IDUsuarioReal_From_Login(txtUsuario.Text.ToString, IDUsuarioReal, NombreUsuarioReal) Then
                 Session("IDUsuarioReal") = IDUsuarioReal
@@ -109,10 +112,14 @@ Public Class Login
                 strRedirect = "Frameset2.htm"
             End If
 
+            Accesorios.EscribeBitacoraBD(Session("AdminConnStringSql").ToString, txtUsuario.Text.ToString.Trim, ip, True)
+
             Response.Redirect(strRedirect, True)
         Else
             divMensaje.Visible = True
             lblAccesoNegado.Visible = True
+
+            Accesorios.EscribeBitacoraBD(Session("AdminConnStringSql").ToString, txtUsuario.Text.ToString.Trim, ip, False)
         End If
 
     End Sub
@@ -126,6 +133,8 @@ Public Class Login
         Dim cn As New OleDbConnection
         Dim cmd As New OleDbCommand
         Dim param As OleDbParameter
+
+        Dim loginOk As Boolean = False
 
         Try
 
@@ -157,16 +166,17 @@ Public Class Login
             MyNombreUsuarioReal = CStr(cmd.Parameters("MyNombreUsuarioReal").Value)
 
             If CInt(cmd.Parameters("MyidUsuarioReal").Value) <> -1 Then
-                Get_IDUsuarioReal_From_Login = True
+                loginOk = True
             Else
-                Get_IDUsuarioReal_From_Login = False
+                loginOk = False
             End If
 
             cn.Close()
 
+            Return loginOk
+
         Catch ex As Exception
 
-            'MsgBox(ex.Message.ToString)
             Get_IDUsuarioReal_From_Login = False
             If cn.State <> ConnectionState.Closed Then
                 cn.Close()

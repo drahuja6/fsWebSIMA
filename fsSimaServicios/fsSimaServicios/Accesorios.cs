@@ -465,6 +465,25 @@ namespace fsSimaServicios
                     EscribeBitacora(ex.InnerException.Message, nombreAplicacion, directorio);
             }
         }
+
+        public static void EscribeBitacoraBD(string connString, string loginUser, string ip, bool loginOK, int appId = 000)
+        {
+            try
+            {
+                var sqlCliente = new ClienteSQL(connString);
+
+                SqlParameter[] parametros = new SqlParameter[4];
+                parametros[0] = new SqlParameter("@Identificador", loginUser);
+                parametros[1] = new SqlParameter("@IpAddress", ip ?? "No IP");
+                parametros[2] = new SqlParameter("@LoginStatus", loginOK);
+                parametros[3] = new SqlParameter("@AppId", appId);
+
+                sqlCliente.EjecutaProcedimientoSql(parametros, "BitacoraAcceso_Insert");
+            }
+            catch (Exception)
+            {
+            }
+        }
     }
 }
 
