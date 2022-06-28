@@ -2,8 +2,6 @@
 using System.Configuration;
 using System.Data.SqlClient;
 
-using GITDataTools;
-
 using fsSimaServicios;
 
 namespace fsSimaAPI
@@ -24,13 +22,12 @@ namespace fsSimaAPI
             try
             {
                 var sqlCliente = new ClienteSQL(ConfigurationManager.AppSettings["CadenaConexion"]);
-                var k = Convert.ToChar(25).ToString();
-                k += Convert.ToChar(26).ToString();
+                var codigoAcceso = ConfigurationManager.AppSettings["CodigoAcceso"];
 
                 var sqlParams = new SqlParameter[4];
 
                 sqlParams[0] = new SqlParameter("@LoginUsuarioReal", loginData.User);
-                sqlParams[1] = new SqlParameter("@PasswordUsuarioReal", new ScrambleNET().Scramble(loginData.Password, k));
+                sqlParams[1] = new SqlParameter("@PasswordUsuarioReal", new Encripcion(codigoAcceso).Encripta(loginData.Password));
                 sqlParams[2] = new SqlParameter("@LoginUsuarioVirtual", System.Data.SqlDbType.NVarChar, 50)
                 {
                     Direction = System.Data.ParameterDirection.Output
@@ -49,9 +46,12 @@ namespace fsSimaAPI
 
                 if (sqlParams[2].Value != null && sqlParams[3].Value != null)
                 {
-                    loginResponse.AuthenticationToken = TokenGenerator.GenerateTokenJwt(loginData.User);
-                    if (!string.IsNullOrEmpty(loginResponse.AuthenticationToken))
-                        loginResponse.AuthenticationOk = true;
+                    if (sqlParams[2].Value.ToString() != "?")
+                    {
+                        loginResponse.AuthenticationToken = TokenGenerator.GenerateTokenJwt(loginData.User);
+                        if (!string.IsNullOrEmpty(loginResponse.AuthenticationToken))
+                            loginResponse.AuthenticationOk = true;
+                    }
                 }
 
                 RegistraBitacora(loginData, ip, loginResponse.AuthenticationOk);

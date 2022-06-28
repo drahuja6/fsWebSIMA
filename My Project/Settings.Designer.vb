@@ -117,6 +117,15 @@ Namespace My
                 Return CType(Me("LogoCliente"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("f5D3Mex1C0+SIMA")>  _
+        Public ReadOnly Property CodigoAcceso() As String
+            Get
+                Return CType(Me("CodigoAcceso"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

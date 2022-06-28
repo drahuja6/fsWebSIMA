@@ -1,6 +1,8 @@
 Imports System.Data.OleDb
 Imports System.Web.Security
 
+Imports fsSimaServicios
+
 Public Class Login
     Inherits Page
 
@@ -76,14 +78,14 @@ Public Class Login
     End Sub
 
     Private Sub BtnEntrar_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnEntrar.Click
-        Dim scrambler As New GITDataTools.ScrambleNET
+        'Dim scrambler As New GITDataTools.ScrambleNET
         Dim IDUsuarioReal As Integer
         Dim NombreUsuarioReal As String = ""
 
         Session("LoginActivo") = txtUsuario.Text.ToString
 
-        If FillUsuarioVirtualConnString(txtUsuario.Text.ToString, scrambler.Scramble(txtPassword.Text.ToString, Chr(25) & Chr(26))) Then
-
+        'If FillUsuarioVirtualConnString(txtUsuario.Text.ToString, scrambler.Scramble(txtPassword.Text.ToString, Chr(25) & Chr(26))) Then
+        If FillUsuarioVirtualConnString(txtUsuario.Text.ToString, New Encripcion(Globales.CodigoAcceso).Encripta(txtPassword.Text.ToString.Trim)) Then
             If Get_IDUsuarioReal_From_Login(txtUsuario.Text.ToString, IDUsuarioReal, NombreUsuarioReal) Then
                 Session("IDUsuarioReal") = IDUsuarioReal
                 Session("NombreUsuarioReal") = NombreUsuarioReal
@@ -179,7 +181,8 @@ Public Class Login
         Dim cn As New OleDbConnection
         Dim cmd As New OleDbCommand
         Dim param As OleDbParameter
-        Dim scrambler As New GITDataTools.ScrambleNET
+        'Dim scrambler As New GITDataTools.ScrambleNET
+        Dim cryp As New Encripcion(Globales.CodigoAcceso)
 
         Try
 
@@ -211,8 +214,9 @@ Public Class Login
             'Ejecuto el sp
             cmd.ExecuteNonQuery()
 
-            Session("UsuarioVirtualConnString") = "Provider=MSOLEDBSQL;Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & scrambler.Scramble(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value), Chr(25) & Chr(26)) & ";Persist Security Info=True;Connect Timeout=15;Encryption=True;"
-            Session("UsuarioVirtualConnStringSQL") = "Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & scrambler.Scramble(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value), Chr(25) & Chr(26)) & ";Persist Security Info=True;Connect Timeout=15;Encrypt=Yes;TrustServerCertificate=Yes;"
+            Session("UsuarioVirtualConnString") = "Provider=MSOLEDBSQL;Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & cryp.Desencripta(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value)) & ";Persist Security Info=True;Connect Timeout=15;Encryption=True;"
+            'Session("UsuarioVirtualConnStringSQL") = "Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & scrambler.Scramble(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value), Chr(25) & Chr(26)) & ";Persist Security Info=True;Connect Timeout=15;Encrypt=Yes;TrustServerCertificate=Yes;"
+            Session("UsuarioVirtualConnStringSQL") = "Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & cryp.Desencripta(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value)) & ";Persist Security Info=True;Connect Timeout=15;Encrypt=Yes;TrustServerCertificate=Yes;"
 
             cn.Close()
 
