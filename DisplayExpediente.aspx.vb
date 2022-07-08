@@ -137,6 +137,7 @@ Public Class DisplayExpediente
     Protected WithEvents Label44 As Label
     Protected WithEvents Label45 As Label
     Protected WithEvents txtObservConcentracion As TextBox
+    Protected WithEvents btnGestion As Button
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -2851,4 +2852,7 @@ Public Class DisplayExpediente
         Response.Redirect("./EscogeCuadro.aspx")
     End Sub
 
+    Protected Sub BtnGestion_Click(sender As Object, e As EventArgs) Handles btnGestion.Click
+        Response.Redirect("./ExpedienteDocumentosGestion.aspx")
+    End Sub
 End Class

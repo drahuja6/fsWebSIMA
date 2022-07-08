@@ -237,6 +237,13 @@
       <DependentUpon>EscogeCuadro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="ExpedienteDocumentosGestion.aspx.designer.vb">
+      <DependentUpon>ExpedienteDocumentosGestion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExpedienteDocumentosGestion.aspx.vb">
+      <DependentUpon>ExpedienteDocumentosGestion.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="ExpVencidos.aspx.vb">
       <DependentUpon>ExpVencidos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2021,6 +2028,7 @@
     <Content Include="ErrorPages\ErrorGeneral.aspx" />
     <Content Include="Expediente.aspx" />
     <Content Include="EscogeCuadro.aspx" />
+    <Content Include="ExpedienteDocumentosGestion.aspx" />
     <Content Include="ExpVencidos.aspx" />
     <Content Include="Frameset1.htm" />
     <Content Include="Frameset2.htm" />

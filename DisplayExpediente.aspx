@@ -85,6 +85,8 @@
 				Width="72px" Font-Bold="False" Height="16px">Elaborado</asp:label>&nbsp;
 			<asp:label id="Label25" style="Z-INDEX: 133; LEFT: 488px; POSITION: absolute; TOP: 440px" runat="server"
 				Width="96px" Font-Bold="False" Height="16px">Ultima edición</asp:label>&nbsp;
+			<asp:button id="btnGestion" style="Z-INDEX: 134; LEFT: 648px; POSITION: absolute; TOP: 268px"
+				tabIndex="37" runat="server" Text="Gestión" Width="72px" Enabled="True"></asp:button>
 			<asp:button id="btnSalvar" style="Z-INDEX: 134; LEFT: 648px; POSITION: absolute; TOP: 368px"
 				tabIndex="37" runat="server" Text="Salvar" Width="72px" Enabled="False"></asp:button>
 			<asp:button id="btnCancelar" style="Z-INDEX: 135; LEFT: 648px; POSITION: absolute; TOP: 400px"
