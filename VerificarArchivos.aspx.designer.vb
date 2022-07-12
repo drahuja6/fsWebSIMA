@@ -23,24 +23,6 @@ Partial Public Class VerificarArchivos
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''lblTitulo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblTitulo As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblTotalExpedientes control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblTotalExpedientes As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txtTotalExpedientes control.
     '''</summary>
     '''<remarks>
@@ -48,15 +30,6 @@ Partial Public Class VerificarArchivos
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTotalExpedientes As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Label3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtAplicaDigitalizacion control.
@@ -68,15 +41,6 @@ Partial Public Class VerificarArchivos
     Protected WithEvents txtAplicaDigitalizacion As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Label4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txtNoAplicaDigitalizacion control.
     '''</summary>
     '''<remarks>
@@ -84,24 +48,6 @@ Partial Public Class VerificarArchivos
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtNoAplicaDigitalizacion As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblTituloAplicaDigitalizacion control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblTituloAplicaDigitalizacion As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblExpedientesConArchivos control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblExpedientesConArchivos As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtExpedientesConArchivos control.
@@ -131,15 +77,6 @@ Partial Public Class VerificarArchivos
     Protected WithEvents txtExpedientesSinArchivos As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''lblTotalHojas control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblTotalHojas As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txtTotalHojasEsperadas control.
     '''</summary>
     '''<remarks>
@@ -147,15 +84,6 @@ Partial Public Class VerificarArchivos
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTotalHojasEsperadas As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblImagenesEsperadas control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblImagenesEsperadas As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtImagenesEsperadas control.
@@ -167,15 +95,6 @@ Partial Public Class VerificarArchivos
     Protected WithEvents txtImagenesEsperadas As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''lblArchivosLocalizados control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblArchivosLocalizados As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txtArchivosLocalizados control.
     '''</summary>
     '''<remarks>
@@ -185,15 +104,6 @@ Partial Public Class VerificarArchivos
     Protected WithEvents txtArchivosLocalizados As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''lblArchivosNoLocalizados control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblArchivosNoLocalizados As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txtArchivosNoLocalizados control.
     '''</summary>
     '''<remarks>
@@ -201,24 +111,6 @@ Partial Public Class VerificarArchivos
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtArchivosNoLocalizados As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblTituloDetalle control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblTituloDetalle As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''panDetalle control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents panDetalle As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''grvDetalle control.

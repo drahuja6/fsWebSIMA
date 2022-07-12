@@ -35,18 +35,8 @@
             </div>
             <div class="col mt-3">
                 <h6>Detalle de documentos en la gestión</h6>
-                <asp:GridView ID="dgvDocsAsignados" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Font-Size="Small" AutoGenerateColumns="False" ViewStateMode="Disabled">
-                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                    <EditRowStyle BackColor="#999999" />
-                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                <asp:GridView ID="dgvDocsAsignados" runat="server" AutoGenerateColumns="False" ViewStateMode="Disabled" CssClass="table table-borderless table-striped table-responsive-md table-hover border-0">
+                    <SelectedRowStyle Font-Bold="True" />
                     <Columns>
                         <asp:BoundField Visible="False" DataField="IdGestionDocumentosInstancia" HeaderText="IdGestionDocumentosInstancia" />
                         <asp:BoundField Visible="False" DataField="IdGestionDocumentos" HeaderText="IdGestionDocumentos" />
@@ -57,7 +47,7 @@
                         <asp:BoundField Visible="True" DataField="CodigoDocumento" HeaderText="Código documento" />
                         <asp:BoundField Visible="True" DataField="Descripcion" HeaderText="Descripción" />
                         <asp:CheckBoxField Visible="True" DataField="Obligatorio" HeaderText="Obligatorio" ItemStyle-HorizontalAlign="Center" >
-                        <ItemStyle HorizontalAlign="Center" />
+                            <ItemStyle HorizontalAlign="Center" />
                         </asp:CheckBoxField>
                         <asp:BoundField Visible="True" DataField="FechaDocumento" HeaderText="Fecha" />
                         <asp:BoundField Visible="True" DataField="CampoAdicional1" HeaderText="CampoAdicional 1" />
