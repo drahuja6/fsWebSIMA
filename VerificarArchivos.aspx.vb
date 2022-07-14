@@ -34,13 +34,14 @@ Public Class VerificarArchivos
         chkReiniciarContadores.Checked = False
         txtVerificados.Text = _servicios.NuevosArchivosLocalizados.ToString
         btnIniciarVerificacion.Enabled = True
-
+        ClientScript.RegisterClientScriptBlock(Me.GetType(), "script", "espera();", True)
         ObtieneEstadisticaExpedientes()
 
     End Sub
 
-    Protected Sub BtnActualizarDatosDirectorio_Click(sender As Object, e As EventArgs) Handles btnActualizarDatosDirectorio.Click
+    Protected Sub BtnActualizarDatosDirectorio_Click(sender As Object, e As EventArgs) Handles btnActualizarDatosDirectorioSrv.Click
 
+        ClientScript.RegisterClientScriptBlock(Me.GetType(), "script", "espera();", True)
         If chkGenerarReporte.Checked Then
             Dim archivoExcel As String = "ConciliacionImagenes.xlsx"
             _servicios.VerificaArchivosFS(DirTemporal, archivoExcel, generarArchivoExcel:=True)

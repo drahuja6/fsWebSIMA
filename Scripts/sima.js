@@ -19,3 +19,6 @@ function ShowProgress() {
         loading.css({ top: top, left: left });
     }, 200);
 };
+
+
+

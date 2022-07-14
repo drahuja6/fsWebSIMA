@@ -158,15 +158,6 @@ Partial Public Class VerificarArchivos
     Protected WithEvents txtVerificados As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''lblInformacionDirectorio control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblInformacionDirectorio As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txtEspacioDisco control.
     '''</summary>
     '''<remarks>
@@ -174,15 +165,6 @@ Partial Public Class VerificarArchivos
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEspacioDisco As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblArchivosFS control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblArchivosFS As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtArchivosDirectorio control.
@@ -194,15 +176,6 @@ Partial Public Class VerificarArchivos
     Protected WithEvents txtArchivosDirectorio As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''lblArchivosDirectorioVinculados control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblArchivosDirectorioVinculados As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txtArchivosDirectorioVinculados control.
     '''</summary>
     '''<remarks>
@@ -210,15 +183,6 @@ Partial Public Class VerificarArchivos
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtArchivosDirectorioVinculados As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblArchivosDirectorioSinVincular control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblArchivosDirectorioSinVincular As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtArchivosDirectorioSinVincular control.
@@ -230,13 +194,13 @@ Partial Public Class VerificarArchivos
     Protected WithEvents txtArchivosDirectorioSinVincular As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''btnActualizarDatosDirectorio control.
+    '''btnActualizarDatosDirectorioSrv control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnActualizarDatosDirectorio As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnActualizarDatosDirectorioSrv As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''chkGenerarReporte control.
