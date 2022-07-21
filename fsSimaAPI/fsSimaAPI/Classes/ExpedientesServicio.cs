@@ -95,6 +95,7 @@ namespace fsSimaAPI
                     CodigoClasificacion = dr["CodigoClasificacion"].ToString(),
                     NumeroExpediente = dr["NumeroExpediente"].ToString(),
                     UnidadAdministrativa = dr["UnidadAdministrativa"].ToString(),
+                    IdExterno = int.Parse(dr["IdExterno"].ToString()),
                     NumeroCaja = dr["NumeroCaja"].ToString(),
                     Titulo = dr["Titulo"].ToString(),
                     Asunto = dr["Asunto"].ToString(),

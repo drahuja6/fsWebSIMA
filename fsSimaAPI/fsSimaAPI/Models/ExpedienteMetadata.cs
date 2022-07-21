@@ -27,6 +27,10 @@ namespace fsSimaAPI
         /// </summary>
         public string UnidadAdministrativa { get; set; }
         /// <summary>
+        /// Identificador para la Unidad administrativa en sistemas externos.
+        /// </summary>
+        public int IdExterno { get; set; }
+        /// <summary>
         /// Número de caja de almacenamiento
         /// </summary>
         public string NumeroCaja { get; set; }
