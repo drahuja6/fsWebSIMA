@@ -1,10 +1,13 @@
 ﻿Imports System.Data.SqlClient
 Imports System.IO
+Imports System.Collections.Generic
 
 Imports fsSimaServicios
 
 Public Class ExpedienteDocumentosGestion
     Inherits Page
+
+    Public ListaSecciones As DataTable
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 
@@ -20,6 +23,14 @@ Public Class ExpedienteDocumentosGestion
             sqlCliente.EjecutaProcedimientoSql(params, "Gestion_ObtieneGestionExpediente")
 
             txtGestion.Text = params(1).Value.ToString
+
+            ListaSecciones = New DataTable()
+            ListaSecciones.Columns.Add("Seccion", GetType(String))
+            ListaSecciones.Rows.Add("Todas las secciones")
+            ListaSecciones.Rows.Add("1.00")
+            ListaSecciones.Rows.Add("2.00")
+            ListaSecciones.Rows.Add("3.00")
+
         End If
 
         CargaGrids()
@@ -51,7 +62,10 @@ Public Class ExpedienteDocumentosGestion
     Protected Sub BtnDesasigna_Click(sender As Object, e As EventArgs) Handles btnDesasigna.Click
         If dgvDocsAsignados.SelectedRow IsNot Nothing Then
             Dim idGestionDocumentosInstancia As Integer = Convert.ToInt32(dgvDocsAsignados.SelectedValue)
-            Dim idExpedientePdfRelaciones As Integer = -1       'Asigno valor -1 que representa sin documento vinculado.
+            Dim idExpedientePdfRelaciones As Integer
+            Dim registroSeleccionado As Integer = dgvDocsAsignados.SelectedIndex
+
+            idExpedientePdfRelaciones = Convert.ToInt32(dgvDocsAsignados.DataKeys(registroSeleccionado).Item("IdExpedientePdfRelaciones"))
 
             Dim sqlCliente As New ClienteSQL(Session("UsuarioVirtualConnStringSql"))
             Dim params(1) As SqlParameter
@@ -104,7 +118,7 @@ Public Class ExpedienteDocumentosGestion
 
             dgvDocsAsignados.DataSource = ds
             dgvDocsAsignados.DataMember = "Asignados"
-            dgvDocsAsignados.DataKeyNames = {"IdGestionDocumentosInstancia"}
+            dgvDocsAsignados.DataKeyNames = {"IdGestionDocumentosInstancia", "IdExpedientePdfRelaciones"}
             dgvDocsAsignados.DataBind()
 
         End If

@@ -23,24 +23,6 @@ Partial Public Class BusquedaExpedientes
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''Label1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblUA control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblUA As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''lbUnidAdmin control.
     '''</summary>
     '''<remarks>
@@ -48,15 +30,6 @@ Partial Public Class BusquedaExpedientes
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbUnidAdmin As Global.System.Web.UI.WebControls.ListBox
-
-    '''<summary>
-    '''lblCodigo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblCodigo As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''ddlCodigosUsuario control.
@@ -329,6 +302,96 @@ Partial Public Class BusquedaExpedientes
     Protected WithEvents buscarButton As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''panGridExpedientes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents panGridExpedientes As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''DataGrid1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DataGrid1 As Global.System.Web.UI.WebControls.DataGrid
+
+    '''<summary>
+    '''NoHayDatos control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents NoHayDatos As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Label12 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label12 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnImprimeGuiaDeExpedientes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnImprimeGuiaDeExpedientes As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnImprimeListadoDeExpedientes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnImprimeListadoDeExpedientes As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnCaratulasNoCredito control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCaratulasNoCredito As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnEtiquetas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnEtiquetas As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnLomos control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnLomos As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnVentanaEdicion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnVentanaEdicion As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''RadioButtonPDF control.
     '''</summary>
     '''<remarks>
@@ -471,94 +534,4 @@ Partial Public Class BusquedaExpedientes
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCodigo As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''panGridExpedientes control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents panGridExpedientes As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''DataGrid1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents DataGrid1 As Global.System.Web.UI.WebControls.DataGrid
-
-    '''<summary>
-    '''NoHayDatos control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents NoHayDatos As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''btnVentanaEdicion control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnVentanaEdicion As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''Label12 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label12 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''btnImprimeGuiaDeExpedientes control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnImprimeGuiaDeExpedientes As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnImprimeListadoDeExpedientes control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnImprimeListadoDeExpedientes As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnCaratulasNoCredito control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCaratulasNoCredito As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnEtiquetas control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnEtiquetas As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnLomos control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnLomos As Global.System.Web.UI.WebControls.Button
 End Class
