@@ -23,13 +23,31 @@ Partial Public Class ExpedienteDocumentosGestion
     Protected WithEvents Form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''txtGestion control.
+    '''lblGestion control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtGestion As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lblGestion As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblAsunto control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAsunto As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblCampoAdicional control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCampoAdicional As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''dgvDocsDisponibles control.

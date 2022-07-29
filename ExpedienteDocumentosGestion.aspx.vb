@@ -9,31 +9,52 @@ Public Class ExpedienteDocumentosGestion
 
     Public ListaSecciones As DataTable
 
+    'Private _clienteSQL As ClienteSQL
+    Private _filtro As Hashtable
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 
+        Dim idGestion As Integer
+        Dim clienteSQL As New ClienteSQL(Session("UsuarioVirtualConnStringSql"))
+
         If Not Page.IsPostBack Then
-            Dim sqlCliente As New ClienteSQL(Session("UsuarioVirtualConnStringSql"))
-            Dim params(1) As SqlParameter
+
+            Dim params(4) As SqlParameter
 
             params(0) = New SqlParameter("@IdExpediente", Session("IdExpedienteActivo"))
             params(1) = New SqlParameter("@Gestion", SqlDbType.NVarChar, 100) With {
                 .Direction = ParameterDirection.Output
             }
+            params(2) = New SqlParameter("@Asunto", SqlDbType.NVarChar, 4096) With {
+                .Direction = ParameterDirection.Output
+            }
+            params(3) = New SqlParameter("@Titulo", SqlDbType.NVarChar, 4096) With {
+                .Direction = ParameterDirection.Output
+            }
+            params(4) = New SqlParameter("@IdGestion", SqlDbType.Int) With {
+                .Direction = ParameterDirection.Output
+            }
+            clienteSQL.EjecutaProcedimientoSql(params, "Gestion_ObtieneGestionExpediente")
 
-            sqlCliente.EjecutaProcedimientoSql(params, "Gestion_ObtieneGestionExpediente")
+            lblGestion.Text = params(1).Value.ToString
+            lblAsunto.Text = params(2).Value.ToString
+            lblCampoAdicional.Text = params(3).Value.ToString
 
-            txtGestion.Text = params(1).Value.ToString
+            idGestion = Convert.ToInt32(params(4).Value)
 
-            ListaSecciones = New DataTable()
-            ListaSecciones.Columns.Add("Seccion", GetType(String))
-            ListaSecciones.Rows.Add("Todas las secciones")
-            ListaSecciones.Rows.Add("1.00")
-            ListaSecciones.Rows.Add("2.00")
-            ListaSecciones.Rows.Add("3.00")
+            _filtro = New Hashtable()
+            ViewState.Add("Gestion", idGestion)
+            ViewState.Add("Seccion", 0)
 
         End If
 
-        CargaGrids()
+        Dim params1(0) As SqlParameter
+        params1(0) = New SqlParameter("@IdGestion", ViewState("Gestion"))
+        ListaSecciones = clienteSQL.ObtenerRegistrosSql(params1, "Gestion_CargaSecciones").Tables(0)
+
+
+
+        CargaGrids(ViewState("Seccion"))
 
     End Sub
 
@@ -53,7 +74,7 @@ Public Class ExpedienteDocumentosGestion
             dgvDocsDisponibles.SelectedIndex = -1
             dgvDocsAsignados.SelectedIndex = -1
 
-            CargaGrids()
+            CargaGrids(ViewState("Seccion"))
 
         End If
 
@@ -78,7 +99,7 @@ Public Class ExpedienteDocumentosGestion
             dgvDocsDisponibles.SelectedIndex = -1
             dgvDocsAsignados.SelectedIndex = -1
 
-            CargaGrids()
+            CargaGrids(ViewState("Seccion"))
         End If
     End Sub
 
@@ -94,13 +115,41 @@ Public Class ExpedienteDocumentosGestion
         End If
     End Sub
 
-    Private Sub CargaGrids()
+    Protected Sub DgvDocsAsignados_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles dgvDocsAsignados.RowCommand
+        Dim gv As GridView = CType(sender, GridView)
+
+        If e.CommandName = "DescargaImagen" Then
+            Dim archivo As String = gv.DataKeys(e.CommandArgument).Item("NombreArchivo")
+
+            If Not String.IsNullOrWhiteSpace(archivo) AndAlso archivo <> "&nbsp;" Then
+                If Not ImagenNuevaVentana Then
+                    'Llamada a dll de accesorios.
+                    Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(Path.Combine(DirImagenes, archivo))}")
+                Else
+                    'Llamada a página extra para mostrar imagen. Necesario activar Pop-Ups en cliente.
+                    Dim url As String = $"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(Path.Combine(DirImagenes, archivo))}"
+                    ClientScript.RegisterClientScriptBlock(Me.GetType(), "script", "open('" & url & "');", True)
+                End If
+            End If
+        End If
+    End Sub
+
+    Protected Sub FiltrarSeccion_IndexChanged(sender As Object, e As EventArgs)
+        Dim dd As DropDownList = CType(sender, DropDownList)
+
+        ViewState("Seccion") = Convert.ToInt32(dd.SelectedValue)
+        CargaGrids(ViewState("Seccion"))
+
+    End Sub
+
+    Private Sub CargaGrids(Optional idSeccion As Integer = 0)
         Dim sqlCliente As New ClienteSQL(Session("UsuarioVirtualConnStringSql"))
         Dim ds As DataSet
 
-        Dim params(0) As SqlParameter
+        Dim params(1) As SqlParameter
 
         params(0) = New SqlParameter("@IdExpediente", Session("IdExpedienteActivo"))
+        params(1) = New SqlParameter("@IdSeccion", idSeccion)
 
         ds = sqlCliente.ObtenerRegistrosSql(params, "Gestion_DocumentosDisponiblesAsignados")
 
@@ -118,27 +167,18 @@ Public Class ExpedienteDocumentosGestion
 
             dgvDocsAsignados.DataSource = ds
             dgvDocsAsignados.DataMember = "Asignados"
-            dgvDocsAsignados.DataKeyNames = {"IdGestionDocumentosInstancia", "IdExpedientePdfRelaciones"}
+            dgvDocsAsignados.DataKeyNames = {"IdGestionDocumentosInstancia", "IdExpedientePdfRelaciones", "NombreArchivo"}
             dgvDocsAsignados.DataBind()
 
         End If
     End Sub
 
-    Protected Sub DgvDocsAsignados_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles dgvDocsAsignados.RowCommand
-        Dim gv As GridView = CType(sender, GridView)
+    Protected Sub FiltrarSeccion_PreRender(sender As Object, e As EventArgs)
+        Dim dd As DropDownList = CType(sender, DropDownList)
 
-        If e.CommandName = "DescargaImagen" Then
-            Dim archivo As String = gv.Rows(CInt(e.CommandArgument)).Cells(14).Text     'La celda en posición 14 contiene el nombre del PDF.
-            If Not String.IsNullOrWhiteSpace(archivo) AndAlso archivo <> "&nbsp;" Then
-                If Not ImagenNuevaVentana Then
-                    'Llamada a dll de accesorios.
-                    Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(Path.Combine(DirImagenes, archivo))}")
-                Else
-                    'Llamada a página extra para mostrar imagen. Necesario activar Pop-Ups en cliente.
-                    Dim url As String = $"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(Path.Combine(DirImagenes, archivo))}"
-                    ClientScript.RegisterClientScriptBlock(Me.GetType(), "script", "open('" & url & "');", True)
-                End If
-            End If
+        If ViewState("Seccion") <> 0 Then
+            dd.SelectedValue = ViewState("Seccion")
         End If
+
     End Sub
 End Class
