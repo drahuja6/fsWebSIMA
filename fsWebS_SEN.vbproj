@@ -141,6 +141,7 @@
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
@@ -247,6 +248,10 @@
     <Compile Include="ExpVencidos.aspx.vb">
       <DependentUpon>ExpVencidos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FsSimaWebService.asmx.vb">
+      <DependentUpon>FsSimaWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2032,6 +2037,7 @@
     <Content Include="ExpVencidos.aspx" />
     <Content Include="Frameset1.htm" />
     <Content Include="Frameset2.htm" />
+    <Content Include="FsSimaWebService.asmx" />
     <Content Include="Global.asax" />
     <Content Include="HerramientasPdf.aspx" />
     <Content Include="Images\docs.png" />

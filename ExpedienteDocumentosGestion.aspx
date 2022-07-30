@@ -8,6 +8,11 @@
 		<link href="Content/bootstrap.min.css" rel="stylesheet">
         <link href="Scripts/jquery-ui-1.13.2/jquery-ui.css" rel="stylesheet">
 		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+        <style>
+            .id {
+                width:1%;
+            }
+        </style>
 	</head>
     <body>
         <form id="Form1" runat="server">
@@ -23,14 +28,19 @@
               <div class="row">
                 <div class="col-12 mt-3">
                     <h6>Documentos disponibles para vincular</h6>
-                    <asp:GridView ID="dgvDocsDisponibles" runat="server" AutoGenerateColumns="False" CssClass="table table-borderless table-striped table-responsive-md table-hover border-0 drag_drop_grid">
+                    <asp:GridView ID="dgvDocsDisponibles" runat="server" AutoGenerateColumns="False" CssClass="table table-borderless table-striped table-responsive-md table-hover border-0 drag_drop_grid" ViewStateMode="Disabled">
                         <SelectedRowStyle Font-Bold="True" />
                         <AlternatingRowStyle Font-Size="small" />
                         <RowStyle Font-Size="small" />
                         <Columns>
-                            <asp:BoundField Visible="False" DataField="IdExpedientePdfRelaciones" HeaderText="IdExpedientePdfRelaciones" />
-                            <asp:CommandField SelectText="&gt;" ShowSelectButton="True" />
+                            <asp:BoundField DataField="IdExpedientePdfRelaciones" HeaderStyle-CssClass="invisible id" ItemStyle-CssClass="invisible id" />
+                            <asp:CommandField SelectText=">" ShowSelectButton="True" ItemStyle-CssClass="btn btn-link btn-lg" />
                             <asp:BoundField Visible="True" DataField="Descripcion" HeaderText="Descripción" />
+                            <asp:TemplateField HeaderText="Imagen" HeaderStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <asp:Button ID="btnDescargaImagenDisponible" CommandName="DescargaImagen" CommandArgument="<%# Container.DisplayIndex %>" runat="server" Text="..." ToolTip='<%# Bind("NombreArchivo") %>' CssClass="btn btn-outline-success btn-sm" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -45,7 +55,8 @@
                         <AlternatingRowStyle Font-Size="small" />
                         <RowStyle Font-Size="small" />
                         <Columns>
-                            <asp:CommandField SelectText="&gt;" ShowSelectButton="True" />
+                            <asp:BoundField DataField="idGestionDocumentosInstancia" HeaderStyle-CssClass="invisible id" ItemStyle-CssClass="invisible id" />
+                            <asp:CommandField SelectText=">" ShowSelectButton="True" ItemStyle-CssClass="btn btn-link btn-lg" />
                             <asp:TemplateField HeaderText="Sección" SortExpression="Seccion">
                                 <HeaderTemplate>
                                     Sección
@@ -80,17 +91,34 @@
         <script src="Scripts/jquery-ui-1.13.2/jquery-ui.js"></script>
         <script type="text/javascript">
             $(function () {
+                var asignacion = {};
+                var procesado = false;
                 $(".drag_drop_grid").sortable({
                     items: 'tr:not(tr:first-child)',
                     cursor: 'crosshair',
                     connectWith: '.drag_drop_grid',
                     axis: 'y',
                     dropOnEmpty: true,
-                    receive: function (e, ui) {
-                        $(this).find("tbody").append(ui.item);
+                    start: function (e, ui) {
+                        asignacion.idExpedientePdfRelaciones = ui.item.find("td:nth-child(1)").html();
+                    },
+                    update: function (e, ui) {
+                        var pos = "tr:nth-child(" + ui.item.index() + ")";
+                        asignacion.idGestionDocumentosInstancia = $("[id*=dgvDocsAsignados] " + pos).find("td:nth-child(1)").html();
+                        if (!procesado) {
+                            $.ajax({
+                                type: "POST",
+                                url: "FsSimaWebService.asmx/AsignarDocumento",
+                                data: '{asignacion: ' + JSON.stringify(asignacion) + '}',
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: location.reload()
+                            });
+                            procesado = true;
+                        }
                     }
                 });
-                $("[id*=gvDest] tr:not(tr:first-child)").remove();
+                /*$("[id*=gvDest] tr:not(tr:first-child)").remove();*/
             });
         </script>
     </body>

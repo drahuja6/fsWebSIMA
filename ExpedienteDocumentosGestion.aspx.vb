@@ -3,6 +3,7 @@ Imports System.IO
 Imports System.Collections.Generic
 
 Imports fsSimaServicios
+Imports System.Web.Services
 
 Public Class ExpedienteDocumentosGestion
     Inherits Page
@@ -51,8 +52,6 @@ Public Class ExpedienteDocumentosGestion
         Dim params1(0) As SqlParameter
         params1(0) = New SqlParameter("@IdGestion", ViewState("Gestion"))
         ListaSecciones = clienteSQL.ObtenerRegistrosSql(params1, "Gestion_CargaSecciones").Tables(0)
-
-
 
         CargaGrids(ViewState("Seccion"))
 
@@ -115,7 +114,8 @@ Public Class ExpedienteDocumentosGestion
         End If
     End Sub
 
-    Protected Sub DgvDocsAsignados_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles dgvDocsAsignados.RowCommand
+    Protected Sub DgvDocsAsignados_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles dgvDocsAsignados.RowCommand, dgvDocsDisponibles.RowCommand
+
         Dim gv As GridView = CType(sender, GridView)
 
         If e.CommandName = "DescargaImagen" Then
@@ -159,7 +159,7 @@ Public Class ExpedienteDocumentosGestion
 
             dgvDocsDisponibles.DataSource = ds
             dgvDocsDisponibles.DataMember = "Disponibles"
-            dgvDocsDisponibles.DataKeyNames = {"IdExpedientePDFRelaciones"}
+            dgvDocsDisponibles.DataKeyNames = {"IdExpedientePDFRelaciones", "NombreArchivo"}
             dgvDocsDisponibles.DataBind()
 
             ds.Tables(1).TableName = "Asignados"
@@ -170,15 +170,29 @@ Public Class ExpedienteDocumentosGestion
             dgvDocsAsignados.DataKeyNames = {"IdGestionDocumentosInstancia", "IdExpedientePdfRelaciones", "NombreArchivo"}
             dgvDocsAsignados.DataBind()
 
+            Dim posibleDuplicadoCodigo As String = dgvDocsAsignados.Rows(0).Cells(3).Text
+
+            Dim i As Integer
+            For i = 1 To dgvDocsAsignados.Rows.Count - 1
+                If dgvDocsAsignados.Rows(i).Cells(3).Text = posibleDuplicadoCodigo Then
+                    dgvDocsAsignados.Rows(i).Cells(3).Text = ""
+                Else
+                    posibleDuplicadoCodigo = dgvDocsAsignados.Rows(i).Cells(3).Text
+                End If
+            Next
+
+            For i = 0 To dgvDocsAsignados.Rows.Count - 1
+                dgvDocsAsignados.Rows(i).Cells(2).Text = ""
+            Next
+
+
         End If
     End Sub
 
     Protected Sub FiltrarSeccion_PreRender(sender As Object, e As EventArgs)
         Dim dd As DropDownList = CType(sender, DropDownList)
-
-        If ViewState("Seccion") <> 0 Then
-            dd.SelectedValue = ViewState("Seccion")
-        End If
+        dd.SelectedValue = ViewState("Seccion")
 
     End Sub
+
 End Class
