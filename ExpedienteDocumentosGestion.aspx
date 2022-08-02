@@ -20,8 +20,16 @@
               <div class="row">
                   <div class="col-12">
                       <h4><asp:Label ID="lblGestion" runat="server" /></h4>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-4">                     
                       <h6><asp:Label ID="lblAsunto" runat="server" /></h6>
-                      <h6><asp:Label ID="lblCampoAdicional" runat="server" /></h6>
+                      <h6><asp:Label ID="lblTitulo" runat="server" /></h6>
+                  </div>
+                  <div class="col-3">
+                      <h6><asp:Label ID="lblObservaciones" runat="server" /></h6>
+                      <h6><asp:Label ID="lblCampoAdicional2" runat="server" /></h6>
                   </div>
               </div>
               <div class="row"></div>

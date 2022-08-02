@@ -41,13 +41,31 @@ Partial Public Class ExpedienteDocumentosGestion
     Protected WithEvents lblAsunto As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblCampoAdicional control.
+    '''lblTitulo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblCampoAdicional As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblTitulo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblObservaciones control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblObservaciones As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblCampoAdicional2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCampoAdicional2 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''dgvDocsDisponibles control.

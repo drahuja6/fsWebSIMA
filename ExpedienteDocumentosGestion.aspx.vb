@@ -20,7 +20,7 @@ Public Class ExpedienteDocumentosGestion
 
         If Not Page.IsPostBack Then
 
-            Dim params(4) As SqlParameter
+            Dim params(6) As SqlParameter
 
             params(0) = New SqlParameter("@IdExpediente", Session("IdExpedienteActivo"))
             params(1) = New SqlParameter("@Gestion", SqlDbType.NVarChar, 100) With {
@@ -32,16 +32,24 @@ Public Class ExpedienteDocumentosGestion
             params(3) = New SqlParameter("@Titulo", SqlDbType.NVarChar, 4096) With {
                 .Direction = ParameterDirection.Output
             }
-            params(4) = New SqlParameter("@IdGestion", SqlDbType.Int) With {
+            params(4) = New SqlParameter("@Observaciones", SqlDbType.NVarChar, 4096) With {
+                .Direction = ParameterDirection.Output
+            }
+            params(5) = New SqlParameter("@CampoAdicional2", SqlDbType.NVarChar, 4096) With {
+                .Direction = ParameterDirection.Output
+            }
+            params(6) = New SqlParameter("@IdGestion", SqlDbType.Int) With {
                 .Direction = ParameterDirection.Output
             }
             clienteSQL.EjecutaProcedimientoSql(params, "Gestion_ObtieneGestionExpediente")
 
             lblGestion.Text = params(1).Value.ToString
             lblAsunto.Text = params(2).Value.ToString
-            lblCampoAdicional.Text = params(3).Value.ToString
+            lblTitulo.Text = params(3).Value.ToString
+            lblObservaciones.Text = params(4).Value.ToString
+            lblCampoAdicional2.Text = params(5).Value.ToString
 
-            idGestion = Convert.ToInt32(params(4).Value)
+            idGestion = Convert.ToInt32(params(6).Value)
 
             _filtro = New Hashtable()
             ViewState.Add("Gestion", idGestion)

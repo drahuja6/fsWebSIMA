@@ -175,6 +175,13 @@
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="BusquedaExpedientesGestionRRHH.aspx.designer.vb">
+      <DependentUpon>BusquedaExpedientesGestionRRHH.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BusquedaExpedientesGestionRRHH.aspx.vb">
+      <DependentUpon>BusquedaExpedientesGestionRRHH.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="BusquedaExpedientes.aspx.designer.vb">
       <DependentUpon>BusquedaExpedientes.aspx</DependentUpon>
     </Compile>
@@ -371,6 +378,7 @@
       <DependentUpon>VerificarArchivos.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Content Include="BusquedaExpedientesGestionRRHH.aspx" />
     <Content Include="BusquedaExpedientes.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -2041,6 +2049,7 @@
     <Content Include="Global.asax" />
     <Content Include="HerramientasPdf.aspx" />
     <Content Include="Images\docs.png" />
+    <Content Include="Images\calendario.png" />
     <Content Include="Images\loader.gif" />
     <Content Include="Images\minus.png" />
     <Content Include="Images\Senado3.jpg" />
@@ -2347,7 +2356,9 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <PropertyGroup>
