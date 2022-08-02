@@ -216,7 +216,7 @@ Public Class BusquedaExpedientesGestionRRHH
         Else
             'Llamada a página extra para mostrar imagen. Necesario activar Pop-Ups en cliente.
             Dim url As String = $"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(Path.Combine(DirImagenes, archivo))}"
-            ClientScript.RegisterClientScriptBlock(Me.GetType(), "script", "open('" & url & "');", True)
+            ClientScript.RegisterStartupScript(Me.GetType(), "script", "open('" & url & "');", True)
         End If
 
     End Sub

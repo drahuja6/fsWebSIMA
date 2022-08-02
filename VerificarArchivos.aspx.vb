@@ -41,12 +41,11 @@ Public Class VerificarArchivos
 
     Protected Sub BtnActualizarDatosDirectorio_Click(sender As Object, e As EventArgs) Handles btnActualizarDatosDirectorioSrv.Click
 
-        ClientScript.RegisterClientScriptBlock(Me.GetType(), "script", "espera();", True)
         If chkGenerarReporte.Checked Then
             Dim archivoExcel As String = "ConciliacionImagenes.xlsx"
             _servicios.VerificaArchivosFS(DirTemporal, archivoExcel, generarArchivoExcel:=True)
             Dim url As String = $"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(Path.Combine(DirTemporal, archivoExcel))}&Nombre={archivoExcel}&Eliminar=True"
-            ClientScript.RegisterClientScriptBlock(Me.GetType(), "script", "open('" & url & "');", True)
+            ClientScript.RegisterStartupScript(Me.GetType(), "script", "open('" & url & "');", True)
         Else
             _servicios.VerificaArchivosFS()
         End If

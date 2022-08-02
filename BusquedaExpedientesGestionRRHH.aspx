@@ -8,7 +8,6 @@
 	<link href="Content/bootstrap.min.css" rel="stylesheet">
     <link href="Scripts/jquery-ui-1.13.2/jquery-ui.css" rel="stylesheet">
 	<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
-	<link type="text/css" rel="stylesheet" href="Senado.css" />
     <style>
         .panelGrid {
             min-width: 1000px;
@@ -18,20 +17,11 @@
 			overflow: auto;
 			margin-left: 4px;
         }
-		.col {
-			min-width: 700px;
-		}
-		.gvDocumentos td {
-			background-color: #fff;
-			color: black;
-			line-height: 100%;
-			font-size:smaller;
-		}
     </style>
 </head>
 <body>
     <form id="form1" runat="server" onsubmit="setHourglass()">
-		<div class="container-fluid" margin-left: 20px; margin-top: 10px;">
+		<div class="container-fluid ml-2 mt-1">
 			<div class="row align-items-center mt-2 ml-1">
 				<h4>Búsqueda de expedientes RRHH</h4>
             </div>
@@ -205,10 +195,10 @@
 										<ItemTemplate>
 											<asp:ImageButton ID="ibtMuestraDocs" runat="server" CommandName="Documentos" ImageUrl="~/images/docs.png"
 												CommandArgument="Show" Visible='<%# If(Eval("ArchivosLocalizados").ToString <= "0", False, True) %>' />
-											<asp:Panel ID="pnlDocumentos" Width="180px" runat="server" Visible="false" Style="position:relative;">
-												<asp:GridView ID="gvDocumentos" runat="server" AutoGenerateColumns="false" CssClass="gvDocumentos" ShowHeader="false" OnRowCommand="GvDocumentos_RowCommand">
+											<asp:Panel ID="pnlDocumentos" runat="server" Visible="false" CssClass="container-sm" >
+												<asp:GridView ID="gvDocumentos" runat="server" AutoGenerateColumns="false" CssClass="table table-borderless table-striped table-responsive-sm table-hover border-0" ShowHeader="false" OnRowCommand="GvDocumentos_RowCommand">
 													<Columns>
-														<asp:ButtonField ButtonType="Link" DataTextField="Descripcion" ControlStyle-CssClass="docs-link"/>
+														<asp:ButtonField ButtonType="Link" DataTextField="Descripcion" ControlStyle-CssClass="btn btn-link btn-sm" ControlStyle-Font-Size="Small"/>
 													</Columns>
 												</asp:GridView>
 											</asp:Panel>
@@ -314,7 +304,7 @@
         $(function () {
             $("[id*=ibtMuestraDocs]").each(function () {
                 if ($(this)[0].src.indexOf("minus") != -1) {
-                    $(this).closest("tr").after("<tr><td></td<td colspan = '999'>" + $(this).next().html() + "</td></tr>");
+                    $(this).closest("tr").after("<tr><td colspan = '6'>" + $(this).next().html() + "</td></tr>");
                     $(this).next().remove();
                 }
             });

@@ -68,6 +68,15 @@ Partial Public Class ExpedienteDocumentosGestion
     Protected WithEvents lblCampoAdicional2 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lnkExpedientes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkExpedientes As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
     '''dgvDocsDisponibles control.
     '''</summary>
     '''<remarks>

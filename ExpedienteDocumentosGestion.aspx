@@ -31,6 +31,9 @@
                       <h6><asp:Label ID="lblObservaciones" runat="server" /></h6>
                       <h6><asp:Label ID="lblCampoAdicional2" runat="server" /></h6>
                   </div>
+                  <div class="col-2">
+                      <asp:HyperLink ID="lnkExpedientes" runat="server" CssClass="btn btn-secondary btn-sm" NavigateUrl="./DisplayExpediente.aspx" ToolTip="Ver el expediente actual como expediente general">Ir a expediente general...</asp:HyperLink>
+                  </div>
               </div>
               <div class="row"></div>
               <div class="row">

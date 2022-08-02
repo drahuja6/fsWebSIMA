@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="DescargaArchivo.aspx.vb" Inherits="fsWebS_SEN.DescargaArchivo" %>
 
-<!DOCTYPE html>
+<!doctype html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head runat="server">
     <title></title>
 </head>

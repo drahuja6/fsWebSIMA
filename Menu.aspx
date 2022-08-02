@@ -24,7 +24,7 @@
 				<div id="collapseUsuarios" class="collapse">
 					<ul class="lista-menu ml-n4 small" id="menuUsuarios">
 						<li>
-							<asp:HyperLink id="usuariosLink" runat="server" Target ="principal" NavigateUrl="~/UsuarioRealBuscar.aspx" tabIndex="8" Text="Buscar/Editar" ToolTip="Catálogo de usuarios" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
+							<asp:HyperLink id="usuariosLink" runat="server" Target ="principal" NavigateUrl="~/UsuarioRealBuscar.aspx" tabIndex="8" Text=" Buscar/Editar" ToolTip="Catálogo de usuarios" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
 						</li>
 					</ul>
 				</div>
@@ -35,7 +35,7 @@
 				<div id="collapseCatalogo" class="collapse">
 					<ul class="lista-menu ml-n4 small" id="menuCatalogo">
 						<li>
-							<asp:HyperLink id="catalogoLink" runat="server" Target="principal" NavigateUrl="~/CuadroClasificacion.aspx" tabIndex="7" Text="Buscar/Editar" ToolTip="Catálogo de disposición documental" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
+							<asp:HyperLink id="catalogoLink" runat="server" Target="principal" NavigateUrl="~/CuadroClasificacion.aspx" tabIndex="7" Text=" Buscar/Editar" ToolTip="Catálogo de disposición documental" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
 						</li>
 					</ul>
 				</div>
@@ -46,13 +46,13 @@
 				<div id="collapseExpediente" class="collapse">
 					<ul class="lista-menu ml-n4 small" id="menuExpedientes">
 						<li>
-							<asp:HyperLink ID="expedientesLink" runat="server" NavigateUrl="~/BusquedaExpedientes.aspx" Target="principal" tabIndex="1" Text="Buscar/Editar" ToolTip="Busca expedientes para consulta o edición" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
+							<asp:HyperLink ID="expedientesLink" runat="server" NavigateUrl="~/BusquedaExpedientes.aspx" Target="principal" tabIndex="1" Text=" Buscar/Editar" ToolTip="Busca expedientes para consulta o edición" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
 						</li>
 						<li>
-							<asp:HyperLink ID="lnkExpedientesGestionRRHH" runat="server" NavigateUrl="~/BusquedaExpedientesGestionRRHH.aspx" Target="principal" tabIndex="1" Text="Expedientes RRHH" ToolTip="Busca expedientes para la gestión de RRHH" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
+							<asp:HyperLink ID="lnkExpedientesGestionRRHH" runat="server" NavigateUrl="~/BusquedaExpedientesGestionRRHH.aspx" Target="principal" tabIndex="1" Text=" Expedientes RRHH" ToolTip="Busca expedientes para la gestión de RRHH" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
 						</li>
 						<li>
-							<asp:HyperLink id="auditoriaLink" tabIndex="2" runat="server" Target="principal" NavigateUrl="TrabajoRealizado.aspx" Text="Auditoría" ToolTip="Auditoría de trabajo realizado" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
+							<asp:HyperLink id="auditoriaLink" tabIndex="2" runat="server" Target="principal" NavigateUrl="TrabajoRealizado.aspx" Text=" Auditoría" ToolTip="Auditoría de trabajo realizado" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
 						</li>
 					</ul>
 				</div>
@@ -63,16 +63,16 @@
 				<div id="collapseProcesos" class="collapse">
 					<ul class="lista-menu ml-n4 small" id="menuProcesos">
 						<li>
-							<asp:HyperLink id="tramiteConcentracionLink" tabIndex="3" runat="server" Target="principal" NavigateUrl="~/TraspasoExpedientesVencidos.aspx?Proceso=1" Text="Trámite" ToolTip="Transferencia de trámite a concentración" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
+							<asp:HyperLink id="tramiteConcentracionLink" tabIndex="3" runat="server" Target="principal" NavigateUrl="~/TraspasoExpedientesVencidos.aspx?Proceso=1" Text=" Trámite" ToolTip="Transferencia de trámite a concentración" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
 						</li>
 						<li>
-							<asp:HyperLink id="recepConcentracionLink" tabIndex="4" runat="server" Target="principal" NavigateUrl="~/TraspasoRecepcionExpedientes.aspx?Proceso=1" Text="Concentración" ToolTip="Recepción en concentración" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
+							<asp:HyperLink id="recepConcentracionLink" tabIndex="4" runat="server" Target="principal" NavigateUrl="~/TraspasoRecepcionExpedientes.aspx?Proceso=1" Text=" Concentración" ToolTip="Recepción en concentración" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
 						</li>
 						<li>
-							<asp:HyperLink id="concentracionBajaLink" tabIndex="5" runat="server" Target="principal" NavigateUrl="~/TraspasoExpedientesVencidos.aspx?Proceso=2" Text="Baja" ToolTip="Transferencia de concentración a baja" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
+							<asp:HyperLink id="concentracionBajaLink" tabIndex="5" runat="server" Target="principal" NavigateUrl="~/TraspasoExpedientesVencidos.aspx?Proceso=2" Text=" Baja" ToolTip="Transferencia de concentración a baja" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
 						</li>
 						<li>
-							<asp:HyperLink id="autorizaBajaLink" tabIndex="6" runat="server" Target="principal" NavigateUrl="~/TraspasoRecepcionExpedientes.aspx?Proceso=2" Text="Autorización baja" ToolTip="Autorización de baja" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
+							<asp:HyperLink id="autorizaBajaLink" tabIndex="6" runat="server" Target="principal" NavigateUrl="~/TraspasoRecepcionExpedientes.aspx?Proceso=2" Text=" Autorización baja" ToolTip="Autorización de baja" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
 						</li>
 					</ul>
 				</div>
@@ -84,10 +84,10 @@
 					<div id="collapseHerramientas" class="collapse">
 						<ul class="lista-menu ml-n4 small" id="menuHerramientas">
 							<li>
-								<asp:HyperLink id="lnkVerificaArchivos" runat="server" Target="principal" NavigateUrl="~/VerificarArchivos.aspx" tabIndex="9" Text="Verifica archivos" ToolTip="Verifica la existencia de archivo de imágenes" Font-Underline="false" Visible="false" CssClass="fas fa-dot-circle" Font-Bold="false" />
+								<asp:HyperLink id="lnkVerificaArchivos" runat="server" Target="principal" NavigateUrl="~/VerificarArchivos.aspx" tabIndex="9" Text=" Verifica archivos" ToolTip="Verifica la existencia de archivo de imágenes" Font-Underline="false" Visible="false" CssClass="fas fa-dot-circle" Font-Bold="false" />
 							</li>
 							<li>
-								<asp:HyperLink id="lnkHerramientasPdf" runat="server" Target="principal" NavigateUrl="~/HerramientasPdf.aspx" tabIndex="10" Text="Herramientas PDF" ToolTip="Procesos PDF" Font-Underline="false" Visible="false" CssClass="fas fa-dot-circle" Font-Bold="false" />
+								<asp:HyperLink id="lnkHerramientasPdf" runat="server" Target="principal" NavigateUrl="~/HerramientasPdf.aspx" tabIndex="10" Text=" Herramientas PDF" ToolTip="Procesos PDF" Font-Underline="false" Visible="false" CssClass="fas fa-dot-circle" Font-Bold="false" />
 							</li>
 						</ul>
 					</div>
