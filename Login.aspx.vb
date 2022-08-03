@@ -1,4 +1,7 @@
+Imports System.Data.OleDb
 Imports System.Web.Security
+
+Imports fsSimaServicios
 
 Public Class Login
     Inherits Page
@@ -16,6 +19,7 @@ Public Class Login
     Protected WithEvents txtPassword As TextBox
     Protected WithEvents RequiredFieldValidator1 As RequiredFieldValidator
     Protected WithEvents lblAccesoNegado As Label
+    Protected WithEvents divMensaje As Panel
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -29,13 +33,108 @@ Public Class Login
 
 #End Region
 
-#Region " Métodos privados "
+#Region "Eventos de la página"
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Session("AdminConnString") = ConexionAdministrativa
+        Session("AdminConnStringSql") = ConexionAdministrativaSql
+
+        Session("OrdenDeGridDeExpedientes") = OrdenExpedientes
+        Session("SubdirectorioDeImagenes") = DirImagenes
+        Session("SubdirectorioTemporal") = DirTemporal
+        Session("LimiteDeRecordsEnBusqueda") = RegistrosMaximos
+
+        txtUsuario.Focus()
+
+        If Not Page.IsPostBack Then
+
+            Session("UsuarioVirtualConnString") = ""
+            Session("LoginUsuarioVirtual") = ""
+
+            Session("IDExpedienteActivo") = -1
+            Session("IDMovimientoActivo") = -1
+            Session("idCuadroClasificacionActivo") = -1
+            Session("TextoCuadroClasificacionEscogido") = ""
+            Session("idUsuarioRealEnEdicionActivo") = -1
+
+            Session("idPlazoDeConservacionTramiteActivo") = -1
+            Session("idPlazoDeConservacionConcentracionActivo") = -1
+            Session("idDestinoFinalActivo") = -1
+            Session("idInformacionClasificadaActivo") = -1
+            Session("idClasificacionActivo") = -1
+
+            Session("CodigoCompletoCuadroClasificacion") = -1
+
+            'Session("NextLeftActivo") = 0
+            'Session("NextRightActivo") = 0
+
+            Session("ExpedienteStatus") = 0 '0=SOLO LECTURA 1=AÑADIENDO 2=EDITANDO 3=BORRANDO
+            Session("MovimientoStatus") = 0
+            Session("CuadroClasificacionStatus") = 0
+            Session("UsuarioRealStatus") = 0
+
+        End If
+
+    End Sub
+
+    Private Sub BtnEntrar_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnEntrar.Click
+        'Dim scrambler As New GITDataTools.ScrambleNET
+        Dim IDUsuarioReal As Integer
+        Dim NombreUsuarioReal As String = ""
+
+        Session("LoginActivo") = txtUsuario.Text.ToString
+
+        'If FillUsuarioVirtualConnString(txtUsuario.Text.ToString, scrambler.Scramble(txtPassword.Text.ToString, Chr(25) & Chr(26))) Then
+
+        Dim ip As String = If(Not String.IsNullOrEmpty(HttpContext.Current.Request.ServerVariables("HTTP_X_FORWARDED_FOR")), HttpContext.Current.Request.ServerVariables("HTTP_X_FORWARDED_FOR"), HttpContext.Current.Request.ServerVariables("REMOTE_ADDR"))
+
+        If FillUsuarioVirtualConnString(txtUsuario.Text.ToString, New Encripcion(Globales.CodigoAcceso).Encripta(txtPassword.Text.ToString.Trim)) Then
+            If Get_IDUsuarioReal_From_Login(txtUsuario.Text.ToString, IDUsuarioReal, NombreUsuarioReal) Then
+                Session("IDUsuarioReal") = IDUsuarioReal
+                Session("NombreUsuarioReal") = NombreUsuarioReal
+            End If
+            lblAccesoNegado.Visible = False
+            'Response.Redirect("./FrameSet2.htm")
+            'FormsAuthentication.RedirectFromLoginPage(IDUsuarioReal, False)
+
+            Dim tkt As FormsAuthenticationTicket
+            Dim cookiestr As String
+            Dim ck As HttpCookie
+            tkt = New FormsAuthenticationTicket(1, IDUsuarioReal, DateTime.Now, DateTime.Now.AddMinutes(30), False, "SIMA")
+            cookiestr = FormsAuthentication.Encrypt(tkt)
+            ck = New HttpCookie(FormsAuthentication.FormsCookieName, cookiestr) With {
+                .Path = FormsAuthentication.FormsCookiePath
+            }
+            Response.Cookies.Add(ck)
+
+            Dim strRedirect As String = Request("ReturnUrl")
+            If String.IsNullOrEmpty(strRedirect) Then
+                strRedirect = "Frameset2.htm"
+            End If
+
+            Accesorios.EscribeBitacoraBD(Session("AdminConnStringSql").ToString, txtUsuario.Text.ToString.Trim, ip, True)
+
+            Response.Redirect(strRedirect, True)
+        Else
+            divMensaje.Visible = True
+            lblAccesoNegado.Visible = True
+
+            Accesorios.EscribeBitacoraBD(Session("AdminConnStringSql").ToString, txtUsuario.Text.ToString.Trim, ip, False)
+        End If
+
+    End Sub
+
+#End Region
+
+#Region "Métodos privados"
 
     Public Function Get_IDUsuarioReal_From_Login(ByVal MyLogin As String, ByRef MyidUsuarioReal As Integer, ByRef MyNombreUsuarioReal As String) As Boolean
 
-        Dim cn As New Data.OleDb.OleDbConnection
-        Dim cmd As New Data.OleDb.OleDbCommand
-        Dim param As Data.OleDb.OleDbParameter
+        Dim cn As New OleDbConnection
+        Dim cmd As New OleDbCommand
+        Dim param As OleDbParameter
+
+        Dim loginOk As Boolean = False
 
         Try
 
@@ -49,16 +148,16 @@ Public Class Login
             cmd.CommandType = Data.CommandType.StoredProcedure
 
             'MyLogin
-            param = cmd.Parameters.Add("MyLogin", Data.OleDb.OleDbType.VarChar, 25)
+            param = cmd.Parameters.Add("MyLogin", OleDbType.VarChar, 25)
             param.Value = MyLogin
 
             'MyidUsuarioReal
-            param = cmd.Parameters.Add("MyidUsuarioReal", Data.OleDb.OleDbType.Integer)
-            param.Direction = Data.ParameterDirection.Output
+            param = cmd.Parameters.Add("MyidUsuarioReal", OleDbType.Integer)
+            param.Direction = ParameterDirection.Output
 
             'MyNombreUsuarioReal
-            param = cmd.Parameters.Add("MyNombreUsuarioReal", Data.OleDb.OleDbType.VarChar, 50)
-            param.Direction = Data.ParameterDirection.Output
+            param = cmd.Parameters.Add("MyNombreUsuarioReal", OleDbType.VarChar, 50)
+            param.Direction = ParameterDirection.Output
 
             'Ejecuto el sp
             cmd.ExecuteNonQuery()
@@ -67,18 +166,19 @@ Public Class Login
             MyNombreUsuarioReal = CStr(cmd.Parameters("MyNombreUsuarioReal").Value)
 
             If CInt(cmd.Parameters("MyidUsuarioReal").Value) <> -1 Then
-                Get_IDUsuarioReal_From_Login = True
+                loginOk = True
             Else
-                Get_IDUsuarioReal_From_Login = False
+                loginOk = False
             End If
 
             cn.Close()
 
+            Return loginOk
+
         Catch ex As Exception
 
-            'MsgBox(ex.Message.ToString)
             Get_IDUsuarioReal_From_Login = False
-            If cn.State <> Data.ConnectionState.Closed Then
+            If cn.State <> ConnectionState.Closed Then
                 cn.Close()
             End If
 
@@ -86,12 +186,13 @@ Public Class Login
 
     End Function
 
-    Private Function FillUsuarioVirtualConnString(ByVal LoginUsuarioReal As String, ByVal PasswordUsuarioReal As String) As Boolean
+    Private Function FillUsuarioVirtualConnString(LoginUsuarioReal As String, PasswordUsuarioReal As String) As Boolean
 
-        Dim cn As New Data.OleDb.OleDbConnection
-        Dim cmd As New Data.OleDb.OleDbCommand
-        Dim param As Data.OleDb.OleDbParameter
-        Dim scrambler As New GITDataTools.ScrambleNET
+        Dim cn As New OleDbConnection
+        Dim cmd As New OleDbCommand
+        Dim param As OleDbParameter
+        'Dim scrambler As New GITDataTools.ScrambleNET
+        Dim cryp As New Encripcion(Globales.CodigoAcceso)
 
         Try
 
@@ -123,12 +224,15 @@ Public Class Login
             'Ejecuto el sp
             cmd.ExecuteNonQuery()
 
-            Session("UsuarioVirtualConnString") = "Provider=MSOLEDBSQL;Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & scrambler.Scramble(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value), Chr(25) & Chr(26)) & ";Persist Security Info=True;Connect Timeout=15;Encryption=True;"
+            Session("UsuarioVirtualConnString") = "Provider=MSOLEDBSQL;Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & cryp.Desencripta(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value)) & ";Persist Security Info=True;Connect Timeout=15;Encryption=True;"
+            'Session("UsuarioVirtualConnStringSQL") = "Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & scrambler.Scramble(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value), Chr(25) & Chr(26)) & ";Persist Security Info=True;Connect Timeout=15;Encrypt=Yes;TrustServerCertificate=Yes;"
+            Session("UsuarioVirtualConnStringSQL") = "Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;Database=" & BaseDatos & ";UID=" & CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) & ";PWD=" & cryp.Desencripta(CStr(cmd.Parameters("MyPasswordUsuarioVirtual").Value)) & ";Persist Security Info=True;Connect Timeout=15;Encrypt=Yes;TrustServerCertificate=Yes;"
 
             cn.Close()
 
             If CStr(cmd.Parameters("MyLoginUsuarioVirtual").Value) <> "?" Then
                 FillUsuarioVirtualConnString = True
+                Session("LoginUsuarioVirtual") = cmd.Parameters("MyLoginUsuarioVirtual").Value.ToString
             Else
                 FillUsuarioVirtualConnString = False
             End If
@@ -143,89 +247,6 @@ Public Class Login
         End Try
 
     End Function
-
-#End Region
-
-#Region " Eventos de la página "
-    Private Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-        'Introducir aquí el código de usuario al cargar la página
-
-        Session("AdminConnString") = "Provider=MSOLEDBSQL;Server=ec2-54-147-133-25.compute-1.amazonaws.com,1433;UID=USOC;Pwd=f5*HIDDENUSER;Persist Security Info=True;Connect Timeout=15;Database=" & BaseDatos & ";Encryption=True;"
-
-        Session("OrdenDeGridDeExpedientes") = OrdenExpedientes
-        'Estas dos variables de sesión se dejan por compatibilidad en lugar de la variable global definida en Globales.vb
-        Session("SubdirectorioDeImagenes") = My.Settings.DirImagenes
-        Session("SubdirectorioTemporal") = My.Settings.DirTemporal
-
-        Session("LimiteDeRecordsEnBusqueda") = RegistrosMaximos
-
-        If Not Page.IsPostBack Then
-
-            Session("UsuarioVirtualConnString") = ""
-
-            Session("IDExpedienteActivo") = -1
-            Session("IDMovimientoActivo") = -1
-            Session("idCuadroClasificacionActivo") = -1
-            Session("TextoCuadroClasificacionEscogido") = ""
-            Session("idUsuarioRealEnEdicionActivo") = -1
-
-            Session("idPlazoDeConservacionTramiteActivo") = -1
-            Session("idPlazoDeConservacionConcentracionActivo") = -1
-            Session("idDestinoFinalActivo") = -1
-            Session("idInformacionClasificadaActivo") = -1
-            Session("idClasificacionActivo") = -1
-
-            Session("CodigoCompletoCuadroClasificacion") = -1
-
-            Session("NextLeftActivo") = 0
-            Session("NextRightActivo") = 0
-
-            Session("ExpedienteStatus") = 0 '0=SOLO LECTURA 1=AÑADIENDO 2=EDITANDO 3=BORRANDO
-            Session("MovimientoStatus") = 0
-            Session("CuadroClasificacionStatus") = 0
-            Session("UsuarioRealStatus") = 0
-
-        End If
-
-    End Sub
-
-    Private Sub BtnEntrar_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnEntrar.Click
-        Dim scrambler As New GITDataTools.ScrambleNET
-        Dim IDUsuarioReal As Integer
-        Dim NombreUsuarioReal As String = ""
-
-        Session("LoginActivo") = txtUsuario.Text.ToString
-
-        If FillUsuarioVirtualConnString(txtUsuario.Text.ToString, scrambler.Scramble(txtPassword.Text.ToString, Chr(25) & Chr(26))) Then
-
-            If Get_IDUsuarioReal_From_Login(txtUsuario.Text.ToString, IDUsuarioReal, NombreUsuarioReal) Then
-                Session("IDUsuarioReal") = IDUsuarioReal
-                Session("NombreUsuarioReal") = NombreUsuarioReal
-            End If
-            lblAccesoNegado.Visible = False
-            'Response.Redirect("./FrameSet2.htm")
-            'FormsAuthentication.RedirectFromLoginPage(IDUsuarioReal, False)
-
-            Dim tkt As FormsAuthenticationTicket
-            Dim cookiestr As String
-            Dim ck As HttpCookie
-            tkt = New FormsAuthenticationTicket(1, IDUsuarioReal, DateTime.Now, DateTime.Now.AddMinutes(30), False, "SIMA")
-            cookiestr = FormsAuthentication.Encrypt(tkt)
-            ck = New HttpCookie(FormsAuthentication.FormsCookieName, cookiestr)
-            ck.Path = FormsAuthentication.FormsCookiePath
-            Response.Cookies.Add(ck)
-
-            Dim strRedirect As String = Request("ReturnUrl")
-            If String.IsNullOrEmpty(strRedirect) Then
-                strRedirect = "Frameset2.htm"
-            End If
-
-            Response.Redirect(strRedirect, True)
-        Else
-            lblAccesoNegado.Visible = True
-        End If
-
-    End Sub
 
 #End Region
 

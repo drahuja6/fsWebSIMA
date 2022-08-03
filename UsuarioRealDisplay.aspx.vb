@@ -1,5 +1,7 @@
 Imports System.Data.OleDb
 
+Imports fsSimaServicios
+
 Public Class UsuarioRealDisplay
     Inherits Page
 
@@ -95,7 +97,8 @@ Public Class UsuarioRealDisplay
     Function FillUsuarioReal(ByVal idUsuarioReal As Integer) As Boolean
 
         'Rutina para leer y llenar la forma con los datos de UN usuario real
-        Dim scrambler As New GITDataTools.ScrambleNET
+        'Dim scrambler As New GITDataTools.ScrambleNET
+        Dim cryp As New Encripcion(Globales.CodigoAcceso)
 
         Dim cn As New Data.OleDb.OleDbConnection
         Dim cmd As New Data.OleDb.OleDbCommand
@@ -107,7 +110,6 @@ Public Class UsuarioRealDisplay
 
             'Llenado de combos (sin escoger valor, por si no hay Usuario Virtual)
             FillDropDownList(Session("UsuarioVirtualConnString"), ddlstUsuarioVirtualAsociado, "UsuariosVirtuales_SELECTALL", "idUsuarioVirtual", "Nombre", -1)
-
             'Abro la conexión
             cn.ConnectionString = Session("UsuarioVirtualConnString")
             cn.Open()
@@ -130,7 +132,8 @@ Public Class UsuarioRealDisplay
 
                     txtNombre.Text = CStr(dr("Nombre"))
                     txtLogin.Text = CStr(dr("Login"))
-                    txtContrasena.Text = scrambler.Scramble(CStr(dr("password")), Chr(25) & Chr(26))
+                    'txtContrasena.Text = scrambler.Scramble(CStr(dr("password")), Chr(25) & Chr(26))
+                    txtContrasena.Text = cryp.Encripta(CStr(dr("password")))
                     txtVerificacionContrasena.Text = txtContrasena.Text
 
                     FillDropDownList(Session("UsuarioVirtualConnString"), ddlstUsuarioVirtualAsociado, "UsuariosVirtuales_SELECTALL", "idUsuarioVirtual", "Nombre", CInt(dr("idUsuarioVirtual")))
@@ -744,7 +747,8 @@ Public Class UsuarioRealDisplay
 
     Private Sub btnSalvar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSalvar.Click
         Dim MyID As Integer
-        Dim scrambler As New GITDataTools.ScrambleNET
+        'Dim scrambler As New GITDataTools.ScrambleNET
+        Dim cryp As New Encripcion(Globales.CodigoAcceso)
 
         If Not RevisaForma() Then
             Return
@@ -753,9 +757,9 @@ Public Class UsuarioRealDisplay
         If Session("UsuarioRealStatus") = 1 Then
 
             'Estoy agregando un nodo nuevo
-            MyID = UsuariosReales_INSERT(Trim(txtNombre.Text), _
-                                        Trim(txtLogin.Text), _
-                                        Trim(scrambler.Scramble(txtContrasena.Text, Chr(25) & Chr(26))), _
+            MyID = UsuariosReales_INSERT(txtNombre.Text.Trim,
+                                        txtLogin.Text.Trim,
+                                        cryp.Encripta(txtContrasena.Text.Trim),
                                         CInt(ddlstUsuarioVirtualAsociado.SelectedItem.Value))
             If MyID = 0 Then
                 'Me arriesgo a suponer que la fuente del error es que ya existe el login o el nombre
@@ -792,10 +796,10 @@ Public Class UsuarioRealDisplay
         ElseIf Session("UsuarioRealStatus") = 2 Then
 
             'Edito el usuario
-            MyID = UsuariosReales_UPDATE(CInt(Session("idUsuarioRealEnEdicionActivo")), _
-                                        Trim(txtNombre.Text), _
-                                        Trim(txtLogin.Text), _
-                                        Trim(scrambler.Scramble(txtContrasena.Text, Chr(25) & Chr(26))), _
+            MyID = UsuariosReales_UPDATE(CInt(Session("idUsuarioRealEnEdicionActivo")),
+                                        txtNombre.Text.Trim,
+                                        txtLogin.Text.Trim,
+                                        cryp.Encripta(txtContrasena.Text.Trim),
                                         CInt(ddlstUsuarioVirtualAsociado.SelectedItem.Value))
             If MyID = 0 Then
                 Beep()

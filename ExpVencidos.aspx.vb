@@ -65,7 +65,7 @@ Public Class ExpVencidos
 
         'Fecha de Apertura inicial
         param = cmd.Parameters.Add("FechaDeCorte", Data.OleDb.OleDbType.DBDate)
-        param.Value = CDate(Trim(Now))
+        param.Value = Now.Date
 
         'Creo el objeto DataAdapter
         Dim daExpedientes As New Data.OleDb.OleDbDataAdapter(cmd)
@@ -121,7 +121,7 @@ Public Class ExpVencidos
 
         'Fecha de Apertura inicial
         param = cmd.Parameters.Add("FechaDeCorte", Data.OleDb.OleDbType.DBDate)
-        param.Value = CDate(Trim(Now))
+        param.Value = Now.Date
 
         'Creo el objeto DataAdapter
         Dim daExpedientes As New Data.OleDb.OleDbDataAdapter(cmd)

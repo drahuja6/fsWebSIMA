@@ -1,0 +1,117 @@
+﻿[class*="etiqueta"] {
+    font-size: smaller;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    color: navy;
+    vertical-align: central;
+}
+
+.etiqueta-titulo {
+    font-size: medium;
+    color: white;
+    background-color: #5D7B9D;
+    height: 40px;
+}
+
+.etiqueta-boton {
+    align-self: center;
+    float: inline-end;
+    display: inline;
+}
+
+.etiqueta-boton-ancho {
+    align-self: center;
+    float: inline-end;
+    display: inline;
+    width: 100px;
+}
+
+.etiqueta-textbox {
+    width: 70px;
+    font-weight: 500;
+}
+
+.etiqueta-textbox-ancho {
+    width: 140px;
+    font-weight: 500;
+}
+
+.etiqueta-textbox-numero {
+    width: 70px;
+    font-weight: 500;
+    text-align: right; 
+}
+
+.textbox {
+    font-size: smaller;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    color: navy;
+    vertical-align: central;
+    width: 70px;
+    font-weight: 500;
+}
+
+.textbox.ancho {
+    width: 140px;
+}
+
+.textbox.numero {
+    width: 70px;
+    text-align: right;
+}
+
+.col {
+    height: 30px;
+    vertical-align: central; 
+}
+
+[class*="grid"] {
+    font-weight: 500;
+    font-size: smaller;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.grid-ua {
+    width: 28%;
+    text-align: unset;
+}
+
+.grid-datos {
+    width: 9%;
+}
+
+.error {
+    color: red;
+}
+
+.panel {
+    overflow: auto;
+}
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    z-index: 99;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    min-height: 100%;
+    width: 100%;
+}
+.loading {
+    padding: 5px;
+    font-family: Arial;
+    font-size: 10pt;
+    border: 1px outset #0094ff;
+    width: 200px;
+    height: 100px;
+    display: none;
+    background-color: lightgrey;
+    z-index: 999;
+    position: absolute;
+}
+.espera {
+}
+

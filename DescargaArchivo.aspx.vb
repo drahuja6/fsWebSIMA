@@ -1,19 +1,37 @@
-﻿Imports System.IO
+﻿Imports System.Linq
 
 Imports fsSimaServicios
 
 Public Class DescargaArchivo
-    Inherits System.Web.UI.Page
+    Inherits Page
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Dim queryString As String = Request.QueryString("FN")
+    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        Me.Title = queryString
+        If Not IsPostBack Then
+            Dim qs As Specialized.NameValueCollection = Request.QueryString
+            Dim archivo As String
+            Dim nombre As String
+            Dim eliminar As Boolean
 
-        If Not Me.IsPostBack Then
-            Dim archivo As String = Path.Combine(DirImagenes, queryString)
-            Accesorios.DescargaArchivo(Response, archivo, LongitudMaximaArchivoDescarga)
+            If qs.Count > 0 Then
+                archivo = If(qs.AllKeys.Contains("FN"), qs("FN").ToString, "")
+                nombre = If(qs.AllKeys.Contains("Nombre"), qs("Nombre").ToString, "")
+                eliminar = If(qs.AllKeys.Contains("Eliminar"), CBool(qs("Eliminar")), False)
+
+                If Not String.IsNullOrEmpty(archivo) Then
+                    If String.IsNullOrEmpty(nombre) Then
+                        Title = archivo
+                        Accesorios.DescargaArchivo(Response, archivo, LongitudMaximaArchivoDescarga)
+                    Else
+                        Title = nombre
+                        Accesorios.DescargaArchivo(Response, archivo, LongitudMaximaArchivoDescarga, nombre, eliminar)
+                    End If
+                End If
+
+            End If
         End If
+
     End Sub
+
 
 End Class

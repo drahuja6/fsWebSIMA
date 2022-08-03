@@ -1,8 +1,10 @@
 Imports System.Text.RegularExpressions
 Imports System.Data.OleDb
 Imports System.IO
+Imports System.Globalization
 
 Imports fsSimaServicios
+
 
 Public Class DisplayExpediente
     Inherits Page
@@ -120,7 +122,6 @@ Public Class DisplayExpediente
     Protected WithEvents lblValidacionNoDeFojas As Label
     Protected WithEvents lblValidaNombre As Label
     Protected WithEvents lblValidaFechaCierre As Label
-    Protected WithEvents btnCaratula As Button
     Protected WithEvents DataGrid1 As DataGrid
     Protected WithEvents NoHayDatos As Label
     Protected WithEvents Label14 As Label
@@ -136,6 +137,7 @@ Public Class DisplayExpediente
     Protected WithEvents Label44 As Label
     Protected WithEvents Label45 As Label
     Protected WithEvents txtObservConcentracion As TextBox
+    Protected WithEvents btnGestion As Button
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -150,7 +152,6 @@ Public Class DisplayExpediente
 #End Region
 
     Private _cadenaConexion As String
-    Private _serviciosExpediente As New ExpedientesServicios()
 
     Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Introducir aquí el código de usuario para inicializar la página
@@ -186,12 +187,18 @@ Public Class DisplayExpediente
                 FillExpediente(CInt(Session("IDExpedienteActivo")))
             Else
                 'Llenado de combos (sin escoger valor, por si no hay Expediente)
-                FillDropDownList(Session("UsuarioVirtualConnString"), ddlstStatus, "ClasificacionStatus_SELECTALL", "idClasificacionStatus", "Descripcion", -1)
-                FillDropDownList(Session("UsuarioVirtualConnString"), ddlstTramite, "PlazosDeConservacionTramite_SELECTALL", "idPlazosDeConservacionTramite", "Descripcion", -1)
-                FillDropDownList(Session("UsuarioVirtualConnString"), ddlstConcentracion, "PlazosDeConservacionConcentracion_SELECTALL", "idPlazosDeConservacionConcentracion", "Descripcion", -1)
-                FillDropDownList(Session("UsuarioVirtualConnString"), ddlstDestinoFinal, "DestinoFinal_SELECTALL", "idDestinoFinal", "Descripcion", -1)
-                FillDropDownList(Session("UsuarioVirtualConnString"), lbxCalidadDoc, "CalidadDocumental_SELECTALL", "idCalidadDocumental", "Descripcion", -1)
-                FillDropDownList(Session("UsuarioVirtualConnString"), lbxUnidadAdmin, "UnidadesAdministrativasDeUnUsuarioReal", CInt(Session("IDUsuarioReal")), "idUnidadAdministrativa", "NombreCorto", -1)
+                'FillDropDownList(Session("UsuarioVirtualConnString"), ddlstStatus, "ClasificacionStatus_SELECTALL", "idClasificacionStatus", "Descripcion", -1)
+                Accesorios.CargaDropDownList(ddlstStatus, Session("UsuarioVirtualConnString"), "ClasificacionStatus_SELECTALL", Nothing, "Descripcion", "idClasificacionStatus")
+                'FillDropDownList(Session("UsuarioVirtualConnString"), ddlstTramite, "PlazosDeConservacionTramite_SELECTALL", "idPlazosDeConservacionTramite", "Descripcion", -1)
+                Accesorios.CargaDropDownList(ddlstTramite, Session("UsuarioVirtualConnString"), "PlazosDeConservacionTramite_SELECTALL", Nothing, "Descripcion", "idPlazosDeConservacionTramite")
+                'FillDropDownList(Session("UsuarioVirtualConnString"), ddlstConcentracion, "PlazosDeConservacionConcentracion_SELECTALL", "idPlazosDeConservacionConcentracion", "Descripcion", -1)
+                Accesorios.CargaDropDownList(ddlstConcentracion, Session("UsuarioVirtualConnString"), "PlazosDeConservacionConcentracion_SELECTALL", Nothing, "Descripcion", "idPlazosDeConservacionConcentracion")
+                'FillDropDownList(Session("UsuarioVirtualConnString"), ddlstDestinoFinal, "DestinoFinal_SELECTALL", "idDestinoFinal", "Descripcion", -1)
+                Accesorios.CargaDropDownList(ddlstDestinoFinal, Session("UsuarioVirtualConnString"), "DestinoFinal_SELECTALL", Nothing, "Descripcion", "idDestinoFinal")
+                'FillDropDownList(Session("UsuarioVirtualConnString"), lbxCalidadDoc, "CalidadDocumental_SELECTALL", "idCalidadDocumental", "Descripcion", -1)
+                Accesorios.CargaDropDownList(lbxCalidadDoc, Session("UsuarioVirtualConnString"), "CalidadDocumental_SELECTALL", Nothing, "Descripcion", "idCalidadDocumental")
+                'FillDropDownList(Session("UsuarioVirtualConnString"), lbxUnidadAdmin, "UnidadesAdministrativasDeUnUsuarioReal", CInt(Session("IDUsuarioReal")), "idUnidadAdministrativa", "NombreCorto", -1)
+                Accesorios.CargaDropDownList(lbxUnidadAdmin, Session("UsuarioVirtualConnString"), "UnidadesAdministrativasDeUnUsuarioReal", CInt(Session("IDUsuarioReal")), "NombreCorto", "idUnidadAdministrativa")
 
             End If
             txtCodigo.Text = Session("TextoCuadroClasificacionEscogido")
@@ -204,7 +211,6 @@ Public Class DisplayExpediente
             btnAgregar.Enabled = False
             btnEditar.Enabled = False
             btnBorrar.Enabled = False
-            btnCaratula.Enabled = False
             btnCaratula2.Enabled = False
             btnLomo.Enabled = False
 
@@ -314,21 +320,27 @@ Public Class DisplayExpediente
 
         'Rutina para leer y llenar la forma con los datos de UN expediente
 
-        Dim cn As New Data.OleDb.OleDbConnection
-        Dim cmd As New Data.OleDb.OleDbCommand
-        Dim param As Data.OleDb.OleDbParameter
-        Dim dr As Data.OleDb.OleDbDataReader
+        Dim cn As New OleDbConnection
+        Dim cmd As New OleDbCommand
+        Dim param As OleDbParameter
+        Dim dr As OleDbDataReader
 
         Try
             LimpiaCampos()
 
             'Llenado de combos (sin escoger valor, por si no hay Expediente)
-            FillDropDownList(Session("UsuarioVirtualConnString"), ddlstStatus, "ClasificacionStatus_SELECTALL", "idClasificacionStatus", "Descripcion", -1)
-            FillDropDownList(Session("UsuarioVirtualConnString"), ddlstTramite, "PlazosDeConservacionTramite_SELECTALL", "idPlazosDeConservacionTramite", "Descripcion", -1)
-            FillDropDownList(Session("UsuarioVirtualConnString"), ddlstConcentracion, "PlazosDeConservacionConcentracion_SELECTALL", "idPlazosDeConservacionConcentracion", "Descripcion", -1)
-            FillDropDownList(Session("UsuarioVirtualConnString"), ddlstDestinoFinal, "DestinoFinal_SELECTALL", "idDestinoFinal", "Descripcion", -1)
-            FillDropDownList(Session("UsuarioVirtualConnString"), lbxCalidadDoc, "CalidadDocumental_SELECTALL", "idCalidadDocumental", "Descripcion", -1)
-            FillDropDownList(Session("UsuarioVirtualConnString"), lbxUnidadAdmin, "UnidadesAdministrativasDeUnUsuarioReal", CInt(Session("IDUsuarioReal")), "idUnidadAdministrativa", "NombreCorto", -1)
+            'FillDropDownList(Session("UsuarioVirtualConnString"), ddlstStatus, "ClasificacionStatus_SELECTALL", "idClasificacionStatus", "Descripcion", -1)
+            Accesorios.CargaDropDownList(ddlstStatus, Session("UsuarioVirtualConnString"), "ClasificacionStatus_SELECTALL", Nothing, "Descripcion", "idClasificacionStatus")
+            'FillDropDownList(Session("UsuarioVirtualConnString"), ddlstTramite, "PlazosDeConservacionTramite_SELECTALL", "idPlazosDeConservacionTramite", "Descripcion", -1)
+            Accesorios.CargaDropDownList(ddlstTramite, Session("UsuarioVirtualConnString"), "PlazosDeConservacionTramite_SELECTALL", Nothing, "Descripcion", "idPlazosDeConservacionTramite")
+            'FillDropDownList(Session("UsuarioVirtualConnString"), ddlstConcentracion, "PlazosDeConservacionConcentracion_SELECTALL", "idPlazosDeConservacionConcentracion", "Descripcion", -1)
+            Accesorios.CargaDropDownList(ddlstConcentracion, Session("UsuarioVirtualConnString"), "PlazosDeConservacionConcentracion_SELECTALL", Nothing, "Descripcion", "idPlazosDeConservacionConcentracion")
+            'FillDropDownList(Session("UsuarioVirtualConnString"), ddlstDestinoFinal, "DestinoFinal_SELECTALL", "idDestinoFinal", "Descripcion", -1)
+            Accesorios.CargaDropDownList(ddlstDestinoFinal, Session("UsuarioVirtualConnString"), "DestinoFinal_SELECTALL", Nothing, "Descripcion", "idDestinoFinal")
+            'FillDropDownList(Session("UsuarioVirtualConnString"), lbxCalidadDoc, "CalidadDocumental_SELECTALL", "idCalidadDocumental", "Descripcion", -1)
+            Accesorios.CargaDropDownList(lbxCalidadDoc, Session("UsuarioVirtualConnString"), "CalidadDocumental_SELECTALL", Nothing, "Descripcion", "idCalidadDocumental")
+            'FillDropDownList(Session("UsuarioVirtualConnString"), lbxUnidadAdmin, "UnidadesAdministrativasDeUnUsuarioReal", CInt(Session("IDUsuarioReal")), "idUnidadAdministrativa", "NombreCorto", -1)
+            Accesorios.CargaDropDownList(lbxUnidadAdmin, Session("UsuarioVirtualConnString"), "UnidadesAdministrativasDeUnUsuarioReal", CInt(Session("IDUsuarioReal")), "NombreCorto", "idUnidadAdministrativa")
 
             'Abro la conexión
             cn.ConnectionString = Session("UsuarioVirtualConnString")
@@ -355,8 +367,8 @@ Public Class DisplayExpediente
                 While dr.Read()
                     Session("IDExpedienteActivo") = CInt(dr("idExpediente"))
 
-                    Session("NextLeftActivo") = CInt(dr("NextLeft"))
-                    Session("NextRightActivo") = CInt(dr("NextRight"))
+                    'Session("NextLeftActivo") = CInt(dr("NextLeft"))
+                    'Session("NextRightActivo") = CInt(dr("NextRight"))
 
                     txtCodigo.Text = CStr(dr("Codigo"))
                     FillJerarquia(txtCodigo.Text)
@@ -403,12 +415,18 @@ Public Class DisplayExpediente
                     txtFechaDesclasificacion.Text = IIf(CBool(dr("FechaDeDesclasificacionChecked")), dr("FechaDeDesclasificacionDMA"), "")
                     lblAutorizaDesclasificacion.Text = Get_UsuarioReal_from_ID(CInt(dr("idUsuario_AutorizaDesClasificacion")))
 
-                    FillDropDownList(Session("UsuarioVirtualConnString"), ddlstStatus, "ClasificacionStatus_SELECTALL", "idClasificacionStatus", "Descripcion", CInt(dr("idClasificacionStatus")))
-                    FillDropDownList(Session("UsuarioVirtualConnString"), ddlstTramite, "PlazosDeConservacionTramite_SELECTALL", "idPlazosDeConservacionTramite", "Descripcion", CInt(dr("idPlazoTramite")))
-                    FillDropDownList(Session("UsuarioVirtualConnString"), ddlstConcentracion, "PlazosDeConservacionConcentracion_SELECTALL", "idPlazosDeConservacionConcentracion", "Descripcion", CInt(dr("idPlazoConcentracion")))
-                    FillDropDownList(Session("UsuarioVirtualConnString"), ddlstDestinoFinal, "DestinoFinal_SELECTALL", "idDestinoFinal", "Descripcion", CInt(dr("idDestinoFinal")))
-                    FillDropDownList(Session("UsuarioVirtualConnString"), lbxCalidadDoc, "CalidadDocumental_SELECTALL", "idCalidadDocumental", "Descripcion", CInt(dr("idCalidadDocumental")))
-                    FillDropDownList(Session("UsuarioVirtualConnString"), lbxUnidadAdmin, "UnidadesAdministrativasDeUnUsuarioReal", CInt(Session("IDUsuarioReal")), "idUnidadAdministrativa", "NombreCorto", CInt(dr("idUnidadAdministrativa")))
+                    'FillDropDownList(Session("UsuarioVirtualConnString"), ddlstStatus, "ClasificacionStatus_SELECTALL", "idClasificacionStatus", "Descripcion", CInt(dr("idClasificacionStatus")))
+                    ddlstStatus.SelectedValue = CInt(dr("idClasificacionStatus")).ToString()
+                    'FillDropDownList(Session("UsuarioVirtualConnString"), ddlstTramite, "PlazosDeConservacionTramite_SELECTALL", "idPlazosDeConservacionTramite", "Descripcion", CInt(dr("idPlazoTramite")))
+                    ddlstTramite.SelectedValue = CInt(dr("idPlazoTramite")).ToString()
+                    'FillDropDownList(Session("UsuarioVirtualConnString"), ddlstConcentracion, "PlazosDeConservacionConcentracion_SELECTALL", "idPlazosDeConservacionConcentracion", "Descripcion", CInt(dr("idPlazoConcentracion")))
+                    ddlstConcentracion.SelectedValue = CInt(dr("idPlazoConcentracion")).ToString()
+                    'FillDropDownList(Session("UsuarioVirtualConnString"), ddlstDestinoFinal, "DestinoFinal_SELECTALL", "idDestinoFinal", "Descripcion", CInt(dr("idDestinoFinal")))
+                    ddlstDestinoFinal.SelectedValue = CInt(dr("idDestinoFinal")).ToString()
+                    'FillDropDownList(Session("UsuarioVirtualConnString"), lbxCalidadDoc, "CalidadDocumental_SELECTALL", "idCalidadDocumental", "Descripcion", CInt(dr("idCalidadDocumental")))
+                    lbxCalidadDoc.SelectedValue = CInt(dr("idCalidadDocumental")).ToString()
+                    'FillDropDownList(Session("UsuarioVirtualConnString"), lbxUnidadAdmin, "UnidadesAdministrativasDeUnUsuarioReal", CInt(Session("IDUsuarioReal")), "idUnidadAdministrativa", "NombreCorto", CInt(dr("idUnidadAdministrativa")))
+                    lbxUnidadAdmin.SelectedValue = dr("idUnidadAdministrativa").ToString()
 
                     lblUltimaedicion.Text = Mid(Get_UsuarioReal_from_ID(CInt(dr("idUsuarioUltimaEdicion"))), 1, 20)
                     txtRFC.Text = CStr(dr("CampoAdicional1"))
@@ -422,16 +440,19 @@ Public Class DisplayExpediente
 
                 'Fundamentos Legales de Clasificacion de Expedientes
                 '********************************************************************
-                FillListBox2(Session("UsuarioVirtualConnString"), lbFundamentosLegalesClasificacion, "CargaFundamentosLegalesDeClasificacionDeExpedientes", idExpediente, "idFundamentosLegalesDeClasificacion", "Descripcion", "Activo")
+                'FillListBox2(Session("UsuarioVirtualConnString"), lbFundamentosLegalesClasificacion, "CargaFundamentosLegalesDeClasificacionDeExpedientes", idExpediente, "idFundamentosLegalesDeClasificacion", "Descripcion", "Activo")
+                Accesorios.CargaListBox(lbFundamentosLegalesClasificacion, Session("UsuarioVirtualConnString"), "CargaFundamentosLegalesDeClasificacionDeExpedientes", idExpediente, "Descripcion", "idFundamentosLegalesDeClasificacion", "Activo")
+
 
                 'Valor Documental de Expedientes
                 '********************************************************************
-                FillListBox2(Session("UsuarioVirtualConnString"), lbxValorDocumental, "CargaValorDocumentalDeExpedientes", idExpediente, "idValorDocumental", "Descripcion", "Activo")
+                'FillListBox2(Session("UsuarioVirtualConnString"), lbxValorDocumental, "CargaValorDocumentalDeExpedientes", idExpediente, "idValorDocumental", "Descripcion", "Activo")
+                Accesorios.CargaListBox(lbxValorDocumental, Session("UsuarioVirtualConnString"), "CargaValorDocumentalDeExpedientes", idExpediente, "Descripcion", "idValorDocumental", "Activo")
 
                 'Fundamentos Legales De Destino Final de Expedientes
                 '********************************************************************
-                FillListBox2(Session("UsuarioVirtualConnString"), lbxFundamentosLegalesDestinoFinal, "CargaFundamentosLegalesDeDestinoFinalDeExpedientes", idExpediente, "idFundamentoLegalDeDestinoFinal", "Descripcion", "Activo")
-
+                'FillListBox2(Session("UsuarioVirtualConnString"), lbxFundamentosLegalesDestinoFinal, "CargaFundamentosLegalesDeDestinoFinalDeExpedientes", idExpediente, "idFundamentoLegalDeDestinoFinal", "Descripcion", "Activo")
+                Accesorios.CargaListBox(lbxFundamentosLegalesDestinoFinal, Session("UsuarioVirtualConnString"), "CargaFundamentosLegalesDeDestinoFinalDeExpedientes", idExpediente, "Descripcion", "idFundamentoLegalDeDestinoFinal", "Activo")
                 FillMovimientos(idExpediente)
                 FillPDF(idExpediente)
 
@@ -508,7 +529,7 @@ Public Class DisplayExpediente
     Sub MuestraStatus()
 
         '0=SOLO LECTURA 1=AÑADIENDO 2=EDITANDO 3=BORRANDO
-        Select Case Session("ExpedienteStatus")
+        Select Case MyBase.Session("ExpedienteStatus")
             Case 0  '0=SOLO LECTURA
                 lblExpedienteStatus.Text = "(SÓLO LECTURA)"
                 lblExpedienteStatus.ForeColor = Drawing.Color.Red
@@ -525,14 +546,14 @@ Public Class DisplayExpediente
 
     End Sub
 
-    Function FillJerarquia(ByVal CodigoCompleto As String) As Boolean
+    Function FillJerarquia(CodigoCompleto As String) As Boolean
 
         'Rutina para llenar el ListBox de Jeraraquía
 
-        Dim cn As New Data.OleDb.OleDbConnection
-        Dim cmd As New Data.OleDb.OleDbCommand
-        Dim param As Data.OleDb.OleDbParameter
-        Dim dr As Data.OleDb.OleDbDataReader
+        Dim cn As New OleDbConnection
+        Dim cmd As New OleDbCommand
+        Dim param As OleDbParameter
+        Dim dr As OleDbDataReader
 
         Try
 
@@ -545,7 +566,7 @@ Public Class DisplayExpediente
             'Asigno el Stored Procedure
             cmd.CommandText = "IDDeJerarquia"
             cmd.Connection = cn
-            cmd.CommandType = Data.CommandType.StoredProcedure
+            cmd.CommandType = CommandType.StoredProcedure
 
             'CodigoCompleto
             param = cmd.Parameters.Add("CodigoCompleto", Data.OleDb.OleDbType.VarChar, 250)
@@ -589,11 +610,11 @@ Public Class DisplayExpediente
 
     End Function
 
-    Public Function Get_UsuarioReal_from_ID(ByVal idUsuarioReal As Integer) As String
+    Public Function Get_UsuarioReal_from_ID(idUsuarioReal As Integer) As String
 
-        Dim cn As New Data.OleDb.OleDbConnection
-        Dim cmd As New Data.OleDb.OleDbCommand
-        Dim param As Data.OleDb.OleDbParameter
+        Dim cn As New OleDbConnection
+        Dim cmd As New OleDbCommand
+        Dim param As OleDbParameter
 
         Try
 
@@ -604,14 +625,14 @@ Public Class DisplayExpediente
             'Asigno el Stored Procedure
             cmd.CommandText = "Get_UsuarioReal_from_ID"
             cmd.Connection = cn
-            cmd.CommandType = Data.CommandType.StoredProcedure
+            cmd.CommandType = CommandType.StoredProcedure
 
             'idUsuarioReal
-            param = cmd.Parameters.Add("idUsuarioReal", Data.OleDb.OleDbType.Integer)
+            param = cmd.Parameters.Add("idUsuarioReal", OleDbType.Integer)
             param.Value = idUsuarioReal
 
             'Nombre
-            param = cmd.Parameters.Add("Nombre", Data.OleDb.OleDbType.VarChar, 50)
+            param = cmd.Parameters.Add("Nombre", OleDbType.VarChar, 50)
             param.Direction = Data.ParameterDirection.Output
 
             'Ejecuto el sp
@@ -625,7 +646,7 @@ Public Class DisplayExpediente
 
             'Windows.Forms.MessageBox.Show(ex.Message.ToString)
             Get_UsuarioReal_from_ID = ""
-            If cn.State <> Data.ConnectionState.Closed Then
+            If cn.State <> ConnectionState.Closed Then
                 cn.Close()
             End If
 
@@ -634,147 +655,148 @@ Public Class DisplayExpediente
     End Function
 
     'Rutina para cargar datos a un DropDownList.
-    Public Shared Sub FillDropDownList(
-                        ByVal ConnString As String,
-                        ByVal MyDropDownList As DropDownList,
-                        ByVal StoredProcedure As String,
-                        ByVal FieldItemData As String,
-                        ByVal FieldToShow As String,
-                        ByVal ShowItemData As Integer)
+    'Public Shared Sub FillDropDownList(
+    '                    ByVal ConnString As String,
+    '                    ByVal MyDropDownList As DropDownList,
+    '                    ByVal StoredProcedure As String,
+    '                    ByVal FieldItemData As String,
+    '                    ByVal FieldToShow As String,
+    '                    ByVal ShowItemData As Integer)
 
-        'Rutina para llenar un DropDownList
+    '    'Rutina para llenar un DropDownList
 
-        Dim cn As New Data.OleDb.OleDbConnection
-        Dim cmd As New Data.OleDb.OleDbCommand
-        Dim dr As Data.OleDb.OleDbDataReader
-        Dim IndexMemo As Integer = -1
-        Dim MyIndice As Integer = 0
+    '    Dim cn As New OleDbConnection
+    '    Dim cmd As New OleDbCommand
+    '    Dim dr As OleDbDataReader
+    '    Dim IndexMemo As Integer = -1
+    '    Dim MyIndice As Integer = 0
 
-        Try
-            MyDropDownList.Items.Clear()
+    '    Try
+    '        MyDropDownList.Items.Clear()
 
-            'Abro la conexión
-            cn.ConnectionString = ConnString
-            cn.Open()
+    '        'Abro la conexión
+    '        cn.ConnectionString = ConnString
+    '        cn.Open()
 
-            'Asigno el Stored Procedure
-            cmd.CommandText = StoredProcedure
-            cmd.Connection = cn
-            cmd.CommandType = Data.CommandType.StoredProcedure
+    '        'Asigno el Stored Procedure
+    '        cmd.CommandText = StoredProcedure
+    '        cmd.Connection = cn
+    '        cmd.CommandType = Data.CommandType.StoredProcedure
 
-            'Ejecuto el sp y obtengo el DataSet
-            dr = cmd.ExecuteReader()
+    '        'Ejecuto el sp y obtengo el DataSet
+    '        dr = cmd.ExecuteReader()
 
-            'Recorro el DataSet
-            If dr.HasRows Then
-                MyIndice = 0
-                While dr.Read()
+    '        'Recorro el DataSet
+    '        If dr.HasRows Then
+    '            MyIndice = 0
+    '            While dr.Read()
 
-                    Dim MyDropDownListItem As New ListItem
+    '                Dim MyDropDownListItem As New ListItem
 
-                    MyDropDownListItem.Text = CStr(dr(FieldToShow))
-                    MyDropDownListItem.Value = CInt(dr(FieldItemData))
+    '                MyDropDownListItem.Text = CStr(dr(FieldToShow))
+    '                MyDropDownListItem.Value = CInt(dr(FieldItemData))
 
-                    If MyDropDownListItem.Value = ShowItemData Then
-                        IndexMemo = MyIndice
-                    End If
+    '                If MyDropDownListItem.Value = ShowItemData Then
+    '                    IndexMemo = MyIndice
+    '                End If
 
-                    MyDropDownList.Items.Add(MyDropDownListItem)
+    '                MyDropDownList.Items.Add(MyDropDownListItem)
 
-                    MyIndice += 1
+    '                MyIndice += 1
 
-                End While
+    '            End While
 
-                MyDropDownList.SelectedIndex = IndexMemo
+    '            MyDropDownList.SelectedIndex = IndexMemo
 
-            End If
+    '        End If
 
-            'Cierro el DataReader, la colección de parámetros, y la conexión
-            dr.Close()
-            cn.Close()
+    '        'Cierro el DataReader, la colección de parámetros, y la conexión
+    '        dr.Close()
+    '        cn.Close()
 
-        Catch ex As Exception
+    '    Catch ex As Exception
 
-            'MsgBox(ex.Message.ToString)
+    '        'MsgBox(ex.Message.ToString)
 
-        End Try
+    '    End Try
 
-    End Sub
+    'End Sub
+
 
     'Sobrecarga de la rutina para cargar datos a un DropDownList. 
     'Incluye la posibilidad de pasar un parámetro al SP.
-    Public Shared Sub FillDropDownList(
-                        ByVal ConnString As String,
-                        ByVal MyDropDownList As DropDownList,
-                        ByVal StoredProcedure As String,
-                        ByVal SPParameter As Integer,
-                        ByVal FieldItemData As String,
-                        ByVal FieldToShow As String,
-                        ByVal ShowItemData As Integer)
+    'Public Shared Sub FillDropDownList(
+    '                    ByVal ConnString As String,
+    '                    ByVal MyDropDownList As DropDownList,
+    '                    ByVal StoredProcedure As String,
+    '                    ByVal SPParameter As Integer,
+    '                    ByVal FieldItemData As String,
+    '                    ByVal FieldToShow As String,
+    '                    ByVal ShowItemData As Integer)
 
-        'Rutina para llenar un DropDownList
+    '    'Rutina para llenar un DropDownList
 
-        Dim cn As New Data.OleDb.OleDbConnection
-        Dim cmd As New Data.OleDb.OleDbCommand
-        Dim param As Data.OleDb.OleDbParameter
-        Dim dr As Data.OleDb.OleDbDataReader
-        Dim IndexMemo As Integer = -1
-        Dim MyIndice As Integer = 0
+    '    Dim cn As New Data.OleDb.OleDbConnection
+    '    Dim cmd As New Data.OleDb.OleDbCommand
+    '    Dim param As Data.OleDb.OleDbParameter
+    '    Dim dr As Data.OleDb.OleDbDataReader
+    '    Dim IndexMemo As Integer = -1
+    '    Dim MyIndice As Integer = 0
 
-        Try
-            MyDropDownList.Items.Clear()
+    '    Try
+    '        MyDropDownList.Items.Clear()
 
-            'Abro la conexión
-            cn.ConnectionString = ConnString
-            cn.Open()
+    '        'Abro la conexión
+    '        cn.ConnectionString = ConnString
+    '        cn.Open()
 
-            'Asigno el Stored Procedure
-            cmd.CommandText = StoredProcedure
-            cmd.Connection = cn
-            cmd.CommandType = Data.CommandType.StoredProcedure
+    '        'Asigno el Stored Procedure
+    '        cmd.CommandText = StoredProcedure
+    '        cmd.Connection = cn
+    '        cmd.CommandType = Data.CommandType.StoredProcedure
 
-            'MySPParameter
-            param = cmd.Parameters.Add("MySPParameter", Data.OleDb.OleDbType.Integer)
-            param.Value = SPParameter
+    '        'MySPParameter
+    '        param = cmd.Parameters.Add("MySPParameter", Data.OleDb.OleDbType.Integer)
+    '        param.Value = SPParameter
 
-            'Ejecuto el sp y obtengo el DataSet
-            dr = cmd.ExecuteReader()
+    '        'Ejecuto el sp y obtengo el DataSet
+    '        dr = cmd.ExecuteReader()
 
-            'Recorro el DataSet
-            If dr.HasRows Then
-                MyIndice = 0
-                While dr.Read()
+    '        'Recorro el DataSet
+    '        If dr.HasRows Then
+    '            MyIndice = 0
+    '            While dr.Read()
 
-                    Dim MyDropDownListItem As New ListItem
+    '                Dim MyDropDownListItem As New ListItem
 
-                    MyDropDownListItem.Text = CStr(dr(FieldToShow))
-                    MyDropDownListItem.Value = CInt(dr(FieldItemData))
+    '                MyDropDownListItem.Text = CStr(dr(FieldToShow))
+    '                MyDropDownListItem.Value = CInt(dr(FieldItemData))
 
-                    If MyDropDownListItem.Value = ShowItemData Then
-                        IndexMemo = MyIndice
-                    End If
+    '                If MyDropDownListItem.Value = ShowItemData Then
+    '                    IndexMemo = MyIndice
+    '                End If
 
-                    MyDropDownList.Items.Add(MyDropDownListItem)
+    '                MyDropDownList.Items.Add(MyDropDownListItem)
 
-                    MyIndice += 1
+    '                MyIndice += 1
 
-                End While
+    '            End While
 
-                MyDropDownList.SelectedIndex = IndexMemo
+    '            MyDropDownList.SelectedIndex = IndexMemo
 
-            End If
+    '        End If
 
-            'Cierro el DataReader, la colección de parámetros, y la conexión
-            dr.Close()
-            cn.Close()
+    '        'Cierro el DataReader, la colección de parámetros, y la conexión
+    '        dr.Close()
+    '        cn.Close()
 
-        Catch ex As Exception
+    '    Catch ex As Exception
 
-            'MsgBox(ex.Message.ToString)
+    '        'MsgBox(ex.Message.ToString)
 
-        End Try
+    '    End Try
 
-    End Sub
+    'End Sub
 
     Private Sub btnLocalizacion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLocalizacion.Click
         PLocalizacion.Visible = True
@@ -798,70 +820,70 @@ Public Class DisplayExpediente
     End Sub
 
     'Rutina para cargar una lista y seleccionar algunos items.
-    Public Sub FillListBox2(
-                                ByVal ConnString As String,
-                                ByVal MyListBox As ListBox,
-                                ByVal StoredProcedure As String,
-                                ByVal idParameter As Integer,
-                                ByVal FieldItemData As String,
-                                ByVal FieldToShow As String,
-                                ByVal FieldSelected As String)
+    'Public Sub FillListBox2(
+    '                            ByVal ConnString As String,
+    '                            ByVal MyListBox As ListBox,
+    '                            ByVal StoredProcedure As String,
+    '                            ByVal idParameter As Integer,
+    '                            ByVal FieldItemData As String,
+    '                            ByVal FieldToShow As String,
+    '                            ByVal FieldSelected As String)
 
-        'Rutina para llenar un combobox
+    '    'Rutina para llenar un combobox
 
-        Dim cn As New Data.OleDb.OleDbConnection
-        Dim cmd As New Data.OleDb.OleDbCommand
-        Dim param As Data.OleDb.OleDbParameter
-        Dim dr As Data.OleDb.OleDbDataReader
-        Dim IndexMemo As Integer = -1
-        Dim MyIndice As Integer = 0
+    '    Dim cn As New Data.OleDb.OleDbConnection
+    '    Dim cmd As New Data.OleDb.OleDbCommand
+    '    Dim param As Data.OleDb.OleDbParameter
+    '    Dim dr As Data.OleDb.OleDbDataReader
+    '    Dim IndexMemo As Integer = -1
+    '    Dim MyIndice As Integer = 0
 
-        Try
-            MyListBox.Items.Clear()
+    '    Try
+    '        MyListBox.Items.Clear()
 
-            'Abro la conexión
-            cn.ConnectionString = ConnString
-            cn.Open()
+    '        'Abro la conexión
+    '        cn.ConnectionString = ConnString
+    '        cn.Open()
 
-            'Asigno el Stored Procedure
-            cmd.CommandText = StoredProcedure
-            cmd.Connection = cn
-            cmd.CommandType = Data.CommandType.StoredProcedure
+    '        'Asigno el Stored Procedure
+    '        cmd.CommandText = StoredProcedure
+    '        cmd.Connection = cn
+    '        cmd.CommandType = Data.CommandType.StoredProcedure
 
-            param = cmd.Parameters.Add("idParameter", Data.OleDb.OleDbType.Integer)
-            param.Value = idParameter
+    '        param = cmd.Parameters.Add("idParameter", Data.OleDb.OleDbType.Integer)
+    '        param.Value = idParameter
 
-            'Ejecuto el sp y obtengo el DataSet
-            dr = cmd.ExecuteReader()
+    '        'Ejecuto el sp y obtengo el DataSet
+    '        dr = cmd.ExecuteReader()
 
-            'Recorro el DataSet
-            If dr.HasRows Then
-                While dr.Read()
+    '        'Recorro el DataSet
+    '        If dr.HasRows Then
+    '            While dr.Read()
 
-                    Dim MyListItem As New ListItem
+    '                Dim MyListItem As New ListItem
 
-                    MyListItem.Text = CStr(dr(FieldToShow))
-                    MyListItem.Value = CInt(dr(FieldItemData))
-                    MyListItem.Selected = CBool(dr(FieldSelected))
+    '                MyListItem.Text = CStr(dr(FieldToShow))
+    '                MyListItem.Value = CInt(dr(FieldItemData))
+    '                MyListItem.Selected = CBool(dr(FieldSelected))
 
-                    MyListBox.Items.Add(MyListItem)
+    '                MyListBox.Items.Add(MyListItem)
 
-                End While
+    '            End While
 
-            End If
+    '        End If
 
-            'Cierro el DataReader, la colección de parámetros, y la conexión
-            dr.Close()
-            cmd.Parameters.Clear()
-            cn.Close()
+    '        'Cierro el DataReader, la colección de parámetros, y la conexión
+    '        dr.Close()
+    '        cmd.Parameters.Clear()
+    '        cn.Close()
 
-        Catch ex As Exception
+    '    Catch ex As Exception
 
-            'MsgBox(ex.Message.ToString)
+    '        'MsgBox(ex.Message.ToString)
 
-        End Try
+    '    End Try
 
-    End Sub
+    'End Sub
 
     Protected Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
 
@@ -875,7 +897,6 @@ Public Class DisplayExpediente
         btnAgregar.Enabled = False
         btnEditar.Enabled = False
         btnBorrar.Enabled = False
-        btnCaratula.Enabled = False
         btnCaratula2.Enabled = False
         btnLomo.Enabled = False
 
@@ -951,7 +972,6 @@ Public Class DisplayExpediente
         btnAgregar.Enabled = False
         btnEditar.Enabled = False
         btnBorrar.Enabled = False
-        btnCaratula.Enabled = False
         btnCaratula2.Enabled = False
         btnLomo.Enabled = False
 
@@ -975,7 +995,6 @@ Public Class DisplayExpediente
         btnAgregar.Enabled = False
         btnEditar.Enabled = False
         btnBorrar.Enabled = False
-        btnCaratula.Enabled = False
         btnCaratula2.Enabled = False
         btnLomo.Enabled = False
 
@@ -1004,7 +1023,6 @@ Public Class DisplayExpediente
         btnAgregar.Enabled = True
         btnEditar.Enabled = True
         btnBorrar.Enabled = True
-        btnCaratula.Enabled = True
         btnCaratula2.Enabled = True
         btnLomo.Enabled = True
 
@@ -1064,19 +1082,18 @@ Public Class DisplayExpediente
             'Añadiendo un record nuevo
             If Session("ExpedienteStatus") = 1 Then
 
-                'Debo tratar aparte las fechas que en la version convencional 
-                'de la aplicacion tienen checkmark
+                'Debo tratar aparte las fechas que en la version convencional de la aplicacion tienen checkmark
 
                 If Trim(txtFechaCierre.Text) = "" Then
-                    MyFechaCierre = CDate("1/1/1900")
+                    MyFechaCierre = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 Else
-                    MyFechaCierre = CDate(Trim(txtFechaCierre.Text))
+                    MyFechaCierre = DateTime.ParseExact(Trim(txtFechaCierre.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 End If
 
                 If Trim(txtFechaPaseBajaHistorico.Text) = "" Then
-                    MyFechaPaseBajaHistorico = CDate("1/1/1900")
+                    MyFechaPaseBajaHistorico = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 Else
-                    MyFechaPaseBajaHistorico = CDate(Trim(txtFechaPaseBajaHistorico.Text))
+                    MyFechaPaseBajaHistorico = DateTime.ParseExact(Trim(txtFechaPaseBajaHistorico.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 End If
 
                 'IDExpedienteInsertado = Expedientes_INSERT( _
@@ -1110,7 +1127,7 @@ Public Class DisplayExpediente
                     CStr(IIf(Trim(txtExpediente.Text) = "", "?", Trim(txtExpediente.Text))),
                     Trim(txtNombre.Text),
                     CInt(IIf(Trim(txtNoDeFojas.Text) = "", "0", Trim(txtNoDeFojas.Text))),
-                    CDate(Trim(txtFechaApertura.Text)),
+                    DateTime.ParseExact(Trim(txtFechaApertura.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture),
                     MyFechaCierre,
                     IIf(Trim(txtFechaCierre.Text) = "", False, True),
                     MyFechaPaseBajaHistorico,
@@ -1189,27 +1206,27 @@ Public Class DisplayExpediente
                     'Debo tratar aparte las fechas 
 
                     If Trim(txtFechaDeClasificacion.Text) = "" Then
-                        MyFechaDeClasificacion = CDate("1/1/1900")
+                        MyFechaDeClasificacion = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     Else
-                        MyFechaDeClasificacion = CDate(Trim(txtFechaDeClasificacion.Text))
+                        MyFechaDeClasificacion = DateTime.ParseExact(Trim(txtFechaDeClasificacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     End If
 
                     If Trim(txtFechaPropuestaDesclasificacion.Text) = "" Then
-                        MyFechaPropuestaDesclasificacion = CDate("1/1/1900")
+                        MyFechaPropuestaDesclasificacion = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     Else
-                        MyFechaPropuestaDesclasificacion = CDate(Trim(txtFechaPropuestaDesclasificacion.Text))
+                        MyFechaPropuestaDesclasificacion = DateTime.ParseExact(Trim(txtFechaPropuestaDesclasificacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     End If
 
                     If Trim(txtNuevaFechaPropuestaDesclasificacion.Text) = "" Then
-                        MyNuevaFechaPropuestaDesclasificacion = CDate("1/1/1900")
+                        MyNuevaFechaPropuestaDesclasificacion = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     Else
-                        MyNuevaFechaPropuestaDesclasificacion = CDate(Trim(txtNuevaFechaPropuestaDesclasificacion.Text))
+                        MyNuevaFechaPropuestaDesclasificacion = DateTime.ParseExact(Trim(txtNuevaFechaPropuestaDesclasificacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     End If
 
                     If Trim(txtFechaDesclasificacion.Text) = "" Then
-                        MyFechaDesclasificacion = CDate("1/1/1900")
+                        MyFechaDesclasificacion = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     Else
-                        MyFechaDesclasificacion = CDate(Trim(txtFechaDesclasificacion.Text))
+                        MyFechaDesclasificacion = DateTime.ParseExact(Trim(txtFechaDesclasificacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     End If
 
                     IDExpedienteInsertado2 = Expedientes_UPDATE_2(
@@ -1322,15 +1339,15 @@ Public Class DisplayExpediente
                 '        CType(cbCalidadDocumental.SelectedItem, ComboBoxLine).LineItemData)
 
                 If Trim(txtFechaCierre.Text) = "" Then
-                    MyFechaCierre = CDate("1/1/1900")
+                    MyFechaCierre = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 Else
-                    MyFechaCierre = CDate(Trim(txtFechaCierre.Text))
+                    MyFechaCierre = DateTime.ParseExact(Trim(txtFechaCierre.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 End If
 
                 If Trim(txtFechaPaseBajaHistorico.Text) = "" Then
-                    MyFechaPaseBajaHistorico = CDate("1/1/1900")
+                    MyFechaPaseBajaHistorico = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 Else
-                    MyFechaPaseBajaHistorico = CDate(Trim(txtFechaPaseBajaHistorico.Text))
+                    MyFechaPaseBajaHistorico = DateTime.ParseExact(Trim(txtFechaPaseBajaHistorico.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 End If
 
                 IDExpedienteEditado = Expedientes_UPDATE(
@@ -1339,7 +1356,7 @@ Public Class DisplayExpediente
                     CStr(IIf(Trim(txtExpediente.Text) = "", "?", Trim(txtExpediente.Text))),
                     Trim(txtNombre.Text),
                     CInt(IIf(Trim(txtNoDeFojas.Text) = "", "0", Trim(txtNoDeFojas.Text))),
-                    CDate(Trim(txtFechaApertura.Text)),
+                    DateTime.ParseExact(Trim(txtFechaApertura.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture),
                     MyFechaCierre,
                     IIf(Trim(txtFechaCierre.Text) = "", False, True),
                     MyFechaPaseBajaHistorico,
@@ -1352,7 +1369,7 @@ Public Class DisplayExpediente
                      txtCaja.Text,
                      txtAnaquel.Text,
                      txtPasillo.Text,
-                    CDate(Trim(txtFechaDeCreacion.Text)),
+                    DateTime.ParseExact(Trim(txtFechaDeCreacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture),
                     txtRFC.Text,
                     txtTipo.Text,
                     CInt(Session("IDUsuarioReal")),
@@ -1421,27 +1438,27 @@ Public Class DisplayExpediente
 
 
                     If Trim(txtFechaDeClasificacion.Text) = "" Then
-                        MyFechaDeClasificacion = CDate("1/1/1900")
+                        MyFechaDeClasificacion = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     Else
-                        MyFechaDeClasificacion = CDate(Trim(txtFechaDeClasificacion.Text))
+                        MyFechaDeClasificacion = DateTime.ParseExact(Trim(txtFechaDeClasificacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     End If
 
                     If Trim(txtFechaPropuestaDesclasificacion.Text) = "" Then
-                        MyFechaPropuestaDesclasificacion = CDate("1/1/1900")
+                        MyFechaPropuestaDesclasificacion = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     Else
-                        MyFechaPropuestaDesclasificacion = CDate(Trim(txtFechaPropuestaDesclasificacion.Text))
+                        MyFechaPropuestaDesclasificacion = DateTime.ParseExact(Trim(txtFechaPropuestaDesclasificacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     End If
 
                     If Trim(txtNuevaFechaPropuestaDesclasificacion.Text) = "" Then
-                        MyNuevaFechaPropuestaDesclasificacion = CDate("1/1/1900")
+                        MyNuevaFechaPropuestaDesclasificacion = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     Else
-                        MyNuevaFechaPropuestaDesclasificacion = CDate(Trim(txtNuevaFechaPropuestaDesclasificacion.Text))
+                        MyNuevaFechaPropuestaDesclasificacion = DateTime.ParseExact(Trim(txtNuevaFechaPropuestaDesclasificacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     End If
 
                     If Trim(txtFechaDesclasificacion.Text) = "" Then
-                        MyFechaDesclasificacion = CDate("1/1/1900")
+                        MyFechaDesclasificacion = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     Else
-                        MyFechaDesclasificacion = CDate(Trim(txtFechaDesclasificacion.Text))
+                        MyFechaDesclasificacion = DateTime.ParseExact(Trim(txtFechaDesclasificacion.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture)
                     End If
 
                     IDExpedienteEditado2 = Expedientes_UPDATE_2(
@@ -1465,10 +1482,6 @@ Public Class DisplayExpediente
                         ddlstTramite.SelectedItem.Value,
                         ddlstConcentracion.SelectedItem.Value,
                         ddlstDestinoFinal.SelectedItem.Value)
-
-
-
-
 
                     If IDExpedienteEditado2 = 0 Then
 
@@ -1585,15 +1598,16 @@ Public Class DisplayExpediente
                 If Expedientes_DELETE(Session("idExpedienteActivo")) <> Session("idExpedienteActivo") Then
                     'Throw New ApplicationException("Se produjo un error al intentar borrar Expedientes o sus relaciones")
                 Else
-                    If Session("NextRightActivo") > 0 Then
-                        FillExpediente(Session("NextRightActivo"))
-                    Else
-                        If Session("NextLeftActivo") > 0 Then
-                            FillExpediente(Session("NextLeftActivo"))
-                        Else
-                            FillExpediente(-1)
-                        End If
-                    End If
+                    FillExpediente(-1)
+                    'If Session("NextRightActivo") > 0 Then
+                    '    FillExpediente(Session("NextRightActivo"))
+                    'Else
+                    '    If Session("NextLeftActivo") > 0 Then
+                    '        FillExpediente(Session("NextLeftActivo"))
+                    '    Else
+                    '        FillExpediente(-1)
+                    '    End If
+                    'End If
                 End If
 
             End If
@@ -1619,7 +1633,6 @@ Public Class DisplayExpediente
             btnAgregar.Enabled = True
             btnEditar.Enabled = True
             btnBorrar.Enabled = True
-            btnCaratula.Enabled = True
             btnCaratula2.Enabled = True
             btnLomo.Enabled = True
 
@@ -2560,19 +2573,26 @@ Public Class DisplayExpediente
                 'debo heredar los campos de Atributos del nodo correspondiente en el Cuadro
                 If Session("ExpedienteStatus") = 1 Then
 
-                    FillDropDownList(Session("UsuarioVirtualConnString"), ddlstStatus, "ClasificacionStatus_SELECTALL", "idClasificacionStatus", "Descripcion", CInt(Session("idInformacionClasificadaActivo")))
-                    FillDropDownList(Session("UsuarioVirtualConnString"), ddlstTramite, "PlazosDeConservacionTramite_SELECTALL", "idPlazosDeConservacionTramite", "Descripcion", CInt(Session("idPlazoDeConservacionTramiteActivo")))
-                    FillDropDownList(Session("UsuarioVirtualConnString"), ddlstConcentracion, "PlazosDeConservacionConcentracion_SELECTALL", "idPlazosDeConservacionConcentracion", "Descripcion", CInt(Session("idPlazoDeConservacionConcentracionActivo")))
-                    FillDropDownList(Session("UsuarioVirtualConnString"), ddlstDestinoFinal, "DestinoFinal_SELECTALL", "idDestinoFinal", "Descripcion", CInt(Session("idDestinoFinalActivo")))
+                    'FillDropDownList(Session("UsuarioVirtualConnString"), ddlstStatus, "ClasificacionStatus_SELECTALL", "idClasificacionStatus", "Descripcion", CInt(Session("idInformacionClasificadaActivo")))
+                    Accesorios.CargaDropDownList(ddlstStatus, Session("UsuarioVirtualConnString"), "ClasificacionStatus_SELECTALL", Nothing, "Descripcion", "idClasificacionStatus", CInt(Session("idInformacionClasificadaActivo")))
+                    'FillDropDownList(Session("UsuarioVirtualConnString"), ddlstTramite, "PlazosDeConservacionTramite_SELECTALL", "idPlazosDeConservacionTramite", "Descripcion", CInt(Session("idPlazoDeConservacionTramiteActivo")))
+                    Accesorios.CargaDropDownList(ddlstTramite, Session("UsuarioVirtualConnString"), "PlazosDeConservacionTramite_SELECTALL", Nothing, "Descripcion", "idPlazosDeConservacionTramite", CInt(Session("idPlazoDeConservacionTramiteActivo")))
+                    'FillDropDownList(Session("UsuarioVirtualConnString"), ddlstConcentracion, "PlazosDeConservacionConcentracion_SELECTALL", "idPlazosDeConservacionConcentracion", "Descripcion", CInt(Session("idPlazoDeConservacionConcentracionActivo")))
+                    Accesorios.CargaDropDownList(ddlstConcentracion, Session("UsuarioVirtualConnString"), "PlazosDeConservacionConcentracion_SELECTALL", Nothing, "Descripcion", "idPlazosDeConservacionConcentracion", CInt(Session("idPlazoDeConservacionConcentracionActivo")))
+                    'FillDropDownList(Session("UsuarioVirtualConnString"), ddlstDestinoFinal, "DestinoFinal_SELECTALL", "idDestinoFinal", "Descripcion", CInt(Session("idDestinoFinalActivo")))
+                    Accesorios.CargaDropDownList(ddlstDestinoFinal, Session("UsuarioVirtualConnString"), "DestinoFinal_SELECTALL", Nothing, "Descripcion", "idDestinoFinal", CInt(Session("idDestinoFinalActivo")))
 
                     'Si estoy agregando Expediente, debo asegurarme de llenar los checkmarks
                     'de Valor Documental, pero como todavía no tengo
                     'idExpediente no puedo agregar records en la tabla ValorDocumental_Expedientes_Relaciones,
                     'así que debo copiarlos del idClasificación propuesto.
 
-                    FillListBox2(Session("UsuarioVirtualConnString"), lbxValorDocumental, "CargaValorDocumental", Session("idClasificacionActivo"), "idValorDocumental", "Descripcion", "Activo")
-                    FillListBox2(Session("UsuarioVirtualConnString"), lbxFundamentosLegalesDestinoFinal, "CargaFundamentosLegalesDeDestinoFinal", Session("idClasificacionActivo"), "idFundamentoLegalDeDestinoFinal", "Descripcion", "Activo")
-                    FillListBox2(Session("UsuarioVirtualConnString"), lbFundamentosLegalesClasificacion, "CargaFundamentosLegalesDeClasificacion", Session("idClasificacionActivo"), "idFundamentosLegalesDeClasificacion", "Descripcion", "Activo")
+                    'FillListBox2(Session("UsuarioVirtualConnString"), lbxValorDocumental, "CargaValorDocumental", Session("idClasificacionActivo"), "idValorDocumental", "Descripcion", "Activo")
+                    Accesorios.CargaListBox(lbxValorDocumental, Session("UsuarioVirtualConnString"), "CargaValorDocumental", Session("idClasificacionActivo"), "Descripcion", "idValorDocumental", "Activo")
+                    'FillListBox2(Session("UsuarioVirtualConnString"), lbxFundamentosLegalesDestinoFinal, "CargaFundamentosLegalesDeDestinoFinal", Session("idClasificacionActivo"), "idFundamentoLegalDeDestinoFinal", "Descripcion", "Activo")
+                    Accesorios.CargaListBox(lbxFundamentosLegalesDestinoFinal, Session("UsuarioVirtualConnString"), "CargaFundamentosLegalesDeDestinoFinal", Session("idClasificacionActivo"), "Descripcion", "idFundamentoLegalDeDestinoFinal", "Activo")
+                    'FillListBox2(Session("UsuarioVirtualConnString"), lbFundamentosLegalesClasificacion, "CargaFundamentosLegalesDeClasificacion", Session("idClasificacionActivo"), "idFundamentosLegalesDeClasificacion", "Descripcion", "Activo")
+                    Accesorios.CargaListBox(lbFundamentosLegalesClasificacion, Session("UsuarioVirtualConnString"), "CargaFundamentosLegalesDeClasificacion", Session("idClasificacionActivo"), "Descripcion", "idFundamentosLegalesDeClasificacion", "Activo")
                 End If
             End If
             Return True
@@ -2754,10 +2774,10 @@ Public Class DisplayExpediente
     Private Sub DataGrid2_ItemCommand(source As Object, e As DataGridCommandEventArgs) Handles DataGrid2.ItemCommand
         If Not ImagenNuevaVentana Then
             'Llamada a dll de accesorios.
-            Accesorios.DescargaArchivo(Response, Path.Combine(DirImagenes, e.Item.Cells(2).Text), LongitudMaximaArchivoDescarga)
+            Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(Path.Combine(DirImagenes, e.Item.Cells(2).Text))}")
         Else
             'Llamada a página extra para mostrar imagen. Necesario activar Pop-Ups en cliente.
-            Dim url As String = $"DescargaArchivo.aspx?FN={e.Item.Cells(2).Text}"
+            Dim url As String = $"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(Path.Combine(DirImagenes, e.Item.Cells(2).Text))}"
             ClientScript.RegisterClientScriptBlock(Me.GetType(), "script", "open('" & url & "');", True)
         End If
     End Sub
@@ -2793,7 +2813,7 @@ Public Class DisplayExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf", True)
+            Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(MyFileName)}&Nombre=Caratula.pdf")
 
         End If
 
@@ -2822,7 +2842,7 @@ Public Class DisplayExpediente
             Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
             Reporte.Dispose()
 
-            Accesorios.DescargaArchivo(Me.Response, MyFileName, LongitudMaximaArchivoDescarga, "lomoslote.pdf", True)
+            Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(MyFileName)}&Nombre=Lommo.pdf")
 
         End If
 
@@ -2832,4 +2852,7 @@ Public Class DisplayExpediente
         Response.Redirect("./EscogeCuadro.aspx")
     End Sub
 
+    Protected Sub BtnGestion_Click(sender As Object, e As EventArgs) Handles btnGestion.Click
+        Response.Redirect("./ExpedienteDocumentosGestion.aspx")
+    End Sub
 End Class

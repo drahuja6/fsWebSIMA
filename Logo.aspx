@@ -1,31 +1,33 @@
 <%@ Page Language="vb" AutoEventWireup="false" Codebehind="Logo.aspx.vb" Inherits="fsWebS_SEN.Logo" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head runat="server">
+<!doctype html>
+<html>
+	<head>
 		<title>Logo</title>
-		<style type="text/css">
-			.etiqueta-pequena {  
-				font-size: xx-small;
-				font-weight:300;
-				font-family: Arial, Helvetica, sans-serif;
-				color:navy;
-				vertical-align: bottom;
-            }
-		</style> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link href="Content/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body>
 		<form id="form1" runat="server">
-		<div>
-			<asp:Panel ID="Panel1" runat="server">
-                <asp:Panel ID="Panel2" runat="server">
-		            <asp:Image ID="logoFullServiceImg" runat="server" src="LogoFSM.png" Height="75px" Width="75px" AlternateText="Full Service de México, S.A. de C.V." />
-					<asp:Image ID="logoCliente" runat="server" src="LogoSenado-LXV.png" Height="75px" Width="75px" AlternateText="Full Service de México, S.A. de C.V. - Cliente" />
-					<asp:Label class="etiqueta-pequena" ID="versionLabel" runat="server"/>
-                </asp:Panel>
-			</asp:Panel>
-		</div>
+			<div class="card border-0" style="margin-left: 20px; margin-top: 10px;">
+				<div class="row no-gutters">
+					<div class="row">
+						<div class="col-auto">
+							<asp:Image CssClass="rounded" ID="logoFullServiceImg" runat="server" src="Images/LogoFSM.png" Height="75px" Width="75px" AlternateText="Full Service de México, S.A. de C.V." />
+							<asp:Image CssClass="rounded" ID="logoCliente" runat="server" src="Images/LogoSenado-LXV.png" Height="75px" Width="75px" AlternateText="Full Service de México, S.A. de C.V. - Cliente" />
+						</div>
+					</div>
+					<div class="col">
+						<div class="card-block px-0">
+							<p class="card-text">SIMA Senado</p>
+							<asp:Label ID="versionLabel" runat="server" CssClass="text-muted small float-left" />
+						</div>
+					</div>
+				</div>
+			</div>
 	    </form>
+		<script src="Scripts/jquery-3.6.0.min.js"></script>
+		<script src="Scripts/popper.min.js"></script>
+		<script src="Scripts/bootstrap.min.js"></script>
 	</body>
 </html>
