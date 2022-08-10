@@ -1,17 +1,10 @@
 ﻿Imports System.Data.SqlClient
 Imports System.IO
-Imports System.Collections.Generic
 
 Imports fsSimaServicios
-Imports System.Web.Services
 
 Public Class ExpedienteDocumentosGestion
     Inherits Page
-
-    Public ListaSecciones As DataTable
-
-    'Private _clienteSQL As ClienteSQL
-    Private _filtro As Hashtable
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 
@@ -51,15 +44,23 @@ Public Class ExpedienteDocumentosGestion
 
             idGestion = Convert.ToInt32(params(6).Value)
 
-            _filtro = New Hashtable()
             ViewState.Add("Gestion", idGestion)
             ViewState.Add("Seccion", 0)
 
-        End If
+            Dim params1(0) As SqlParameter
+            params1(0) = New SqlParameter("@IdGestion", ViewState("Gestion"))
 
-        Dim params1(0) As SqlParameter
-        params1(0) = New SqlParameter("@IdGestion", ViewState("Gestion"))
-        ListaSecciones = clienteSQL.ObtenerRegistrosSql(params1, "Gestion_CargaSecciones").Tables(0)
+            Dim ds As DataSet = clienteSQL.ObtenerRegistrosSql(params1, "Gestion_CargaSecciones")
+            ds.Tables(0).TableName = "Secciones"
+
+            ddlSeccionesGestion.DataSource = ds
+            ddlSeccionesGestion.DataMember = "Secciones"
+            ddlSeccionesGestion.DataValueField = "Id"
+            ddlSeccionesGestion.DataTextField = "Descripcion"
+
+            ddlSeccionesGestion.DataBind()
+
+        End If
 
         CargaGrids(ViewState("Seccion"))
 
@@ -142,7 +143,8 @@ Public Class ExpedienteDocumentosGestion
         End If
     End Sub
 
-    Protected Sub FiltrarSeccion_IndexChanged(sender As Object, e As EventArgs)
+    Protected Sub FiltrarSeccion_IndexChanged(sender As Object, e As EventArgs) Handles ddlSeccionesGestion.SelectedIndexChanged
+
         Dim dd As DropDownList = CType(sender, DropDownList)
 
         ViewState("Seccion") = Convert.ToInt32(dd.SelectedValue)
@@ -189,18 +191,7 @@ Public Class ExpedienteDocumentosGestion
                 End If
             Next
 
-            For i = 0 To dgvDocsAsignados.Rows.Count - 1
-                dgvDocsAsignados.Rows(i).Cells(2).Text = ""
-            Next
-
-
         End If
-    End Sub
-
-    Protected Sub FiltrarSeccion_PreRender(sender As Object, e As EventArgs)
-        Dim dd As DropDownList = CType(sender, DropDownList)
-        dd.SelectedValue = ViewState("Seccion")
-
     End Sub
 
 End Class

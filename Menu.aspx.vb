@@ -42,8 +42,6 @@ Public Class Menu
         'Permiso de acceso a herramientas.
         If Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = "USOC" Or Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = "SUPERUSER" Then    'Perfil usuario administrador
             pnlHerramientas.Visible = True
-            lnkVerificaArchivos.Visible = True
-            lnkHerramientasPdf.Visible = False
         End If
 
         LlenaEVT(Today())

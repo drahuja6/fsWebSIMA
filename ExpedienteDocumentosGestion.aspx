@@ -12,11 +12,14 @@
             .id {
                 width:1%;
             }
+            .btn-success:disabled {
+                background-color:gainsboro;
+            }
         </style>
 	</head>
     <body>
         <form id="Form1" runat="server">
-            <div class="container-fluid" margin-left: 20px; margin-top: 10px;">
+            <div class="container-fluid" style="margin-left: 20px; margin-top: 10px;">
               <div class="row">
                   <div class="col-12">
                       <h4><asp:Label ID="lblGestion" runat="server" /></h4>
@@ -39,7 +42,7 @@
               <div class="row">
                 <div class="col-12 mt-3">
                     <h6>Documentos disponibles para vincular</h6>
-                    <asp:GridView ID="dgvDocsDisponibles" runat="server" AutoGenerateColumns="False" CssClass="table table-borderless table-striped table-responsive-md table-hover border-0 drag_drop_grid" ViewStateMode="Disabled">
+                    <asp:GridView ID="dgvDocsDisponibles" runat="server" AutoGenerateColumns="False" CssClass="table table-borderless table-striped table-responsive-md table-hover border-0 drag_drop_grid" ViewStateMode="Enabled">
                         <SelectedRowStyle Font-Bold="True" />
                         <AlternatingRowStyle Font-Size="small" />
                         <RowStyle Font-Size="small" />
@@ -49,37 +52,33 @@
                             <asp:BoundField Visible="True" DataField="Descripcion" HeaderText="Descripción" />
                             <asp:TemplateField HeaderText="Imagen" HeaderStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
-                                    <asp:Button ID="btnDescargaImagenDisponible" CommandName="DescargaImagen" CommandArgument="<%# Container.DisplayIndex %>" runat="server" Text="..." ToolTip='<%# Bind("NombreArchivo") %>' CssClass="btn btn-outline-success btn-sm" />
+                                    <asp:Button ID="btnDescargaImagenDisponible" CommandName="DescargaImagen" CommandArgument="<%# Container.DisplayIndex %>" runat="server" Text="..." ToolTip='<%# Bind("NombreArchivo") %>' CssClass="btn btn-success btn-sm" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                 </div>
-                <div class="col-12 align-self-center">
+              </div>
+              <div class="row">
+                <div class="col-4 align-self-center">
                     <asp:Button ID="btnAsigna" runat="server" Text="Asigna" Enabled="false" CssClass="btn btn-primary" />
                     <asp:Button ID="btnDesasigna" runat="server" Text="Desasigna" Enabled="false" CssClass="btn btn-primary" />
                 </div>
+                <div class="col-6">
+                    <asp:DropDownList ID="ddlSeccionesGestion" runat="server" AutoPostBack="true" />
+                </div>
+              </div>
+              <div class="row">
                 <div class="col-12 mt-3">
                     <h6>Detalle de documentos en la gestión</h6>
                     <asp:GridView ID="dgvDocsAsignados" runat="server" AutoGenerateColumns="False" ViewStateMode="Disabled" CssClass="table table-borderless table-striped table-responsive-sm table-hover border-0 drag_drop_grid">
                         <SelectedRowStyle Font-Bold="True" />
-                        <AlternatingRowStyle Font-Size="small" />
-                        <RowStyle Font-Size="small" />
+                        <AlternatingRowStyle Font-Size="Medium" />
+                        <RowStyle Font-Size="Medium" />
                         <Columns>
                             <asp:BoundField DataField="idGestionDocumentosInstancia" HeaderStyle-CssClass="invisible id" ItemStyle-CssClass="invisible id" />
-                            <asp:CommandField SelectText=">" ShowSelectButton="True" ItemStyle-CssClass="btn btn-link btn-lg" />
-                            <asp:TemplateField HeaderText="Sección" SortExpression="Seccion">
-                                <HeaderTemplate>
-                                    Sección
-                                    <asp:DropDownList runat="server" ID="ddlSeccion" AutoPostBack="true" DataTextField="Seccion" DataSource='<%# ListaSecciones %>' DataValueField="Id" OnSelectedIndexChanged="FiltrarSeccion_IndexChanged" OnPreRender="FiltrarSeccion_PreRender" />
-                                </HeaderTemplate>
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Seccion") %>'></asp:TextBox>
-                                </EditItemTemplate>
-                                <ItemTemplate>
-                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("Seccion") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                            <asp:BoundField DataField="Seccion" ItemStyle-CssClass="invisible id" ItemStyle-Width="0px" />
+                            <asp:CommandField SelectText=">" ShowSelectButton="True" ItemStyle-CssClass="btn btn-link btn-lg text-decoration-none" />
                             <asp:BoundField Visible="True" DataField="CodigoDocumento" HeaderText="Código documento" />
                             <asp:BoundField Visible="True" DataField="Descripcion" HeaderText="Descripción" />
                             <asp:CheckBoxField Visible="True" DataField="Obligatorio" HeaderText="Obligatorio" ItemStyle-HorizontalAlign="Center" >
@@ -87,14 +86,14 @@
                             </asp:CheckBoxField>                            
                             <asp:TemplateField HeaderText="Imagen" HeaderStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
-                                    <asp:Button ID="btnDescargaImagen" CommandName="DescargaImagen" CommandArgument="<%# Container.DisplayIndex %>" runat="server" Text="..." ToolTip='<%# Bind("NombreArchivo") %>' Enabled='<%# Bind("ArchivoAsignado") %>' CssClass="btn btn-outline-success btn-sm" />
+                                    <asp:Button ID="btnDescargaImagen" CommandName="DescargaImagen" CommandArgument="<%# Container.DisplayIndex %>" runat="server" Text="..." ToolTip='<%# Bind("NombreArchivo") %>' Enabled='<%# Bind("ArchivoAsignado") %>' CssClass="btn btn-success btn-sm" />
                                 </ItemTemplate>
                             </asp:TemplateField>
-                         </Columns>
+                            </Columns>
                     </asp:GridView>
                 </div>
             </div>
-           </div>
+            <</div>
         </form>
 	    <script src="Scripts/jquery-3.6.0.min.js"></script>
 	    <script src="Scripts/popper.min.js"></script>
@@ -123,7 +122,7 @@
                                 data: '{asignacion: ' + JSON.stringify(asignacion) + '}',
                                 contentType: "application/json; charset=utf-8",
                                 dataType: "json",
-                                success: location.reload()
+                                success: __doPostBack('<%= ddlSeccionesGestion.UniqueID %>')
                             });
                             procesado = true;
                         }

@@ -49,7 +49,7 @@
 							<asp:HyperLink ID="expedientesLink" runat="server" NavigateUrl="~/BusquedaExpedientes.aspx" Target="principal" tabIndex="1" Text=" Buscar/Editar" ToolTip="Busca expedientes para consulta o edición" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
 						</li>
 						<li>
-							<asp:HyperLink ID="lnkExpedientesGestionRRHH" runat="server" NavigateUrl="~/BusquedaExpedientesGestionRRHH.aspx" Target="principal" tabIndex="1" Text=" Expedientes RRHH" ToolTip="Busca expedientes para la gestión de RRHH" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
+							<asp:HyperLink ID="lnkExpedientesGestionRRHH" runat="server" NavigateUrl="~/BusquedaExpedientesGestionRRHH.aspx" Target="principal" tabIndex="1" Text=" Recursos humanos" ToolTip="Busca expedientes para la gestión de RRHH" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
 						</li>
 						<li>
 							<asp:HyperLink id="auditoriaLink" tabIndex="2" runat="server" Target="principal" NavigateUrl="TrabajoRealizado.aspx" Text=" Auditoría" ToolTip="Auditoría de trabajo realizado" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
@@ -84,10 +84,13 @@
 					<div id="collapseHerramientas" class="collapse">
 						<ul class="lista-menu ml-n4 small" id="menuHerramientas">
 							<li>
-								<asp:HyperLink id="lnkVerificaArchivos" runat="server" Target="principal" NavigateUrl="~/VerificarArchivos.aspx" tabIndex="9" Text=" Verifica archivos" ToolTip="Verifica la existencia de archivo de imágenes" Font-Underline="false" Visible="false" CssClass="fas fa-dot-circle" Font-Bold="false" />
+								<a class="fas fa-dot-circle text-decoration-none font-weight-light" target="principal" href="VerificarArchivos.aspx" tabindex="9" data-toggle="tooltip" data-placement="top" title="Verifica la existencia de archivo de imágenes"> Verifica archivos</a>
 							</li>
 							<li>
-								<asp:HyperLink id="lnkHerramientasPdf" runat="server" Target="principal" NavigateUrl="~/HerramientasPdf.aspx" tabIndex="10" Text=" Herramientas PDF" ToolTip="Procesos PDF" Font-Underline="false" Visible="false" CssClass="fas fa-dot-circle" Font-Bold="false" />
+								<a class="fas fa-dot-circle text-decoration-none font-weight-light" target="principal" href="HerramientasPdf.aspx" tabindex="10" data-toggle="tooltip" data-placement="top" title="Procesos PDF" style="visibility:hidden"> Herramientas PDF</a>
+							</li>
+							<li>
+								<a class="btn btn-link" target="principal" href="Expediente.aspx" style="visibility:hidden">Expediente</a>
 							</li>
 						</ul>
 					</div>
