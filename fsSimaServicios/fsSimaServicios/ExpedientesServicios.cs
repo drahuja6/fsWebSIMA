@@ -180,17 +180,20 @@ namespace fsSimaServicios
 
             if (ds != null && ds.Tables.Count > 0)
             {
-                TotalExpedientesBD = (int)ds.Tables[0].Rows[0]["TotalExpedientesBD"];
-                ExpedientesConArchivoBD = (int)ds.Tables[0].Rows[0]["ExpedientesConArchivoBD"];
-                ExpedientesSinArchivoBD = (int)ds.Tables[0].Rows[0]["ExpedientesSinArchivoBD"];
-                ArchivosLocalizadosFS = (int)ds.Tables[0].Rows[0]["ArchivosLocalizadosFS"];
-                ArchivosNoLocalizadosFS = (int)ds.Tables[0].Rows[0]["ArchivosNoLocalizadosFS"];
-                ArchivosSinDigitalizacion = (int)ds.Tables[0].Rows[0]["SinDigitalizacion"];
-                ArchivosConDigitalizacion = (int)ds.Tables[0].Rows[0]["ConDigitalizacion"];
-                ImagenesEsperadas = (int)ds.Tables[0].Rows[0]["TotalImagenes"];
-                TotalHojasBD = (int)ds.Tables[0].Rows[0]["TotalHojasBD"];
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    TotalExpedientesBD = (int)ds.Tables[0].Rows[0]["TotalExpedientesBD"];
+                    ExpedientesConArchivoBD = (int)ds.Tables[0].Rows[0]["ExpedientesConArchivoBD"];
+                    ExpedientesSinArchivoBD = (int)ds.Tables[0].Rows[0]["ExpedientesSinArchivoBD"];
+                    ArchivosLocalizadosFS = (int)ds.Tables[0].Rows[0]["ArchivosLocalizadosFS"];
+                    ArchivosNoLocalizadosFS = (int)ds.Tables[0].Rows[0]["ArchivosNoLocalizadosFS"];
+                    ArchivosSinDigitalizacion = (int)ds.Tables[0].Rows[0]["SinDigitalizacion"];
+                    ArchivosConDigitalizacion = (int)ds.Tables[0].Rows[0]["ConDigitalizacion"];
+                    ImagenesEsperadas = (int)ds.Tables[0].Rows[0]["TotalImagenes"];
+                    TotalHojasBD = (int)ds.Tables[0].Rows[0]["TotalHojasBD"];
 
-                Detalle = ds.Tables[1];
+                    Detalle = ds.Tables[1];
+                }
             }
         }
     }

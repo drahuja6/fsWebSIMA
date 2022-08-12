@@ -23,8 +23,11 @@
     <form id="form1" runat="server" onsubmit="setHourglass()">
 		<div class="container-fluid ml-2 mt-1">
 			<div class="row align-items-center mt-2 ml-1">
-				<h4>Búsqueda de expedientes RRHH</h4>
+				<h4>Búsqueda de expedientes Recursos humanos</h4>			
             </div>
+			<div class="row ml-2">
+				<h6>Datos del empleado:</h6>
+			</div>
             <div class="row m-2"></div>
 			<table style="border-collapse:collapse; ">
 				<tr>
@@ -101,26 +104,26 @@
 							</tr>
 							<tr>
 								<td colspan="4">
-									<asp:label id="Label5" runat="server" Text="Consecutivo expediente:" CssClass="form-control-sm"/>
+									<asp:label id="Label5" runat="server" Text="Consecutivo expediente:" CssClass="form-control-sm invisible"/>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<asp:label id="Label6" runat="server" CssClass="form-control-sm" Text="Desde:" />
+									<asp:label id="Label6" runat="server" CssClass="form-control-sm invisible" Text="Desde:" />
 								</td>
 								<td colspan="3">
-									<asp:textbox id="txtExpInic" runat="server" CssClass="form-control-sm" />
+									<asp:textbox id="txtExpInic" runat="server" CssClass="form-control-sm invisible" />
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<asp:label id="Label7" runat="server" CssClass="form-control-sm" Text="Hasta:" />
+									<asp:label id="Label7" runat="server" CssClass="form-control-sm invisible" Text="Hasta:" />
 								</td>
 								<td colspan="3">
-									<asp:textbox id="txtExpFinal" runat="server" CssClass="form-control-sm" />			
+									<asp:textbox id="txtExpFinal" runat="server" CssClass="form-control-sm invisible" />			
 								</td>
 							</tr>
-							<tr>
+							<tr class="invisible">
 								<td colspan="4">
 									<hr />
 								</td>
@@ -128,10 +131,10 @@
 
 							<tr>
 								<td>
-									<asp:label id="Label11" runat="server" CssClass="form-control-sm" Text="Caja:" />
+									<asp:label id="Label11" runat="server" CssClass="form-control-sm invisible" Text="Caja:" />
 								</td>
 								<td colspan="3">
-									<asp:textbox id="txtCaja" runat="server" CssClass="form-control-sm"></asp:textbox>
+									<asp:textbox id="txtCaja" runat="server" CssClass="form-control-sm invisible"></asp:textbox>
 								</td>
 							</tr>
 							<tr>
