@@ -36,30 +36,32 @@ Public Class ExpedienteDocumentosGestion
             }
             clienteSQL.EjecutaProcedimientoSql(params, "Gestion_ObtieneGestionExpediente")
 
-            lblGestion.Text = params(1).Value.ToString
-            lblAsunto.Text = params(2).Value.ToString
-            lblTitulo.Text = params(3).Value.ToString
-            lblObservaciones.Text = params(4).Value.ToString
-            lblCampoAdicional2.Text = params(5).Value.ToString
+            If params(1) IsNot Nothing And params(6) IsNot Nothing Then
+                lblGestion.Text = params(1).Value.ToString
+                lblAsunto.Text = params(2).Value.ToString
+                lblTitulo.Text = params(3).Value.ToString
+                lblObservaciones.Text = params(4).Value.ToString
+                lblCampoAdicional2.Text = params(5).Value.ToString
 
-            idGestion = Convert.ToInt32(params(6).Value)
+                idGestion = Convert.ToInt32(params(6).Value)
 
-            ViewState.Add("Gestion", idGestion)
-            ViewState.Add("Seccion", 0)
+                ViewState.Add("Gestion", idGestion)
+                ViewState.Add("Seccion", 0)
 
-            Dim params1(0) As SqlParameter
-            params1(0) = New SqlParameter("@IdGestion", ViewState("Gestion"))
+                Dim params1(0) As SqlParameter
+                params1(0) = New SqlParameter("@IdGestion", ViewState("Gestion"))
 
-            Dim ds As DataSet = clienteSQL.ObtenerRegistrosSql(params1, "Gestion_CargaSecciones")
-            ds.Tables(0).TableName = "Secciones"
+                Dim ds As DataSet = clienteSQL.ObtenerRegistrosSql(params1, "Gestion_CargaSecciones")
+                ds.Tables(0).TableName = "Secciones"
 
-            ddlSeccionesGestion.DataSource = ds
-            ddlSeccionesGestion.DataMember = "Secciones"
-            ddlSeccionesGestion.DataValueField = "Id"
-            ddlSeccionesGestion.DataTextField = "Descripcion"
+                ddlSeccionesGestion.DataSource = ds
+                ddlSeccionesGestion.DataMember = "Secciones"
+                ddlSeccionesGestion.DataValueField = "Id"
+                ddlSeccionesGestion.DataTextField = "Descripcion"
 
-            ddlSeccionesGestion.DataBind()
+                ddlSeccionesGestion.DataBind()
 
+            End If
         End If
 
         CargaGrids(ViewState("Seccion"))

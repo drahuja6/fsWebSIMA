@@ -24,6 +24,13 @@ Public Class Menu
     Protected WithEvents lnkVerificaArchivos As HyperLink
     Protected WithEvents lnkHerramientasPdf As HyperLink
     Protected WithEvents pnlHerramientas As Panel
+    Protected WithEvents usuariosMenu As HtmlAnchor
+    Protected WithEvents catalogoMenu As HtmlAnchor
+    Protected WithEvents expedientesMenu As HtmlAnchor
+    Protected WithEvents procesosMenu As HtmlAnchor
+    Protected WithEvents expedientesLink As HyperLink
+    Protected WithEvents lnkExpedientesGestionRRHH As HyperLink
+    Protected WithEvents auditoriaLink As HyperLink
 
     'NOTA: el Diseñador de Web Forms necesita la siguiente declaración del marcador de posición.
     'No se debe eliminar o mover.
@@ -39,13 +46,27 @@ Public Class Menu
 
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        'Permiso de acceso a herramientas.
-        If Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = "USOC" Or Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = "SUPERUSER" Then    'Perfil usuario administrador
-            pnlHerramientas.Visible = True
+        'Permiso de acceso para subversiones
+        If Globales.Subversion <> String.Empty Then
+            Select Case Globales.Subversion
+                Case "RRHH"
+                    'Grupo de menú catálogo
+                    catalogoMenu.Visible = False
+                    'Grupo de menú expedientes
+                    expedientesMenu.Visible = True
+                    expedientesLink.Visible = False             'Expedientes generales
+                    lnkExpedientesGestionRRHH.Visible = True    'Expedientes RRHH
+                    auditoriaLink.Visible = False               'Auditoría
+                    'Grupo de menú procesos
+                    procesosMenu.Visible = False
+                Case Else
+            End Select
         End If
+        'Permiso de acceso a herramientas.
+        pnlHerramientas.Visible = Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = "USOC" Or Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = "SUPERUSER"
 
-        LlenaEVT(Today())
-        LlenaEVC(Today())
+        'LlenaEVT(Today())
+        'LlenaEVC(Today())
 
     End Sub
 

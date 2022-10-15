@@ -763,7 +763,6 @@ Public Class UsuarioRealDisplay
                                         CInt(ddlstUsuarioVirtualAsociado.SelectedItem.Value))
             If MyID = 0 Then
                 'Me arriesgo a suponer que la fuente del error es que ya existe el login o el nombre
-                Beep()
                 lblValidaNombre.Visible = True
                 lblValidaLogin.Visible = True
                 Return

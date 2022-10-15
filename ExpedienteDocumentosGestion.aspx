@@ -61,8 +61,8 @@
               </div>
               <div class="row">
                 <div class="col-4 align-self-center">
-                    <asp:Button ID="btnAsigna" runat="server" Text="Asigna" Enabled="false" CssClass="btn btn-primary" />
-                    <asp:Button ID="btnDesasigna" runat="server" Text="Desasigna" Enabled="false" CssClass="btn btn-primary" />
+                    <asp:Button ID="btnAsigna" runat="server" Text="Asigna" Enabled="true" CssClass="btn btn-primary" />
+                    <asp:Button ID="btnDesasigna" runat="server" Text="Desasigna" Enabled="true" CssClass="btn btn-primary" />
                 </div>
                 <div class="col-6">
                     <asp:DropDownList ID="ddlSeccionesGestion" runat="server" AutoPostBack="true" />

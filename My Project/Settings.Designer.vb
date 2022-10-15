@@ -56,15 +56,6 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("SIMA_Senado_II")>  _
-        Public ReadOnly Property BaseDatos() As String
-            Get
-                Return CType(Me("BaseDatos"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("20971520")>  _
         Public ReadOnly Property LongitudMaximaArchivoDescarga() As Long
             Get
@@ -124,6 +115,24 @@ Namespace My
         Public ReadOnly Property CodigoAcceso() As String
             Get
                 Return CType(Me("CodigoAcceso"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("SIMA_Senado_3")>  _
+        Public ReadOnly Property BaseDatos() As String
+            Get
+                Return CType(Me("BaseDatos"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("RRHH")>  _
+        Public ReadOnly Property Subversion() As String
+            Get
+                Return CType(Me("Subversion"),String)
             End Get
         End Property
     End Class

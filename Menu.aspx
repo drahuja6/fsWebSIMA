@@ -17,18 +17,7 @@
 	<body bgcolor="#ffffff">
 		<form id="Form1" method="post" runat="server">
 			<div class="container text-left">
-				<a class="btn btn-link text-decoration-none ml-n3 text-center" data-toggle="collapse" data-target="#collapseUsuarios">
-					<i class="fas fa-user"></i>
-					Usuarios
-				</a>
-				<div id="collapseUsuarios" class="collapse">
-					<ul class="lista-menu ml-n4 small" id="menuUsuarios">
-						<li>
-							<asp:HyperLink id="usuariosLink" runat="server" Target ="principal" NavigateUrl="~/UsuarioRealBuscar.aspx" tabIndex="8" Text=" Buscar/Editar" ToolTip="Catálogo de usuarios" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
-						</li>
-					</ul>
-				</div>
-				<a class="btn btn-link text-decoration-none ml-n3" data-toggle="collapse" title="Catálogo de disposición documental" data-target="#collapseCatalogo">
+				<a class="btn btn-link text-decoration-none ml-n3" data-toggle="collapse" title="Catálogo de disposición documental" data-target="#collapseCatalogo" runat="server" id="catalogoMenu">
 					<i class="fas fa-list"></i>
 					Catálogo
 				</a>
@@ -39,7 +28,7 @@
 						</li>
 					</ul>
 				</div>
-				<a class="btn btn-link text-decoration-none ml-n3" data-toggle="collapse" data-target="#collapseExpediente">
+				<a class="btn btn-link text-decoration-none ml-n3" data-toggle="collapse" data-target="#collapseExpediente" runat="server" id="expedientesMenu">
 					<i class="fas fa-file"></i>
 					Expedientes
 				</a>
@@ -56,7 +45,7 @@
 						</li>
 					</ul>
 				</div>
-				<a class="btn btn-link text-decoration-none ml-n3" data-toggle="collapse" data-target="#collapseProcesos">
+				<a class="btn btn-link text-decoration-none ml-n3" data-toggle="collapse" data-target="#collapseProcesos" runat="server" id="procesosMenu">
 					<i class="fas fa-circle-notch"></i>
 					Procesos
 				</a>
@@ -77,6 +66,17 @@
 					</ul>
 				</div>
 				<asp:panel ID="pnlHerramientas" runat="server">
+					<a class="btn btn-link text-decoration-none ml-n3 text-center" data-toggle="collapse" data-target="#collapseUsuarios" runat="server" id="usuariosMenu">
+						<i class="fas fa-user"></i>
+						Usuarios
+					</a>
+					<div id="collapseUsuarios" class="collapse">
+						<ul class="lista-menu ml-n4 small" id="menuUsuarios">
+							<li>
+								<asp:HyperLink id="usuariosLink" runat="server" Target ="principal" NavigateUrl="~/UsuarioRealBuscar.aspx" tabIndex="8" Text=" Buscar/Editar" ToolTip="Catálogo de usuarios" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
+							</li>
+						</ul>
+					</div>
 					<a class="btn btn-link text-decoration-none ml-n3" data-toggle="collapse" data-target="#collapseHerramientas">
 						<i class="fas fa-wrench"></i>
 						Herramientas
