@@ -23,11 +23,11 @@
     <Setting Name="CodigoAcceso" Type="System.String" Scope="Application">
       <Value Profile="(Default)">f5D3Mex1C0+SIMA</Value>
     </Setting>
-    <Setting Name="BaseDatos" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">SIMA_Senado_3</Value>
-    </Setting>
     <Setting Name="Subversion" Type="System.String" Scope="Application">
       <Value Profile="(Default)">RRHH</Value>
+    </Setting>
+    <Setting Name="BaseDatos" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SIMA_Senado_RRHH</Value>
     </Setting>
   </Settings>
 </SettingsFile>

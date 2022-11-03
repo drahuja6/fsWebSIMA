@@ -42,7 +42,7 @@
               <div class="row">
                 <div class="col-12 mt-3">
                     <h6>Documentos disponibles para vincular</h6>
-                    <asp:GridView ID="dgvDocsDisponibles" runat="server" AutoGenerateColumns="False" CssClass="table table-borderless table-striped table-responsive-md table-hover border-0 drag_drop_grid" ViewStateMode="Enabled">
+                    <asp:GridView ID="dgvDocsDisponibles" runat="server" AutoGenerateColumns="False" CssClass="table table-borderless table-striped table-responsive-md table-hover border-0 drag_drop_grid" ViewStateMode="Disabled">
                         <SelectedRowStyle Font-Bold="True" />
                         <AlternatingRowStyle Font-Size="small" />
                         <RowStyle Font-Size="small" />

@@ -84,6 +84,9 @@ Public Class BusquedaExpedientesGestionRRHH
             ddlTipoContratacion.Items.Add("Todos")
             ddlTipoContratacion.Items.Add("Salarios")
             ddlTipoContratacion.Items.Add("Honorarios")
+            ddlTipoContratacion.Items.Add("Lista de raya")
+            ddlTipoContratacion.Items.Add("Ex senadores")
+            ddlTipoContratacion.Items.Add("H. Congreso")
             ddlTipoContratacion.SelectedValue = "Todos"
 
         End If
