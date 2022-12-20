@@ -37,8 +37,12 @@ Public Class TraspasoRecepcionExpedientes
                 _expedientesConCaja = "Batches_SeleccionaExpedientesConCajaProvParaBaja"
                 _tituloListadoExpedientes = "para baja."
                 lblTitulo.Text = "Autorización de expedientes para baja"
-            Case Else
-
+            Case 3 'Recepción en histórico (autoriza histórico)
+                _statusExpedientes = 7
+                _expedientesSinCaja = "Batches_SeleccionaExpedientesParaHistorico"
+                _expedientesConCaja = "Batches_SeleccionaExpedientesConCajaProvParaHistorico"
+                _tituloListadoExpedientes = "para histórico."
+                lblTitulo.Text = "Autorización de expedientes para histórico"
         End Select
 
     End Sub

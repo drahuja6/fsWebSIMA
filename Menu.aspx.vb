@@ -63,7 +63,7 @@ Public Class Menu
             End Select
         End If
         'Permiso de acceso a herramientas.
-        pnlHerramientas.Visible = Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = "USOC" Or Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = "SUPERUSER"
+        pnlHerramientas.Visible = Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = Globales.SysAdmin Or Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = Globales.SuperUser
 
         'LlenaEVT(Today())
         'LlenaEVC(Today())

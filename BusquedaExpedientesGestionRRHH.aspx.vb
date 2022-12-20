@@ -35,7 +35,7 @@ Public Class BusquedaExpedientesGestionRRHH
 #End Region
 
 #Region "Métodos privados manejadores de eventos de la forma"
-    Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load, Me.Load
         'Introducir aquí el código de usuario para inicializar la página
 
         _cadenaConexion = Session("UsuarioVirtualConnString").ToString
@@ -81,8 +81,8 @@ Public Class BusquedaExpedientesGestionRRHH
             ddlEstado.Items.Add("Inactivo")
             ddlEstado.SelectedValue = "Todos"
 
+            ddlTipoContratacion.Items.Clear()
             ddlTipoContratacion.Items.Add("Todos")
-            ddlTipoContratacion.Items.Add("Salarios")
             ddlTipoContratacion.Items.Add("Honorarios")
             ddlTipoContratacion.Items.Add("Lista de raya")
             ddlTipoContratacion.Items.Add("Ex senadores")
@@ -108,6 +108,7 @@ Public Class BusquedaExpedientesGestionRRHH
             btnCaratulasExpediente.Enabled = False
             btnEtiquetas.Enabled = False
             btnLomos.Enabled = False
+            btnExportaExcel.Enabled = False
 
             If CInt(txtReal.Text) > CInt(txtLimite.Text) Then
                 lblLimiteExcedido.Visible = True
@@ -423,6 +424,40 @@ Public Class BusquedaExpedientesGestionRRHH
         btnCaratulasExpediente.Enabled = False
         btnEtiquetas.Enabled = False
         btnLomos.Enabled = False
+        btnExportaExcel.Enabled = False
+
+    End Sub
+
+    Protected Sub BtnExportaExcel_Click(sender As Object, e As EventArgs) Handles btnExportaExcel.Click
+        'Preparo exportación a Excel con los resultados del proceso.
+
+        Dim params(1) As OleDbParameter
+        Dim ds As DataSet
+
+        Dim expedientes As New StringBuilder()
+
+        For Each item As Integer In _listaIdExpedientes
+            expedientes.Append(item)
+            expedientes.Append(",")
+        Next
+
+        params(0) = New OleDbParameter("@IDList", expedientes.ToString)
+        params(1) = New OleDbParameter("@Orden", _ordenExpedientes)
+
+        ds = New ClienteSQL(_cadenaConexion).ObtenerRegistros(params, "ListadoDeExpedientes")
+
+        If ds.Tables.Count > 0 Then
+
+            Dim guid1 As Guid = Guid.NewGuid
+            Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString() & ".xlsx"
+
+            Accesorios.GeneraReporteExcel(ds.Tables(0), MyFileName, "ListadoDeExpedientes", "Listado de expedientes localizados.")
+
+            Response.ContentType = "application/xlsx"
+            Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(MyFileName)}&Nombre=ListaExpedientes.xlsx&Eliminar=False")
+
+        End If
+
     End Sub
 
 #End Region
@@ -534,6 +569,7 @@ Public Class BusquedaExpedientesGestionRRHH
                 btnCaratulasExpediente.Enabled = True
                 btnEtiquetas.Enabled = True
                 btnLomos.Enabled = True
+                btnExportaExcel.Enabled = True
 
             End If
         Else

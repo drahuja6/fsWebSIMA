@@ -43,12 +43,12 @@ Public Class TraspasoExpedientesVencidos
                 _loteEnviado = "Batches_ListaConcentracionBaja"
                 _statusAnterior = 5
                 lblTitulo.Text = "Traspaso de expedientes de concentración a baja"
-            Case Else 'Concentración a histórico. Pendiete de desarrollar
-                '_seleccionaVencidos = "Batch_SeleccionaExpedientesVencidosConcentracion"
-                '_tituloProceso = "expedientes vencidos en concentración para histórico."
-                '_loteEnviado = "Batches_ListaConcentracionHistorico"
-                '_statusAnterior = 5
-                '_lblTitulo.Text = "Traspaso de expedientes de concentración a histórico"
+            Case 3 'Concentración a histórico. 
+                _seleccionaVencidos = "Batch_SeleccionaExpedientesVencidosConcentracionHistorico"
+                _tituloProceso = "expedientes vencidos en concentración para histórico."
+                _loteEnviado = "Batches_ListaConcentracionHistorico"
+                _statusAnterior = 5
+                _lblTitulo.Text = "Traspaso de expedientes de concentración a histórico"
         End Select
 
     End Sub

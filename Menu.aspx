@@ -63,6 +63,12 @@
 						<li>
 							<asp:HyperLink id="autorizaBajaLink" tabIndex="6" runat="server" Target="principal" NavigateUrl="~/TraspasoRecepcionExpedientes.aspx?Proceso=2" Text=" Autorización baja" ToolTip="Autorización de baja" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
 						</li>
+						<li>
+							<asp:HyperLink id="concentracionHistLink" tabIndex="5" runat="server" Target="principal" NavigateUrl="~/TraspasoExpedientesVencidos.aspx?Proceso=3" Text=" Histórico" ToolTip="Transferencia de concentración a archivo histórico" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
+						</li>
+						<li>
+							<asp:HyperLink id="autorizaHistLink" tabIndex="6" runat="server" Target="principal" NavigateUrl="~/TraspasoRecepcionExpedientes.aspx?Proceso=3" Text=" Autorización histórico" ToolTip="Autorización de transferencia a histórico" Font-Underline="false" CssClass="fas fa-dot-circle" Font-Bold="false"/>
+						</li>
 					</ul>
 				</div>
 				<asp:panel ID="pnlHerramientas" runat="server">

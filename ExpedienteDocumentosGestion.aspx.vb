@@ -61,6 +61,8 @@ Public Class ExpedienteDocumentosGestion
 
                 ddlSeccionesGestion.DataBind()
 
+                chkSoloConImagen.Checked = True
+
             End If
         End If
 
@@ -154,14 +156,20 @@ Public Class ExpedienteDocumentosGestion
 
     End Sub
 
+    Protected Sub ChkSoloConImagen_CheckedChanged(sender As Object, e As EventArgs) Handles chkSoloConImagen.CheckedChanged
+        CargaGrids(ViewState("Seccion"))
+    End Sub
+
     Private Sub CargaGrids(Optional idSeccion As Integer = 0)
         Dim sqlCliente As New ClienteSQL(Session("UsuarioVirtualConnStringSql"))
         Dim ds As DataSet
 
-        Dim params(1) As SqlParameter
+        Dim params(2) As SqlParameter
 
         params(0) = New SqlParameter("@IdExpediente", Session("IdExpedienteActivo"))
         params(1) = New SqlParameter("@IdSeccion", idSeccion)
+        params(2) = New SqlParameter("@SoloConImagen", chkSoloConImagen.Checked)
+
 
         ds = sqlCliente.ObtenerRegistrosSql(params, "Gestion_DocumentosDisponiblesAsignados")
 

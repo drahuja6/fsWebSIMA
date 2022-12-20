@@ -266,6 +266,9 @@
 								<td>
 									<asp:button id="btnLomos" runat="server" Text="Lomos" Enabled="False" ToolTip="Imprimir lomos de expedientes" CssClass="btn btn-primary" />
 								</td>
+								<td>
+									<asp:button id="btnExportaExcel" runat="server" Text="Exportar" ToolTip="Exportar listado de expedientes a Excel" CssClass="btn btn-primary" />
+								</td>
 							</tr>
 						</table>
 					</td>

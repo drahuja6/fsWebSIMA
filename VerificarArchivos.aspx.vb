@@ -14,7 +14,7 @@ Public Class VerificarArchivos
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        If Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = "USOC" Or Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = "SUPERUSER" Then    'Perfil usuario administrador
+        If Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = Globales.SysAdmin Or Session("LoginUsuarioVirtual").ToString.ToUpperInvariant = Globales.SuperUser Then    'Perfil usuario administrador
             If Not IsPostBack Then
                 ObtieneEstadisticaExpedientes()
             End If

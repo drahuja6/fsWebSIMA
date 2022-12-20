@@ -38,7 +38,8 @@
                       <asp:HyperLink ID="lnkExpedientes" runat="server" CssClass="btn btn-secondary btn-sm" NavigateUrl="./DisplayExpediente.aspx" ToolTip="Ver el expediente actual como expediente general">Ir a expediente general...</asp:HyperLink>
                   </div>
               </div>
-              <div class="row"></div>
+              <div class="row">
+              </div>
               <div class="row">
                 <div class="col-12 mt-3">
                     <h6>Documentos disponibles para vincular</h6>
@@ -64,8 +65,11 @@
                     <asp:Button ID="btnAsigna" runat="server" Text="Asigna" Enabled="true" CssClass="btn btn-primary" />
                     <asp:Button ID="btnDesasigna" runat="server" Text="Desasigna" Enabled="true" CssClass="btn btn-primary" />
                 </div>
-                <div class="col-6">
+                <div class="col-4">
                     <asp:DropDownList ID="ddlSeccionesGestion" runat="server" AutoPostBack="true" />
+                </div>
+                <div class="col-4">
+                      <asp:CheckBox ID="chkSoloConImagen" runat="server" Text="Filtrar elementos con imagen" ToolTip="Muestra todos los elementos o sólo aquellos con imagen" CssClass="form-check-input" Checked="true" AutoPostBack="True"/>
                 </div>
               </div>
               <div class="row">
