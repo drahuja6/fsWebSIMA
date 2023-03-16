@@ -58,5 +58,29 @@ namespace fsSimaAPI.Controllers
                 return InternalServerError();
             }
         }
+
+        /// <summary>
+        /// Establece estatus de transferencia del expediente.
+        /// </summary>
+        /// <param name="idExpediente"></param>
+        /// <param name="transferido"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("transferido")]
+        public IHttpActionResult EstatusTransferido(int idExpediente, bool transferido = true)
+        {
+            try
+            {
+                if (idExpediente <= 0)
+                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+
+                return Ok(new ExpedientesServicio().EstatusTransferido(idExpediente, transferido));
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
+
+        }
     }
 }

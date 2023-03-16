@@ -30,8 +30,9 @@ namespace fsSimaAPI
 
                 return ConstruyeLista(ds);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Accesorios.EscribeBitacora($"Error (ObtenerMetadata): {ex.Message}", "SIMA API", "Logs");
                 return default;
             }
         }
@@ -45,7 +46,7 @@ namespace fsSimaAPI
 
                 sqlParams[0] = new SqlParameter("@IdExpediente", idExpediente);
                 sqlParams[1] = new SqlParameter("@IdImagen", idImagen);
-                sqlParams[2] = new SqlParameter("@NombreArchivo", SqlDbType.NVarChar, 1024)
+                sqlParams[2] = new SqlParameter("@NombreArchivo", SqlDbType.VarChar, 1024)
                 {
                     Direction = ParameterDirection.Output
                 };
@@ -58,7 +59,7 @@ namespace fsSimaAPI
                     {
                         Id = idImagen
                     };
-                    var file = Path.Combine(ConfigurationManager.AppSettings["DirectorioImagenes"], sqlParams[2].Value.ToString().Trim());
+                    var file = Path.Combine(ConfigurationManager.AppSettings["DirectorioImagenes"], sqlParams[2].Value.ToString());
                     contenido.Contenido64 = Convert.ToBase64String(File.ReadAllBytes(file)); 
                     using (var md5 = MD5.Create())
                     {
@@ -72,9 +73,29 @@ namespace fsSimaAPI
                 else
                     return default;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Accesorios.EscribeBitacora($"Error (ObtenerImagen): {ex.Message}", "SIMA API", "Logs");
                 return default;
+            }
+        }
+
+        public bool EstatusTransferido (int idExpediente, bool estatus)
+        {
+            try
+            {
+                var sqlCliente = new ClienteSQL(ConfigurationManager.AppSettings["CadenaConexion"]);
+
+                var sqlParams = new SqlParameter[2];
+                sqlParams[0] = new SqlParameter("@IdExpediente", idExpediente);
+                sqlParams[1] = new SqlParameter("@ActualizaMarcaTransferencia", estatus);
+
+                return sqlCliente.EjecutaProcedimientoSql(sqlParams, "Expedientes_MarcaTransferenciaWS");
+            }
+            catch (Exception ex)
+            {
+                Accesorios.EscribeBitacora($"Error (EstatusTransferido): {ex.Message}", "SIMA API", "Logs");
+                return false;
             }
         }
 

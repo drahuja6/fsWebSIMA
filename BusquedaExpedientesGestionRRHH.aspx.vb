@@ -76,6 +76,7 @@ Public Class BusquedaExpedientesGestionRRHH
                 Session("LimiteDeRecordsEnBusqueda") = CInt(txtLimite.Text)
             End If
 
+            ddlEstado.Items.Clear()
             ddlEstado.Items.Add("Todos")
             ddlEstado.Items.Add("Activo")
             ddlEstado.Items.Add("Inactivo")
@@ -87,6 +88,10 @@ Public Class BusquedaExpedientesGestionRRHH
             ddlTipoContratacion.Items.Add("Lista de raya")
             ddlTipoContratacion.Items.Add("Ex senadores")
             ddlTipoContratacion.Items.Add("H. Congreso")
+            ddlTipoContratacion.Items.Add("Servicio técnico")
+            ddlTipoContratacion.Items.Add("Base")
+            ddlTipoContratacion.Items.Add("Mandos")
+            ddlTipoContratacion.Items.Add("Confianza")
             ddlTipoContratacion.SelectedValue = "Todos"
 
         End If
