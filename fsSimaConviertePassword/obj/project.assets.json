@@ -1,0 +1,115 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.7.2": {
+      "fsSimaServicios/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/fsSimaServicios.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/fsSimaServicios.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.7.2/win": {
+      "fsSimaServicios/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/fsSimaServicios.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/fsSimaServicios.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.7.2/win-x64": {
+      "fsSimaServicios/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/fsSimaServicios.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/fsSimaServicios.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.7.2/win-x86": {
+      "fsSimaServicios/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/fsSimaServicios.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/fsSimaServicios.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "fsSimaServicios/1.0.0": {
+      "type": "project",
+      "path": "../fsSimaServicios/fsSimaServicios.csproj",
+      "msbuildProject": "../fsSimaServicios/fsSimaServicios.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.7.2": [
+      "fsSimaServicios >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "D:\\Users\\Files\\.nuget\\packages": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\Users\\Files\\source\\repos\\Visual Studio 2022\\fsWebSIMA\\fsSimaConviertePassword\\fsSimaConviertePassword.csproj",
+      "projectName": "fsSimaConviertePassword",
+      "projectPath": "D:\\Users\\Files\\source\\repos\\Visual Studio 2022\\fsWebSIMA\\fsSimaConviertePassword\\fsSimaConviertePassword.csproj",
+      "packagesPath": "D:\\Users\\Files\\.nuget\\packages",
+      "outputPath": "D:\\Users\\Files\\source\\repos\\Visual Studio 2022\\fsWebSIMA\\fsSimaConviertePassword\\obj\\",
+      "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "D:\\ahuja.aguirre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net472"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net472": {
+          "projectReferences": {
+            "D:\\Users\\Files\\source\\repos\\Visual Studio 2022\\fsWebSIMA\\fsSimaServicios\\fsSimaServicios.csproj": {
+              "projectPath": "D:\\Users\\Files\\source\\repos\\Visual Studio 2022\\fsWebSIMA\\fsSimaServicios\\fsSimaServicios.csproj"
+            }
+          }
+        }
+      }
+    },
+    "frameworks": {
+      "net472": {}
+    },
+    "runtimes": {
+      "win": {
+        "#import": []
+      },
+      "win-x64": {
+        "#import": []
+      },
+      "win-x86": {
+        "#import": []
+      }
+    }
+  }
+}

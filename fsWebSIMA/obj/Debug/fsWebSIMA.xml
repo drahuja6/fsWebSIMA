@@ -1,0 +1,2066 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+fsWebSIMA
+</name>
+</assembly>
+<members>
+<member name="T:fsWebSIMA.My.MyWebExtension">
+ <summary>
+ Module used to define the properties that are available in the My Namespace for Web projects.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:fsWebSIMA.My.MyWebExtension.Computer">
+ <summary>
+ Returns information about the host computer.
+ </summary>
+</member>
+<member name="P:fsWebSIMA.My.MyWebExtension.User">
+ <summary>
+ Returns information for the current Web user.
+ </summary>
+</member>
+<member name="P:fsWebSIMA.My.MyWebExtension.Request">
+ <summary>
+ Returns Request object.
+ </summary>
+</member>
+<member name="P:fsWebSIMA.My.MyWebExtension.Response">
+ <summary>
+ Returns Response object.
+ </summary>
+</member>
+<member name="P:fsWebSIMA.My.MyWebExtension.Log">
+ <summary>
+ Returns the Asp log object.
+ </summary>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._lbUnidAdmin">
+<summary>
+lbUnidAdmin control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._ddlCodigosUsuario">
+<summary>
+ddlCodigosUsuario control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._Label2">
+<summary>
+Label2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._Label4">
+<summary>
+Label4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._txtFApertInic">
+<summary>
+txtFApertInic control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._RegularExpressionValidator1">
+<summary>
+RegularExpressionValidator1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._Label3">
+<summary>
+Label3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._txtFApertFinal">
+<summary>
+txtFApertFinal control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._RegularExpressionValidator2">
+<summary>
+RegularExpressionValidator2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._Label5">
+<summary>
+Label5 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._Label6">
+<summary>
+Label6 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._txtExpInic">
+<summary>
+txtExpInic control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._Label7">
+<summary>
+Label7 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._txtExpFinal">
+<summary>
+txtExpFinal control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._Label8">
+<summary>
+Label8 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._txtTipo">
+<summary>
+txtTipo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._Label9">
+<summary>
+Label9 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._txtRFC">
+<summary>
+txtRFC control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._Label10">
+<summary>
+Label10 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._txtNombre">
+<summary>
+txtNombre control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._Label11">
+<summary>
+Label11 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._txtCaja">
+<summary>
+txtCaja control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._cbBusqExacta">
+<summary>
+cbBusqExacta control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._Label13">
+<summary>
+Label13 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._txtLimite">
+<summary>
+txtLimite control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._lblLimiteExcedido">
+<summary>
+lblLimiteExcedido control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._Label14">
+<summary>
+Label14 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._txtReal">
+<summary>
+txtReal control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._Label15">
+<summary>
+Label15 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._ordenamientoDropDownList">
+<summary>
+ordenamientoDropDownList control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._buscarButton">
+<summary>
+buscarButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._panGridExpedientes">
+<summary>
+panGridExpedientes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._DataGrid1">
+<summary>
+DataGrid1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._NoHayDatos">
+<summary>
+NoHayDatos control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._Label12">
+<summary>
+Label12 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._btnImprimeGuiaDeExpedientes">
+<summary>
+btnImprimeGuiaDeExpedientes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._btnImprimeListadoDeExpedientes">
+<summary>
+btnImprimeListadoDeExpedientes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._btnCaratulasNoCredito">
+<summary>
+btnCaratulasNoCredito control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._btnEtiquetas">
+<summary>
+btnEtiquetas control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._btnLomos">
+<summary>
+btnLomos control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._btnVentanaEdicion">
+<summary>
+btnVentanaEdicion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._RadioButtonPDF">
+<summary>
+RadioButtonPDF control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._RadioButtonXLS">
+<summary>
+RadioButtonXLS control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._Button1">
+<summary>
+Button1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._btnEnTraspasoAConcentracion">
+<summary>
+btnEnTraspasoAConcentracion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._btnExpedientesDadosDeBaja">
+<summary>
+btnExpedientesDadosDeBaja control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._btnEnArchivoHistorico">
+<summary>
+btnEnArchivoHistorico control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._btnVencidosConcentracion">
+<summary>
+btnVencidosConcentracion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._btnVigentesConcentracion">
+<summary>
+btnVigentesConcentracion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._btnVencidosTramite">
+<summary>
+btnVencidosTramite control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._btnExpedientesActivos">
+<summary>
+btnExpedientesActivos control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._txtRelAnt">
+<summary>
+txtRelAnt control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._txtAnaqTr">
+<summary>
+txtAnaqTr control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._txtCaractExclu">
+<summary>
+txtCaractExclu control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._txtUbicTr">
+<summary>
+txtUbicTr control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._txtObsTr">
+<summary>
+txtObsTr control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientes._txtCodigo">
+<summary>
+txtCodigo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._lblEstado">
+<summary>
+lblEstado control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._ddlEstado">
+<summary>
+ddlEstado control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._lblNumeroEmpleado">
+<summary>
+lblNumeroEmpleado control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._txtNumero">
+<summary>
+txtNumero control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._lblNombre">
+<summary>
+lblNombre control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._txtNombre">
+<summary>
+txtNombre control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._lblTipoContratacion">
+<summary>
+lblTipoContratacion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._ddlTipoContratacion">
+<summary>
+ddlTipoContratacion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._Label2">
+<summary>
+Label2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._Label4">
+<summary>
+Label4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._txtFApertInic">
+<summary>
+txtFApertInic control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._RegularExpressionValidator1">
+<summary>
+RegularExpressionValidator1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._Label3">
+<summary>
+Label3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._txtFApertFinal">
+<summary>
+txtFApertFinal control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._RegularExpressionValidator2">
+<summary>
+RegularExpressionValidator2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._Label5">
+<summary>
+Label5 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._Label6">
+<summary>
+Label6 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._txtExpInic">
+<summary>
+txtExpInic control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._Label7">
+<summary>
+Label7 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._txtExpFinal">
+<summary>
+txtExpFinal control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._Label11">
+<summary>
+Label11 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._txtCaja">
+<summary>
+txtCaja control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._cbBusqExacta">
+<summary>
+cbBusqExacta control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._Label13">
+<summary>
+Label13 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._txtLimite">
+<summary>
+txtLimite control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._lblLimiteExcedido">
+<summary>
+lblLimiteExcedido control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._Label14">
+<summary>
+Label14 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._txtReal">
+<summary>
+txtReal control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._Label15">
+<summary>
+Label15 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._ordenamientoDropDownList">
+<summary>
+ordenamientoDropDownList control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._buscarButton">
+<summary>
+buscarButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._panGridExpedientes">
+<summary>
+panGridExpedientes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._DataGrid1">
+<summary>
+DataGrid1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._NoHayDatos">
+<summary>
+NoHayDatos control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._Label12">
+<summary>
+Label12 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._btnImprimeGuiaDeExpedientes">
+<summary>
+btnImprimeGuiaDeExpedientes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._btnImprimeListadoDeExpedientes">
+<summary>
+btnImprimeListadoDeExpedientes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._btnCaratulasExpediente">
+<summary>
+btnCaratulasExpediente control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._btnEtiquetas">
+<summary>
+btnEtiquetas control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._btnLomos">
+<summary>
+btnLomos control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._btnExportaExcel">
+<summary>
+btnExportaExcel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._txtRelAnt">
+<summary>
+txtRelAnt control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._txtAnaqTr">
+<summary>
+txtAnaqTr control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._txtCaractExclu">
+<summary>
+txtCaractExclu control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._txtUbicTr">
+<summary>
+txtUbicTr control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.BusquedaExpedientesGestionRRHH._txtCodigo">
+<summary>
+txtCodigo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.DescargaArchivo._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Error404._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.ErrorGeneral._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._codigoTextbox">
+<summary>
+codigoTextbox control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._codigoButton">
+<summary>
+codigoButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._estatusEdicionLabel">
+<summary>
+estatusEdicionLabel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._expedienteTextbox">
+<summary>
+expedienteTextbox control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._ListBox1">
+<summary>
+ListBox1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._referenciaTextbox">
+<summary>
+referenciaTextbox control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._tituloTextbox">
+<summary>
+tituloTextbox control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._asuntoTextbox">
+<summary>
+asuntoTextbox control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._edicionMovientosButton">
+<summary>
+edicionMovientosButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._cajaTramiteTextbox">
+<summary>
+cajaTramiteTextbox control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._anaquelTextbox">
+<summary>
+anaquelTextbox control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._ubicacionTextbox">
+<summary>
+ubicacionTextbox control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._TextBox2">
+<summary>
+TextBox2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._cajaConcentracionTextbox">
+<summary>
+cajaConcentracionTextbox control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._anaquelConcentracionTextbox">
+<summary>
+anaquelConcentracionTextbox control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._ubicacionConcentracionTextbox">
+<summary>
+ubicacionConcentracionTextbox control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._TextBox1">
+<summary>
+TextBox1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._labelSinMovimientos">
+<summary>
+labelSinMovimientos control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._agregarButton">
+<summary>
+agregarButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._editarButton">
+<summary>
+editarButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._borrarButton">
+<summary>
+borrarButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._caratulaButton">
+<summary>
+caratulaButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._lomoButton">
+<summary>
+lomoButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._creacionTextbox">
+<summary>
+creacionTextbox control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._elaboradoPor">
+<summary>
+elaboradoPor control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Expediente._ultimaEdicionTextbox">
+<summary>
+ultimaEdicionTextbox control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.ExpedienteDocumentosGestion._Form1">
+<summary>
+Form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.ExpedienteDocumentosGestion._lblGestion">
+<summary>
+lblGestion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.ExpedienteDocumentosGestion._lblAsunto">
+<summary>
+lblAsunto control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.ExpedienteDocumentosGestion._lblTitulo">
+<summary>
+lblTitulo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.ExpedienteDocumentosGestion._lblObservaciones">
+<summary>
+lblObservaciones control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.ExpedienteDocumentosGestion._lblCampoAdicional2">
+<summary>
+lblCampoAdicional2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.ExpedienteDocumentosGestion._lnkExpedientes">
+<summary>
+lnkExpedientes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.ExpedienteDocumentosGestion._dgvDocsDisponibles">
+<summary>
+dgvDocsDisponibles control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.ExpedienteDocumentosGestion._btnAsigna">
+<summary>
+btnAsigna control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.ExpedienteDocumentosGestion._btnDesasigna">
+<summary>
+btnDesasigna control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.ExpedienteDocumentosGestion._ddlSeccionesGestion">
+<summary>
+ddlSeccionesGestion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.ExpedienteDocumentosGestion._chkSoloConImagen">
+<summary>
+chkSoloConImagen control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.ExpedienteDocumentosGestion._dgvDocsAsignados">
+<summary>
+dgvDocsAsignados control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.HerramientasPdf._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.HerramientasPdf._lblTitulo">
+<summary>
+lblTitulo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.HerramientasPdf._btnActualizatitulo">
+<summary>
+btnActualizatitulo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.HerramientasPdf._lblCaja">
+<summary>
+lblCaja control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.HerramientasPdf._txtCaja">
+<summary>
+txtCaja control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.HerramientasPdf._btnContarPaginas">
+<summary>
+btnContarPaginas control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.HerramientasPdf._Label1">
+<summary>
+Label1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.HerramientasPdf._txtPaginas">
+<summary>
+txtPaginas control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.Logout._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._lblTitulo">
+<summary>
+lblTitulo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._ddlUnidAdm">
+<summary>
+ddlUnidAdm control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._Label2">
+<summary>
+Label2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._txtFechaDeCorte">
+<summary>
+txtFechaDeCorte control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._RegularExpressionValidator1">
+<summary>
+RegularExpressionValidator1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._lblCaja">
+<summary>
+lblCaja control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._txtCaja">
+<summary>
+txtCaja control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._btnBuscaVencidos">
+<summary>
+btnBuscaVencidos control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._btnImpListado">
+<summary>
+btnImpListado control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._btnRevisaExp">
+<summary>
+btnRevisaExp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._lbExpedientesVencidos">
+<summary>
+lbExpedientesVencidos control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._lblExpedientesLocalizados">
+<summary>
+lblExpedientesLocalizados control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._txtExpedientesLocalizados">
+<summary>
+txtExpedientesLocalizados control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._lblLote">
+<summary>
+lblLote control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._txtNuevoBatchID">
+<summary>
+txtNuevoBatchID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._txtFechCorteVig">
+<summary>
+txtFechCorteVig control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._txtNuevoBatchDesc">
+<summary>
+txtNuevoBatchDesc control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._btnNuevoBatch">
+<summary>
+btnNuevoBatch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._txtCajaProv">
+<summary>
+txtCajaProv control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._RequiredFieldValidator1">
+<summary>
+RequiredFieldValidator1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._btnAsignaCaja">
+<summary>
+btnAsignaCaja control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._Label3">
+<summary>
+Label3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._lbExpConCaja">
+<summary>
+lbExpConCaja control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._Label4">
+<summary>
+Label4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._txtNuevoBatchID2">
+<summary>
+txtNuevoBatchID2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._btnImprimeEnvio">
+<summary>
+btnImprimeEnvio control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoExpedientesVencidos._btnQuitar">
+<summary>
+btnQuitar control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._lblTitulo">
+<summary>
+lblTitulo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._ddlUnidAdm">
+<summary>
+ddlUnidAdm control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._btnBuscaLotes">
+<summary>
+btnBuscaLotes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._Label2">
+<summary>
+Label2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._ddlBatches">
+<summary>
+ddlBatches control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._btnTraerLote">
+<summary>
+btnTraerLote control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._btnRevisaExp">
+<summary>
+btnRevisaExp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._lbExpDelLote">
+<summary>
+lbExpDelLote control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._txtCaja">
+<summary>
+txtCaja control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._lblValidaCaja">
+<summary>
+lblValidaCaja control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._btnAsignaCaja">
+<summary>
+btnAsignaCaja control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._lbExpConCaja">
+<summary>
+lbExpConCaja control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._btnImprimeResguardo">
+<summary>
+btnImprimeResguardo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._lblValidaLoteAtendido">
+<summary>
+lblValidaLoteAtendido control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._btnFinalizarLote">
+<summary>
+btnFinalizarLote control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._lblValidaLoteAtendidoEImpreso">
+<summary>
+lblValidaLoteAtendidoEImpreso control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.TraspasoRecepcionExpedientes._btnQuitar">
+<summary>
+btnQuitar control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._txtTotalExpedientes">
+<summary>
+txtTotalExpedientes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._txtAplicaDigitalizacion">
+<summary>
+txtAplicaDigitalizacion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._txtNoAplicaDigitalizacion">
+<summary>
+txtNoAplicaDigitalizacion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._txtExpedientesConArchivos">
+<summary>
+txtExpedientesConArchivos control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._lblExpedientesSinArchivos">
+<summary>
+lblExpedientesSinArchivos control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._txtExpedientesSinArchivos">
+<summary>
+txtExpedientesSinArchivos control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._txtTotalHojasEsperadas">
+<summary>
+txtTotalHojasEsperadas control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._txtImagenesEsperadas">
+<summary>
+txtImagenesEsperadas control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._txtArchivosLocalizados">
+<summary>
+txtArchivosLocalizados control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._txtArchivosNoLocalizados">
+<summary>
+txtArchivosNoLocalizados control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._grvDetalle">
+<summary>
+grvDetalle control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._btnIniciarVerificacion">
+<summary>
+btnIniciarVerificacion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._chkReiniciarContadores">
+<summary>
+chkReiniciarContadores control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._lblVerificados">
+<summary>
+lblVerificados control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._txtVerificados">
+<summary>
+txtVerificados control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._txtEspacioDisco">
+<summary>
+txtEspacioDisco control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._txtArchivosDirectorio">
+<summary>
+txtArchivosDirectorio control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._txtArchivosDirectorioVinculados">
+<summary>
+txtArchivosDirectorioVinculados control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._txtArchivosDirectorioSinVincular">
+<summary>
+txtArchivosDirectorioSinVincular control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._btnActualizarDatosDirectorioSrv">
+<summary>
+btnActualizarDatosDirectorioSrv control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:fsWebSIMA.VerificarArchivos._chkGenerarReporte">
+<summary>
+chkGenerarReporte control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+</members>
+</doc>

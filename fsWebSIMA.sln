@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "fsWebSIMA", "fsWebSIMA\fsWebSIMA.vbproj", "{AB4D8C23-9920-48FE-AEFB-492586DECA02}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B2519BC4-3C2F-4C37-99F3-3264971156F6} = {B2519BC4-3C2F-4C37-99F3-3264971156F6}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fsSimaServicios", "fsSimaServicios\fsSimaServicios.csproj", "{B2519BC4-3C2F-4C37-99F3-3264971156F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fsSimaAPI", "fsSimaAPI\fsSimaAPI.csproj", "{5BDD4BDE-9F41-4EBF-A88E-B9D0DEF89CCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fsSimaConviertePassword", "fsSimaConviertePassword\fsSimaConviertePassword.csproj", "{5228928C-2349-42DF-839C-D20869F0EA67}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB4D8C23-9920-48FE-AEFB-492586DECA02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB4D8C23-9920-48FE-AEFB-492586DECA02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB4D8C23-9920-48FE-AEFB-492586DECA02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB4D8C23-9920-48FE-AEFB-492586DECA02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2519BC4-3C2F-4C37-99F3-3264971156F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2519BC4-3C2F-4C37-99F3-3264971156F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2519BC4-3C2F-4C37-99F3-3264971156F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2519BC4-3C2F-4C37-99F3-3264971156F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BDD4BDE-9F41-4EBF-A88E-B9D0DEF89CCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BDD4BDE-9F41-4EBF-A88E-B9D0DEF89CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BDD4BDE-9F41-4EBF-A88E-B9D0DEF89CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BDD4BDE-9F41-4EBF-A88E-B9D0DEF89CCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5228928C-2349-42DF-839C-D20869F0EA67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5228928C-2349-42DF-839C-D20869F0EA67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5228928C-2349-42DF-839C-D20869F0EA67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5228928C-2349-42DF-839C-D20869F0EA67}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E08C008E-CCD6-448C-BD2E-39987BA172C0}
+	EndGlobalSection
+EndGlobal

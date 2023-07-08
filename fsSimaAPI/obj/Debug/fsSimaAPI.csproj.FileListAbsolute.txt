@@ -1,0 +1,2 @@
+D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsSimaAPI\obj\Debug\fsSimaAPI.csproj.AssemblyReference.cache
+D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsSimaAPI\obj\Debug\fsSimaAPI.csproj.CoreCompileInputs.cache
