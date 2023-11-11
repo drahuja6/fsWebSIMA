@@ -476,7 +476,6 @@
     <Content Include="Caratula.ttx" />
     <Content Include="Etiquetas.ttx" />
     <Content Include="fsWebS_SEN.vbproj" />
-    <Content Include="Global.asax.vb.old" />
     <Content Include="GuiaDeExpedientesExistentes.ttx" />
     <Content Include="ListaDeExpedientes.ttx" />
     <Content Include="ListaExpTramVenc.ttx" />

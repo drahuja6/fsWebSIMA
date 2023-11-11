@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>fsSimaAPI</name>
+    </assembly>
+    <members>
+        <member name="T:fsSimaAPI.Controllers.AccesoController">
+            <summary>
+            Controlador de API para autentificación y acceso.
+            </summary>
+        </member>
+        <member name="M:fsSimaAPI.Controllers.AccesoController.Autentificacion(fsSimaAPI.LoginRequest)">
+            <summary>
+            Autentifica y obtiene token para aplicación.
+            </summary>
+            <param name="login">Objeto <strong>Login</strong> que contiene información para autentificación.</param>
+            <returns>Resultado de la autentificación en <strong>LogonResponse</strong>.</returns>
+        </member>
+        <member name="T:fsSimaAPI.Controllers.ExpedientesController">
+            <summary>
+            Controlador de API para decargar información de expedientes.
+            </summary>
+        </member>
+        <member name="M:fsSimaAPI.Controllers.ExpedientesController.ObtenerMetadata(System.Int32,System.Boolean)">
+            <summary>
+            Obtiene Metadata de los expedientes no transmitidos.
+            </summary>
+            <returns>Listado con metadata de expedientes.</returns>
+        </member>
+        <member name="M:fsSimaAPI.Controllers.ExpedientesController.ObtenerImagen(System.Int32,System.Int32)">
+            <summary>
+            Obtiene una imagen a partir del identificador de la misma.
+            </summary>
+            <param name="idExpediente">Identificador de expediente.</param>
+            <param name="idImagen">Identificador de imagen.</param>
+            <returns></returns>
+        </member>
+        <member name="M:fsSimaAPI.Controllers.ExpedientesController.EstatusTransferido(System.Int32,System.Boolean)">
+            <summary>
+            Establece estatus de transferencia del expediente.
+            </summary>
+            <param name="idExpediente"></param>
+            <param name="transferido"></param>
+            <returns></returns>
+        </member>
+        <member name="T:fsSimaAPI.DocumentoContenido">
+            <summary>
+            Devuelve el contenido de una imagen como String64.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.DocumentoContenido.Id">
+            <summary>
+            Identificador de la imagen.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.DocumentoContenido.Contenido64">
+            <summary>
+            Contenido en String64.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.DocumentoContenido.MD5">
+            <summary>
+            MD5 calculado desde el archivo original.
+            </summary>
+        </member>
+        <member name="T:fsSimaAPI.DocumentoMetadata">
+            <summary>
+            Identificación del documento.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.DocumentoMetadata.Id">
+            <summary>
+            Identificador interno del documento.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.DocumentoMetadata.NombreArchivo">
+            <summary>
+            Nombre del archivo.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.DocumentoMetadata.IdExpediente">
+            <summary>
+            Identificador interno del expediente al que está vinculado el documento.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.DocumentoMetadata.Verificado">
+            <summary>
+            Existencia verificada en el file system.
+            </summary>
+        </member>
+        <member name="T:fsSimaAPI.ExpedienteMetadata">
+            <summary>
+            Contiene información general del expediente.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.ExpedienteMetadata.Id">
+            <summary>
+            Identificador interno.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.ExpedienteMetadata.CodigoClasificacion">
+            <summary>
+            Código de clasificación archivísitica asignado.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.ExpedienteMetadata.NumeroExpediente">
+            <summary>
+            Número consecutivo de expediente en función del código de clasificacion y la fecha de apertura.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.ExpedienteMetadata.UnidadAdministrativa">
+            <summary>
+            Unidad admiministrativa
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.ExpedienteMetadata.IdExterno">
+            <summary>
+            Identificador para la Unidad administrativa en sistemas externos.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.ExpedienteMetadata.NumeroCaja">
+            <summary>
+            Número de caja de almacenamiento
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.ExpedienteMetadata.Titulo">
+            <summary>
+            Título. 
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.ExpedienteMetadata.Asunto">
+            <summary>
+            Asunto.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.ExpedienteMetadata.Apertura">
+            <summary>
+            Fecha de apertura.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.ExpedienteMetadata.Cierre">
+            <summary>
+            Fecha de cierre del expediente en trámite.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.ExpedienteMetadata.NumeroHojas">
+            <summary>
+            Número de hojas totales.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.ExpedienteMetadata.Documentos">
+            <summary>
+            Listado de documentos vinculados al expediente.
+            </summary>
+        </member>
+        <member name="T:fsSimaAPI.LoginRequest">
+            <summary>
+            Objeto para autentitifiación de usuario.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.LoginRequest.User">
+            <summary>
+            Identificador de usuario.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.LoginRequest.Password">
+            <summary>
+            Contraseña de usuario.
+            </summary>
+        </member>
+        <member name="T:fsSimaAPI.LoginResponse">
+            <summary>
+            Objeto que contiene el resultado de la autentificación.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.LoginResponse.AuthenticationOk">
+            <summary>
+            Bandera activa si la autentificación fue exitosa.
+            </summary>
+        </member>
+        <member name="P:fsSimaAPI.LoginResponse.AuthenticationToken">
+            <summary>
+            Cadena que contiene el token de autentificación.
+            </summary>
+        </member>
+    </members>
+</doc>

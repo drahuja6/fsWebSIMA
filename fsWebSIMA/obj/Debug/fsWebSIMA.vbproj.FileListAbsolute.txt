@@ -51,8 +51,6 @@ D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\bin\fsSimaSer
 D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\bin\fsSimaServicios.dll.config
 D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\bin\ClosedXML.pdb
-D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\bin\ClosedXML.xml
-D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\bin\PdfSharp.xml
 D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\bin\de\PdfSharp.resources.dll
 D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\obj\Debug\fsWebSIMA.vbproj.CopyComplete
 D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\obj\Debug\fsWebSIMA.dll
@@ -64,4 +62,4 @@ D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\bin\roslyn\Sy
 D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\bin\roslyn\System.Numerics.Vectors.dll
 D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
 D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\bin\DocumentFormat.OpenXml.dll
-D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\bin\DocumentFormat.OpenXml.xml
+D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\bin\ExcelNumberFormat.dll
