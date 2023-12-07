@@ -281,7 +281,10 @@
 									<asp:button id="btnCaratulasNoCredito" runat="server" Text="Carátulas" Enabled="False" ToolTip="Imprimir carátulas" CssClass="btn btn-primary"  />
 								</td>
 								<td>
-									<asp:button id="btnEtiquetas" runat="server" Text="Etiquetas" Enabled="False" ToolTip="Imprimir etiquetas" CssClass="btn btn-primary" />
+									<asp:button id="btnEtiquetas" runat="server" Text="Etiquetas generales" Enabled="False" ToolTip="Imprimir etiquetas formato general" CssClass="btn btn-primary" />
+								</td>
+								<td>
+									<asp:button id="btnEtiquetasCodigo" runat="server" Text="Etiquetas código" Enabled="False" ToolTip="Imprimir etiquetas sólo código" CssClass="btn btn-primary" />
 								</td>
 								<td>
 									<asp:button id="btnLomos" runat="server" Text="Lomos" Enabled="False" ToolTip="Imprimir lomos de expedientes" CssClass="btn btn-primary" />

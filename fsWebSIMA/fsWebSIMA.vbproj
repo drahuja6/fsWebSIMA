@@ -16,7 +16,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MyType>Custom</MyType>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>false</Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -33,6 +33,9 @@
     <OutputPath>bin\</OutputPath>
     <DocumentationFile>fsWebSIMA.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <LegacyPublishPropertiesPageEnabled>true</LegacyPublishPropertiesPageEnabled>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -257,6 +260,12 @@
       <DependentUpon>Etiquetas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="EtiquetasCodigo.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EtiquetasCodigo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Expediente.aspx.designer.vb">
       <DependentUpon>Expediente.aspx</DependentUpon>
     </Compile>
@@ -421,6 +430,10 @@
     <EmbeddedResource Include="Etiquetas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Etiquetas1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EtiquetasCodigo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>EtiquetasCodigo.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ExpVencidos.aspx.resx">
       <DependentUpon>ExpVencidos.aspx.vb</DependentUpon>

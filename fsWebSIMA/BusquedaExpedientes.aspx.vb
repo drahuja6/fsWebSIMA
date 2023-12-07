@@ -101,6 +101,7 @@ Public Class BusquedaExpedientes
             btnImprimeListadoDeExpedientes.Enabled = False
             btnCaratulasNoCredito.Enabled = False
             btnEtiquetas.Enabled = False
+            btnEtiquetasCodigo.Enabled = False
             btnLomos.Enabled = False
 
             btnExpedientesActivos.Enabled = False
@@ -395,6 +396,40 @@ Public Class BusquedaExpedientes
         End If
     End Sub
 
+    Protected Sub BtnEtiquetasCodigo_Click(sender As Object, e As EventArgs) Handles btnEtiquetasCodigo.Click
+        Dim params(1) As OleDbParameter
+        Dim ds As DataSet
+
+        Dim Reporte As New EtiquetasCodigo
+
+        Dim expedientes As New StringBuilder()
+
+        For Each item As Integer In _listaIdExpedientes
+            expedientes.Append(item)
+            expedientes.Append(",")
+        Next
+
+        params(0) = New OleDbParameter("@IDList", expedientes.ToString)
+        params(1) = New OleDbParameter("@Orden", _ordenExpedientes)
+
+        ds = New ClienteSQL(_cadenaConexion).ObtenerRegistros(params, "ListadoDeExpedientes")
+
+        If ds.Tables.Count > 0 Then
+            Reporte.SetDataSource(ds.Tables(0))
+
+            Reporte.SetParameterValue(0, LogoCliente)
+
+            Dim guid1 As Guid = Guid.NewGuid
+            Dim MyFileName As String = DirTemporal & Session("LoginActivo").ToString & guid1.ToString & ".pdf"
+
+            Reporte.ExportToDisk(CrystalDecisions.[Shared].ExportFormatType.PortableDocFormat, MyFileName)
+            Reporte.Dispose()
+
+            Response.Redirect($"./DescargaArchivo.aspx?FN={HttpUtility.UrlEncode(MyFileName)}&Nombre=Etiquetas.pdf&Eliminar=True")
+
+        End If
+    End Sub
+
     Private Sub BtnLomos_Click(sender As Object, e As EventArgs) Handles btnLomos.Click
         Dim params(1) As OleDbParameter
         Dim ds As DataSet
@@ -641,6 +676,7 @@ Public Class BusquedaExpedientes
                 btnImprimeListadoDeExpedientes.Enabled = False
                 btnCaratulasNoCredito.Enabled = False
                 btnEtiquetas.Enabled = False
+                btnEtiquetasCodigo.Enabled = False
                 btnLomos.Enabled = False
 
                 btnExpedientesActivos.Enabled = False
@@ -684,6 +720,7 @@ Public Class BusquedaExpedientes
                 btnImprimeListadoDeExpedientes.Enabled = True
                 btnCaratulasNoCredito.Enabled = True
                 btnEtiquetas.Enabled = True
+                btnEtiquetasCodigo.Enabled = True
                 btnLomos.Enabled = True
 
                 btnExpedientesActivos.Enabled = True
@@ -1219,6 +1256,8 @@ Public Class BusquedaExpedientes
         End If
 
     End Sub
+
+
 
 #End Region
 

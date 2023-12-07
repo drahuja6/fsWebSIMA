@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.5.0.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.7.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -83,26 +83,17 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("D:/Temp/PdfSIMA/Senado/")>  _
-        Public ReadOnly Property DirImagenes() As String
-            Get
-                Return CType(Me("DirImagenes"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("C:/prov/")>  _
         Public ReadOnly Property DirTemporal() As String
             Get
                 Return CType(Me("DirTemporal"),String)
             End Get
         End Property
-
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.Configuration.DefaultSettingValueAttribute("D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\Images\LogoSen" &
-            "ado-LXV.png""")>
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("D:\Users\Files\source\repos\Visual Studio 2022\fsWebSIMA\fsWebSIMA\Images\LogoSen"& _ 
+            "ado-LXV.png")>  _
         Public ReadOnly Property LogoCliente() As String
             Get
                 Return CType(Me("LogoCliente"),String)
@@ -120,7 +111,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("RRHH")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public ReadOnly Property Subversion() As String
             Get
                 Return CType(Me("Subversion"),String)
@@ -129,10 +120,19 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("SIMA_Senado_RRHH")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("SIMA_Senado_4")>  _
         Public ReadOnly Property BaseDatos() As String
             Get
                 Return CType(Me("BaseDatos"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("E:/PdfSIMA/Senado/")>  _
+        Public ReadOnly Property DirImagenes() As String
+            Get
+                Return CType(Me("DirImagenes"),String)
             End Get
         End Property
     End Class

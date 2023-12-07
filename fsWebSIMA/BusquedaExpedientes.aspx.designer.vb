@@ -374,6 +374,15 @@ Partial Public Class BusquedaExpedientes
     Protected WithEvents btnEtiquetas As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''btnEtiquetasCodigo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnEtiquetasCodigo As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''btnLomos control.
     '''</summary>
     '''<remarks>
