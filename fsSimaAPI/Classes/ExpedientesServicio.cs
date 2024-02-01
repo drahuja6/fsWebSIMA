@@ -8,6 +8,8 @@ using System.IO;
 using System.Security.Cryptography;
 
 using fsSimaServicios;
+using System.Web;
+using Swashbuckle.Swagger;
 
 namespace fsSimaAPI
 {
@@ -60,15 +62,20 @@ namespace fsSimaAPI
                         Id = idImagen
                     };
                     var file = Path.Combine(ConfigurationManager.AppSettings["DirectorioImagenes"], sqlParams[2].Value.ToString());
-                    contenido.Contenido64 = Convert.ToBase64String(File.ReadAllBytes(file)); 
-                    using (var md5 = MD5.Create())
+                    if (File.Exists(file))
                     {
-                        using (var fs = File.OpenRead(file))
+                        contenido.Contenido64 = Convert.ToBase64String(File.ReadAllBytes(file));
+                        using (var md5 = MD5.Create())
                         {
-                            contenido.MD5 = BitConverter.ToString(md5.ComputeHash(fs)).Replace("-", "").ToLowerInvariant();
+                            using (var fs = File.OpenRead(file))
+                            {
+                                contenido.MD5 = BitConverter.ToString(md5.ComputeHash(fs)).Replace("-", "").ToLowerInvariant();
+                            }
                         }
+                        return contenido;
                     }
-                    return contenido;
+                    else
+                        return default;
                 }
                 else
                     return default;
@@ -96,6 +103,36 @@ namespace fsSimaAPI
             {
                 Accesorios.EscribeBitacora($"Error (EstatusTransferido): {ex.Message}", "SIMA API", "Logs");
                 return false;
+            }
+        }
+
+        public string ObtenerNombreArchivoImagen(int idExpediente, int idImagen)
+        {
+            try
+            {
+                var sqlCliente = new ClienteSQL(ConfigurationManager.AppSettings["CadenaConexion"]);
+                var sqlParams = new SqlParameter[3];
+
+                sqlParams[0] = new SqlParameter("@IdExpediente", idExpediente);
+                sqlParams[1] = new SqlParameter("@IdImagen", idImagen);
+                sqlParams[2] = new SqlParameter("@NombreArchivo", SqlDbType.VarChar, 1024)
+                {
+                    Direction = ParameterDirection.Output
+                };
+
+                sqlCliente.EjecutaProcedimientoSql(sqlParams, "Imagen_TransferenciaWS");
+
+                if (sqlParams[2].Value != null)
+                {
+                    return Path.Combine(ConfigurationManager.AppSettings["DirectorioImagenes"], sqlParams[2].Value.ToString());
+                }
+                else
+                    return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                Accesorios.EscribeBitacora($"Error (ObtenerArchivoImagen): {ex.Message}", "SIMA API", "Logs");
+                return string.Empty;
             }
         }
 
@@ -145,7 +182,6 @@ namespace fsSimaAPI
                 return default;
             }
         }
-
 
         #endregion Métodos privados
     }

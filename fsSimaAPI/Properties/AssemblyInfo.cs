@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Full Service de México, S.A. de C.V.")]
 [assembly: AssemblyProduct("fsSimaAPI")]
-[assembly: AssemblyCopyright("Copyright © FSM 2022")]
+[assembly: AssemblyCopyright("Copyright © FSM 2024")]
 [assembly: AssemblyTrademark("SIMA")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.0.6.2221")]
-[assembly: AssemblyFileVersion("1.0.6.2221")]
+[assembly: AssemblyVersion("1.0.8.4031")]
+[assembly: AssemblyFileVersion("1.0.8.4031")]
